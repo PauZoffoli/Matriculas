@@ -1,0 +1,22 @@
+"infyomlabs/laravel-generator": "5.6.x-dev",
+"laravelcollective/html": "^5.6.0",
+"infyomlabs/adminlte-templates": "5.6.x-dev",
+"infyomlabs/swagger-generator": "dev-master",
+"jlapp/swaggervel": "dev-master",
+"doctrine/dbal": "~2.3"
+
+composer update
+
+php artisan infyom:scaffold Alumno --fromTable --tableName=alumnos
+php artisan infyom:scaffold AlumnoResponsable --fromTable --tableName=alumno_responsable
+php artisan infyom:scaffold Apoderado --fromTable --tableName=apoderados
+php artisan infyom:scaffold Comuna --fromTable --tableName=comunas
+php artisan infyom:scaffold Provincia --fromTable --tableName=provincias
+php artisan infyom:scaffold Region --fromTable --tableName=regiones
+php artisan infyom:scaffold Direccion --fromTable --tableName=direcciones
+php artisan infyom:scaffold Contrato --fromTable --tableName=contratos
+php artisan infyom:scaffold FichaAlumno --fromTable --tableName=ficha_alumno
+php artisan infyom:scaffold Persona --fromTable --tableName=personas
+php artisan infyom:scaffold Roles --fromTable --tableName=roles
+php artisan infyom:scaffold User --fromTable --tableName=users
+php artisan infyom:scaffold UserRol --fromTable --tableName=user_rol
