@@ -4,16 +4,18 @@ namespace App\Models;
 
 use Eloquent as Model;
 
-
 /**
  * Class Persona
  * @package App\Models
- * @version September 11, 2018, 3:25 pm UTC
+ * @version September 12, 2018, 10:18 pm UTC
  *
+ * @property \App\Models\Direccione direccione
  * @property \App\Models\User user
  * @property \Illuminate\Database\Eloquent\Collection AlumnoResponsable
  * @property \Illuminate\Database\Eloquent\Collection Alumno
  * @property \Illuminate\Database\Eloquent\Collection Apoderado
+ * @property \Illuminate\Database\Eloquent\Collection detalleBecaAlumno
+ * @property \Illuminate\Database\Eloquent\Collection repitencias
  * @property \Illuminate\Database\Eloquent\Collection userRol
  * @property string PNombre
  * @property string SNombre
@@ -22,11 +24,15 @@ use Eloquent as Model;
  * @property string ApMat
  * @property integer fonoFijo
  * @property integer fonoCelu
- * @property integer users_id
+ * @property integer idUser
  * @property string rut
- * @property string dv
  * @property string tipoPersona
- * @property integer mail
+ * @property string genero
+ * @property string email
+ * @property string|\Carbon\Carbon fechaNacimiento
+ * @property string|\Carbon\Carbon fechaDefuncion
+ * @property string estadoCivil
+ * @property integer idDireccion
  */
 class Persona extends Model
 {
@@ -48,11 +54,15 @@ class Persona extends Model
         'ApMat',
         'fonoFijo',
         'fonoCelu',
-        'users_id',
+        'idUser',
         'rut',
-        'dv',
         'tipoPersona',
-        'mail'
+        'genero',
+        'email',
+        'fechaNacimiento',
+        'fechaDefuncion',
+        'estadoCivil',
+        'idDireccion'
     ];
 
     /**
@@ -69,11 +79,13 @@ class Persona extends Model
         'ApMat' => 'string',
         'fonoFijo' => 'integer',
         'fonoCelu' => 'integer',
-        'users_id' => 'integer',
+        'idUser' => 'integer',
         'rut' => 'string',
-        'dv' => 'string',
         'tipoPersona' => 'string',
-        'mail' => 'integer'
+        'genero' => 'string',
+        'email' => 'string',
+        'estadoCivil' => 'string',
+        'idDireccion' => 'integer'
     ];
 
     /**
@@ -88,9 +100,17 @@ class Persona extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
+    public function direccione()
+    {
+        return $this->belongsTo(\App\Models\Direccione::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class,'users_id');
+        return $this->belongsTo(\App\Models\User::class);
     }
 
     /**
@@ -106,7 +126,7 @@ class Persona extends Model
      **/
     public function alumnos()
     {
-        return $this->hasMany(\App\Models\Alumno::class,'id');
+        return $this->hasMany(\App\Models\Alumno::class);
     }
 
     /**
@@ -114,6 +134,6 @@ class Persona extends Model
      **/
     public function apoderados()
     {
-        return $this->hasMany(\App\Models\Apoderado::class, 'id');
+        return $this->hasMany(\App\Models\Apoderado::class);
     }
 }

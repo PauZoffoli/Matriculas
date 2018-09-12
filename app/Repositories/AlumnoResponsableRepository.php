@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class AlumnoResponsableRepository
  * @package App\Repositories
- * @version September 11, 2018, 2:40 pm UTC
+ * @version September 12, 2018, 10:18 pm UTC
  *
  * @method AlumnoResponsable findWithoutFail($id, $columns = ['*'])
  * @method AlumnoResponsable find($id, $columns = ['*'])
@@ -21,8 +21,9 @@ class AlumnoResponsableRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'parentesco',
-        'idAlumno',
+        'otroParentesco',
         'idPersona',
+        'idAlumno',
         'descripcion'
     ];
 

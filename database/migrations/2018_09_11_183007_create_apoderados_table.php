@@ -18,6 +18,7 @@ class CreateApoderadosTable extends Migration
             $table->timestamps();
 
             $table->enum('nivelEducacional', [
+            'Sin estudios', 
             'Pre-Kínder', 
             'Kínder',
             '1 ° Básico',
@@ -49,7 +50,7 @@ class CreateApoderadosTable extends Migration
 
 
             $table->enum('paisDeOrigen', [
-           'Afganistán',
+'Afganistán',
 'Albania',
 'Alemania',
 'Andorra',

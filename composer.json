@@ -13,7 +13,7 @@
         "infyomlabs/laravel-generator": "5.6.x-dev",
         "infyomlabs/swagger-generator": "dev-master",
         "jlapp/swaggervel": "dev-master",
-        "laravel/framework": "5.6.*",
+        "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.6.0",
         "phpmailer/phpmailer": "^6.0"

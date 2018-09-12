@@ -3,12 +3,9 @@
         <tr>
             <th>Niveleducacional</th>
         <th>Profesion</th>
-        <th>Nacionalidad</th>
-        <th>Iddirecciones</th>
-        <th>Fechanacimiento</th>
-        <th>Estadoapoderado</th>
+        <th>Paisdeorigen</th>
         <th>Idpersona</th>
-        <th>PruebaPersona</th>
+        <th>Estado</th>
             <th colspan="3">Action</th>
         </tr>
     </thead>
@@ -17,12 +14,9 @@
         <tr>
             <td>{!! $apoderado->nivelEducacional !!}</td>
             <td>{!! $apoderado->profesion !!}</td>
-            <td>{!! $apoderado->nacionalidad !!}</td>
-            <td>{!! $apoderado->idDirecciones !!}</td>
-            <td>{!! $apoderado->fechaNacimiento !!}</td>
-            <td>{!! $apoderado->estadoApoderado !!}</td>
+            <td>{!! $apoderado->paisDeOrigen !!}</td>
             <td>{!! $apoderado->idPersona !!}</td>
-            <td>{!! $apoderado->persona->PNombre !!}</td>
+            <td>{!! $apoderado->estado !!}</td>
             <td>
                 {!! Form::open(['route' => ['apoderados.destroy', $apoderado->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

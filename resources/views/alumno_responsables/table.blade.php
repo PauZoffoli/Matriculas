@@ -2,8 +2,9 @@
     <thead>
         <tr>
             <th>Parentesco</th>
-        <th>Idalumno</th>
+        <th>Otroparentesco</th>
         <th>Idpersona</th>
+        <th>Idalumno</th>
         <th>Descripcion</th>
             <th colspan="3">Action</th>
         </tr>
@@ -12,8 +13,9 @@
     @foreach($alumnoResponsables as $alumnoResponsable)
         <tr>
             <td>{!! $alumnoResponsable->parentesco !!}</td>
-            <td>{!! $alumnoResponsable->idAlumno !!}</td>
+            <td>{!! $alumnoResponsable->otroParentesco !!}</td>
             <td>{!! $alumnoResponsable->idPersona !!}</td>
+            <td>{!! $alumnoResponsable->idAlumno !!}</td>
             <td>{!! $alumnoResponsable->descripcion !!}</td>
             <td>
                 {!! Form::open(['route' => ['alumnoResponsables.destroy', $alumnoResponsable->id], 'method' => 'delete']) !!}
