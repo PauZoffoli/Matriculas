@@ -13,9 +13,26 @@ class CreateContratosTable extends Migration
      */
     public function up()
     {
-        Schema::create('contratos;', function (Blueprint $table) {
+        Schema::create('contratos', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+
+            $table->integer('idApoderado')->unsigned()->nullable($value = true);
+            $table->foreign('idApoderado')->references('id')->on('apoderados')->onDelete('cascade');
+
+            $table->string('urlContrato');
+            $table->string('urlPagare');
+            $table->string('urlContratoF'); //refiere al contrato firmado
+            $table->string('urlPagareF'); //refiere al pagare firmado
+
+            $table->integer('nroCuotas');
+
+            $table->timestamp('fechaContrato')->useCurrent();
+            $table->integer('anioAContratar');
+
+            $table->integer('totalAPagar');
+     
+
         });
     }
 

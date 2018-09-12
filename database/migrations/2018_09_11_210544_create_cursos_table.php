@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRegionesTable extends Migration
+class CreateCursosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateRegionesTable extends Migration
      */
     public function up()
     {
-        Schema::create('regiones', function (Blueprint $table) {
-            $table->increments('id')->unique();
+        Schema::create('cursos', function (Blueprint $table) {
+            $table->increments('id');
             $table->timestamps();
-            $table->string('nombreReg');
-            $table->string('regionOrd');
-            $table->string('codigoUnico');
+
+            $table->integer('nivel');
+            $table->enum('basicaMedia', [
+                'Básico',
+                'Media'])->default('Básico');
+            $table->integer('arancelAnual');
 
         });
     }
@@ -30,6 +33,6 @@ class CreateRegionesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('regiones');
+        Schema::dropIfExists('cursos');
     }
 }

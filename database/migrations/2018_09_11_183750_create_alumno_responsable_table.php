@@ -13,9 +13,32 @@ class CreateAlumnoResponsableTable extends Migration
      */
     public function up()
     {
-        Schema::create('alumno_responsable;', function (Blueprint $table) {
+        Schema::create('alumno_responsable', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->enum('parentesco', [
+                'Padre', 
+                'Madre',
+                'Padrastro',
+                'Madrastra',
+                'Tutor/Tutura Legal',
+                'Hermano/Hermana',
+                'Tío/Tía',
+                'Tío Abuelo/Tía Abuela',
+                'Primo/Prima',
+                'Abuelo/Abuela',
+                'Bisabuelo/Bisabuela',
+                'Tatarabuelo/Tatarabuela',
+                'Otro'])->default('Padre');
+            $table->string('otroParentesco', 40)->nullable($value = true);
+
+            $table->integer('idPersona')->unsigned();
+            $table->foreign('idPersona')->references('id')->on('personas')->onDelete('cascade');
+
+            $table->integer('idAlumno')->unsigned();
+            $table->foreign('idAlumno')->references('id')->on('alumnos')->onDelete('cascade');
+
+            $table->string('descripcion', 40)->nullable($value = true);
         });
     }
 
@@ -26,6 +49,6 @@ class CreateAlumnoResponsableTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('alumno_responsable;');
+        Schema::dropIfExists('alumno_responsable');
     }
 }

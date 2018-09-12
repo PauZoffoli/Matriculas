@@ -13,9 +13,14 @@ class CreateComunasTable extends Migration
      */
     public function up()
     {
-        Schema::create('comunas;', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('comunas', function (Blueprint $table) {
+            $table->increments('id')->unique();
             $table->timestamps();
+            
+            $table->string('codigoUnico');
+            $table->integer('idProvincia')->unsigned();
+            $table->foreign('idProvincia')->references('id')->on('provincias')->onDelete('cascade');
+
         });
     }
 
@@ -26,6 +31,6 @@ class CreateComunasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comunas;');
+        Schema::dropIfExists('comunas');
     }
 }

@@ -13,9 +13,16 @@ class CreateDireccionesTable extends Migration
      */
     public function up()
     {
-        Schema::create('direcciones;', function (Blueprint $table) {
+        Schema::create('direcciones', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->integer('idComuna')->unsigned();
+            $table->foreign('idComuna')->references('id')->on('comunas')->onDelete('cascade');    
+            $table->string('calle');
+            $table->string('nroCalle');
+            $table->string('bloqueTorre');
+            $table->string('dpto');
+
         });
     }
 
@@ -26,6 +33,6 @@ class CreateDireccionesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('direcciones;');
+        Schema::dropIfExists('direcciones');
     }
 }
