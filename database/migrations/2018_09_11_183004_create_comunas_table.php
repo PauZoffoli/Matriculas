@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateComunasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+        Schema::create('comunas', function (Blueprint $table) {
+            $table->increments('id')->unique();
             $table->timestamps();
+            
+            $table->string('codigoUnico');
+            $table->integer('idProvincia')->unsigned();
+            $table->foreign('idProvincia')->references('id')->on('provincias')->onDelete('cascade');
+
         });
     }
 
@@ -31,9 +31,9 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('comunas');
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
-        
     }
 }

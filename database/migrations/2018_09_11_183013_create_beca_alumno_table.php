@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateBecaAlumnoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('detalle_beca_alumno', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
+
+            $table->integer('idAlumno')->unsigned();
+            $table->foreign('idAlumno')->references('id')->on('alumnos')->onDelete('cascade');    
+
+            $table->integer('idBeca')->unsigned();
+            $table->foreign('idBeca')->references('id')->on('becas')->onDelete('cascade');    
         });
     }
 
@@ -31,9 +32,9 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        Schema::dropIfExists('users');
-        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
         
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::dropIfExists('detalle_beca_alumno');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

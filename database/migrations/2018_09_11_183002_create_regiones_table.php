@@ -13,9 +13,13 @@ class CreateRegionesTable extends Migration
      */
     public function up()
     {
-        Schema::create('regiones;', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('regiones', function (Blueprint $table) {
+            $table->increments('id')->unique();
             $table->timestamps();
+            $table->string('nombreReg');
+            $table->string('regionOrd');
+            $table->string('codigoUnico');
+
         });
     }
 
@@ -26,6 +30,9 @@ class CreateRegionesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('regiones;');
+        
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::dropIfExists('regiones');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

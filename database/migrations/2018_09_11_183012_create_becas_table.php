@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFichaAlumnoTable extends Migration
+class CreateBecasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateFichaAlumnoTable extends Migration
      */
     public function up()
     {
-        Schema::create('ficha_alumno;', function (Blueprint $table) {
+        Schema::create('becas', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string('descripcion');
+            $table->integer('porcentaje');
         });
     }
 
@@ -26,6 +28,9 @@ class CreateFichaAlumnoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ficha_alumno;');
+        
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::dropIfExists('becas');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
