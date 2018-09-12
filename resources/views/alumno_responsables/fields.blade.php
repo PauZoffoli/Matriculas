@@ -4,16 +4,22 @@
     {!! Form::text('parentesco', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Idalumno Field -->
+<!-- Otroparentesco Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('idAlumno', 'Idalumno:') !!}
-    {!! Form::number('idAlumno', null, ['class' => 'form-control']) !!}
+    {!! Form::label('otroParentesco', 'Otroparentesco:') !!}
+    {!! Form::text('otroParentesco', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Idpersona Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('idPersona', 'Idpersona:') !!}
     {!! Form::number('idPersona', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Idalumno Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('idAlumno', 'Idalumno:') !!}
+    {!! Form::number('idAlumno', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Descripcion Field -->

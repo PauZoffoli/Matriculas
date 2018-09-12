@@ -40,10 +40,10 @@
     {!! Form::number('fonoCelu', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Users Id Field -->
+<!-- Iduser Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('users_id', 'Users Id:') !!}
-    {!! Form::number('users_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('idUser', 'Iduser:') !!}
+    {!! Form::number('idUser', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Rut Field -->
@@ -52,22 +52,46 @@
     {!! Form::text('rut', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Dv Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('dv', 'Dv:') !!}
-    {!! Form::text('dv', null, ['class' => 'form-control']) !!}
-</div>
-
 <!-- Tipopersona Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('tipoPersona', 'Tipopersona:') !!}
     {!! Form::text('tipoPersona', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Mail Field -->
+<!-- Genero Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('mail', 'Mail:') !!}
-    {!! Form::number('mail', null, ['class' => 'form-control']) !!}
+    {!! Form::label('genero', 'Genero:') !!}
+    {!! Form::text('genero', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Email Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('email', 'Email:') !!}
+    {!! Form::email('email', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Fechanacimiento Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('fechaNacimiento', 'Fechanacimiento:') !!}
+    {!! Form::date('fechaNacimiento', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Fechadefuncion Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('fechaDefuncion', 'Fechadefuncion:') !!}
+    {!! Form::date('fechaDefuncion', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Estadocivil Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('estadoCivil', 'Estadocivil:') !!}
+    {!! Form::text('estadoCivil', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Iddireccion Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('idDireccion', 'Iddireccion:') !!}
+    {!! Form::number('idDireccion', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

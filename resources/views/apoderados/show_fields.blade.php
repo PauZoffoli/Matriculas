@@ -28,33 +28,21 @@
     <p>{!! $apoderado->profesion !!}</p>
 </div>
 
-<!-- Nacionalidad Field -->
+<!-- Paisdeorigen Field -->
 <div class="form-group">
-    {!! Form::label('nacionalidad', 'Nacionalidad:') !!}
-    <p>{!! $apoderado->nacionalidad !!}</p>
-</div>
-
-<!-- Iddirecciones Field -->
-<div class="form-group">
-    {!! Form::label('idDirecciones', 'Iddirecciones:') !!}
-    <p>{!! $apoderado->idDirecciones !!}</p>
-</div>
-
-<!-- Fechanacimiento Field -->
-<div class="form-group">
-    {!! Form::label('fechaNacimiento', 'Fechanacimiento:') !!}
-    <p>{!! $apoderado->fechaNacimiento !!}</p>
-</div>
-
-<!-- Estadoapoderado Field -->
-<div class="form-group">
-    {!! Form::label('estadoApoderado', 'Estadoapoderado:') !!}
-    <p>{!! $apoderado->estadoApoderado !!}</p>
+    {!! Form::label('paisDeOrigen', 'Paisdeorigen:') !!}
+    <p>{!! $apoderado->paisDeOrigen !!}</p>
 </div>
 
 <!-- Idpersona Field -->
 <div class="form-group">
     {!! Form::label('idPersona', 'Idpersona:') !!}
     <p>{!! $apoderado->idPersona !!}</p>
+</div>
+
+<!-- Estado Field -->
+<div class="form-group">
+    {!! Form::label('estado', 'Estado:') !!}
+    <p>{!! $apoderado->estado !!}</p>
 </div>
 

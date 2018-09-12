@@ -70,7 +70,7 @@ class CreateFichaAlumnoTable extends Migration
                 'O+',
                 'O-'])->default('O+');
 
-            $table->integer('idAlumno')->unsigned();
+            $table->integer('idAlumno')->unsigned()->unique();
             $table->foreign('idAlumno')->references('id')->on('alumnos')->onDelete('cascade');    
 
            

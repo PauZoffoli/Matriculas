@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class AlumnoRepository
  * @package App\Repositories
- * @version September 9, 2018, 11:45 pm UTC
+ * @version September 12, 2018, 10:17 pm UTC
  *
  * @method Alumno findWithoutFail($id, $columns = ['*'])
  * @method Alumno find($id, $columns = ['*'])
@@ -20,27 +20,16 @@ class AlumnoRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'idApoderado',
-        'fechaNacimiento',
         'parentesco',
         'otroParentesco',
-        'genero',
-        'haRepetido',
-        'correoAl',
-        'cursoActual',
-        'cursoPostular',
-        'idDireccion',
-        'nacionalidad',
-        'fechaDefuncion',
+        'repitencias',
+        'condicion',
         'estado',
         'estadoCivilPadres',
         'idPersona',
-        'PCursoRepetido',
-        'SCursoRepetido',
-        'TCursoRepetido',
-        'idFicha',
-        'urlContratoFirmado',
-        'urlPagareFirmado'
+        'idApoderado',
+        'idCursoActual',
+        'idCursoPostu'
     ];
 
     /**

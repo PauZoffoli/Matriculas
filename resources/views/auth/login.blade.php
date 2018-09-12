@@ -45,18 +45,18 @@
         <form method="post" action="{{ url('/login') }}">
             {!! csrf_field() !!}
 
-            <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}">
-                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
+            <div class="form-group has-feedback {{ $errors->has('name') ? ' has-error' : '' }}">
+                <input type="text" class="form-control" name="name" value="{{ old('email') }}" placeholder="Nombre de Usuario">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                @if ($errors->has('email'))
+                @if ($errors->has('name'))
                     <span class="help-block">
-                    <strong>{{ $errors->first('email') }}</strong>
+                    <strong>{{ $errors->first('name') }}</strong>
                 </span>
                 @endif
             </div>
 
             <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
-                <input type="password" class="form-control" placeholder="Password" name="password">
+                <input type="password" class="form-control" placeholder="Contraseña" name="password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 @if ($errors->has('password'))
                     <span class="help-block">

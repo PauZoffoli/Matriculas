@@ -8,20 +8,23 @@ use Eloquent as Model;
 /**
  * Class AlumnoResponsable
  * @package App\Models
- * @version September 11, 2018, 2:40 pm UTC
+ * @version September 12, 2018, 10:18 pm UTC
  *
- * @property \App\Models\Persona persona
  * @property \App\Models\Alumno alumno
- * @property \Illuminate\Database\Eloquent\Collection apoderados
+ * @property \App\Models\Persona persona
+ * @property \Illuminate\Database\Eloquent\Collection detalleBecaAlumno
+ * @property \Illuminate\Database\Eloquent\Collection personas
+ * @property \Illuminate\Database\Eloquent\Collection repitencias
  * @property \Illuminate\Database\Eloquent\Collection userRol
  * @property string parentesco
- * @property integer idAlumno
+ * @property string otroParentesco
  * @property integer idPersona
+ * @property integer idAlumno
  * @property string descripcion
  */
 class AlumnoResponsable extends Model
 {
-   
+    
 
     public $table = 'alumno_responsable';
     
@@ -34,8 +37,9 @@ class AlumnoResponsable extends Model
 
     public $fillable = [
         'parentesco',
-        'idAlumno',
+        'otroParentesco',
         'idPersona',
+        'idAlumno',
         'descripcion'
     ];
 
@@ -47,8 +51,9 @@ class AlumnoResponsable extends Model
     protected $casts = [
         'id' => 'integer',
         'parentesco' => 'string',
-        'idAlumno' => 'integer',
+        'otroParentesco' => 'string',
         'idPersona' => 'integer',
+        'idAlumno' => 'integer',
         'descripcion' => 'string'
     ];
 
@@ -64,16 +69,16 @@ class AlumnoResponsable extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function persona()
+    public function alumno()
     {
-        return $this->belongsTo(\App\Models\Persona::class);
+        return $this->belongsTo(\App\Models\Alumno::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function alumno()
+    public function persona()
     {
-        return $this->belongsTo(\App\Models\Alumno::class);
+        return $this->belongsTo(\App\Models\Persona::class);
     }
 }

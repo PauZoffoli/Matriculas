@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class ApoderadoRepository
  * @package App\Repositories
- * @version September 11, 2018, 2:41 pm UTC
+ * @version September 12, 2018, 10:18 pm UTC
  *
  * @method Apoderado findWithoutFail($id, $columns = ['*'])
  * @method Apoderado find($id, $columns = ['*'])
@@ -22,11 +22,9 @@ class ApoderadoRepository extends BaseRepository
     protected $fieldSearchable = [
         'nivelEducacional',
         'profesion',
-        'nacionalidad',
-        'idDirecciones',
-        'fechaNacimiento',
-        'estadoApoderado',
-        'idPersona'
+        'paisDeOrigen',
+        'idPersona',
+        'estado'
     ];
 
     /**

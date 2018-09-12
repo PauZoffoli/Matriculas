@@ -4,42 +4,36 @@ namespace App\Models;
 
 use Eloquent as Model;
 
+
 /**
  * Class Alumno
  * @package App\Models
- * @version September 9, 2018, 11:45 pm UTC
+ * @version September 12, 2018, 10:17 pm UTC
  *
- * @property \App\Models\Persona persona
  * @property \App\Models\Apoderado apoderado
- * @property \App\Models\Direccione direccione
- * @property \App\Models\FichaAlumno fichaAlumno
+ * @property \App\Models\Curso curso
+ * @property \App\Models\Curso curso
+ * @property \App\Models\Persona persona
  * @property \Illuminate\Database\Eloquent\Collection AlumnoResponsable
- * @property \Illuminate\Database\Eloquent\Collection apoderados
+ * @property \Illuminate\Database\Eloquent\Collection DetalleBecaAlumno
+ * @property \Illuminate\Database\Eloquent\Collection FichaAlumno
+ * @property \Illuminate\Database\Eloquent\Collection personas
+ * @property \Illuminate\Database\Eloquent\Collection Repitencia
  * @property \Illuminate\Database\Eloquent\Collection userRol
- * @property integer idApoderado
- * @property string|\Carbon\Carbon fechaNacimiento
  * @property string parentesco
  * @property string otroParentesco
- * @property string genero
- * @property string haRepetido
- * @property string correoAl
- * @property string cursoActual
- * @property string cursoPostular
- * @property integer idDireccion
- * @property string nacionalidad
- * @property string|\Carbon\Carbon fechaDefuncion
+ * @property boolean repitencias
+ * @property string condicion
  * @property string estado
  * @property string estadoCivilPadres
  * @property integer idPersona
- * @property string PCursoRepetido
- * @property string SCursoRepetido
- * @property string TCursoRepetido
- * @property integer idFicha
- * @property string urlContratoFirmado
- * @property string urlPagareFirmado
+ * @property integer idApoderado
+ * @property integer idCursoActual
+ * @property integer idCursoPostu
  */
 class Alumno extends Model
 {
+
 
     public $table = 'alumnos';
     
@@ -51,27 +45,16 @@ class Alumno extends Model
 
 
     public $fillable = [
-        'idApoderado',
-        'fechaNacimiento',
         'parentesco',
         'otroParentesco',
-        'genero',
-        'haRepetido',
-        'correoAl',
-        'cursoActual',
-        'cursoPostular',
-        'idDireccion',
-        'nacionalidad',
-        'fechaDefuncion',
+        'repitencias',
+        'condicion',
         'estado',
         'estadoCivilPadres',
         'idPersona',
-        'PCursoRepetido',
-        'SCursoRepetido',
-        'TCursoRepetido',
-        'idFicha',
-        'urlContratoFirmado',
-        'urlPagareFirmado'
+        'idApoderado',
+        'idCursoActual',
+        'idCursoPostu'
     ];
 
     /**
@@ -81,25 +64,16 @@ class Alumno extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'idApoderado' => 'integer',
         'parentesco' => 'string',
         'otroParentesco' => 'string',
-        'genero' => 'string',
-        'haRepetido' => 'string',
-        'correoAl' => 'string',
-        'cursoActual' => 'string',
-        'cursoPostular' => 'string',
-        'idDireccion' => 'integer',
-        'nacionalidad' => 'string',
+        'repitencias' => 'boolean',
+        'condicion' => 'string',
         'estado' => 'string',
         'estadoCivilPadres' => 'string',
         'idPersona' => 'integer',
-        'PCursoRepetido' => 'string',
-        'SCursoRepetido' => 'string',
-        'TCursoRepetido' => 'string',
-        'idFicha' => 'integer',
-        'urlContratoFirmado' => 'string',
-        'urlPagareFirmado' => 'string'
+        'idApoderado' => 'integer',
+        'idCursoActual' => 'integer',
+        'idCursoPostu' => 'integer'
     ];
 
     /**
@@ -114,14 +88,6 @@ class Alumno extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function persona()
-    {
-        return $this->belongsTo(\App\Models\Persona::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
     public function apoderado()
     {
         return $this->belongsTo(\App\Models\Apoderado::class);
@@ -130,17 +96,18 @@ class Alumno extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function direccione()
+    public function curso()
     {
-        return $this->belongsTo(\App\Models\Direccione::class);
+        return $this->belongsTo(\App\Models\Curso::class);
     }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function fichaAlumno()
+    public function persona()
     {
-        return $this->belongsTo(\App\Models\FichaAlumno::class);
+        return $this->belongsTo(\App\Models\Persona::class);
     }
 
     /**
@@ -149,5 +116,29 @@ class Alumno extends Model
     public function alumnoResponsables()
     {
         return $this->hasMany(\App\Models\AlumnoResponsable::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function detalleBecaAlumnos()
+    {
+        return $this->hasMany(\App\Models\DetalleBecaAlumno::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function fichaAlumnos()
+    {
+        return $this->hasMany(\App\Models\FichaAlumno::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function repitencias()
+    {
+        return $this->hasMany(\App\Models\Repitencia::class);
     }
 }

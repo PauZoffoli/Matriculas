@@ -20,3 +20,8 @@ php artisan infyom:scaffold Persona --fromTable --tableName=personas
 php artisan infyom:scaffold Roles --fromTable --tableName=roles
 php artisan infyom:scaffold User --fromTable --tableName=users
 php artisan infyom:scaffold UserRol --fromTable --tableName=user_rol
+php artisan infyom:scaffold Curso --fromTable --tableName=cursos
+php artisan infyom:scaffold Beca --fromTable --tableName=becas
+php artisan infyom:scaffold BecaAlumno --fromTable --tableName=detalle_beca_alumno
+php artisan infyom:scaffold Repitencias --fromTable --tableName=repitencias
+

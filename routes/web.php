@@ -16,6 +16,13 @@ Route::get('/', function () {
 });
 
 
+//Definimos la ruta a la ventana principal de la vista del Apoderado al hacer la matrícula.
+
+Route::get('/', function () {
+    return view('MatriculaPostulante.index');
+});
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
@@ -28,3 +35,39 @@ Route::resource('alumnoResponsables', 'AlumnoResponsableController');
 Route::resource('apoderados', 'ApoderadoController');
 
 Route::resource('personas', 'PersonaController');
+
+Route::resource('alumnos', 'AlumnoController');
+
+Route::resource('alumnoResponsables', 'AlumnoResponsableController');
+
+Route::resource('apoderados', 'ApoderadoController');
+
+Route::resource('comunas', 'ComunaController');
+
+Route::resource('provincias', 'ProvinciaController');
+
+Route::resource('regions', 'RegionController');
+
+Route::resource('direccions', 'DireccionController');
+
+Route::resource('contratos', 'ContratoController');
+
+Route::resource('fichaAlumnos', 'FichaAlumnoController');
+
+Route::resource('personas', 'PersonaController');
+
+Route::resource('roles', 'RolesController');
+
+Route::resource('users', 'UserController');
+
+Route::resource('userRols', 'UserRolController');
+
+Route::resource('cursos', 'CursoController');
+
+Route::resource('becas', 'BecaController');
+
+Route::resource('becaAlumnos', 'BecaAlumnoController');
+
+Route::resource('repitencias', 'RepitenciasController');
+
+/*CUSTOM*/

@@ -63,8 +63,6 @@ class CreatePersonasTable extends Migration
             $table->integer('idDireccion')->unsigned()->nullable($value = true);
             $table->foreign('idDireccion')->references('id')->on('direcciones')->onDelete('cascade');
 
-
-
         });
     }
 

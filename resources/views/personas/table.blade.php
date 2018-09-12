@@ -8,11 +8,15 @@
         <th>Apmat</th>
         <th>Fonofijo</th>
         <th>Fonocelu</th>
-        <th>Users Id</th>
+        <th>Iduser</th>
         <th>Rut</th>
-        <th>Dv</th>
         <th>Tipopersona</th>
-        <th>Mail</th>
+        <th>Genero</th>
+        <th>Email</th>
+        <th>Fechanacimiento</th>
+        <th>Fechadefuncion</th>
+        <th>Estadocivil</th>
+        <th>Iddireccion</th>
             <th colspan="3">Action</th>
         </tr>
     </thead>
@@ -26,11 +30,15 @@
             <td>{!! $persona->ApMat !!}</td>
             <td>{!! $persona->fonoFijo !!}</td>
             <td>{!! $persona->fonoCelu !!}</td>
-            <td>{!! $persona->users_id !!}</td>
+            <td>{!! $persona->idUser !!}</td>
             <td>{!! $persona->rut !!}</td>
-            <td>{!! $persona->dv !!}</td>
             <td>{!! $persona->tipoPersona !!}</td>
-            <td>{!! $persona->mail !!}</td>
+            <td>{!! $persona->genero !!}</td>
+            <td>{!! $persona->email !!}</td>
+            <td>{!! $persona->fechaNacimiento !!}</td>
+            <td>{!! $persona->fechaDefuncion !!}</td>
+            <td>{!! $persona->estadoCivil !!}</td>
+            <td>{!! $persona->idDireccion !!}</td>
             <td>
                 {!! Form::open(['route' => ['personas.destroy', $persona->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

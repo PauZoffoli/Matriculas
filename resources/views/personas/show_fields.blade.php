@@ -4,6 +4,18 @@
     <p>{!! $persona->id !!}</p>
 </div>
 
+<!-- Created At Field -->
+<div class="form-group">
+    {!! Form::label('created_at', 'Created At:') !!}
+    <p>{!! $persona->created_at !!}</p>
+</div>
+
+<!-- Updated At Field -->
+<div class="form-group">
+    {!! Form::label('updated_at', 'Updated At:') !!}
+    <p>{!! $persona->updated_at !!}</p>
+</div>
+
 <!-- Pnombre Field -->
 <div class="form-group">
     {!! Form::label('PNombre', 'Pnombre:') !!}
@@ -46,10 +58,10 @@
     <p>{!! $persona->fonoCelu !!}</p>
 </div>
 
-<!-- Users Id Field -->
+<!-- Iduser Field -->
 <div class="form-group">
-    {!! Form::label('users_id', 'Users Id:') !!}
-    <p>{!! $persona->users_id !!}</p>
+    {!! Form::label('idUser', 'Iduser:') !!}
+    <p>{!! $persona->idUser !!}</p>
 </div>
 
 <!-- Rut Field -->
@@ -58,21 +70,45 @@
     <p>{!! $persona->rut !!}</p>
 </div>
 
-<!-- Dv Field -->
-<div class="form-group">
-    {!! Form::label('dv', 'Dv:') !!}
-    <p>{!! $persona->dv !!}</p>
-</div>
-
 <!-- Tipopersona Field -->
 <div class="form-group">
     {!! Form::label('tipoPersona', 'Tipopersona:') !!}
     <p>{!! $persona->tipoPersona !!}</p>
 </div>
 
-<!-- Mail Field -->
+<!-- Genero Field -->
 <div class="form-group">
-    {!! Form::label('mail', 'Mail:') !!}
-    <p>{!! $persona->mail !!}</p>
+    {!! Form::label('genero', 'Genero:') !!}
+    <p>{!! $persona->genero !!}</p>
+</div>
+
+<!-- Email Field -->
+<div class="form-group">
+    {!! Form::label('email', 'Email:') !!}
+    <p>{!! $persona->email !!}</p>
+</div>
+
+<!-- Fechanacimiento Field -->
+<div class="form-group">
+    {!! Form::label('fechaNacimiento', 'Fechanacimiento:') !!}
+    <p>{!! $persona->fechaNacimiento !!}</p>
+</div>
+
+<!-- Fechadefuncion Field -->
+<div class="form-group">
+    {!! Form::label('fechaDefuncion', 'Fechadefuncion:') !!}
+    <p>{!! $persona->fechaDefuncion !!}</p>
+</div>
+
+<!-- Estadocivil Field -->
+<div class="form-group">
+    {!! Form::label('estadoCivil', 'Estadocivil:') !!}
+    <p>{!! $persona->estadoCivil !!}</p>
+</div>
+
+<!-- Iddireccion Field -->
+<div class="form-group">
+    {!! Form::label('idDireccion', 'Iddireccion:') !!}
+    <p>{!! $persona->idDireccion !!}</p>
 </div>
 

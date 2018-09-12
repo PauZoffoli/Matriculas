@@ -16,18 +16,6 @@
     <p>{!! $alumno->updated_at !!}</p>
 </div>
 
-<!-- Idapoderado Field -->
-<div class="form-group">
-    {!! Form::label('idApoderado', 'Idapoderado:') !!}
-    <p>{!! $alumno->idApoderado !!}</p>
-</div>
-
-<!-- Fechanacimiento Field -->
-<div class="form-group">
-    {!! Form::label('fechaNacimiento', 'Fechanacimiento:') !!}
-    <p>{!! $alumno->fechaNacimiento !!}</p>
-</div>
-
 <!-- Parentesco Field -->
 <div class="form-group">
     {!! Form::label('parentesco', 'Parentesco:') !!}
@@ -40,52 +28,16 @@
     <p>{!! $alumno->otroParentesco !!}</p>
 </div>
 
-<!-- Genero Field -->
+<!-- Repitencias Field -->
 <div class="form-group">
-    {!! Form::label('genero', 'Genero:') !!}
-    <p>{!! $alumno->genero !!}</p>
+    {!! Form::label('repitencias', 'Repitencias:') !!}
+    <p>{!! $alumno->repitencias !!}</p>
 </div>
 
-<!-- Harepetido Field -->
+<!-- Condicion Field -->
 <div class="form-group">
-    {!! Form::label('haRepetido', 'Harepetido:') !!}
-    <p>{!! $alumno->haRepetido !!}</p>
-</div>
-
-<!-- Correoal Field -->
-<div class="form-group">
-    {!! Form::label('correoAl', 'Correoal:') !!}
-    <p>{!! $alumno->correoAl !!}</p>
-</div>
-
-<!-- Cursoactual Field -->
-<div class="form-group">
-    {!! Form::label('cursoActual', 'Cursoactual:') !!}
-    <p>{!! $alumno->cursoActual !!}</p>
-</div>
-
-<!-- Cursopostular Field -->
-<div class="form-group">
-    {!! Form::label('cursoPostular', 'Cursopostular:') !!}
-    <p>{!! $alumno->cursoPostular !!}</p>
-</div>
-
-<!-- Iddireccion Field -->
-<div class="form-group">
-    {!! Form::label('idDireccion', 'Iddireccion:') !!}
-    <p>{!! $alumno->idDireccion !!}</p>
-</div>
-
-<!-- Nacionalidad Field -->
-<div class="form-group">
-    {!! Form::label('nacionalidad', 'Nacionalidad:') !!}
-    <p>{!! $alumno->nacionalidad !!}</p>
-</div>
-
-<!-- Fechadefuncion Field -->
-<div class="form-group">
-    {!! Form::label('fechaDefuncion', 'Fechadefuncion:') !!}
-    <p>{!! $alumno->fechaDefuncion !!}</p>
+    {!! Form::label('condicion', 'Condicion:') !!}
+    <p>{!! $alumno->condicion !!}</p>
 </div>
 
 <!-- Estado Field -->
@@ -106,39 +58,21 @@
     <p>{!! $alumno->idPersona !!}</p>
 </div>
 
-<!-- Pcursorepetido Field -->
+<!-- Idapoderado Field -->
 <div class="form-group">
-    {!! Form::label('PCursoRepetido', 'Pcursorepetido:') !!}
-    <p>{!! $alumno->PCursoRepetido !!}</p>
+    {!! Form::label('idApoderado', 'Idapoderado:') !!}
+    <p>{!! $alumno->idApoderado !!}</p>
 </div>
 
-<!-- Scursorepetido Field -->
+<!-- Idcursoactual Field -->
 <div class="form-group">
-    {!! Form::label('SCursoRepetido', 'Scursorepetido:') !!}
-    <p>{!! $alumno->SCursoRepetido !!}</p>
+    {!! Form::label('idCursoActual', 'Idcursoactual:') !!}
+    <p>{!! $alumno->idCursoActual !!}</p>
 </div>
 
-<!-- Tcursorepetido Field -->
+<!-- Idcursopostu Field -->
 <div class="form-group">
-    {!! Form::label('TCursoRepetido', 'Tcursorepetido:') !!}
-    <p>{!! $alumno->TCursoRepetido !!}</p>
-</div>
-
-<!-- Idficha Field -->
-<div class="form-group">
-    {!! Form::label('idFicha', 'Idficha:') !!}
-    <p>{!! $alumno->idFicha !!}</p>
-</div>
-
-<!-- Urlcontratofirmado Field -->
-<div class="form-group">
-    {!! Form::label('urlContratoFirmado', 'Urlcontratofirmado:') !!}
-    <p>{!! $alumno->urlContratoFirmado !!}</p>
-</div>
-
-<!-- Urlpagarefirmado Field -->
-<div class="form-group">
-    {!! Form::label('urlPagareFirmado', 'Urlpagarefirmado:') !!}
-    <p>{!! $alumno->urlPagareFirmado !!}</p>
+    {!! Form::label('idCursoPostu', 'Idcursopostu:') !!}
+    <p>{!! $alumno->idCursoPostu !!}</p>
 </div>
 

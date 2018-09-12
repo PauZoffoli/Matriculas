@@ -4,28 +4,29 @@ namespace App\Models;
 
 use Eloquent as Model;
 
+
 /**
  * Class Apoderado
  * @package App\Models
- * @version September 11, 2018, 2:41 pm UTC
+ * @version September 12, 2018, 10:18 pm UTC
  *
  * @property \App\Models\Persona persona
- * @property \App\Models\Direccione direccione
  * @property \Illuminate\Database\Eloquent\Collection alumnoResponsable
  * @property \Illuminate\Database\Eloquent\Collection Alumno
  * @property \Illuminate\Database\Eloquent\Collection Contrato
+ * @property \Illuminate\Database\Eloquent\Collection detalleBecaAlumno
+ * @property \Illuminate\Database\Eloquent\Collection personas
+ * @property \Illuminate\Database\Eloquent\Collection repitencias
  * @property \Illuminate\Database\Eloquent\Collection userRol
  * @property string nivelEducacional
  * @property string profesion
- * @property string nacionalidad
- * @property integer idDirecciones
- * @property string|\Carbon\Carbon fechaNacimiento
- * @property string estadoApoderado
+ * @property string paisDeOrigen
  * @property integer idPersona
+ * @property string estado
  */
 class Apoderado extends Model
 {
-  
+
 
     public $table = 'apoderados';
     
@@ -39,11 +40,9 @@ class Apoderado extends Model
     public $fillable = [
         'nivelEducacional',
         'profesion',
-        'nacionalidad',
-        'idDirecciones',
-        'fechaNacimiento',
-        'estadoApoderado',
-        'idPersona'
+        'paisDeOrigen',
+        'idPersona',
+        'estado'
     ];
 
     /**
@@ -55,10 +54,9 @@ class Apoderado extends Model
         'id' => 'integer',
         'nivelEducacional' => 'string',
         'profesion' => 'string',
-        'nacionalidad' => 'string',
-        'idDirecciones' => 'integer',
-        'estadoApoderado' => 'string',
-        'idPersona' => 'integer'
+        'paisDeOrigen' => 'string',
+        'idPersona' => 'integer',
+        'estado' => 'string'
     ];
 
     /**
@@ -75,15 +73,7 @@ class Apoderado extends Model
      **/
     public function persona()
     {
-        return $this->belongsTo(\App\Models\Persona::class, 'idPersona');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function direccione()
-    {
-        return $this->belongsTo(\App\Models\Direccione::class);
+        return $this->belongsTo(\App\Models\Persona::class);
     }
 
     /**
