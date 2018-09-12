@@ -246,9 +246,6 @@ class CreateApoderadosTable extends Migration
 
             ])->default('Chile');
 
-        $table->integer('idDireccion')->unsigned()->nullable($value = true);
-        $table->foreign('idDireccion')->references('id')->on('direcciones')->onDelete('cascade');
-
         $table->integer('idPersona')->unsigned()->nullable($value = true);
         $table->foreign('idPersona')->references('id')->on('personas')->onDelete('cascade');
 
@@ -264,6 +261,8 @@ class CreateApoderadosTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('apoderados');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

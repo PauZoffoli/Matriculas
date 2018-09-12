@@ -27,7 +27,7 @@ class CreatePersonasTable extends Migration
             $table->integer('fonoCelu')->nullable($value = true);
 
             $table->integer('idUser')->unsigned()->nullable($value = true);
-            $table->foreign('idUser')->references('id')->on('personas')->onDelete('cascade');
+            $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
 
             $table->string('rut')->nullable($value = true);
 
@@ -59,7 +59,10 @@ class CreatePersonasTable extends Migration
                 'Divorciado/a',
                 'Separado/a',
                 'Conviviente'])->nullable($value = true)->default('Soltero/a')->nullable($value = true);
-;
+
+            $table->integer('idDireccion')->unsigned()->nullable($value = true);
+            $table->foreign('idDireccion')->references('id')->on('direcciones')->onDelete('cascade');
+
 
 
         });
@@ -72,6 +75,9 @@ class CreatePersonasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('personas;');
+       
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::dropIfExists('personas');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

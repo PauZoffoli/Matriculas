@@ -35,9 +35,7 @@ class CreateAlumnosTable extends Migration
 
             $table->tinyInteger('repitencias')->default(0);
 
-            $table->integer('idDireccion')->unsigned()->nullable($value = true);
-            $table->foreign('idDireccion')->references('id')->on('direcciones')->onDelete('cascade');
-
+          
              $table->enum('condicion', [
                 'nuevo', 
                 'antiguo'])->nullable($value = true)->default('nuevo');
@@ -64,9 +62,6 @@ class CreateAlumnosTable extends Migration
             $table->integer('idApoderado')->unsigned();
             $table->foreign('idApoderado')->references('id')->on('apoderados')->onDelete('cascade');
 
-            $table->integer('idFicha')->unsigned();
-            $table->foreign('idFicha')->references('id')->on('ficha_alumno')->onDelete('cascade');
-
             $table->integer('idCursoActual')->unsigned()->nullable($value = true);
             $table->foreign('idCursoActual')->references('id')->on('cursos')->onDelete('cascade');
 
@@ -85,6 +80,9 @@ class CreateAlumnosTable extends Migration
      */
     public function down()
     {
+
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('alumnos');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

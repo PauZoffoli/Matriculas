@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRegionesTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateRegionesTable extends Migration
      */
     public function up()
     {
-        Schema::create('regiones', function (Blueprint $table) {
-            $table->increments('id')->unique();
+        Schema::create('roles', function (Blueprint $table) {
+            $table->increments('id');
             $table->timestamps();
-            $table->string('nombreReg');
-            $table->string('regionOrd');
-            $table->string('codigoUnico');
 
+            $table->string('nombre', 45);
+            $table->string('descripcion');
         });
     }
 
@@ -30,6 +29,9 @@ class CreateRegionesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('regiones');
+        
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::dropIfExists('roles');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

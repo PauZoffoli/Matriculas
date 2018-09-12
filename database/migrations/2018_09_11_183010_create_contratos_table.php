@@ -43,6 +43,9 @@ class CreateContratosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contratos;');
+        
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::dropIfExists('contratos');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

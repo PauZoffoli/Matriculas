@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBecaAlumnoTable extends Migration
+class CreateRepitenciasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateBecaAlumnoTable extends Migration
      */
     public function up()
     {
-        Schema::create('detalle_beca_alumno', function (Blueprint $table) {
+        Schema::create('repitencias', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
 
             $table->integer('idAlumno')->unsigned();
             $table->foreign('idAlumno')->references('id')->on('alumnos')->onDelete('cascade');    
 
-            $table->integer('idBeca')->unsigned();
-            $table->foreign('idBeca')->references('id')->on('becas')->onDelete('cascade');    
+            $table->integer('idCurso')->unsigned();
+            $table->foreign('idCurso')->references('id')->on('cursos')->onDelete('cascade');   
         });
     }
 
@@ -32,6 +32,8 @@ class CreateBecaAlumnoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detalle_beca_alumno');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::dropIfExists('repitencias');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

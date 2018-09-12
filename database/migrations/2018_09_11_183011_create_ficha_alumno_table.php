@@ -84,6 +84,8 @@ class CreateFichaAlumnoTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('ficha_alumno');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
