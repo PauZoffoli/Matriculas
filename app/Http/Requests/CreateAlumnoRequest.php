@@ -16,6 +16,15 @@ class CreateAlumnoRequest extends FormRequest
     public function authorize()
     {
         return true;
+        /* if($this->blog)
+    {
+        if($this->user()->isAdmin()) return true;
+
+        return Post::where('id', $this->blog)
+                   ->where('user_id', $this->user()->id)->exists();
+    }
+
+    return true;*/
     }
 
     /**

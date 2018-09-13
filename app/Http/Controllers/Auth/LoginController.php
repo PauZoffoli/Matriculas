@@ -22,7 +22,9 @@ class LoginController extends Controller
 
     /**
      * Where to redirect users after login.
-     *
+     *  Nota para el próxximo pollo que quiera hacer un redirect after login:
+        Aquí definimos que la ruta "home" a la que redirige despues del login,
+        pero este "home", en routes realmente redigire a un controlador llamado HomeController. Cambiando este Home Controller, poniendole condiciones según tipo de usuario dirigirá al lado que queramos.
      * @var string
      */
     protected $redirectTo = '/home';

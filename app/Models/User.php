@@ -77,4 +77,25 @@ class User extends Model
     {
         return $this->hasMany(\App\Models\UserRol::class);
     }
+
+     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     Many to many
+     **/
+    public function roles()
+    {
+        return $this->belongsToMany(\App\Models\Roles::class, 'user_rol','idUser','idRol');
+    }
+
+
+    public function hasRole($role = null)
+    {
+        $hasRole = false;
+        $hasRole = !$this->roles->filter(function($item) {
+            return $item->role == $role;
+        })->isEmpty();
+        return $hasRole;
+    }
+
+
 }

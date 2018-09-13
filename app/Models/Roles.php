@@ -61,4 +61,28 @@ class Roles extends Model
     {
         return $this->hasMany(\App\Models\UserRol::class);
     }
+
+     /**
+     * @return \Illuminate\Database\Eloquent\Relations\Many to Many
+     Many to many
+     **/
+    public function usuarios()
+    {
+        return $this->belongsToMany(\App\Models\User::class, 'user_rol','idUser','idRol');
+    }
+
+    
+
+
+/*
+public function products()
+{
+    return $this->belongsToMany('App\Product')
+        ->withPivot('products_amount', 'price')
+        ->withTimestamps();
+}
+https://laraveldaily.com/pivot-tables-and-many-to-many-relationships/
+*/
+  
+
 }
