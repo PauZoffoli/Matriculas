@@ -70,13 +70,18 @@ Route::resource('becaAlumnos', 'BecaAlumnoController');
 
 Route::resource('repitencias', 'RepitenciasController');
 
+Route::resource('tipos', 'TipoController');
+
+Route::resource('tipoPersonas', 'TipoPersonaController');
 /*CUSTOM*/
+
 
 
 
 //Métodos para el index secretariado junto a buscador por rut(apoSecretariadoContr)
 
 Route::resource('apoSecretariadoContr', 'VistaSecretariado\ApoderadoSecretariadoController');
+
 
 
 Route::resource('apoderadosPostulantes', 'MatriculaPostulante\ApoderadoPController');

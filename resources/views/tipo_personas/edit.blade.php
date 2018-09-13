@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Apoderado
+            Tipo Persona
         </h1>
    </section>
    <div class="content">
@@ -11,9 +11,9 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($apoderado, ['route' => ['apoderados.update', $apoderado->id], 'method' => 'patch']) !!}
+                   {!! Form::model($tipoPersona, ['route' => ['tipoPersonas.update', $tipoPersona->id], 'method' => 'patch']) !!}
 
-                        @include('MatriculaPostulante.apoderados.fields')
+                        @include('tipo_personas.fields')
 
                    {!! Form::close() !!}
                </div>

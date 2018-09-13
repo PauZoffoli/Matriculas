@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use App\Models\Persona;
+use App\Models\User;
+use App\Models\Apoderado;
 class HomeController extends Controller
 {
     /**
@@ -23,16 +26,26 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::guest()){
-         return null;
+        if (!Auth::guest()){
+        
+        //Modelo de Auth está directamente en APP y no en app/models
+        if(Auth::user()->hasRole('Secretariado')) {
+             return redirect('apoderadosPostulantes');
         }
 
+        $persona = Auth::user()->personas->first();
+        
+        // Laravel – querying any level far relations with simple trick https://softonsofa.com/laravel-querying-any-level-far-relations-with-simple-trick/   HASMANYTHROUGH
+        //https://medium.com/@cvallejo/autenticaci%C3%B3n-de-usuarios-y-roles-en-laravel-5-5-97ab59552d91
 
-        //Rol 1 Administrador
-       if(Auth::user()->hasRole('Secretariado')) {
-            dd("Funcionó");
+        //Comprobar si ese usuario tiene una persona de tipo ApoderadoPostulante.
+        if($persona->hasTipo('ApoderadoPostulante')) {
+
+            //el con id del apoderado relacionado voy a editar sus datos.
+                return redirect()->route('apoderadosPostulantes.edit', [$persona->apoderados->id]);
+            }
         }
-
-        //return view('home');
+      
+        return view('home');
     }
 }

@@ -26,12 +26,12 @@ class CreatePersonasTable extends Migration
             $table->integer('fonoFijo')->nullable($value = true);
             $table->integer('fonoCelu')->nullable($value = true);
 
-            $table->integer('idUser')->unsigned()->nullable($value = true);
+            $table->integer('idUser')->unsigned()->nullable($value = true)->unique();
             $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
 
             $table->string('rut')->nullable($value = true);
 
-            $table->enum('tipoPersona', [
+            /*$table->enum('tipoPersona', [
                 'Apoderado', 
                 'Alumno',
                 'Revisor',
@@ -41,7 +41,7 @@ class CreatePersonasTable extends Migration
                 'Madre',
                 'PrimerContacto',
                 'SegundoContacto',
-                'Otro'])->default('Apoderado');
+                'Otro'])->default('Apoderado');*/
 
             $table->enum('genero', [
                 'Mujer',
