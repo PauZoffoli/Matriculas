@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,16 +24,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::guest()){
-         return null;
+        if (!Auth::guest()){
+        
+        //Modelo de Auth está directamente en APP y no en app/models
+        if(Auth::user()->hasRole('Secretariado')) {
+             return redirect('apoderadosPostulantes');
         }
 
-
-        //Rol 1 Administrador
-       if(Auth::user()->hasRole('Secretariado')) {
-            dd("Funcionó");
-        }
-
-        //return view('home');
     }
+    return view('home');
+}
 }
