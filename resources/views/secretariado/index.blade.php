@@ -17,7 +17,7 @@
 
   <tr>
        {!! Form::open(array('method' => 'Get', 'route' => array('secretariadoContr.searchApoderado') )) !!}
-    <td>     {!! Form::text('rutApoderado', null, ['class' => 'form-control', 'placeholder' => 'Buscar rut apoderado','oninput'=>"checkRut(this)",'maxlength'=>"11"]) !!}</td>
+    <td>     {!! Form::text('rut', null, ['class' => 'form-control', 'placeholder' => 'Buscar rut apoderado','oninput'=>"checkRut(this)",'maxlength'=>"11"]) !!}</td>
     <td>  <button  class="btn btn-primary ">Buscar Apoderado</button></td>
      {!! Form::close() !!}
   </tr>

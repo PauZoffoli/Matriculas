@@ -21,22 +21,25 @@ class ApoderadoSecretariadoController extends Controller
      public function index(Request $request)
     { 
          $personas = Persona::orderBy('id', 'DESC')->where('tipoPersona', 'Apoderado')->paginate(10);
-         
+         if(Persona::tipoPersona()->hasRole('Secretariado')) {
+            dd("Funcionó");
+        }
         return view('secretariado.index')   
-            ->with('personas', $personas, 'personas');
+            ->with('personas', $personas);
     }
 
-    public function searchApoderado(Request $request) {
+   
+    public function searchPersona(Request $request) {
 
         if(empty(trim($request->get('rut')))){
 
             return redirect()->route('apoSecretariadoContr.index');
         }
         // Sets the parameters from the get request to the variables.
-        $rutApoderado = $request->get('rutApoderado');
+        $rut = $request->get('rut');
         
-        $contratos = Contrato::whereHas('Apoderado', function($query) use($rutApoderado) {
-            $query->where('rutApo', $rutApoderado);
+        $personas = Persona::whereHas('Persona', function($query) use($rut) {
+            $query->where('rut', $rut);
         })->get();
 
         if ( empty($postulacions->all())) {
