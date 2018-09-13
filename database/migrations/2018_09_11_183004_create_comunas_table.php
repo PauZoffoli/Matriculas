@@ -17,6 +17,8 @@ class CreateComunasTable extends Migration
             $table->increments('id')->unique();
             $table->timestamps();
             
+            $table->string('nombreComu');
+
             $table->string('codigoUnico');
             $table->integer('idProvincia')->unsigned();
             $table->foreign('idProvincia')->references('id')->on('provincias')->onDelete('cascade');
