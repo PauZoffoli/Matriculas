@@ -9,24 +9,26 @@ use App\Models\Apoderado;
 
 class ApoderadoSecretariadoController extends Controller
 {
+    private $personaRepository;
     private $apoderadoRepository;
 
-     public function __construct(PostulacionRepository $postulacionRepo,CandidatoRepository $candidatoRepo,ApoderadoRepository $apoderadoRepo)
+     public function __construct(PersonaRepository $personaRepo,ApoderadoRepository $apoderadoRepo)
     {
+         $this->personaRepository = $personaRepo;
          $this->apoderadoRepository = $apoderadoRepo;   
     }
 
      public function index(Request $request)
     { 
-         $apoderados = Apoderado::orderBy('id', 'DESC')->paginate(10);
+         $personas = Persona::orderBy('id', 'DESC')->where('tipoPersona', 'Apoderado')->paginate(10);
          
-        return view('secretariado.index')
-            ->with('apoderados', $apoderados, 'apoderados');
+        return view('secretariado.index')   
+            ->with('personas', $personas, 'personas');
     }
 
     public function searchApoderado(Request $request) {
 
-        if(empty(trim($request->get('rutApoderado')))){
+        if(empty(trim($request->get('rut')))){
 
             return redirect()->route('apoSecretariadoContr.index');
         }
