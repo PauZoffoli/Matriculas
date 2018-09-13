@@ -13,6 +13,9 @@ use Response;
 
 class ApoderadoPController extends AppBaseController
 {
+
+//Route::resource('apoderadosPostulantes', 'MatriculaPostulante\ApoderadoPController');
+    
     /** @var  ApoderadoRepository */
     private $apoderadoRepository;
 
@@ -29,11 +32,7 @@ class ApoderadoPController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->apoderadoRepository->pushCriteria(new RequestCriteria($request));
-        $apoderados = $this->apoderadoRepository->all();
-
-        return view('apoderados.index')
-            ->with('apoderados', $apoderados);
+        abort(404);
     }
 
     /**
@@ -43,7 +42,7 @@ class ApoderadoPController extends AppBaseController
      */
     public function create()
     {
-        return view('apoderados.create');
+        abort(404);
     }
 
     /**
@@ -55,13 +54,7 @@ class ApoderadoPController extends AppBaseController
      */
     public function store(CreateApoderadoRequest $request)
     {
-        $input = $request->all();
-
-        $apoderado = $this->apoderadoRepository->create($input);
-
-        Flash::success('Apoderado saved successfully.');
-
-        return redirect(route('apoderados.index'));
+        abort(404);
     }
 
     /**
@@ -73,15 +66,7 @@ class ApoderadoPController extends AppBaseController
      */
     public function show($id)
     {
-        $apoderado = $this->apoderadoRepository->findWithoutFail($id);
-
-        if (empty($apoderado)) {
-            Flash::error('Apoderado not found');
-
-            return redirect(route('apoderados.index'));
-        }
-
-        return view('apoderados.show')->with('apoderado', $apoderado);
+        abort(404);
     }
 
     /**

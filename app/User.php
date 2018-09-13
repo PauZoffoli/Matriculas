@@ -94,4 +94,13 @@ class User extends Authenticatable
         })->isEmpty();
         return $hasRole;
     }
+
+    //https://stackoverflow.com/questions/23546331/using-auth-to-get-the-role-of-user-in-a-pivot-table
+    public function hasPersona($id = null) {
+        $hasPersona = false;
+        $hasPersona = !$this->personas->filter(function($item) use ($id) {
+        return $item->id == $id;
+        })->isEmpty();
+        return $hasPersona;
+    }
 }
