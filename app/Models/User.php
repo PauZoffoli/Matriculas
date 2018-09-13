@@ -87,7 +87,7 @@ class User extends Model
         return $this->belongsToMany(\App\Models\Roles::class, 'user_rol','idUser','idRol');
     }
 
-
+  //https://stackoverflow.com/questions/23546331/using-auth-to-get-the-role-of-user-in-a-pivot-table
     public function hasRole($role = null)
     {
         $hasRole = false;
