@@ -104,7 +104,7 @@
 <!-- Niveleducacional Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nivelEducacional', 'Niveleducacional:') !!}
-    {!! Form::text('nivelEducacional', null, ['class' => 'form-control']) !!}
+    {!! Form::text('apoderados->nivelEducacional', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Profesion Field -->

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Tipo
@@ -21,7 +20,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Tipo extends Model
 {
-    use SoftDeletes;
 
     public $table = 'tipos';
     
@@ -63,5 +61,15 @@ class Tipo extends Model
     public function tipoPersonas()
     {
         return $this->hasMany(\App\Models\TipoPersona::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\Many to Many
+    de esto, el idPersona va a ser nuestro filtro, muy importante que esté primero return $this->belongsToMany(\App\Models\Persona::class,  'tipo_persona','idPersona','idTipo');
+     Many to many
+     **/
+    public function personas()
+    {
+        return $this->belongsToMany(\App\Models\Persona::class,  'tipo_persona','idPersona','idTipo');
     }
 }

@@ -66,7 +66,7 @@ class User extends Authenticatable
      **/
     public function personas()
     {
-        return $this->hasMany(\App\Models\Persona::class);
+        return $this->hasMany(\App\Models\Persona::class, 'id');
     }
 
     /**
@@ -94,6 +94,32 @@ class User extends Authenticatable
         })->isEmpty();
         return $hasRole;
     }
+
+     /**
+     * Get all of the posts for the country.
+         public function apoderados()
+    {
+        return $this->hasManyThrough('App\Apoderado', 'App\Persona', 'id', '');
+    }*/
+
+
+
+   /* public function tipos()
+    {
+        return $this->hasManyThrough(
+            'App\Persona',
+            'App\User',
+            'idUser', // Foreign key on users table...
+            'user_id', // Foreign key on posts table...
+            'id', // Local key on countries table...
+            'id' // Local key on users table...
+        );
+        return $this->hasManyThrough('App\Persona', 'App\User', 'id')->;
+    }
+
+    public function orders(){
+        return $this->hasManyThrough('Contact', 'Account', 'owner_id')->join('orders','contact.id','=','orders.contact_ID')->select('orders.*');
+    }*/
 
 
 }

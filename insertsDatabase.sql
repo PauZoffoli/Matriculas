@@ -507,13 +507,12 @@ INSERT INTO `apoderados` (`id`, `created_at`, `updated_at`, `nivelEducacional`, 
 
 INSERT INTO `alumnos` (`id`, `created_at`, `updated_at`, `parentesco`, `otroParentesco`, `repitencias`, `condicion`, `estado`, `estadoCivilPadres`, `idPersona`, `idApoderado`, `idCursoActual`, `idCursoPostu`) VALUES (NULL, NULL, NULL, 'Padre', NULL, '0', 'nuevo', 'Revisar', 'Casados/as', '3', '1', '1', '1');
 
-INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) VALUES (NULL, NULL, NULL, 'Apoderado', 'Apoderado colegio');
-INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) VALUES (NULL, NULL, NULL, 'Alumno', 'Alumno colegio');
+INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) VALUES (NULL, NULL, NULL, 'Apoderado', 'Apoderado con alumnos matriculados');
+INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) VALUES (NULL, NULL, NULL, 'Alumno', 'Alumno matrículado');
+INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) VALUES (NULL, NULL, NULL, 'ApoderadoPostulante', 'Apoderado que aún no firma contrato con la escuela.');
+INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) VALUES (NULL, NULL, NULL, 'AlumnoPostulante', 'Alumno que aún el apoderado no firma contrato con la escuela.');
 INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) VALUES (NULL, NULL, NULL, 'Revisor', 'Apoderado colegio');
 INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) VALUES (NULL, NULL, NULL, 'Secretariado', 'Secretariado colegio');
 INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) VALUES (NULL, NULL, NULL, 'Administrador', 'Administrador colegio');
-INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) VALUES (NULL, NULL, NULL, 'Padre', 'Padre colegio');
-INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) VALUES (NULL, NULL, NULL, 'Madre', 'Madre colegio');
-INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) VALUES (NULL, NULL, NULL, 'PrimerContacto', 'PrimerContacto colegio');
-INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) VALUES (NULL, NULL, NULL, 'SegundoContacto', 'SegundoContacto colegio');
 INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) VALUES (NULL, NULL, NULL, 'Otro', 'Otro cargo colegio');
+
