@@ -26,7 +26,7 @@ class CreatePersonasTable extends Migration
             $table->integer('fonoFijo')->nullable($value = true);
             $table->integer('fonoCelu')->nullable($value = true);
 
-            $table->integer('idUser')->unsigned()->nullable($value = true);
+            $table->integer('idUser')->unsigned()->nullable($value = true)->unique();
             $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
 
             $table->string('rut')->nullable($value = true);
