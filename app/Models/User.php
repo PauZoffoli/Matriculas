@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 
-/**
+/** LO QUE HAGAMOS AQUÍ NO TIENE EFECTO EN AUTH::USERS PUESTO QUE ESE MODELO ESTÁ DIRECTAMENTE EN APP Y NO EN APP\MODELS, ES DECIR, ES OTRO
  * Class User
  * @package App\Models
  * @version September 12, 2018, 10:18 pm UTC
@@ -87,15 +87,7 @@ class User extends Model
         return $this->belongsToMany(\App\Models\Roles::class, 'user_rol','idUser','idRol');
     }
 
-  //https://stackoverflow.com/questions/23546331/using-auth-to-get-the-role-of-user-in-a-pivot-table
-    public function hasRole($role = null)
-    {
-        $hasRole = false;
-        $hasRole = !$this->roles->filter(function($item) {
-            return $item->role == $role;
-        })->isEmpty();
-        return $hasRole;
-    }
+
 
 
 }

@@ -4,31 +4,25 @@ namespace App\Models;
 
 use Eloquent as Model;
 
-
 /**
- * Class Apoderado
+ * Class TipoPersona
  * @package App\Models
- * @version September 12, 2018, 10:18 pm UTC
+ * @version September 13, 2018, 3:09 pm UTC
  *
  * @property \App\Models\Persona persona
+ * @property \App\Models\Tipo tipo
  * @property \Illuminate\Database\Eloquent\Collection alumnoResponsable
- * @property \Illuminate\Database\Eloquent\Collection Alumno
- * @property \Illuminate\Database\Eloquent\Collection Contrato
  * @property \Illuminate\Database\Eloquent\Collection detalleBecaAlumno
  * @property \Illuminate\Database\Eloquent\Collection personas
  * @property \Illuminate\Database\Eloquent\Collection repitencias
  * @property \Illuminate\Database\Eloquent\Collection userRol
- * @property string nivelEducacional
- * @property string profesion
- * @property string paisDeOrigen
+ * @property integer idTipo
  * @property integer idPersona
- * @property string estado
  */
-class Apoderado extends Model
+class TipoPersona extends Model
 {
 
-
-    public $table = 'apoderados';
+    public $table = 'tipo_persona';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -38,11 +32,8 @@ class Apoderado extends Model
 
 
     public $fillable = [
-        'nivelEducacional',
-        'profesion',
-        'paisDeOrigen',
-        'idPersona',
-        'estado'
+        'idTipo',
+        'idPersona'
     ];
 
     /**
@@ -52,11 +43,8 @@ class Apoderado extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'nivelEducacional' => 'string',
-        'profesion' => 'string',
-        'paisDeOrigen' => 'string',
-        'idPersona' => 'integer',
-        'estado' => 'string'
+        'idTipo' => 'integer',
+        'idPersona' => 'integer'
     ];
 
     /**
@@ -73,24 +61,14 @@ class Apoderado extends Model
      **/
     public function persona()
     {
-        return $this->belongsTo(\App\Models\Persona::class, 'idPersona');
+        return $this->belongsTo(\App\Models\Persona::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function alumnos()
+    public function tipo()
     {
-        return $this->hasMany(\App\Models\Alumno::class);
+        return $this->belongsTo(\App\Models\Tipo::class);
     }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function contratos()
-    {
-        return $this->hasMany(\App\Models\Contrato::class);
-    }
-
-
 }

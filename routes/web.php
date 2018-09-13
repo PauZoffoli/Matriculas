@@ -70,6 +70,11 @@ Route::resource('becaAlumnos', 'BecaAlumnoController');
 
 Route::resource('repitencias', 'RepitenciasController');
 
+Route::resource('tipos', 'TipoController');
+
+Route::resource('tipoPersonas', 'TipoPersonaController');
 /*CUSTOM*/
 
+
 Route::resource('apoderadosPostulantes', 'MatriculaPostulante\ApoderadoPController');
+

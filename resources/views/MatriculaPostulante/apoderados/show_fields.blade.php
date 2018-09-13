@@ -19,7 +19,7 @@
 <!-- Niveleducacional Field -->
 <div class="form-group">
     {!! Form::label('nivelEducacional', 'Niveleducacional:') !!}
-    <p>{!! $apoderado->nivelEducacional !!}</p>
+    <p>{!! $apoderado->apoderados->nivelEducacional !!}</p>
 </div>
 
 <!-- Profesion Field -->

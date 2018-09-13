@@ -108,6 +108,41 @@ class Persona extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
+    public function tipos()
+    {
+            return $this->belongsToMany(\App\Models\Tipo::class, 'tipo_persona','idPersona','idTipo');
+    }
+
+
+//https://medium.com/@cvallejo/autenticaci%C3%B3n-de-usuarios-y-roles-en-laravel-5-5-97ab59552d91
+    public function hasTipo($role = null) {
+        $hasTipo = false;
+        $hasTipo = !$this->tipos->filter(function($item) use ($role) {
+        return $item->nombre == $role;
+        })->isEmpty();
+        return $hasTipo;
+    }
+
+    public function hasAnyTipo($roles)
+    {
+        if (is_array($roles)) {
+            foreach ($roles as $role) {
+                if ($this->hasTipo($role)) {
+                    return true;
+                }
+            }
+        } else {
+            if ($this->hasTipo($roles)) {
+                return true;
+            }
+        }
+        return false;
+    }
+ 
+   
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
     public function user()
     {
         return $this->belongsTo(\App\Models\User::class);
@@ -131,9 +166,19 @@ class Persona extends Model
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
+     MÉTODO NO COMPROBADO, MEJOR NO USAR.
+     */
     public function apoderados()
     {
-        return $this->hasMany(\App\Models\Apoderado::class);
+        return $this->hasOne(\App\Models\Apoderado::class, 'idPersona');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     MÉTODO QUE USAMOS EN EL CONTROLLADOR C:\laragon\www\Matriculas\app\Http\Controllers\MatriculaPostulante\ApoderadoPController
+     */
+    public function apoderado()
+    {
+        return $this->hasOne(\App\Models\Apoderado::class, 'id');
     }
 }

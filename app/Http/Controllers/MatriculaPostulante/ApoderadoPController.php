@@ -5,6 +5,9 @@ namespace App\Http\Controllers\MatriculaPostulante;
 use App\Http\Requests\CreateApoderadoRequest;
 use App\Http\Requests\UpdateApoderadoRequest;
 use App\Repositories\ApoderadoRepository;
+use App\Http\Requests\CreatePersonaRequest;
+use App\Http\Requests\UpdatePersonaRequest;
+use App\Repositories\PersonaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -13,13 +16,22 @@ use Response;
 
 class ApoderadoPController extends AppBaseController
 {
+
+//Route::resource('apoderadosPostulantes', 'MatriculaPostulante\ApoderadoPController');
+    
     /** @var  ApoderadoRepository */
     private $apoderadoRepository;
+      /** @var  PersonaRepository */
+    private $personaRepository;
 
-    public function __construct(ApoderadoRepository $apoderadoRepo)
+    public function __construct(ApoderadoRepository $apoderadoRepo, PersonaRepository $personaRepo)
     {
+        $this->personaRepository = $personaRepo;
         $this->apoderadoRepository = $apoderadoRepo;
+
     }
+
+    /**
 
     /**
      * Display a listing of the Apoderado.
@@ -29,11 +41,7 @@ class ApoderadoPController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->apoderadoRepository->pushCriteria(new RequestCriteria($request));
-        $apoderados = $this->apoderadoRepository->all();
-
-        return view('apoderados.index')
-            ->with('apoderados', $apoderados);
+        abort(404);
     }
 
     /**
@@ -43,7 +51,7 @@ class ApoderadoPController extends AppBaseController
      */
     public function create()
     {
-        return view('apoderados.create');
+        abort(404);
     }
 
     /**
@@ -55,13 +63,7 @@ class ApoderadoPController extends AppBaseController
      */
     public function store(CreateApoderadoRequest $request)
     {
-        $input = $request->all();
-
-        $apoderado = $this->apoderadoRepository->create($input);
-
-        Flash::success('Apoderado saved successfully.');
-
-        return redirect(route('apoderados.index'));
+        abort(404);
     }
 
     /**
@@ -73,15 +75,7 @@ class ApoderadoPController extends AppBaseController
      */
     public function show($id)
     {
-        $apoderado = $this->apoderadoRepository->findWithoutFail($id);
-
-        if (empty($apoderado)) {
-            Flash::error('Apoderado not found');
-
-            return redirect(route('apoderados.index'));
-        }
-
-        return view('apoderados.show')->with('apoderado', $apoderado);
+        abort(404);
     }
 
     /**
@@ -93,15 +87,16 @@ class ApoderadoPController extends AppBaseController
      */
     public function edit($id)
     {
-        $apoderado = $this->apoderadoRepository->findWithoutFail($id);
+        $persona = $this->personaRepository->findWithoutFail($id);
 
-        if (empty($apoderado)) {
-            Flash::error('Apoderado not found');
+        if (empty($persona)) {
+            Flash::error('Persona not found');
 
-            return redirect(route('apoderados.index'));
+            return redirect(route('personas.index'));
         }
 
-        return view('apoderados.edit')->with('apoderado', $apoderado);
+        return view('MatriculaPostulante.apoderados.edit')->with('apoderado', $persona);
+
     }
 
     /**
