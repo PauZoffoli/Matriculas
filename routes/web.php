@@ -72,9 +72,13 @@ Route::resource('repitencias', 'RepitenciasController');
 
 /*CUSTOM*/
 
+<<<<<<< HEAD
 
 //Métodos para el index secretariado junto a buscador por rut(apoSecretariadoContr)
 
 Route::resource('apoSecretariadoContr', 'ApoderadoSecretariadoController')->middleware('auth');
 
 Route::get('searchApoderado', 'ContratoSecretariadoController@searchApoderado')->name('secretariadoContr.searchApoderado');
+=======
+Route::resource('apoderadosPostulantes', 'MatriculaPostulante\ApoderadoPController');
+>>>>>>> master
