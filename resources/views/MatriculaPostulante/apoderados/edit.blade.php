@@ -13,7 +13,7 @@
                <div class="row">
                    {!! Form::model($apoderado, ['route' => ['apoderados.update', $apoderado->id], 'method' => 'patch']) !!}
 
-                        @include('apoderados.fields')
+                        @include('MatriculaPostulante.apoderados.fields')
 
                    {!! Form::close() !!}
                </div>

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\MatriculaPostulante;
 use App\Http\Requests\CreateApoderadoRequest;
 use App\Http\Requests\UpdateApoderadoRequest;
 use App\Repositories\ApoderadoRepository;
+use App\Http\Requests\CreatePersonaRequest;
+use App\Http\Requests\UpdatePersonaRequest;
+use App\Repositories\PersonaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -18,11 +21,17 @@ class ApoderadoPController extends AppBaseController
     
     /** @var  ApoderadoRepository */
     private $apoderadoRepository;
+      /** @var  PersonaRepository */
+    private $personaRepository;
 
-    public function __construct(ApoderadoRepository $apoderadoRepo)
+    public function __construct(ApoderadoRepository $apoderadoRepo, PersonaRepository $personaRepo)
     {
+        $this->personaRepository = $personaRepo;
         $this->apoderadoRepository = $apoderadoRepo;
+
     }
+
+    /**
 
     /**
      * Display a listing of the Apoderado.
@@ -78,15 +87,17 @@ class ApoderadoPController extends AppBaseController
      */
     public function edit($id)
     {
-        $apoderado = $this->apoderadoRepository->findWithoutFail($id);
+         $persona = $this->personaRepository->findWithoutFail($id);
 
-        if (empty($apoderado)) {
-            Flash::error('Apoderado not found');
+        if (empty($persona)) {
+            Flash::error('Persona not found');
 
-            return redirect(route('apoderados.index'));
+            return redirect(route('personas.index'));
         }
 
-        return view('apoderados.edit')->with('apoderado', $apoderado);
+        return view('MatriculaPostulante.apoderados.edit')->with('apoderado', $persona);
+
+        //return view('apoderadosPostulantes.edit')->with('apoderado', $apoderado);
     }
 
     /**

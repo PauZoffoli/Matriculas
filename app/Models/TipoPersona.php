@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class TipoPersona
@@ -22,7 +21,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class TipoPersona extends Model
 {
-    use SoftDeletes;
 
     public $table = 'tipo_persona';
     
