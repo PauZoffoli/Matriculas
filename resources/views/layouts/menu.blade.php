@@ -82,3 +82,11 @@
     <a href="{!! route('repitencias.index') !!}"><i class="fa fa-edit"></i><span>Repitencias</span></a>
 </li>
 
+<li class="{{ Request::is('tipos*') ? 'active' : '' }}">
+    <a href="{!! route('tipos.index') !!}"><i class="fa fa-edit"></i><span>Tipos</span></a>
+</li>
+
+<li class="{{ Request::is('tipoPersonas*') ? 'active' : '' }}">
+    <a href="{!! route('tipoPersonas.index') !!}"><i class="fa fa-edit"></i><span>Tipo Personas</span></a>
+</li>
+
