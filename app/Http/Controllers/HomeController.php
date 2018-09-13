@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -18,11 +19,19 @@ class HomeController extends Controller
 
     /**
      * Show the application dashboard.
-     *
+     * https://stackoverflow.com/questions/23546331/using-auth-to-get-the-role-of-user-in-a-pivot-table
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('home');
+        if (!Auth::guest()){
+        
+        //Modelo de Auth está directamente en APP y no en app/models
+        if(Auth::user()->hasRole('Secretariado')) {
+             return redirect('apoderadosPostulantes');
+        }
+
     }
+    return view('home');
+}
 }
