@@ -1,0 +1,138 @@
+<!-- Pnombre Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('PNombre', 'Pnombre:') !!}
+    {!! Form::text('PNombre', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Snombre Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('SNombre', 'Snombre:') !!}
+    {!! Form::text('SNombre', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Tnombre Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('TNombre', 'Tnombre:') !!}
+    {!! Form::text('TNombre', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Appat Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('ApPat', 'Appat:') !!}
+    {!! Form::text('ApPat', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Apmat Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('ApMat', 'Apmat:') !!}
+    {!! Form::text('ApMat', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Fonofijo Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('fonoFijo', 'Fonofijo:') !!}
+    {!! Form::number('fonoFijo', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Fonocelu Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('fonoCelu', 'Fonocelu:') !!}
+    {!! Form::number('fonoCelu', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Iduser Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('idUser', 'Iduser:') !!}
+    {!! Form::number('idUser', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Rut Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('rut', 'Rut:') !!}
+    {!! Form::text('rut', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Tipopersona Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('tipoPersona', 'Tipopersona:') !!}
+    {!! Form::text('tipoPersona', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Genero Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('genero', 'Genero:') !!}
+    {!! Form::text('genero', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Email Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('email', 'Email:') !!}
+    {!! Form::email('email', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Fechanacimiento Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('fechaNacimiento', 'Fechanacimiento:') !!}
+    {!! Form::date('fechaNacimiento', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Fechadefuncion Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('fechaDefuncion', 'Fechadefuncion:') !!}
+    {!! Form::date('fechaDefuncion', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Estadocivil Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('estadoCivil', 'Estadocivil:') !!}
+    {!! Form::text('estadoCivil', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Iddireccion Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('idDireccion', 'Iddireccion:') !!}
+    {!! Form::number('idDireccion', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Submit Field -->
+<div class="form-group col-sm-12">
+    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+    <a href="{!! route('personas.index') !!}" class="btn btn-default">Cancel</a>
+</div>
+
+
+<!-- Niveleducacional Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('nivelEducacional', 'Niveleducacional:') !!}
+    {!! Form::text('nivelEducacional', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Profesion Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('profesion', 'Profesion:') !!}
+    {!! Form::text('profesion', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Paisdeorigen Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('paisDeOrigen', 'Paisdeorigen:') !!}
+    {!! Form::text('paisDeOrigen', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Idpersona Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('idPersona', 'Idpersona:') !!}
+    {!! Form::number('idPersona', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Estado Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('estado', 'Estado:') !!}
+    {!! Form::text('estado', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Submit Field -->
+<div class="form-group col-sm-12">
+    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+    <a href="{!! route('apoderados.index') !!}" class="btn btn-default">Cancel</a>
+</div>
