@@ -31,6 +31,16 @@ class HomeController extends Controller
              return redirect('apoderadosPostulantes');
         }
 
+        //Modelo de Auth está directamente en APP y no en app/models
+        if(Auth::user()->hasRole('ApoderadoPotulante')) {
+            if(Auth::user()->personas('ApoderadoPotulante')) {
+                return route('apoderadosPostulantes.edit', [$apoderado->id]);
+            }
+        }
+
+        route('apoderados.edit', [$apoderado->id])
+
+    
     }
     return view('home');
 }
