@@ -166,9 +166,19 @@ class Persona extends Model
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
+     MÉTODO NO COMPROBADO, MEJOR NO USAR.
+     */
     public function apoderados()
     {
         return $this->hasOne(\App\Models\Apoderado::class, 'idPersona');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     MÉTODO QUE USAMOS EN EL CONTROLLADOR C:\laragon\www\Matriculas\app\Http\Controllers\MatriculaPostulante\ApoderadoPController
+     */
+    public function apoderado()
+    {
+        return $this->hasOne(\App\Models\Apoderado::class, 'id');
     }
 }

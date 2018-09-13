@@ -87,7 +87,7 @@ class ApoderadoPController extends AppBaseController
      */
     public function edit($id)
     {
-         $persona = $this->personaRepository->findWithoutFail($id);
+        $persona = $this->personaRepository->findWithoutFail($id);
 
         if (empty($persona)) {
             Flash::error('Persona not found');
@@ -97,7 +97,6 @@ class ApoderadoPController extends AppBaseController
 
         return view('MatriculaPostulante.apoderados.edit')->with('apoderado', $persona);
 
-        //return view('apoderadosPostulantes.edit')->with('apoderado', $apoderado);
     }
 
     /**
