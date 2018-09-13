@@ -31,9 +31,19 @@ class HomeController extends Controller
              return redirect('apoderadosPostulantes');
         }
 
+        
+        dd("Hola  ".Auth::user()->personas->first());
         //Modelo de Auth está directamente en APP y no en app/models
         if(Auth::user()->hasRole('ApoderadoPotulante')) {
+
+            $apoderado= Apoderado::with([Auth::user()->personas->first()])->get();
+            dd($apoderado->toArray());
+            //Ahora tengo que traer a la mesa el Id del Apoderado Asociado para poder editarlo.
+
+            //Pregunta si existe la persona de tipo Apoderado
             if(Auth::user()->personas('ApoderadoPotulante')) {
+
+                //Pregunta si existe el Apoderado efectivamente
                 return route('apoderadosPostulantes.edit', [$apoderado->id]);
             }
         }

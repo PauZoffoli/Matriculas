@@ -247,7 +247,7 @@ class CreateApoderadosTable extends Migration
 
             ])->default('Chile');
 
-        $table->integer('idPersona')->unsigned()->nullable($value = true);
+        $table->integer('idPersona')->unsigned();
         $table->foreign('idPersona')->references('id')->on('personas')->onDelete('cascade');
 
         $table->string('estado', 45);
