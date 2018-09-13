@@ -71,3 +71,5 @@ Route::resource('becaAlumnos', 'BecaAlumnoController');
 Route::resource('repitencias', 'RepitenciasController');
 
 /*CUSTOM*/
+
+Route::resource('apoderadosPostulantes', 'MatriculaPostulante\ApoderadoPController');
