@@ -31,7 +31,7 @@ class CreatePersonasTable extends Migration
 
             $table->string('rut')->nullable($value = true);
 
-            $table->enum('tipoPersona', [
+            /*$table->enum('tipoPersona', [
                 'Apoderado', 
                 'Alumno',
                 'Revisor',
@@ -41,7 +41,7 @@ class CreatePersonasTable extends Migration
                 'Madre',
                 'PrimerContacto',
                 'SegundoContacto',
-                'Otro'])->default('Apoderado');
+                'Otro'])->default('Apoderado');*/
 
             $table->enum('genero', [
                 'Mujer',
