@@ -1,7 +1,9 @@
+ @if (Auth::user()->personas->first()!=null)
+  
 <li class="{{ Request::is('apoderadosPostulantes*') ? 'active' : '' }}">
-    <a href="{!! route('apoderadosPostulantes.index') !!}"><i class="fa fa-edit"></i><span>Apoderados Postulantes</span></a>
+    <a href="{!! route('apoderadosPostulantes.edit', Auth::user()->personas->first()->id) !!}"><i class="fa fa-edit"></i><span>Apoderados Postulantes</span></a>
 </li>
-
+@endif
 
 
 <li class="{{ Request::is('alumnos*') ? 'active' : '' }}">

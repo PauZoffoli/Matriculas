@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
-
+use Illuminate\Validation\ValidationException;
 class ApoderadoPController extends AppBaseController
 {
 
@@ -95,7 +95,7 @@ class ApoderadoPController extends AppBaseController
             return redirect(route('personas.index'));
         }
 
-        return view('MatriculaPostulante.apoderados.edit')->with('apoderado', $persona);
+        return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona);
 
     }
 
@@ -109,19 +109,34 @@ class ApoderadoPController extends AppBaseController
      */
     public function update($id, UpdateApoderadoRequest $request)
     {
-        $apoderado = $this->apoderadoRepository->findWithoutFail($id);
 
-        if (empty($apoderado)) {
-            Flash::error('Apoderado not found');
+        
+        $persona = $this->personaRepository->findWithoutFail($id); //BUSCAMOS LA PERSONA POR DEFECTO
+    
+         if($persona->apoderado==null){ //Verificamos que LA PERSONA TENGA UN APODERADO ASOCIADO
+          throw ValidationException::withMessages([
+                'Error' => [trans('La persona no tiene un apoderado asociado')],
+            ]);
+        }
+       
+        $apoderado = $this->apoderadoRepository->findWithoutFail($persona->apoderado->id); //BUSCAMOS EL APODERADO ASOCIADO
 
-            return redirect(route('apoderados.index'));
+        if (empty($persona)) { //VERIFICAMOS SI LA PERSONA ESTÁ VACÍA ANTES DE UPDATEARLA
+            Flash::error('Persona not found');
+
+            return view('home');
         }
 
-        $apoderado = $this->apoderadoRepository->update($request->all(), $id);
+         if (empty($apoderado)) { //VERIFICAMOS SI EL APODERADO ESTÁ VACÍO ANTES DE UPDATEARLO
+            Flash::error('Apoderado not found');
+            return view('home');//PRUEBA, HAY QUE VER LA FORMA DE DEVOLVER CON MENSAJE
+        }
 
-        Flash::success('Apoderado updated successfully.');
+        $persona = $this->personaRepository->update($request->all(), $id);
+        $apoderado = $this->apoderadoRepository->update($request->apoderado, $persona->apoderado->id);
 
-        return redirect(route('apoderados.index'));
+        Flash::success('Apoderado editado exitósamente.');
+        return redirect()->route('apoderadosPostulantes.edit', $id);
     }
 
     /**

@@ -117,6 +117,7 @@ class Persona extends Model
 //https://medium.com/@cvallejo/autenticaci%C3%B3n-de-usuarios-y-roles-en-laravel-5-5-97ab59552d91
     public function hasTipo($role = null) {
         $hasTipo = false;
+     
         $hasTipo = !$this->tipos->filter(function($item) use ($role) {
         return $item->nombre == $role;
         })->isEmpty();
@@ -179,6 +180,6 @@ class Persona extends Model
      */
     public function apoderado()
     {
-        return $this->hasOne(\App\Models\Apoderado::class, 'id');
+        return $this->hasOne(\App\Models\Apoderado::class, 'idPersona');
     }
 }

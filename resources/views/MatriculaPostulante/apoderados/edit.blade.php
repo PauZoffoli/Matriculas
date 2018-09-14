@@ -11,7 +11,7 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($apoderado, ['route' => ['apoderados.update', $apoderado->id], 'method' => 'patch']) !!}
+                   {!! Form::model($persona, ['route' => ['apoderadosPostulantes.update', $persona->id], 'method' => 'patch']) !!}
 
                         @include('MatriculaPostulante.apoderados.fields')
 
