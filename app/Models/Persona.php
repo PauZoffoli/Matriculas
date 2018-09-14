@@ -182,4 +182,7 @@ class Persona extends Model
     {
         return $this->hasOne(\App\Models\Apoderado::class, 'idPersona');
     }
+
+   
+
 }

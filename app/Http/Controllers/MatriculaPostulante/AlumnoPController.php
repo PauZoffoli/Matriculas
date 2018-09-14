@@ -7,6 +7,10 @@ use App\Http\Requests\UpdateApoderadoRequest;
 use App\Repositories\ApoderadoRepository;
 use App\Http\Requests\CreatePersonaRequest;
 use App\Http\Requests\UpdatePersonaRequest;
+use App\Http\Requests\CreateAlumnoRequest;
+use App\Http\Requests\UpdateAlumnoRequest;
+use App\Repositories\AlumnoRepository;
+
 use App\Repositories\PersonaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -14,20 +18,20 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Illuminate\Validation\ValidationException;
-class ApoderadoPController extends AppBaseController
+class AlumnoPController extends AppBaseController
 {
 
-//Route::resource('apoderadosPostulantes', 'MatriculaPostulante\ApoderadoPController');
+//Route::resource('alumnosPostulantes', 'MatriculaPostulante\ApoderadoPController');
     
     /** @var  ApoderadoRepository */
-    private $apoderadoRepository;
+   private $alumnoRepository;
       /** @var  PersonaRepository */
     private $personaRepository;
 
-    public function __construct(ApoderadoRepository $apoderadoRepo, PersonaRepository $personaRepo)
+    public function __construct(AlumnoRepository $alumnoRepo, PersonaRepository $personaRepo)
     {
         $this->personaRepository = $personaRepo;
-        $this->apoderadoRepository = $apoderadoRepo;
+        $this->alumnoRepository = $alumnoRepo;
 
     }
 
@@ -49,8 +53,6 @@ class ApoderadoPController extends AppBaseController
             return redirect(route('personas.index'));
         }
 
-         //  dd($apoderado->find(4)->alumnos()->get());
-
         return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona);
 
     }
@@ -63,11 +65,11 @@ class ApoderadoPController extends AppBaseController
      *
      * @return Response
      */
-    public function update($id, UpdateApoderadoRequest $request) //Debería cambiar la request
+    public function update($id, UpdateAlumnoRequest $request) //Debería cambiar la request
     {
 
-        
         $persona = $this->personaRepository->findWithoutFail($id); //BUSCAMOS LA PERSONA POR DEFECTO
+    
         if($persona->apoderado==null){ //Verificamos que LA PERSONA TENGA UN APODERADO ASOCIADO
           throw ValidationException::withMessages([
                 'Error' => [trans('La persona no tiene un apoderado asociado')],
@@ -75,8 +77,7 @@ class ApoderadoPController extends AppBaseController
         }
        
         $apoderado = $this->apoderadoRepository->findWithoutFail($persona->apoderado->id); //BUSCAMOS EL APODERADO ASOCIADO
-        //dd($request->alumnos);
-        //dd($request->all());
+
         if (empty($persona)) { //VERIFICAMOS SI LA PERSONA ESTÁ VACÍA ANTES DE UPDATEARLA
             Flash::error('Persona not found');
 

@@ -39,20 +39,16 @@ class HomeController extends Controller
         // Laravel – querying any level far relations with simple trick https://softonsofa.com/laravel-querying-any-level-far-relations-with-simple-trick/   HASMANYTHROUGH
         //https://medium.com/@cvallejo/autenticaci%C3%B3n-de-usuarios-y-roles-en-laravel-5-5-97ab59552d91
 
-        //Primero hay que verificar si $persona está null
-        if($persona==null){
-          throw ValidationException::withMessages([
-                'Error' => [trans('El usuario no tiene datos como nombre y otros')],
-            ]);
-        }
-
+        //No todos los usuarios tienen por qué tener una persona
+        if($persona!=null){
         //Comprobar si ese usuario tiene una persona de tipo ApoderadoPostulante.
-        if($persona->hasTipo('ApoderadoPostulante')) {
+            if($persona->hasTipo('ApoderadoPostulante')) {
 
             //el con id de la persona relacionada voy a editar sus datos.
                 return redirect()->route('apoderadosPostulantes.edit', [$persona->id]);
             }
         }
+    }
       
         return view('home');
     }

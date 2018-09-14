@@ -101,13 +101,15 @@ class Alumno extends Model
         return $this->belongsTo(\App\Models\Curso::class);
     }
 
+    
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function persona()
     {
-        return $this->belongsTo(\App\Models\Persona::class);
+        return $this->belongsTo(\App\Models\Persona::class, 'idPersona');
     }
 
     /**

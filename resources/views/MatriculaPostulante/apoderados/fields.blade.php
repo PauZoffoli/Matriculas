@@ -131,8 +131,21 @@
     {!! Form::text('apoderado[estado]', null, ['class' => 'form-control']) !!}
 </div>
 
+
+<!-- MOSTRAMOS TODOS LOS ALUMNOS ASOCIADOS-->
+@foreach ($persona->apoderado->alumnos  as $alumno)
+    <p>
+        {{ Form::label('alumno', $alumno->persona->PNombre . ' ' . $alumno->persona->ApPat . ' ' . $alumno->persona->rut  ) }}
+        {{ Form::checkbox('apoderado[alumnos]', $alumno->id, $persona->apoderado->alumnos->contains($alumno->id)) }}
+        
+    </p>
+@endforeach
+
+
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('apoderados.index') !!}" class="btn btn-default">Cancel</a>
 </div>
+
