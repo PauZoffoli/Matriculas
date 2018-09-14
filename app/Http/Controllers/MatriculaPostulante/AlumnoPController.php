@@ -21,7 +21,7 @@ use Illuminate\Validation\ValidationException;
 class AlumnoPController extends AppBaseController
 {
 
-//Route::resource('alumnosPostulantes', 'MatriculaPostulante\ApoderadoPController');
+//Route::resource('alumnosPostulantes', 'MatriculaPostulante\AlumnoPController');
     
     /** @var  ApoderadoRepository */
    private $alumnoRepository;
@@ -37,7 +37,7 @@ class AlumnoPController extends AppBaseController
 
 
     /**
-     * Show the form for editing the specified Apoderado.
+     * Show the form for editing the specified Alumno.
      *
      * @param  int $id
      *
@@ -53,7 +53,7 @@ class AlumnoPController extends AppBaseController
             return redirect(route('personas.index'));
         }
 
-        return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona);
+        return view('MatriculaPostulante.alumnos.edit')->with('alumno', $persona);
 
     }
 
@@ -76,7 +76,7 @@ class AlumnoPController extends AppBaseController
             ]);
         }
        
-        $apoderado = $this->apoderadoRepository->findWithoutFail($persona->apoderado->id); //BUSCAMOS EL APODERADO ASOCIADO
+        $alumno = $this->alumnoRepository->findWithoutFail($persona->alumno->id); //BUSCAMOS EL APODERADO ASOCIADO
 
         if (empty($persona)) { //VERIFICAMOS SI LA PERSONA ESTÁ VACÍA ANTES DE UPDATEARLA
             Flash::error('Persona not found');
@@ -84,16 +84,21 @@ class AlumnoPController extends AppBaseController
             return view('home');
         }
 
-         if (empty($apoderado)) { //VERIFICAMOS SI EL APODERADO ESTÁ VACÍO ANTES DE UPDATEARLO
-            Flash::error('Apoderado not found');
+         if (empty($alumno)) { //VERIFICAMOS SI EL Alumno ESTÁ VACÍO ANTES DE UPDATEARLO
+            Flash::error('Alumno not found');
             return view('home');//PRUEBA, HAY QUE VER LA FORMA DE DEVOLVER CON MENSAJE
         }
 
         $persona = $this->personaRepository->update($request->all(), $id);
-        $apoderado = $this->apoderadoRepository->update($request->apoderado, $persona->apoderado->id);
+        $alumno = $this->alumnoRepository->update($request->alumno, $persona->alumno->id);
 
-        Flash::success('Apoderado editado exitósamente.');
-        return redirect()->route('apoderadosPostulantes.edit', $id);
+        ////////////////////////////////////////////////////////////
+        //////////////////////ALUMNOS SESION////////////////////////
+        ////////////////////////////////////////////////////////////
+        $todosLosAlumnos = $request->session()->get('todosLosAlumnos');
+ dd($todosLosAlumnos);
+        \Session::flash('flash_message','Alumno editado exitósamente.');
+        return redirect()->route('alumnosPostulantes.edit', $id);
     }
 
     /**

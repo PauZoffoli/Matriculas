@@ -56,7 +56,7 @@ class CreateAlumnosTable extends Migration
                 'Separados/as',
                 'Convivientes'])->nullable($value = true)->default('Casados/as');
 
-            $table->integer('idPersona')->unsigned();
+            $table->integer('idPersona')->unsigned()->unique();
             $table->foreign('idPersona')->references('id')->on('personas')->onDelete('cascade');
 
             $table->integer('idApoderado')->unsigned();

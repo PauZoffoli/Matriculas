@@ -160,9 +160,9 @@ class Persona extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function alumnos()
+    public function alumno()
     {
-        return $this->hasMany(\App\Models\Alumno::class);
+        return $this->hasOne(\App\Models\Alumno::class, 'idPersona');
     }
 
     /**

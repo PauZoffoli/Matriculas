@@ -133,11 +133,13 @@
 
 
 <!-- MOSTRAMOS TODOS LOS ALUMNOS ASOCIADOS-->
+@php $index = 0; @endphp
 @foreach ($persona->apoderado->alumnos  as $alumno)
     <p>
         {{ Form::label('alumno', $alumno->persona->PNombre . ' ' . $alumno->persona->ApPat . ' ' . $alumno->persona->rut  ) }}
-        {{ Form::checkbox('apoderado[alumnos]', $alumno->id, $persona->apoderado->alumnos->contains($alumno->id)) }}
-        
+       {{ Form::checkbox('alumnosCheck['. $index++ .']', $alumno, $persona->apoderado->alumnos->contains($alumno->id) ) }}
+
+       
     </p>
 @endforeach
 

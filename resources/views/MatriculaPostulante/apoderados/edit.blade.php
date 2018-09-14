@@ -7,6 +7,13 @@
         </h1>
    </section>
    <div class="content">
+
+<!--CAPTURANDO LA VARIABLE DE ERROR QUE VIENE DDESDE EL CONTROLADOR-->
+@if(session()->has('error'))
+    <div class="alert alert-danger">
+        {{ session()->get('error') }}
+    </div>
+@endif
        @include('adminlte-templates::common.errors')
        <div class="box box-primary">
            <div class="box-body">

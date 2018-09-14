@@ -14,6 +14,8 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Illuminate\Validation\ValidationException;
+use App\Models\Alumno;
+use App\Http\Controllers\Helpers\Helper;
 class ApoderadoPController extends AppBaseController
 {
 
@@ -66,7 +68,9 @@ class ApoderadoPController extends AppBaseController
     public function update($id, UpdateApoderadoRequest $request) //Debería cambiar la request
     {
 
-        
+        ////////////////////////////////////////////////////////////
+        //////////////////SECCIÓN PERSONA APODERADO/////////////////
+        ////////////////////////////////////////////////////////////
         $persona = $this->personaRepository->findWithoutFail($id); //BUSCAMOS LA PERSONA POR DEFECTO
         if($persona->apoderado==null){ //Verificamos que LA PERSONA TENGA UN APODERADO ASOCIADO
           throw ValidationException::withMessages([
@@ -75,8 +79,7 @@ class ApoderadoPController extends AppBaseController
         }
        
         $apoderado = $this->apoderadoRepository->findWithoutFail($persona->apoderado->id); //BUSCAMOS EL APODERADO ASOCIADO
-        //dd($request->alumnos);
-        //dd($request->all());
+       
         if (empty($persona)) { //VERIFICAMOS SI LA PERSONA ESTÁ VACÍA ANTES DE UPDATEARLA
             Flash::error('Persona not found');
 
@@ -88,11 +91,28 @@ class ApoderadoPController extends AppBaseController
             return view('home');//PRUEBA, HAY QUE VER LA FORMA DE DEVOLVER CON MENSAJE
         }
 
+
         $persona = $this->personaRepository->update($request->all(), $id);
         $apoderado = $this->apoderadoRepository->update($request->apoderado, $persona->apoderado->id);
+        
+        ////////////////////////////////////////////////////////////
+        //////////////////////ALUMNOS SELECCIONADOS/////////////////
+        ////////////////////////////////////////////////////////////
+        $primerAlumno = Helper::obtainObject('alumnosCheck', $request, 0); //Método Helper trae un objet si que comprueba ofsets, arrays nulls, etc.
+        if($primerAlumno == null){
+            return redirect(route('alumnosPostulantes.edit', $id))->with('error', 'Usted no ha escogido ningún alumno.');
+        }
+
+        $todosLosAlumnos =   Helper::obtainAllObjects('alumnosCheck', $request) ;
+        $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los alumnos checkeados por el apoderado en una variable de sesión
+        ////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////
 
         Flash::success('Apoderado editado exitósamente.');
-        return redirect()->route('apoderadosPostulantes.edit', $id);
+        return redirect()->route('alumnosPostulantes.edit',  $primerAlumno->idPersona); //vamos a editar el primer alumno de la lista, mediante su id de Persona
+    
+
     }
 
     /**
