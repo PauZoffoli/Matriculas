@@ -10,6 +10,9 @@ use App\Http\Requests\UpdatePersonaRequest;
 use App\Http\Requests\CreateAlumnoRequest;
 use App\Http\Requests\UpdateAlumnoRequest;
 use App\Repositories\AlumnoRepository;
+use App\Http\Requests\CreateFichaAlumnoRequest;
+use App\Http\Requests\UpdateFichaAlumnoRequest;
+use App\Repositories\FichaAlumnoRepository;
 
 use App\Repositories\PersonaRepository;
 use App\Http\Controllers\AppBaseController;
@@ -21,6 +24,8 @@ use Illuminate\Validation\ValidationException;
 use App\Http\Controllers\Helpers\Helper;
 use App\Models\Alumno;
 use App\Models\Repitencias;
+use App\Models\FichaAlumno;
+
 class AlumnoPController extends AppBaseController
 {
 
@@ -31,13 +36,16 @@ class AlumnoPController extends AppBaseController
    private $alumnoRepository;
       /** @var  PersonaRepository */
     private $personaRepository;
+    private $fichaAlumnoRepository;
 
-    public function __construct(AlumnoRepository $alumnoRepo, PersonaRepository $personaRepo)
+    public function __construct(AlumnoRepository $alumnoRepo, PersonaRepository $personaRepo,FichaAlumnoRepository $fichaAlumnoRepo)
     {
         $this->personaRepository = $personaRepo;
         $this->alumnoRepository = $alumnoRepo;
+        $this->fichaAlumnoRepository = $fichaAlumnoRepo;
 
     }
+
 
 
     /**
@@ -74,13 +82,23 @@ class AlumnoPController extends AppBaseController
 
         $persona = $this->personaRepository->findWithoutFail($id); //BUSCAMOS LA PERSONA POR DEFECTO
     
-        if($persona->alumno==null){ //Verificamos que LA PERSONA TENGA UN APODERADO ASOCIADO
-          throw ValidationException::withMessages([
+        if($persona->alumno==null){ //Verificamos que LA PERSONA TENGA UN Alumno ASOCIADO
+        
+            throw ValidationException::withMessages([
                 'Error' => [trans('La persona no tiene un alumno asociado')],
             ]);
         }
-       
-        $alumno = $this->alumnoRepository->findWithoutFail($persona->alumno->id); //BUSCAMOS EL APODERADO ASOCIADO
+//dd($request->all());
+   
+        if($persona->alumno->fichaAlumno==null){ //Si el alumno no tiene una ficha asociada, se le crea en el momento
+ 
+             $input = CreateFichaAlumnoRequest::validate($request->fichaAlumno[0]);
+             dd("hola");
+             $fichaAlumno = $this->fichaAlumnoRepository->create($input);
+        }
+      
+        $alumno = $this->alumnoRepository->findWithoutFail($persona->alumno->id); //BUSCAMOS EL Alumno ASOCIADO
+        $fichaAlumno = $this->fichaAlumnoRepository->findWithoutFail($persona->alumno->fichaAlumno->idAlumno); //BUSCAMOS la ficha alumno ASOCIADO
 
         if (empty($persona)) { //VERIFICAMOS SI LA PERSONA ESTÁ VACÍA ANTES DE UPDATEARLA
             Flash::error('Persona not found');
@@ -95,6 +113,7 @@ class AlumnoPController extends AppBaseController
 
         $persona = $this->personaRepository->update($request->all(), $id);
         $alumno = $this->alumnoRepository->update($request->alumno, $persona->alumno->id);
+        $fichaAlumno = $this->fichaAlumnoRepository->update($request->fichaAlumno[0], $request->fichaAlumno[0]['id']);
 
         ////////////////////////////////////////////////////////////
         //////////////////////ALUMNOS SESION////////////////////////

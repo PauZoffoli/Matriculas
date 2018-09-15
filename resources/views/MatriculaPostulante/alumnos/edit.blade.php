@@ -18,6 +18,15 @@
                    {!! Form::model($alumno, ['route' => ['alumnosPostulantes.update', $alumno->id], 'method' => 'patch']) !!}
 
                         @include('MatriculaPostulante.alumnos.fields')
+                        @include('MatriculaPostulante.alumnos.fields_ficha_alumno')
+
+                        
+<!-- Submit Field -->
+<div class="form-group col-sm-12">
+    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+    <a href="{!! route('alumnos.index') !!}" class="btn btn-default">Cancel</a>
+</div>
+
 
                    {!! Form::close() !!}
                </div>

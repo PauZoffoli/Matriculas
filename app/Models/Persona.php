@@ -183,6 +183,20 @@ class Persona extends Model
         return $this->hasOne(\App\Models\Apoderado::class, 'idPersona');
     }
 
+
+     public function fichaAlumno()
+    {
+        return $this->hasManyThrough(
+            \App\Models\FichaAlumno::class,
+            \App\Models\Alumno::class,
+            'idPersona', // Foreign key on users table...
+            'idAlumno', // Foreign key on posts table...
+          'id',
+          'id'
+        );
+
+    }
+
    
 
 }

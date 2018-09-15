@@ -129,11 +129,11 @@ class Alumno extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany CUSTOM
      **/
-    public function fichaAlumnos()
+    public function fichaAlumno()
     {
-        return $this->hasMany(\App\Models\FichaAlumno::class);
+        return $this->hasOne(\App\Models\FichaAlumno::class, 'idAlumno');
     }
 
     /**
