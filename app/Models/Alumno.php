@@ -141,6 +141,6 @@ class Alumno extends Model
      **/
     public function repitencias()
     {
-        return $this->hasMany(\App\Models\Repitencia::class);
+        return $this->hasMany(\App\Models\Repitencias::class);
     }
 }

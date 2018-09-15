@@ -18,10 +18,14 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Illuminate\Validation\ValidationException;
+use App\Http\Controllers\Helpers\Helper;
+use App\Models\Alumno;
+use App\Models\Repitencias;
 class AlumnoPController extends AppBaseController
 {
 
 //Route::resource('alumnosPostulantes', 'MatriculaPostulante\AlumnoPController');
+    //https://adminlte.io/themes/AdminLTE/pages/tables/simple.html
     
     /** @var  ApoderadoRepository */
    private $alumnoRepository;
@@ -70,9 +74,9 @@ class AlumnoPController extends AppBaseController
 
         $persona = $this->personaRepository->findWithoutFail($id); //BUSCAMOS LA PERSONA POR DEFECTO
     
-        if($persona->apoderado==null){ //Verificamos que LA PERSONA TENGA UN APODERADO ASOCIADO
+        if($persona->alumno==null){ //Verificamos que LA PERSONA TENGA UN APODERADO ASOCIADO
           throw ValidationException::withMessages([
-                'Error' => [trans('La persona no tiene un apoderado asociado')],
+                'Error' => [trans('La persona no tiene un alumno asociado')],
             ]);
         }
        
@@ -96,7 +100,19 @@ class AlumnoPController extends AppBaseController
         //////////////////////ALUMNOS SESION////////////////////////
         ////////////////////////////////////////////////////////////
         $todosLosAlumnos = $request->session()->get('todosLosAlumnos');
- dd($todosLosAlumnos);
+
+        $todosLosAlumnos =   Helper::deleteFirst($todosLosAlumnos);
+
+        if ($todosLosAlumnos!=null) {
+           
+           // \Session::flash('flash_message','Alumno editado exitósamente.');
+
+            $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los alumnos checkeados por el apoderado 
+             return redirect()->route('alumnosPostulantes.edit', json_decode($todosLosAlumnos[0])->idPersona);
+        }
+
+        session()->forget('todosLosAlumnos');
+
         \Session::flash('flash_message','Alumno editado exitósamente.');
         return redirect()->route('alumnosPostulantes.edit', $id);
     }

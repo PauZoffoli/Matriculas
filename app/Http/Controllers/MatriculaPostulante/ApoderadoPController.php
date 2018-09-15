@@ -99,8 +99,9 @@ class ApoderadoPController extends AppBaseController
         //////////////////////ALUMNOS SELECCIONADOS/////////////////
         ////////////////////////////////////////////////////////////
         $primerAlumno = Helper::obtainObject('alumnosCheck', $request, 0); //Método Helper trae un objet si que comprueba ofsets, arrays nulls, etc.
-        if($primerAlumno == null){
-            return redirect(route('alumnosPostulantes.edit', $id))->with('error', 'Usted no ha escogido ningún alumno.');
+
+        if($primerAlumno == null){ //Si no escogió ningún alumno vuelve a la página anterior
+            return redirect(route('apoderadosPostulantes.edit', $id))->with('error', 'Usted no ha escogido ningún alumno.');
         }
 
         $todosLosAlumnos =   Helper::obtainAllObjects('alumnosCheck', $request) ;

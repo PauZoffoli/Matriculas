@@ -44,6 +44,18 @@ class Helper extends Controller
        return  $NewArray ;
    }
 
+   //Chequea y trae todos los objetos del índice que se le indique
+   //Elimina los nulos y reordena los índices
+    public static function deleteFirst($arrays){
+
+      if($arrays!=null){
+        array_shift($arrays);//los nulos del array se eliminan y se cambian los índices, formando un 
+         return  $arrays;
+       }else{
+        return null;
+      }
+      
+   }
 
 
 }
