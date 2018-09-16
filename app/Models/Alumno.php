@@ -82,6 +82,8 @@ class Alumno extends Model
      * @var array
      */
     public static $rules = [
+       // 'parentesco' => 'required|min:1',
+       // 'idCursoPostu' => 'required'
         
     ];
 

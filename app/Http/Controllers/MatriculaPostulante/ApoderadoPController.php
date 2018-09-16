@@ -105,7 +105,9 @@ class ApoderadoPController extends AppBaseController
         }
 
         $todosLosAlumnos =   Helper::obtainAllObjects('alumnosCheck', $request) ;
-        $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los alumnos checkeados por el apoderado en una variable de sesión
+        $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los alumnos checkeados por el apoderado en una variable de sesión, esta variable se irá borrando en la medida que se ocupe
+
+        $request->session()->put('idAlumnos', $todosLosAlumnos);//Guardamos los alumnos para sacar sus id y cambiar sus estados al final del proceo de matrícula
         ////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////

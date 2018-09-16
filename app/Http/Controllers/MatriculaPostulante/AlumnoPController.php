@@ -25,6 +25,7 @@ use App\Http\Controllers\Helpers\Helper;
 use App\Models\Alumno;
 use App\Models\Repitencias;
 use App\Models\FichaAlumno;
+use App\Models\Apoderado;
 use Illuminate\Support\Facades\Validator;
 
 class AlumnoPController extends AppBaseController
@@ -38,12 +39,14 @@ class AlumnoPController extends AppBaseController
       /** @var  PersonaRepository */
     private $personaRepository;
     private $fichaAlumnoRepository;
+    private $apoderadoRepository;
 
-    public function __construct(AlumnoRepository $alumnoRepo, PersonaRepository $personaRepo,FichaAlumnoRepository $fichaAlumnoRepo)
+    public function __construct(AlumnoRepository $alumnoRepo, PersonaRepository $personaRepo,FichaAlumnoRepository $fichaAlumnoRepo,ApoderadoRepository $apoderadoRepo)
     {
         $this->personaRepository = $personaRepo;
         $this->alumnoRepository = $alumnoRepo;
         $this->fichaAlumnoRepository = $fichaAlumnoRepo;
+        $this->apoderadoRepository = $apoderadoRepo;
 
     }
 
@@ -82,7 +85,7 @@ class AlumnoPController extends AppBaseController
     {
 
         /////////////////////////////////////////////
-        /////////////////CUSTOM VALIDATION///////////
+        ///////CUSTOM VALIDATION FICHA ALUMNO////////
         /////////////////////////////////////////////
         //dd($request->fichaAlumno);
         $validate = Helper::manualValidation($request->fichaAlumno, (new CreateFichaAlumnoRequest()));
@@ -92,7 +95,7 @@ class AlumnoPController extends AppBaseController
              ]);
           }
         /////////////////////////////////////////////
-        /////////////////CUSTOM VALIDATION///////////
+        ///////////////END CUSTOM VALIDATION/////////
         /////////////////////////////////////////////
 
         $persona = $this->personaRepository->findWithoutFail($id); //BUSCAMOS LA PERSONA POR DEFECTO
@@ -103,8 +106,6 @@ class AlumnoPController extends AppBaseController
                 'Error' => [trans('La persona no tiene un alumno asociado')],
             ]);
         }
-//dd($request->all());
-
 
    
         if($persona->alumno->fichaAlumno==null){ //Si el alumno no tiene una ficha asociada, se le crea en el momento
@@ -143,11 +144,37 @@ class AlumnoPController extends AppBaseController
             $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los alumnos checkeados por el apoderado 
              return redirect()->route('alumnosPostulantes.edit', json_decode($todosLosAlumnos[0])->idPersona);
         }
-
         session()->forget('todosLosAlumnos');
 
+        ////////////////////////////////////////////////////////////
+        //////////////////END ALUMNOS SESION////////////////////////
+        ////////////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////////////
+        //////////////////CAMBIOS A LOS ESTADOS/////////////////////
+        ////////////////////////////////////////////////////////////
+        
+        /**********Objetivo?: Saber que el apoderado***************/
+        /*********ya hizo la matricula de su alumno ***************/
+        $estadoApoderado= ["estado" => "MatriculaRevisadaPorApoderado"];
+        $estadoAlumno= ["estado" => "MatriculaRevisadaPorApoderado"];
+
+        $idAlumnos = $request->session()->get('idAlumnos');
+
+        foreach ($idAlumnos as $key) {
+           $alumno = $this->alumnoRepository->update($estadoAlumno, json_decode($key)->id);
+        }
+
+        $apoderado = $this->apoderadoRepository->update($estadoApoderado, $alumno->idApoderado);
+
+        //session()->forget('idAlumnos');
+
+        ////////////////////////////////////////////////////////////
+        //////////////END CAMBIOS A LOS ESTADOS/////////////////////
+        ////////////////////////////////////////////////////////////
+
         \Session::flash('flash_message','Alumno editado exitósamente.');
-        return redirect()->route('alumnosPostulantes.edit', $id);
+        return view('MatriculaPostulante.FinProcesoMatricula');
     }
 
     /**
