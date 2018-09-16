@@ -25,6 +25,7 @@ use App\Http\Controllers\Helpers\Helper;
 use App\Models\Alumno;
 use App\Models\Repitencias;
 use App\Models\FichaAlumno;
+use Illuminate\Support\Facades\Validator;
 
 class AlumnoPController extends AppBaseController
 {
@@ -80,6 +81,20 @@ class AlumnoPController extends AppBaseController
     public function update($id, UpdateAlumnoRequest $request) //Debería cambiar la request
     {
 
+        /////////////////////////////////////////////
+        /////////////////CUSTOM VALIDATION///////////
+        /////////////////////////////////////////////
+        //dd($request->fichaAlumno);
+        $validate = Helper::manualValidation($request->fichaAlumno, (new CreateFichaAlumnoRequest()));
+          if ($validate!=null) {
+              throw ValidationException::withMessages([
+                 $validate,
+             ]);
+          }
+        /////////////////////////////////////////////
+        /////////////////CUSTOM VALIDATION///////////
+        /////////////////////////////////////////////
+
         $persona = $this->personaRepository->findWithoutFail($id); //BUSCAMOS LA PERSONA POR DEFECTO
     
         if($persona->alumno==null){ //Verificamos que LA PERSONA TENGA UN Alumno ASOCIADO
@@ -89,12 +104,11 @@ class AlumnoPController extends AppBaseController
             ]);
         }
 //dd($request->all());
+
+
    
         if($persona->alumno->fichaAlumno==null){ //Si el alumno no tiene una ficha asociada, se le crea en el momento
- 
-             $input = CreateFichaAlumnoRequest::validate($request->fichaAlumno[0]);
-             dd("hola");
-             $fichaAlumno = $this->fichaAlumnoRepository->create($input);
+             $fichaAlumno = $this->fichaAlumnoRepository->create($request->fichaAlumno[0]);
         }
       
         $alumno = $this->alumnoRepository->findWithoutFail($persona->alumno->id); //BUSCAMOS EL Alumno ASOCIADO
@@ -193,4 +207,13 @@ class AlumnoPController extends AppBaseController
     {
         abort(404);
     }
+     //$erros = app()->make('App\Http\Requests\CreateFichaAlumnoRequest');// $validate->validate($request->fichaAlumno, $validate->rules(), $validate->messages());
+ //$validate->validate($request->fichaAlumno, $validate->rules(), $validate->messages());
+ //dd($validate->fails());
+//$input=(new FichaAlumno($request->fichaAlumno[0]));
+//CreateFichaAlumnoRequest::validate($request->fichaAlumno[0], $input->rules(), $input->messages());
+           //  $input = CreateFichaAlumnoRequest::validate($request->fichaAlumno[0], CreateFichaAlumnoRequest::rules());
+          
+          //  $input('App\Http\Requests\CreateFichaAlumnoRequest'); // FormRequest
+            // dd("hola");
 }

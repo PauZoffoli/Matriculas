@@ -12,6 +12,12 @@
   @if(Session::has('flash_message'))
     <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em></div>
 @endif
+
+@if(session()->has('error'))
+    <div class="alert alert-danger">
+        {{ session()->get('error') }}
+    </div>
+@endif
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">

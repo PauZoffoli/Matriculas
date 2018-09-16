@@ -4,11 +4,26 @@ namespace App\Http\Controllers\Helpers;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Validator;
 
 class Helper extends Controller 
 {
 	public function __construct()
     {
+
+    }
+
+    public static function manualValidation($request, $validate){
+//dd(($validate->rules()));
+      $validateRole =  Validator::make($request[0],$validate->rules());
+
+      if ( $validateRole->fails()){
+
+        $errorString = implode("<br>",$validateRole->messages()->all());
+        return $errorString;
+      }
+      
+      return null;
 
     }
     
