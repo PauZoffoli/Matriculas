@@ -116,10 +116,18 @@ class Alumno extends Model
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
+     *
     public function alumnoResponsables()
     {
         return $this->hasMany(\App\Models\AlumnoResponsable::class);
+    }*/
+
+     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function alumnoResponsables()
+    {
+            return $this->belongsToMany(\App\Models\Persona::class, 'alumno_responsable','idPersona','idAlumno');
     }
 
     /**

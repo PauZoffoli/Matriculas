@@ -84,6 +84,7 @@ class AlumnoPController extends AppBaseController
     public function update($id, UpdateAlumnoRequest $request) //Debería cambiar la request
     {
 
+
         /////////////////////////////////////////////
         ///////CUSTOM VALIDATION FICHA ALUMNO////////
         /////////////////////////////////////////////
@@ -146,10 +147,21 @@ class AlumnoPController extends AppBaseController
         }
         session()->forget('todosLosAlumnos');
 
+
+
         ////////////////////////////////////////////////////////////
         //////////////////END ALUMNOS SESION////////////////////////
         ////////////////////////////////////////////////////////////
 
+         cambioDeEstados($alumno);
+
+        \Session::flash('flash_message','Alumno editado exitósamente.');
+        return view('MatriculaPostulante.FinProcesoMatricula');
+    }
+
+    public function cambioDeEstados($alumno)
+    {
+        
         ////////////////////////////////////////////////////////////
         //////////////////CAMBIOS A LOS ESTADOS/////////////////////
         ////////////////////////////////////////////////////////////
@@ -167,14 +179,12 @@ class AlumnoPController extends AppBaseController
 
         $apoderado = $this->apoderadoRepository->update($estadoApoderado, $alumno->idApoderado);
 
-        //session()->forget('idAlumnos');
+        session()->forget('idAlumnos');
 
         ////////////////////////////////////////////////////////////
         //////////////END CAMBIOS A LOS ESTADOS/////////////////////
         ////////////////////////////////////////////////////////////
 
-        \Session::flash('flash_message','Alumno editado exitósamente.');
-        return view('MatriculaPostulante.FinProcesoMatricula');
     }
 
     /**

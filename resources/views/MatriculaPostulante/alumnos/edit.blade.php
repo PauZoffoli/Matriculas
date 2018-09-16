@@ -20,12 +20,104 @@
 @endif
        <div class="box box-primary">
            <div class="box-body">
-               <div class="row">
+               <div class="">
                    {!! Form::model($alumno, ['route' => ['alumnosPostulantes.update', $alumno->id], 'method' => 'patch']) !!}
 
-                        @include('MatriculaPostulante.alumnos.fields')
-                        @include('MatriculaPostulante.alumnos.fields_ficha_alumno')
 
+<section class="content-header">
+        <h1>
+            Datos del Alumno/a {{ $alumno->PNombre . ' ' . $alumno->ApPat }}
+        </h1> <br>
+</section>
+       <div class="box box-success" style="background-color: #E4FDE4!important;">
+           <div class="box-body">
+               <div class="row">
+                 
+                 @include('MatriculaPostulante.alumnos.fields')
+                  
+               </div>
+           </div>
+       </div>
+
+<section class="content-header">
+        <h1>
+           Ficha Social del Alumno
+        </h1> <br>
+</section>
+       <div class="box box-success" style="background-color: #E4FDE4!important;">
+           <div class="box-body">
+               <div class="row">
+                 
+                @include('MatriculaPostulante.alumnos.fields_ficha_alumno')
+                  
+               </div>
+           </div>
+       </div>
+
+<section class="content-header">
+        <h1>
+           Padre del Alumno
+        </h1> <br>
+</section>
+       <div class="box box-success" style="background-color: #E4FDE4!important;">
+           <div class="box-body">
+               <div class="row">
+                 
+                @include('MatriculaPostulante.alumnos.fieldsPadre')
+                  
+               </div>
+           </div>
+       </div>
+
+<section class="content-header">
+        <h1>
+           Madre del Alumno
+        </h1> <br>
+</section>
+       <div class="box box-success" style="background-color: #E4FDE4!important;">
+           <div class="box-body">
+               <div class="row">
+                 
+                @include('MatriculaPostulante.alumnos.fieldsMadre')
+                  
+               </div>
+           </div>
+       </div>
+
+<section class="content-header">
+        <h1>
+           Contacto Nro 1 del Alumno
+        </h1> <br>
+</section>
+       <div class="box box-success" style="background-color: #E4FDE4!important;">
+           <div class="box-body">
+               <div class="row">
+                 
+                @include('MatriculaPostulante.alumnos.fieldsContacto1')
+                  
+               </div>
+           </div>
+       </div>
+
+
+<section class="content-header">
+        <h1>
+           Contacto Nro 2 del Alumno
+        </h1> <br>
+</section>
+       <div class="box box-success" style="background-color: #E4FDE4!important;">
+           <div class="box-body">
+               <div class="row">
+                 
+                @include('MatriculaPostulante.alumnos.fieldsContacto2')
+                  
+               </div>
+           </div>
+       </div>
+
+
+
+                      
                         
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

@@ -17,7 +17,7 @@ class CreateAlumnosTable extends Migration
             $table->increments('id');
             $table->timestamps();
             
-            $table->enum('parentesco', [
+            $table->enum('parentesco', [ //Referente al parentesco con el apoderado
                 'Padre', 
                 'Madre',
                 'Padrastro',
