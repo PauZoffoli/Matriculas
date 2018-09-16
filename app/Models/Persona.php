@@ -151,18 +151,28 @@ class Persona extends Model
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     *
+    public function alumnoResponsables()
+    {
+        return $this->hasMany(\App\Models\AlumnoResponsable::class, 'idPersona', 'idAlumno');
+    }
+    */
+
+     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function alumnoResponsables()
     {
-        return $this->hasMany(\App\Models\AlumnoResponsable::class);
+            return $this->belongsToMany(\App\Models\Alumno::class, 'alumno_responsable', 'idPersona', 'id');
     }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function alumnos()
+    public function alumno()
     {
-        return $this->hasMany(\App\Models\Alumno::class);
+        return $this->hasOne(\App\Models\Alumno::class, 'idPersona');
     }
 
     /**
@@ -182,4 +192,21 @@ class Persona extends Model
     {
         return $this->hasOne(\App\Models\Apoderado::class, 'idPersona');
     }
+
+
+     public function fichaAlumno()
+    {
+        return $this->hasManyThrough(
+            \App\Models\FichaAlumno::class,
+            \App\Models\Alumno::class,
+            'idPersona', // Foreign key on users table...
+            'idAlumno', // Foreign key on posts table...
+          'id',
+          'id'
+        );
+
+    }
+
+   
+
 }

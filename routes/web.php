@@ -78,3 +78,5 @@ Route::resource('tipoPersonas', 'TipoPersonaController');
 
 Route::resource('apoderadosPostulantes', 'MatriculaPostulante\ApoderadoPController');
 
+Route::resource('alumnosPostulantes', 'MatriculaPostulante\AlumnoPController');
+

@@ -82,6 +82,8 @@ class Alumno extends Model
      * @var array
      */
     public static $rules = [
+       // 'parentesco' => 'required|min:1',
+       // 'idCursoPostu' => 'required'
         
     ];
 
@@ -101,21 +103,31 @@ class Alumno extends Model
         return $this->belongsTo(\App\Models\Curso::class);
     }
 
+    
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function persona()
     {
-        return $this->belongsTo(\App\Models\Persona::class);
+        return $this->belongsTo(\App\Models\Persona::class, 'idPersona');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
+     *
     public function alumnoResponsables()
     {
         return $this->hasMany(\App\Models\AlumnoResponsable::class);
+    }*/
+
+     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function alumnoResponsables()
+    {
+            return $this->belongsToMany(\App\Models\Persona::class, 'alumno_responsable','idPersona','idAlumno');
     }
 
     /**
@@ -127,11 +139,11 @@ class Alumno extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany CUSTOM
      **/
-    public function fichaAlumnos()
+    public function fichaAlumno()
     {
-        return $this->hasMany(\App\Models\FichaAlumno::class);
+        return $this->hasOne(\App\Models\FichaAlumno::class, 'idAlumno');
     }
 
     /**
@@ -139,6 +151,6 @@ class Alumno extends Model
      **/
     public function repitencias()
     {
-        return $this->hasMany(\App\Models\Repitencia::class);
+        return $this->hasMany(\App\Models\Repitencias::class);
     }
 }

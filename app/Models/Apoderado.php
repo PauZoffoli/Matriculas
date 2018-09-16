@@ -78,10 +78,11 @@ class Apoderado extends Model
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     FUNCIONA
      **/
     public function alumnos()
     {
-        return $this->hasMany(\App\Models\Alumno::class);
+        return $this->hasMany(\App\Models\Alumno::class, 'idApoderado');
     }
 
     /**

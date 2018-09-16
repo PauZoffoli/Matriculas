@@ -14,6 +14,8 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Illuminate\Validation\ValidationException;
+use App\Models\Alumno;
+use App\Http\Controllers\Helpers\Helper;
 class ApoderadoPController extends AppBaseController
 {
 
@@ -31,7 +33,103 @@ class ApoderadoPController extends AppBaseController
 
     }
 
+
     /**
+     * Show the form for editing the specified Apoderado.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function edit($id)
+    {
+        $persona = $this->personaRepository->findWithoutFail($id);
+
+        if (empty($persona)) {
+            Flash::error('Persona not found');
+
+            return redirect(route('personas.index'));
+        }
+
+         //  dd($apoderado->find(4)->alumnos()->get());
+
+        return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona);
+
+    }
+
+    /**
+     * Update the specified Apoderado in storage.
+     *
+     * @param  int              $id
+     * @param UpdateApoderadoRequest $request
+     *
+     * @return Response
+     */
+    public function update($id, UpdateApoderadoRequest $request) //Debería cambiar la request
+    {
+
+        ////////////////////////////////////////////////////////////
+        //////////////////SECCIÓN PERSONA APODERADO/////////////////
+        ////////////////////////////////////////////////////////////
+        $persona = $this->personaRepository->findWithoutFail($id); //BUSCAMOS LA PERSONA POR DEFECTO
+        if($persona->apoderado==null){ //Verificamos que LA PERSONA TENGA UN APODERADO ASOCIADO
+          throw ValidationException::withMessages([
+                'Error' => [trans('La persona no tiene un apoderado asociado')],
+            ]);
+        }
+       
+        $apoderado = $this->apoderadoRepository->findWithoutFail($persona->apoderado->id); //BUSCAMOS EL APODERADO ASOCIADO
+       
+        if (empty($persona)) { //VERIFICAMOS SI LA PERSONA ESTÁ VACÍA ANTES DE UPDATEARLA
+            Flash::error('Persona not found');
+
+            return view('home');
+        }
+
+         if (empty($apoderado)) { //VERIFICAMOS SI EL APODERADO ESTÁ VACÍO ANTES DE UPDATEARLO
+            Flash::error('Apoderado not found');
+            return view('home');//PRUEBA, HAY QUE VER LA FORMA DE DEVOLVER CON MENSAJE
+        }
+
+
+        $persona = $this->personaRepository->update($request->all(), $id);
+        $apoderado = $this->apoderadoRepository->update($request->apoderado, $persona->apoderado->id);
+        
+        ////////////////////////////////////////////////////////////
+        //////////////////////ALUMNOS SELECCIONADOS/////////////////
+        ////////////////////////////////////////////////////////////
+        $primerAlumno = Helper::obtainObject('alumnosCheck', $request, 0); //Método Helper trae un objet si que comprueba ofsets, arrays nulls, etc.
+
+        if($primerAlumno == null){ //Si no escogió ningún alumno vuelve a la página anterior
+            return redirect(route('apoderadosPostulantes.edit', $id))->with('error', 'Usted no ha escogido ningún alumno.');
+        }
+
+        $todosLosAlumnos =   Helper::obtainAllObjects('alumnosCheck', $request) ;
+        $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los alumnos checkeados por el apoderado en una variable de sesión, esta variable se irá borrando en la medida que se ocupe
+
+        $request->session()->put('idAlumnos', $todosLosAlumnos);//Guardamos los alumnos para sacar sus id y cambiar sus estados al final del proceo de matrícula
+        ////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////
+
+        Flash::success('Apoderado editado exitósamente.');
+        return redirect()->route('alumnosPostulantes.edit',  $primerAlumno->idPersona); //vamos a editar el primer alumno de la lista, mediante su id de Persona
+    
+
+    }
+
+    /**
+     * Remove the specified Apoderado from storage.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        abort(404);
+    }
+     /**
 
     /**
      * Display a listing of the Apoderado.
@@ -76,90 +174,5 @@ class ApoderadoPController extends AppBaseController
     public function show($id)
     {
         abort(404);
-    }
-
-    /**
-     * Show the form for editing the specified Apoderado.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function edit($id)
-    {
-        $persona = $this->personaRepository->findWithoutFail($id);
-
-        if (empty($persona)) {
-            Flash::error('Persona not found');
-
-            return redirect(route('personas.index'));
-        }
-
-        return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona);
-
-    }
-
-    /**
-     * Update the specified Apoderado in storage.
-     *
-     * @param  int              $id
-     * @param UpdateApoderadoRequest $request
-     *
-     * @return Response
-     */
-    public function update($id, UpdateApoderadoRequest $request)
-    {
-
-        
-        $persona = $this->personaRepository->findWithoutFail($id); //BUSCAMOS LA PERSONA POR DEFECTO
-    
-         if($persona->apoderado==null){ //Verificamos que LA PERSONA TENGA UN APODERADO ASOCIADO
-          throw ValidationException::withMessages([
-                'Error' => [trans('La persona no tiene un apoderado asociado')],
-            ]);
-        }
-       
-        $apoderado = $this->apoderadoRepository->findWithoutFail($persona->apoderado->id); //BUSCAMOS EL APODERADO ASOCIADO
-
-        if (empty($persona)) { //VERIFICAMOS SI LA PERSONA ESTÁ VACÍA ANTES DE UPDATEARLA
-            Flash::error('Persona not found');
-
-            return view('home');
-        }
-
-         if (empty($apoderado)) { //VERIFICAMOS SI EL APODERADO ESTÁ VACÍO ANTES DE UPDATEARLO
-            Flash::error('Apoderado not found');
-            return view('home');//PRUEBA, HAY QUE VER LA FORMA DE DEVOLVER CON MENSAJE
-        }
-
-        $persona = $this->personaRepository->update($request->all(), $id);
-        $apoderado = $this->apoderadoRepository->update($request->apoderado, $persona->apoderado->id);
-
-        Flash::success('Apoderado editado exitósamente.');
-        return redirect()->route('apoderadosPostulantes.edit', $id);
-    }
-
-    /**
-     * Remove the specified Apoderado from storage.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        $apoderado = $this->apoderadoRepository->findWithoutFail($id);
-
-        if (empty($apoderado)) {
-            Flash::error('Apoderado not found');
-
-            return redirect(route('apoderados.index'));
-        }
-
-        $this->apoderadoRepository->delete($id);
-
-        Flash::success('Apoderado deleted successfully.');
-
-        return redirect(route('apoderados.index'));
     }
 }
