@@ -27,7 +27,7 @@ use App\Models\Repitencias;
 use App\Models\FichaAlumno;
 use App\Models\Apoderado;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Collection;
 class AlumnoPController extends AppBaseController
 {
 
@@ -69,9 +69,61 @@ class AlumnoPController extends AppBaseController
             return redirect(route('personas.index'));
         }
 
-        return view('MatriculaPostulante.alumnos.edit')->with('alumno', $persona);
+   
+        $responsables = null;
+        $padre = null;
+        $madre = null;
+        $pContacto = null;
+        $sContacto = null;
+      
+        if (!$persona->alumnoResponsables->isEmpty()) {
+ 
+            foreach ($persona->alumnoResponsables as $value) {
+
+                if( $value->pivot->pivotParent->hasTipo("Padre")){
+                
+                    $padre = $value->pivot->pivotParent;
+                    
+                }
+                if( $value->pivot->pivotParent->hasTipo("Madre")){
+                
+                    $madre = $value->pivot->pivotParent;
+                    
+                }
+
+                if( $value->pivot->pivotParent->hasTipo("PrimerContacto")){
+                
+                    $pContacto = $value->pivot->pivotParent;
+                    
+                }
+
+                if( $value->pivot->pivotParent->hasTipo("SegundoContacto")){
+                
+                    $sContacto = $value->pivot->pivotParent;
+                    
+                }
+            }
+            
+        }
+
+        return view('MatriculaPostulante.alumnos.edit')->with('alumno', $persona)->with('padre',$padre)->with('madre',$madre)->with('pContacto',$pContacto)->with('sContacto',$sContacto);
 
     }
+
+    /*Tabla pivote
+    */
+    //dd($padre);
+        // $responsable = $persona->alumnoResponsables[0]->pivot->pivotParent;
+ // $padre = $this->personaRepository->findWithoutFail($padre->id);
+
+   // dd("es padre");
+                    //$persona->pluck($value->pivot->pivotParent);
+                   // $persona->add($value->pivot->pivotParent);
+                  //  array_push($persona, ['padre' => $value->pivot->pivotParent]);
+
+       //dd($responsable->hasTipo("AlumnoPostulante"));
+        //dd($persona->alumnoResponsables[0]->pivot->pivotParent->id);
+
 
     /**
      * Update the specified Apoderado in storage.
@@ -83,8 +135,7 @@ class AlumnoPController extends AppBaseController
      */
     public function update($id, UpdateAlumnoRequest $request) //Debería cambiar la request
     {
-
-
+dd($request->all());
         /////////////////////////////////////////////
         ///////CUSTOM VALIDATION FICHA ALUMNO////////
         /////////////////////////////////////////////
@@ -153,7 +204,7 @@ class AlumnoPController extends AppBaseController
         //////////////////END ALUMNOS SESION////////////////////////
         ////////////////////////////////////////////////////////////
 
-         cambioDeEstados($alumno);
+         cambioDeEstados($alumno); //Método que está en el mismo controller.
 
         \Session::flash('flash_message','Alumno editado exitósamente.');
         return view('MatriculaPostulante.FinProcesoMatricula');

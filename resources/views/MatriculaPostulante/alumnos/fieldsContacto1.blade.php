@@ -1,95 +1,39 @@
-<!-- Pnombre Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('PNombre', 'Pnombre:') !!}
-    {!! Form::text($alumno->alumnoResponsables, $alumno->alumnoResponsables[0]->pivot, ['class' => 'form-control']) !!}
-</div>
-{{ $alumno->alumnoResponsables }}
-<!-- Snombre Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('SNombre', 'Snombre:') !!}
-    {!! Form::text('alumnoResponsables[0][PNombre]', null, ['class' => 'form-control']) !!}
-</div>
+@extends('MatriculaPostulante.personas.fieldsPersonaContacto', 
 
-<!-- Tnombre Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('TNombre', 'Tnombre:') !!}
-    {!! Form::text('TNombre', null, ['class' => 'form-control']) !!}
-</div>
 
-<!-- Appat Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('ApPat', 'Appat:') !!}
-    {!! Form::text('ApPat', null, ['class' => 'form-control']) !!}
-</div>
+    [
+'PNombreLBL' => 'pContacto[PNombre]',
+'SNombreLBL' => 'pContacto[SNombre]',
+'TNombreLBL' => 'pContacto[TNombre]',
+'ApPatLBL' => 'pContacto[ApPat]',
+'ApMatLBL' => 'pContacto[ApMat]',
+'fonoFijoLBL' => 'pContacto[fonoFijo]',
+'fonoCeluLBL' => 'pContacto[fonoCelu]',
+'rutLBL' => 'pContacto[rut]',
+'generoLBL' => 'pContacto[genero]',
+'emailLBL' => 'pContacto[email]',
+'fechaNacimientoLBL' => 'pContacto[fechaNacimiento]',
+'fechaDefuncionLBL' => 'pContacto[fechaDefuncion]',
+'estadoCivilLBL' => 'pContacto[estadoCivil]',
+'idDireccionLBL' => 'pContacto[idDireccion]',
+'idUserLBL' => 'pContacto[idUser]',
 
-<!-- Apmat Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('ApMat', 'Apmat:') !!}
-    {!! Form::text('ApMat', null, ['class' => 'form-control']) !!}
-</div>
 
-<!-- Fonofijo Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('fonoFijo', 'Fonofijo:') !!}
-    {!! Form::number('fonoFijo', null, ['class' => 'form-control']) !!}
-</div>
+'PNombreTXT' =>( isset($pContacto->PNombre) ? $pContacto->PNombre : null ), 
+'SNombreTXT' => ( isset($pContacto->SNombre) ? $pContacto->SNombre : null ),
+'TNombreTXT' =>( isset($pContacto->TNombre) ? $pContacto->TNombre : null ),
+'ApPatTXT' => ( isset($pContacto->ApPat) ? $pContacto->ApPat : null ),
+'ApMatTXT' => ( isset($pContacto->ApMat) ? $pContacto->ApMat : null ),
+'fonoFijoTXT' => ( isset($pContacto->fonoFijo) ? $pContacto->fonoFijo : null ),
+'fonoCeluTXT' =>( isset($pContacto->fonoCelu) ? $pContacto->fonoCelu : null ),
+'rutTXT' => ( isset($pContacto->rut) ? $pContacto->rut : null ),
+'generoTXT' => ( isset($pContacto->genero) ? $pContacto->genero : null ),
+'emailTXT' => ( isset($pContacto->email) ? $pContacto->email : null ),
+'fechaNacimientoTXT' => ( isset($pContacto->fechaNacimiento) ? $pContacto->fechaNacimiento: null ),
+'fechaDefuncionTXT' => ( isset($pContacto->fechaDefuncion) ? $pContacto->fechaDefuncion : null ),
+'estadoCivilTXT' => ( isset($pContacto->estadoCivil) ? $pContacto->estadoCivil : null ),
+'idDireccionTXT' => ( isset($pContacto->idDireccion) ? $pContacto->idDireccion : null ),
+'idUserTXT' => ( isset($pContacto->idUser) ? $pContacto->idUser : null ),
 
-<!-- Fonocelu Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('fonoCelu', 'Fonocelu:') !!}
-    {!! Form::number('fonoCelu', null, ['class' => 'form-control']) !!}
-</div>
 
-<!-- Iduser Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('idUser', 'Iduser:') !!}
-    {!! Form::number('idUser', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Rut Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('rut', 'Rut:') !!}
-    {!! Form::text('rut', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Tipopersona Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('tipoPersona', 'Tipopersona:') !!}
-    {!! Form::text('tipoPersona', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Genero Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('genero', 'Genero:') !!}
-    {!! Form::text('genero', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Email Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('email', 'Email:') !!}
-    {!! Form::email('email', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Fechanacimiento Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('fechaNacimiento', 'Fechanacimiento:') !!}
-    {!! Form::date('fechaNacimiento', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Fechadefuncion Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('fechaDefuncion', 'Fechadefuncion:') !!}
-    {!! Form::date('fechaDefuncion', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Estadocivil Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('estadoCivil', 'Estadocivil:') !!}
-    {!! Form::text('estadoCivil', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Iddireccion Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('idDireccion', 'Iddireccion:') !!}
-    {!! Form::number('idDireccion', null, ['class' => 'form-control']) !!}
-</div>
+    ])

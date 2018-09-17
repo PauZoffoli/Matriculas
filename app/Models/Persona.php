@@ -158,12 +158,14 @@ class Persona extends Model
     }
     */
 
+
+
      /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function alumnoResponsables()
     {
-            return $this->belongsToMany(\App\Models\Alumno::class, 'alumno_responsable', 'idPersona', 'id');
+            return $this->belongsToMany(\App\Models\Alumno::class, 'alumno_responsable', 'idPersona', 'idAlumno');
     }
 
 
