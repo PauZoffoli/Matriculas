@@ -8,6 +8,9 @@ use App\Repositories\ApoderadoRepository;
 use App\Http\Requests\CreatePersonaRequest;
 use App\Http\Requests\UpdatePersonaRequest;
 use App\Repositories\PersonaRepository;
+use App\Http\Requests\CreateDireccionRequest;
+use App\Http\Requests\UpdateDireccionRequest;
+use App\Repositories\DireccionRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -25,13 +28,16 @@ class ApoderadoPController extends AppBaseController
     private $apoderadoRepository;
       /** @var  PersonaRepository */
     private $personaRepository;
+  private $direccionRepository;
 
-    public function __construct(ApoderadoRepository $apoderadoRepo, PersonaRepository $personaRepo)
+    public function __construct(ApoderadoRepository $apoderadoRepo, PersonaRepository $personaRepo, DireccionRepository $direccionRepo)
     {
         $this->personaRepository = $personaRepo;
         $this->apoderadoRepository = $apoderadoRepo;
+         $this->direccionRepository = $direccionRepo;
 
     }
+
 
 
     /**
@@ -50,7 +56,7 @@ class ApoderadoPController extends AppBaseController
 
             return redirect(route('personas.index'));
         }
-
+//dd($persona->direccion);
          //  dd($apoderado->find(4)->alumnos()->get());
 
         return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona);
@@ -67,7 +73,7 @@ class ApoderadoPController extends AppBaseController
      */
     public function update($id, UpdateApoderadoRequest $request) //Debería cambiar la request
     {
-
+    
         ////////////////////////////////////////////////////////////
         //////////////////SECCIÓN PERSONA APODERADO/////////////////
         ////////////////////////////////////////////////////////////
@@ -77,8 +83,10 @@ class ApoderadoPController extends AppBaseController
                 'Error' => [trans('La persona no tiene un apoderado asociado')],
             ]);
         }
+
        
         $apoderado = $this->apoderadoRepository->findWithoutFail($persona->apoderado->id); //BUSCAMOS EL APODERADO ASOCIADO
+        $direccion = $this->direccionRepository->findWithoutFail($persona->direccion->id);  //BUSCAMOS LA DIRECCION ASOCIADA
        
         if (empty($persona)) { //VERIFICAMOS SI LA PERSONA ESTÁ VACÍA ANTES DE UPDATEARLA
             Flash::error('Persona not found');
@@ -90,10 +98,16 @@ class ApoderadoPController extends AppBaseController
             Flash::error('Apoderado not found');
             return view('home');//PRUEBA, HAY QUE VER LA FORMA DE DEVOLVER CON MENSAJE
         }
+        if (empty($apoderado)) { //VERIFICAMOS SI EL APODERADO ESTÁ VACÍO ANTES DE UPDATEARLO
+            Flash::error('Apoderado not found');
+            return view('home');//PRUEBA, HAY QUE VER LA FORMA DE DEVOLVER CON MENSAJE
+        }
 
 
-        $persona = $this->personaRepository->update($request->all(), $id);
+        $direccion = $this->direccionRepository->update($request->direccion, $persona->direccion->id);
+        $persona = $this->personaRepository->update(array($request->all()), $id); //ARRAY O SE PRODUCE ERROR Laravel Array to string conversion error
         $apoderado = $this->apoderadoRepository->update($request->apoderado, $persona->apoderado->id);
+        
         
         ////////////////////////////////////////////////////////////
         //////////////////////ALUMNOS SELECCIONADOS/////////////////

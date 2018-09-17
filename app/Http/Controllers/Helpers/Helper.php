@@ -16,14 +16,32 @@ class Helper extends Controller
     //https://stackoverflow.com/questions/18945998/laravel-validation-does-not-work-always-fails
     /*
     Validamos y capturamos los mensajes de errores de manera custom
-    */
-    public static function manualValidation($request, $validate){
+    
+    public static function manualValidation($request, $validate, $message){
 //dd(($validate->rules()));
       $validateRole =  Validator::make($request[0],$validate->rules());
 
       if ( $validateRole->fails()){
+        $errorString = $message . '<br>+';
+        $errorString =$errorString . implode("<br>+",$validateRole->messages()->all());
+        return $errorString;
+      }
+      
+      return null;
 
-        $errorString = implode("<br>",$validateRole->messages()->all());
+    }
+    */
+
+     public static function manualValidation($request, $validate, $message, $primero){
+      $validateRole =  Validator::make($request,$validate->rules());
+      if ( $validateRole->fails()){
+        if($primero==1){
+           $errorString =  $message . '<br>+';
+        }else{
+        $errorString = '<br> <br>'. $message . '<br>+';
+        }
+        $errorString =$errorString . implode("<br>+",$validateRole->messages()->all());
+
         return $errorString;
       }
       

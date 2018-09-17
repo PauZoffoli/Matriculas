@@ -94,15 +94,17 @@ class Persona extends Model
      * @var array
      */
     public static $rules = [
+        'PNombre' => 'required|min:1',
+          'ApPat' => 'required'
         
     ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function direccione()
+    public function direccion()
     {
-        return $this->belongsTo(\App\Models\Direccione::class);
+        return $this->belongsTo(\App\Models\Direccion::class, 'idDireccion');
     }
 
     /**

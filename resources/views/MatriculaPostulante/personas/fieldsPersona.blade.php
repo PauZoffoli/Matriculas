@@ -1,17 +1,19 @@
+<!--para las personas ALUMNO Y APODERADO-->
+
 <!-- Pnombre Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-4">
     {!! Form::label('PNombre', 'Pnombre:') !!}
     {!! Form::text('PNombre', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Snombre Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-4">
     {!! Form::label('SNombre', 'Snombre:') !!}
     {!! Form::text('SNombre', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Tnombre Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-4 ">
     {!! Form::label('TNombre', 'Tnombre:') !!}
     {!! Form::text('TNombre', null, ['class' => 'form-control']) !!}
 </div>
@@ -52,12 +54,6 @@
     {!! Form::text('rut', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Tipopersona Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('tipoPersona', 'Tipopersona:') !!}
-    {!! Form::text('tipoPersona', null, ['class' => 'form-control']) !!}
-</div>
-
 <!-- Genero Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('genero', 'Genero:') !!}
@@ -88,8 +84,4 @@
     {!! Form::text('estadoCivil', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Iddireccion Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('idDireccion', 'Iddireccion:') !!}
-    {!! Form::number('idDireccion', null, ['class' => 'form-control']) !!}
-</div>
+ @include('MatriculaPostulante.direccions.fields')

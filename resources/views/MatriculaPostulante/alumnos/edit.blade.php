@@ -7,7 +7,7 @@
         </h1>
    </section>
    <div class="content">
-       @include('adminlte-templates::common.errors')
+@include('adminlte-templates::common.errors')
        <div class="alert alert-warning"><span class="glyphicon glyphicon-ok"></span><em> ERROR en Repitencias</em></div>
   @if(Session::has('flash_message'))
     <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em></div>
@@ -26,7 +26,7 @@
 
 <section class="content-header">
         <h1>
-            Datos del Alumno/a {{ $alumno->PNombre . ' ' . $alumno->ApPat }}
+            1) Datos del Alumno/a {{ $alumno->PNombre . ' ' . $alumno->ApPat }}
         </h1> <br>
 </section>
        <div class="box box-success" style="background-color: #E4FDE4!important;">
@@ -41,7 +41,7 @@
 
 <section class="content-header">
         <h1>
-           Ficha Social del Alumno
+           2) Ficha Social del Alumno/a {{ $alumno->PNombre . ' ' . $alumno->ApPat }}
         </h1> <br>
 </section>
        <div class="box box-success" style="background-color: #E4FDE4!important;">
@@ -56,7 +56,7 @@
 
 <section class="content-header">
         <h1>
-           Padre del Alumno
+           3) Padre del Alumno/a {{ $alumno->PNombre . ' ' . $alumno->ApPat }}
         </h1> <br>
 </section>
        <div class="box box-success" style="background-color: #E4FDE4!important;">
@@ -71,7 +71,7 @@
 
 <section class="content-header">
         <h1>
-           Madre del Alumno
+           4) Madre del Alumno/a {{ $alumno->PNombre . ' ' . $alumno->ApPat }}
         </h1> <br>
 </section>
        <div class="box box-success" style="background-color: #E4FDE4!important;">
@@ -86,7 +86,7 @@
 
 <section class="content-header">
         <h1>
-           Contacto Nro 1 del Alumno
+           5) Contacto Nro 1 del Alumno/a {{ $alumno->PNombre . ' ' . $alumno->ApPat }}
         </h1> <br>
 </section>
        <div class="box box-success" style="background-color: #E4FDE4!important;">
@@ -102,7 +102,7 @@
 
 <section class="content-header">
         <h1>
-           Contacto Nro 2 del Alumno
+          6)  Contacto Nro 2 del Alumno/a {{ $alumno->PNombre . ' ' . $alumno->ApPat }}
         </h1> <br>
 </section>
        <div class="box box-success" style="background-color: #E4FDE4!important;">

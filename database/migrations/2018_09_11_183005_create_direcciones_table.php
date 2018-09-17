@@ -20,8 +20,8 @@ class CreateDireccionesTable extends Migration
             $table->foreign('idComuna')->references('id')->on('comunas')->onDelete('cascade');    
             $table->string('calle');
             $table->string('nroCalle');
-            $table->string('bloqueTorre');
-            $table->string('dpto');
+            $table->string('bloqueTorre')->nullable($value = true);
+            $table->string('dpto')->nullable($value = true);
 
         });
     }

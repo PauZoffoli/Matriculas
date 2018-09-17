@@ -106,6 +106,8 @@ class AlumnoPController extends AppBaseController
             
         }
 
+       
+
         return view('MatriculaPostulante.alumnos.edit')->with('alumno', $persona)->with('padre',$padre)->with('madre',$madre)->with('pContacto',$pContacto)->with('sContacto',$sContacto);
 
     }
@@ -135,17 +137,22 @@ class AlumnoPController extends AppBaseController
      */
     public function update($id, UpdateAlumnoRequest $request) //Debería cambiar la request
     {
-dd($request->all());
+
         /////////////////////////////////////////////
         ///////CUSTOM VALIDATION FICHA ALUMNO////////
         /////////////////////////////////////////////
-        //dd($request->fichaAlumno);
-        $validate = Helper::manualValidation($request->fichaAlumno, (new CreateFichaAlumnoRequest()));
+        
+        $validate = Helper::manualValidation($request->fichaAlumno, (new CreateFichaAlumnoRequest()), "1)Errores de la Ficha del Alumno: ", 1);
+        $validate = $validate . Helper::manualValidation($request->padre, (new CreatePersonaRequest()), "2)Errores de los datos del Padre: ",2);
+        $validate = $validate . Helper::manualValidation($request->madre, (new CreatePersonaRequest()), "3)Errores de los datos de la Madre: ",3);
+        $validate = $validate . Helper::manualValidation($request->pContacto, (new CreatePersonaRequest()), "4)Errores de los datos del Primer Contacto: ",4);
+        $validate = $validate . Helper::manualValidation($request->sContacto, (new CreatePersonaRequest()), "5)Errores de los datos del Segundo Contacto: ",5);
           if ($validate!=null) {
               throw ValidationException::withMessages([
-                 $validate,
+                  $validate,
              ]);
           }
+          dd($request->padre);
         /////////////////////////////////////////////
         ///////////////END CUSTOM VALIDATION/////////
         /////////////////////////////////////////////
@@ -178,7 +185,7 @@ dd($request->all());
             return view('home');//PRUEBA, HAY QUE VER LA FORMA DE DEVOLVER CON MENSAJE
         }
 
-        $persona = $this->personaRepository->update($request->all(), $id);
+        $persona = $this->personaRepository->update(array($request->all()), $id);
         $alumno = $this->alumnoRepository->update($request->alumno, $persona->alumno->id);
         $fichaAlumno = $this->fichaAlumnoRepository->update($request->fichaAlumno[0], $request->fichaAlumno[0]['id']);
 
