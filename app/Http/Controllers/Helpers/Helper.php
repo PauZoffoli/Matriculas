@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
-
+use Flash;
 class Helper extends Controller 
 {
 	public function __construct()
@@ -32,6 +32,31 @@ class Helper extends Controller
     }
     */
 
+   // https://stackoverflow.com/questions/42371728/laravel-redirect-inside-of-trait
+    public static function checkthisValue($value, $quien, $urlRedireccion){
+        
+        if (empty($value)) {
+            Flash::error('La persona no tiene un ' . $quien . ' asociado!');
+            return redirect(route($urlRedireccion))->send();
+        }
+        return $value;
+    }
+
+    public static function checkthis($repository, $id, $quien, $urlRedireccion){
+        $value = $repository->findWithoutFail($id);
+        
+        if (empty($value)) {
+            Flash::error($quien . ' no se encontró!');
+            return redirect(route($urlRedireccion, $id))->send();
+        }
+        return $value;
+    }
+
+    public static function updateThis($repository, $request, $id){
+     $value = $repository->findWithoutFail($id);
+     return $repository->update($request, $id);
+   }
+
      public static function manualValidation($request, $validate, $message, $primero){
       $validateRole =  Validator::make($request,$validate->rules());
       if ( $validateRole->fails()){
@@ -50,11 +75,13 @@ class Helper extends Controller
     }
     
     //Chequea y trae el objeto del índice que se le indique
-    public static function obtainObject($nombre, $request, $numero){
+    public static function obtainObject($nombre, $request, $numero, $url, $message,$id){
 
 
        if( !isset( $request[$nombre])) {  //comprobamos que el array no esté nulo
-             return null; 
+                  
+            return redirect(route($url, $id))->with('error', $message)->send();
+        
        }
 
        $NewArray = array_values(array_filter($request[$nombre])); //los nulos del array se eliminan y se cambian los índices, formando un 

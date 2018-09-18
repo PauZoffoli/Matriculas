@@ -94,8 +94,8 @@ class Persona extends Model
      * @var array
      */
     public static $rules = [
-        'PNombre' => 'required|min:1',
-          'ApPat' => 'required'
+       // 'PNombre' => 'required|min:1',
+         // 'ApPat' => 'required'
         
     ];
 
@@ -177,6 +177,19 @@ class Persona extends Model
     public function alumno()
     {
         return $this->hasOne(\App\Models\Alumno::class, 'idPersona');
+    }
+
+    public function alumnos()
+    {
+        return $this->hasManyThrough(
+            \App\Models\Alumno::class,
+            \App\Models\Apoderado::class,
+            'idPersona', // Foreign key on users table...
+            'idApoderado', // Foreign key on posts table...
+          'id',
+          'id'
+        );
+
     }
 
     /**

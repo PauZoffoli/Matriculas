@@ -11,6 +11,8 @@ use App\Repositories\PersonaRepository;
 use App\Http\Requests\CreateDireccionRequest;
 use App\Http\Requests\UpdateDireccionRequest;
 use App\Repositories\DireccionRepository;
+use App\Http\Requests\UpdateAlumnoRequest;
+use App\Repositories\AlumnoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -29,14 +31,17 @@ class ApoderadoPController extends AppBaseController
       /** @var  PersonaRepository */
     private $personaRepository;
   private $direccionRepository;
+   private $alumnoRepository;
 
-    public function __construct(ApoderadoRepository $apoderadoRepo, PersonaRepository $personaRepo, DireccionRepository $direccionRepo)
+    public function __construct(ApoderadoRepository $apoderadoRepo,AlumnoRepository $alumnoRepo,PersonaRepository $personaRepo, DireccionRepository $direccionRepo)
     {
         $this->personaRepository = $personaRepo;
         $this->apoderadoRepository = $apoderadoRepo;
          $this->direccionRepository = $direccionRepo;
+         $this->alumnoRepository = $alumnoRepo;
 
     }
+    
 
 
 
@@ -49,15 +54,10 @@ class ApoderadoPController extends AppBaseController
      */
     public function edit($id)
     {
-        $persona = $this->personaRepository->findWithoutFail($id);
 
-        if (empty($persona)) {
-            Flash::error('Persona not found');
-
-            return redirect(route('personas.index'));
-        }
-//dd($persona->direccion);
-         //  dd($apoderado->find(4)->alumnos()->get());
+        $persona = Helper::checkthis($this->personaRepository, $id, 'Persona', 'home');
+        Helper::checkthisValue($persona->apoderado, 'apoderado', 'home');
+        Helper::checkthisValue($persona->alumno, 'alumno', 'home');
 
         return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona);
 
@@ -74,49 +74,20 @@ class ApoderadoPController extends AppBaseController
     public function update($id, UpdateApoderadoRequest $request) //Debería cambiar la request
     {
     
-        ////////////////////////////////////////////////////////////
-        //////////////////SECCIÓN PERSONA APODERADO/////////////////
-        ////////////////////////////////////////////////////////////
-        $persona = $this->personaRepository->findWithoutFail($id); //BUSCAMOS LA PERSONA POR DEFECTO
-        if($persona->apoderado==null){ //Verificamos que LA PERSONA TENGA UN APODERADO ASOCIADO
-          throw ValidationException::withMessages([
-                'Error' => [trans('La persona no tiene un apoderado asociado')],
-            ]);
-        }
+        $persona = Helper::checkthis($this->personaRepository, $id, 'Persona', 'home');
 
+        Helper::updateThis($this->direccionRepository,$request->direccion, $persona->direccion->id);
+
+        unset($request['direccion']); //Produce el error array to string, por eso direccion se borra antes
+        $persona = $this->personaRepository->update($request->all(), $id);
        
-        $apoderado = $this->apoderadoRepository->findWithoutFail($persona->apoderado->id); //BUSCAMOS EL APODERADO ASOCIADO
-        $direccion = $this->direccionRepository->findWithoutFail($persona->direccion->id);  //BUSCAMOS LA DIRECCION ASOCIADA
-       
-        if (empty($persona)) { //VERIFICAMOS SI LA PERSONA ESTÁ VACÍA ANTES DE UPDATEARLA
-            Flash::error('Persona not found');
-
-            return view('home');
-        }
-
-         if (empty($apoderado)) { //VERIFICAMOS SI EL APODERADO ESTÁ VACÍO ANTES DE UPDATEARLO
-            Flash::error('Apoderado not found');
-            return view('home');//PRUEBA, HAY QUE VER LA FORMA DE DEVOLVER CON MENSAJE
-        }
-        if (empty($apoderado)) { //VERIFICAMOS SI EL APODERADO ESTÁ VACÍO ANTES DE UPDATEARLO
-            Flash::error('Apoderado not found');
-            return view('home');//PRUEBA, HAY QUE VER LA FORMA DE DEVOLVER CON MENSAJE
-        }
-
-
-        $direccion = $this->direccionRepository->update($request->direccion, $persona->direccion->id);
-        $persona = $this->personaRepository->update(array($request->all()), $id); //ARRAY O SE PRODUCE ERROR Laravel Array to string conversion error
-        $apoderado = $this->apoderadoRepository->update($request->apoderado, $persona->apoderado->id);
-        
+        Helper::updateThis($this->apoderadoRepository, $request->apoderado, $persona->apoderado->id);
         
         ////////////////////////////////////////////////////////////
         //////////////////////ALUMNOS SELECCIONADOS/////////////////
         ////////////////////////////////////////////////////////////
-        $primerAlumno = Helper::obtainObject('alumnosCheck', $request, 0); //Método Helper trae un objet si que comprueba ofsets, arrays nulls, etc.
+        $primerAlumno = Helper::obtainObject('alumnosCheck', $request, 0, 'apoderadosPostulantes.edit', 'Usted no ha escogido ningún alumno.', $id); //Método Helper trae un objet si es que comprueba ofsets, arrays nulls, etc.
 
-        if($primerAlumno == null){ //Si no escogió ningún alumno vuelve a la página anterior
-            return redirect(route('apoderadosPostulantes.edit', $id))->with('error', 'Usted no ha escogido ningún alumno.');
-        }
 
         $todosLosAlumnos =   Helper::obtainAllObjects('alumnosCheck', $request) ;
         $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los alumnos checkeados por el apoderado en una variable de sesión, esta variable se irá borrando en la medida que se ocupe

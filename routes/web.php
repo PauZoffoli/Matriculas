@@ -11,16 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
 //Definimos la ruta a la ventana principal de la vista del Apoderado al hacer la matrícula.
 
 Route::get('/', function () {
+	
     return view('MatriculaPostulante.index');
-});
+})->name('home');
 
 
 Auth::routes();
