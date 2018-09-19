@@ -13,6 +13,9 @@ use App\Repositories\AlumnoRepository;
 use App\Http\Requests\CreateFichaAlumnoRequest;
 use App\Http\Requests\UpdateFichaAlumnoRequest;
 use App\Repositories\FichaAlumnoRepository;
+use App\Http\Requests\CreateDireccionRequest;
+use App\Http\Requests\UpdateDireccionRequest;
+use App\Repositories\DireccionRepository;
 
 use App\Repositories\PersonaRepository;
 use App\Http\Controllers\AppBaseController;
@@ -40,18 +43,34 @@ class AlumnoPController extends AppBaseController
     private $personaRepository;
     private $fichaAlumnoRepository;
     private $apoderadoRepository;
+    private $direccionRepository;
 
-    public function __construct(AlumnoRepository $alumnoRepo, PersonaRepository $personaRepo,FichaAlumnoRepository $fichaAlumnoRepo,ApoderadoRepository $apoderadoRepo)
+    public function __construct(DireccionRepository $direccionRepo,AlumnoRepository $alumnoRepo, PersonaRepository $personaRepo,FichaAlumnoRepository $fichaAlumnoRepo,ApoderadoRepository $apoderadoRepo)
     {
         $this->personaRepository = $personaRepo;
         $this->alumnoRepository = $alumnoRepo;
         $this->fichaAlumnoRepository = $fichaAlumnoRepo;
         $this->apoderadoRepository = $apoderadoRepo;
+        $this->direccionRepository = $direccionRepo;
 
     }
 
+    //Método para chequear un bundle de cosas básicas del controller.
+    public function checkIfExist($id){
+        
+        $persona = Helper::checkthis($this->personaRepository, $id, 'Persona');
+        
+        $validate = Helper::checkthisValue($persona->alumno, 'Alumno');
+        $validate = $validate . Helper::checkthisValue($persona->direccion, 'Dirección');
+        if ($validate!=null) {
+           Flash::error($validate);
+        return redirect(route('home'))->send();
+        }
 
 
+        return $persona;
+
+    }
     /**
      * Show the form for editing the specified Alumno.
      *
@@ -61,9 +80,9 @@ class AlumnoPController extends AppBaseController
      */
     public function edit($id)
     {
-        $persona = Helper::checkthis($this->personaRepository, $id, 'Persona', 'home');
-        Helper::checkthisValue($persona->alumno, 'alumno', 'home');
-   
+        $persona = $this->checkIfExist($id);
+        //dd($persona->alumno->repitencia);
+
         $responsables = null;
         $padre = null;
         $madre = null;
@@ -98,9 +117,7 @@ class AlumnoPController extends AppBaseController
                 }
             }
             
-        }
-
-       
+        }       
 
         return view('MatriculaPostulante.alumnos.edit')->with('alumno', $persona)->with('padre',$padre)->with('madre',$madre)->with('pContacto',$pContacto)->with('sContacto',$sContacto);
 
@@ -131,41 +148,36 @@ class AlumnoPController extends AppBaseController
      */
     public function update($id, UpdateAlumnoRequest $request) //Debería cambiar la request
     {
-             
-        $validate = $this->validaciones($request); //seccion de validaciones, con un método en el mismo controlador
+        $persona = $this->checkIfExist($id); //Chequeamos si es que las entidades que necesitamos existen
+
+        $validate = $this->validaciones($request); // Primero hay que hacer las validaciones de las clases que no se validan en el request de los parámetros de la función
         if ($validate!=null) {
           throw ValidationException::withMessages([
               $validate,
           ]);
         }
 
-        $persona = $this->personaRepository->findWithoutFail($id); 
-
         if($persona->alumno->fichaAlumno==null){ //Si el alumno no tiene una ficha asociada, se le crea en el momento
              $fichaAlumno = $this->fichaAlumnoRepository->create($request->fichaAlumno[0]);
         }
 
+        Helper::updateThis($this->direccionRepository,$request->direccion, $persona->alumno->id);
+        unset($request['direccion']); //Produce el error array to string, por eso direccion se borra antes
         $persona = $this->personaRepository->update($request->all(), $id);
         $alumno = Helper::updateThis($this->alumnoRepository,$request->alumno, $persona->alumno->id);
         Helper::updateThis($this->fichaAlumnoRepository, $request->fichaAlumno[0],  $request->fichaAlumno[0]['id']);
         
-
-        ////////////////////////////////////////////////////////////
-        //////////////////////ALUMNOS SESION////////////////////////
-        ////////////////////////////////////////////////////////////
+        /////////////AHORA OCUPAMOS LAS VARIABLES DE SESIÓN/////////////////
         $todosLosAlumnos = $request->session()->get('todosLosAlumnos');
-
-        $todosLosAlumnos =   Helper::deleteFirst($todosLosAlumnos);
+        $todosLosAlumnos =  Helper::deleteFirst($todosLosAlumnos); //Borramos el primer elemento del array, que fue el que acabamos de utilizar y updatear
 
         if ($todosLosAlumnos!=null) {
            
            // \Session::flash('flash_message','Alumno editado exitósamente.');
-
-            $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los alumnos checkeados por el apoderado 
-             return redirect()->route('alumnosPostulantes.edit', json_decode($todosLosAlumnos[0])->idPersona);
+            $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los alumnos que nos van quedando en la misma variable
+            return redirect()->route('alumnosPostulantes.edit', json_decode($todosLosAlumnos[0])->idPersona);
         }
-        session()->forget('todosLosAlumnos');
-        /////////////////////////////////////////////////////////////
+        session()->forget('todosLosAlumnos'); //cuando quede ningún alumno en la variable la olvidaremos
 
         $this->cambioDeEstados($alumno, $request); //Método que está en el mismo controller. Cambiamos los estados de los Alumnos
 

@@ -33,21 +33,36 @@ class Helper extends Controller
     */
 
    // https://stackoverflow.com/questions/42371728/laravel-redirect-inside-of-trait
-    public static function checkthisValue($value, $quien, $urlRedireccion){
+    
+    //Chequea a cualquiera que no sea la persona
+    public static function checkthisValue($value, $quien){
+        
+        if (empty($value)) {
+ 
+              $errorString = $quien . ' no se encontró<br>';
+              $errorString = $errorString ;
+
+          return $errorString;    
+        }
+        
+    }
+
+   /* public static function checkthisValue($value, $quien, $urlRedireccion){
         
         if (empty($value)) {
             Flash::error('La persona no tiene un ' . $quien . ' asociado!');
             return redirect(route($urlRedireccion))->send();
         }
         return $value;
-    }
+    }*/
 
-    public static function checkthis($repository, $id, $quien, $urlRedireccion){
+    //CHEQUEA A LA PERSONA
+    public static function checkthis($repository, $id, $quien){
         $value = $repository->findWithoutFail($id);
         
         if (empty($value)) {
-            Flash::error($quien . ' no se encontró!');
-            return redirect(route($urlRedireccion, $id))->send();
+            Flash::error($quien . '  no se encontró!');
+            return redirect(route('home'))->send();
         }
         return $value;
     }
@@ -57,10 +72,10 @@ class Helper extends Controller
      return $repository->update($request, $id);
    }
 
-     public static function manualValidation($request, $validate, $message, $primero){
+     public static function manualValidation($request, $validate, $message, $lugar){
       $validateRole =  Validator::make($request,$validate->rules());
       if ( $validateRole->fails()){
-        if($primero==1){
+        if($lugar==1){
            $errorString =  $message . '<br>+';
         }else{
         $errorString = '<br> <br>'. $message . '<br>+';

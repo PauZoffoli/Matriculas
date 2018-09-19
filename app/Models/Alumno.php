@@ -149,8 +149,9 @@ class Alumno extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function repitencias()
+
+    public function repitencia()
     {
-        return $this->hasMany(\App\Models\Repitencias::class);
+        return $this->belongsToMany(\App\Models\Curso::class, 'repitencias', 'idAlumno', 'idCurso');
     }
 }

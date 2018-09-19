@@ -60,7 +60,7 @@ class Repitencias extends Model
      **/
     public function alumno()
     {
-        return $this->belongsTo(\App\Models\Alumno::class);
+        return $this->belongsToMany(\App\Models\Alumno::class, 'repitencias', 'idAlumno', 'idCurso');
     }
 
     /**
