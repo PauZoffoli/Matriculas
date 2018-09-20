@@ -17,7 +17,7 @@ class CreateAlumnosTable extends Migration
             $table->increments('id');
             $table->timestamps();
             
-            $table->enum('parentesco', [
+            $table->enum('parentesco', [ //Referente al parentesco con el apoderado
                 'Padre', 
                 'Madre',
                 'Padrastro',
@@ -41,6 +41,7 @@ class CreateAlumnosTable extends Migration
                 'antiguo'])->nullable($value = true)->default('nuevo');
 
             $table->enum('estado', [
+                'MatriculaRevisadaPorApoderado'
                 'Revisar', 
                 'Revisado',
                 'Aprobado',
@@ -56,7 +57,7 @@ class CreateAlumnosTable extends Migration
                 'Separados/as',
                 'Convivientes'])->nullable($value = true)->default('Casados/as');
 
-            $table->integer('idPersona')->unsigned();
+            $table->integer('idPersona')->unsigned()->unique();
             $table->foreign('idPersona')->references('id')->on('personas')->onDelete('cascade');
 
             $table->integer('idApoderado')->unsigned();

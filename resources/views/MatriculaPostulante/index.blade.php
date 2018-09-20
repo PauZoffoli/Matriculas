@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+@include('flash::message')
 <div class="container">
-	
-  
+
+
   <br>
      <section class="jumbotron text-center">
         <div class="container">

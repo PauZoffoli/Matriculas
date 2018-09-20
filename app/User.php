@@ -66,7 +66,7 @@ class User extends Authenticatable
      **/
     public function personas()
     {
-        return $this->hasMany(\App\Models\Persona::class, 'id');
+        return $this->hasMany(\App\Models\Persona::class, 'idUser');
     }
 
     /**

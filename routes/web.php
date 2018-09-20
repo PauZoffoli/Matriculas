@@ -11,16 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
 //Definimos la ruta a la ventana principal de la vista del Apoderado al hacer la matrícula.
 
+
 Route::get('/secretariado', function () {
     return view('secretariado.index');
 });
+
+Route::get('/', function () {
+	
+    return view('MatriculaPostulante.index');
+})->name('home');
+
 
 
 Auth::routes();
@@ -79,8 +83,12 @@ Route::resource('tipoPersonas', 'TipoPersonaController');
 
 Route::resource('apoderadosPostulantes', 'MatriculaPostulante\ApoderadoPController');
 
+
 //Métodos para el index secretariado junto a buscador por rut(apoSecretariadoContr)
 Route::resource('apoSecretariadoContr', 'VistaSecretariado\ApoderadoSecretariadoController');
 Route::resource('PersonaSecretariadoContr', 'VistaSecretariado\PersonaSecretariadoController');
 
 Route::get('searchPersona', 'VistaSecretariado\ApoderadoSecretariadoController@searchPersona')->name('apoSecretariadoContr.searchPersona');
+
+Route::resource('alumnosPostulantes', 'MatriculaPostulante\AlumnoPController');
+

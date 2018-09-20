@@ -1,99 +1,16 @@
-<!-- Pnombre Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('PNombre', 'Pnombre:') !!}
-    {!! Form::text('PNombre', null, ['class' => 'form-control']) !!}
-</div>
+@include('MatriculaPostulante.personas.fieldsPersona')
 
-<!-- Snombre Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('SNombre', 'Snombre:') !!}
-    {!! Form::text('SNombre', null, ['class' => 'form-control']) !!}
-</div>
 
-<!-- Tnombre Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('TNombre', 'Tnombre:') !!}
-    {!! Form::text('TNombre', null, ['class' => 'form-control']) !!}
-</div>
 
-<!-- Appat Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('ApPat', 'Appat:') !!}
-    {!! Form::text('ApPat', null, ['class' => 'form-control']) !!}
-</div>
+<!-- APODERADOS -->
+<!-- APODERADOS -->
+<!-- APODERADOS -->
 
-<!-- Apmat Field -->
+<!-- Idpersona Field https://laracasts.com/discuss/channels/laravel/form-model-binding-relations-how-to-bindpopulate-relations-in-a-form?page=1 -->
 <div class="form-group col-sm-6">
-    {!! Form::label('ApMat', 'Apmat:') !!}
-    {!! Form::text('ApMat', null, ['class' => 'form-control']) !!}
+    {!! Form::label('idApoderado', 'IdApoderado:') !!}
+    {!! Form::number('apoderado[id]', null, ['class' => 'form-control']) !!}
 </div>
-
-<!-- Fonofijo Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('fonoFijo', 'Fonofijo:') !!}
-    {!! Form::number('fonoFijo', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Fonocelu Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('fonoCelu', 'Fonocelu:') !!}
-    {!! Form::number('fonoCelu', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Iduser Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('idUser', 'Iduser:') !!}
-    {!! Form::number('idUser', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Rut Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('rut', 'Rut:') !!}
-    {!! Form::text('rut', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Tipopersona Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('tipoPersona', 'Tipopersona:') !!}
-    {!! Form::text('tipoPersona', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Genero Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('genero', 'Genero:') !!}
-    {!! Form::text('genero', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Email Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('email', 'Email:') !!}
-    {!! Form::email('email', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Fechanacimiento Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('fechaNacimiento', 'Fechanacimiento:') !!}
-    {!! Form::date('fechaNacimiento', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Fechadefuncion Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('fechaDefuncion', 'Fechadefuncion:') !!}
-    {!! Form::date('fechaDefuncion', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Estadocivil Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('estadoCivil', 'Estadocivil:') !!}
-    {!! Form::text('estadoCivil', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Iddireccion Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('idDireccion', 'Iddireccion:') !!}
-    {!! Form::number('idDireccion', null, ['class' => 'form-control']) !!}
-</div>
-
 
 <!-- Niveleducacional Field -->
 <div class="form-group col-sm-6">
@@ -125,8 +42,23 @@
     {!! Form::text('apoderado[estado]', null, ['class' => 'form-control']) !!}
 </div>
 
+
+<!-- MOSTRAMOS TODOS LOS ALUMNOS ASOCIADOS-->
+@php $index = 0; @endphp
+@foreach ($persona->apoderado->alumnos  as $alumno)
+    <p>
+        {{ Form::label('alumno', $alumno->persona->PNombre . ' ' . $alumno->persona->ApPat . ' ' . $alumno->persona->rut  ) }}
+       {{ Form::checkbox('alumnosCheck['. $index++ .']', $alumno, $persona->apoderado->alumnos->contains($alumno->id) ) }}
+
+       
+    </p>
+@endforeach
+
+
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('apoderados.index') !!}" class="btn btn-default">Cancel</a>
 </div>
+

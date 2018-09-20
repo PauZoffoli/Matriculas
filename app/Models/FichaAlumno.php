@@ -94,7 +94,9 @@ class FichaAlumno extends Model
      * @var array
      */
     public static $rules = [
-        
+        // 'ingresoFamiliarM' => 'required|min:1',
+         //  'causas' => 'required'
+            
     ];
 
     /**

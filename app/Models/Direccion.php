@@ -77,6 +77,6 @@ class Direccion extends Model
      **/
     public function personas()
     {
-        return $this->hasMany(\App\Models\Persona::class);
+        return $this->hasMany(\App\Models\Persona::class, 'id');
     }
 }
