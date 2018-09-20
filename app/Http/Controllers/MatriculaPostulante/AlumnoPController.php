@@ -29,6 +29,7 @@ use App\Models\Alumno;
 use App\Models\Repitencias;
 use App\Models\FichaAlumno;
 use App\Models\Apoderado;
+use App\Models\Curso;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Collection;
 class AlumnoPController extends AppBaseController
@@ -88,8 +89,10 @@ class AlumnoPController extends AppBaseController
         $madre = null;
         $pContacto = null;
         $sContacto = null;
-        $var = Helper::getPossibleStatuses('comunas', 'nombreComu');
-      dd($var);
+        //$var = Helper::getPossibleStatuses('comunas', 'nombreComu');
+        $cursos = new Curso;
+        $cursos = $cursos->all();
+        $cursos =  Helper::getEnumValuesFromTable($cursos, 'nivel', 'basicaMedia');
         if (!$persona->alumnoResponsables->isEmpty()) {
  
             foreach ($persona->alumnoResponsables as $value) {
@@ -120,7 +123,7 @@ class AlumnoPController extends AppBaseController
             
         }       
 
-        return view('MatriculaPostulante.alumnos.edit')->with('alumno', $persona)->with('padre',$padre)->with('madre',$madre)->with('pContacto',$pContacto)->with('sContacto',$sContacto);
+        return view('MatriculaPostulante.alumnos.edit')->with('alumno', $persona)->with('padre',$padre)->with('madre',$madre)->with('pContacto',$pContacto)->with('sContacto',$sContacto)->with('cursos' , $cursos);
 
     }
 

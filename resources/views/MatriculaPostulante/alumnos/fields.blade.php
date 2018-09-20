@@ -79,6 +79,15 @@
     
 @endforeach
 
+
+<!-- Cursos repetidos Field  -->
+<div class="form-group col-sm-6  {{ $errors->has('nombreComu') ? ' has-error' : '' }}">
+    {!! Form::label('cursosRepetidos', 'Cursos Repetidos:') !!}
+    {!! Form::select('cursosRepetidos', $cursos, $cursos,  array('class' => 'form-control')) !!}
+
+</div>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <div class="form-group">
   <label class="col-md-4 control-label">¿Cuántas veces ha repetido el alumno?</label>
@@ -90,6 +99,8 @@
           <option>1</option>
           <option>2</option>
           <option>3</option>
+          <option>4</option>
+          <option>5</option>
         </select>
     </div>
   </div>
@@ -99,14 +110,18 @@
 <!-- FUNCIÓN PARA CREAR DINÁMICAMENTE TEXTBOXES EN FUNCION A LA CANTIDAD SELECCIONADA EN UN DDL https://stackoverflow.com/questions/43950669/how-to-dynamically-create-text-boxes-on-selection-of-a-dropdown-->
 <script type="text/javascript">
     function change(){
-        $('.input-group').children('input').remove();
+        $('.input-group').children('label').remove();
+         $('.input-group').children('.selectpicker[name=cursosRepetidos]').remove();
+
     }
     $('.selectpicker[name=state]').change(function() {
       var i = 0;
 
 //$('.input-group').children('input').remove() *for reset the inbox on change*
 while (i < parseInt($(this).val())) {
-    $('.input-group').append('<input name="phone" placeholder="Username" class="form-control" type="text">')
+    $('.input-group').append('{!! Form::label('cursosRepetidos', 'Cursos Repetidos:',  array('class' => 'form-control')) !!}')
+    $('.input-group').append('{!! Form::select('cursosRepetidos', $cursos, $cursos,  array('class' => 'form-control selectpicker')) !!}')
+
 
    
     i++;

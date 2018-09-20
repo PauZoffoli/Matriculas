@@ -31,6 +31,15 @@ class Helper extends Controller
 
     }
     */
+    public static function getEnumValuesFromTable($table, $pValue, $sValue ) {
+
+      $enum = array();
+      foreach ($table as $value) {
+         $enum = array_add($enum, $value->id, $value->$pValue . ' ' . $value->$sValue);
+     }
+     return $enum;
+    }
+
 
     public static function getEnumValues($table, $column) {
       $type = DB::select(DB::raw("SHOW COLUMNS FROM $table WHERE Field = '{$column}'"))[0]->Type ;
@@ -44,18 +53,6 @@ class Helper extends Controller
       return $enum;
     }
 
-    public static function getPossibleStatuses($table, $column){
-        $type = DB::select(DB::raw("SHOW COLUMNS FROM $table WHERE Field = '{$column}'"))[0]->Type;
-        dd($type);
-        preg_match('/^enum\((.*)\)$/', $type, $matches);
-        $values = array();
-        foreach(explode(',', $matches[1]) as $value){
-            $values[] = trim($value, "'");
-        }
-        return $values;
-    }
-
-    <?php
 
 /* get ENUM values String from specified DB table column using my Database Class
 // (using substituted table and col names.)

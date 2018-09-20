@@ -17,10 +17,11 @@ class CreateCursosTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->integer('nivel');
+            $table->string('nivel', 60);
             $table->enum('basicaMedia', [
+                'Pre-Básico',
                 'Básico',
-                'Media'])->default('Básico');
+                'Medio'])->default('Básico');
             $table->integer('arancelAnual');
 
         });
