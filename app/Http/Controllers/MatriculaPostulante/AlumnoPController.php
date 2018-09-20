@@ -13,6 +13,9 @@ use App\Repositories\AlumnoRepository;
 use App\Http\Requests\CreateFichaAlumnoRequest;
 use App\Http\Requests\UpdateFichaAlumnoRequest;
 use App\Repositories\FichaAlumnoRepository;
+use App\Http\Requests\CreateDireccionRequest;
+use App\Http\Requests\UpdateDireccionRequest;
+use App\Repositories\DireccionRepository;
 
 use App\Repositories\PersonaRepository;
 use App\Http\Controllers\AppBaseController;
@@ -27,7 +30,7 @@ use App\Models\Repitencias;
 use App\Models\FichaAlumno;
 use App\Models\Apoderado;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Collection;
 class AlumnoPController extends AppBaseController
 {
 
@@ -40,18 +43,34 @@ class AlumnoPController extends AppBaseController
     private $personaRepository;
     private $fichaAlumnoRepository;
     private $apoderadoRepository;
+    private $direccionRepository;
 
-    public function __construct(AlumnoRepository $alumnoRepo, PersonaRepository $personaRepo,FichaAlumnoRepository $fichaAlumnoRepo,ApoderadoRepository $apoderadoRepo)
+    public function __construct(DireccionRepository $direccionRepo,AlumnoRepository $alumnoRepo, PersonaRepository $personaRepo,FichaAlumnoRepository $fichaAlumnoRepo,ApoderadoRepository $apoderadoRepo)
     {
         $this->personaRepository = $personaRepo;
         $this->alumnoRepository = $alumnoRepo;
         $this->fichaAlumnoRepository = $fichaAlumnoRepo;
         $this->apoderadoRepository = $apoderadoRepo;
+        $this->direccionRepository = $direccionRepo;
 
     }
 
+    //Método para chequear un bundle de cosas básicas del controller.
+    public function checkIfExist($id){
+        
+        $persona = Helper::checkthis($this->personaRepository, $id, 'Persona');
+        
+        $validate = Helper::checkthisValue($persona->alumno, 'Alumno');
+        $validate = $validate . Helper::checkthisValue($persona->direccion, 'Dirección');
+        if ($validate!=null) {
+           Flash::error($validate);
+        return redirect(route('home'))->send();
+        }
 
 
+        return $persona;
+
+    }
     /**
      * Show the form for editing the specified Alumno.
      *
@@ -61,17 +80,63 @@ class AlumnoPController extends AppBaseController
      */
     public function edit($id)
     {
-        $persona = $this->personaRepository->findWithoutFail($id);
+        $persona = $this->checkIfExist($id);
+        //dd($persona->alumno->repitencia);
 
-        if (empty($persona)) {
-            Flash::error('Persona not found');
+        $responsables = null;
+        $padre = null;
+        $madre = null;
+        $pContacto = null;
+        $sContacto = null;
+      
+        if (!$persona->alumnoResponsables->isEmpty()) {
+ 
+            foreach ($persona->alumnoResponsables as $value) {
 
-            return redirect(route('personas.index'));
-        }
+                if( $value->pivot->pivotParent->hasTipo("Padre")){
+                
+                    $padre = $value->pivot->pivotParent;
+                    
+                }
+                if( $value->pivot->pivotParent->hasTipo("Madre")){
+                
+                    $madre = $value->pivot->pivotParent;
+                    
+                }
 
-        return view('MatriculaPostulante.alumnos.edit')->with('alumno', $persona);
+                if( $value->pivot->pivotParent->hasTipo("PrimerContacto")){
+                
+                    $pContacto = $value->pivot->pivotParent;
+                    
+                }
+
+                if( $value->pivot->pivotParent->hasTipo("SegundoContacto")){
+                
+                    $sContacto = $value->pivot->pivotParent;
+                    
+                }
+            }
+            
+        }       
+
+        return view('MatriculaPostulante.alumnos.edit')->with('alumno', $persona)->with('padre',$padre)->with('madre',$madre)->with('pContacto',$pContacto)->with('sContacto',$sContacto);
 
     }
+
+    /*Tabla pivote
+    */
+    //dd($padre);
+        // $responsable = $persona->alumnoResponsables[0]->pivot->pivotParent;
+ // $padre = $this->personaRepository->findWithoutFail($padre->id);
+
+   // dd("es padre");
+                    //$persona->pluck($value->pivot->pivotParent);
+                   // $persona->add($value->pivot->pivotParent);
+                  //  array_push($persona, ['padre' => $value->pivot->pivotParent]);
+
+       //dd($responsable->hasTipo("AlumnoPostulante"));
+        //dd($persona->alumnoResponsables[0]->pivot->pivotParent->id);
+
 
     /**
      * Update the specified Apoderado in storage.
@@ -83,95 +148,76 @@ class AlumnoPController extends AppBaseController
      */
     public function update($id, UpdateAlumnoRequest $request) //Debería cambiar la request
     {
+        $persona = $this->checkIfExist($id); //Chequeamos si es que las entidades que necesitamos existen
 
-
-        /////////////////////////////////////////////
-        ///////CUSTOM VALIDATION FICHA ALUMNO////////
-        /////////////////////////////////////////////
-        //dd($request->fichaAlumno);
-        $validate = Helper::manualValidation($request->fichaAlumno, (new CreateFichaAlumnoRequest()));
-          if ($validate!=null) {
-              throw ValidationException::withMessages([
-                 $validate,
-             ]);
-          }
-        /////////////////////////////////////////////
-        ///////////////END CUSTOM VALIDATION/////////
-        /////////////////////////////////////////////
-
-        $persona = $this->personaRepository->findWithoutFail($id); //BUSCAMOS LA PERSONA POR DEFECTO
-    
-        if($persona->alumno==null){ //Verificamos que LA PERSONA TENGA UN Alumno ASOCIADO
-        
-            throw ValidationException::withMessages([
-                'Error' => [trans('La persona no tiene un alumno asociado')],
-            ]);
+        $validate = $this->validaciones($request); // Primero hay que hacer las validaciones de las clases que no se validan en el request de los parámetros de la función
+        if ($validate!=null) {
+          throw ValidationException::withMessages([
+              $validate,
+          ]);
         }
 
-   
         if($persona->alumno->fichaAlumno==null){ //Si el alumno no tiene una ficha asociada, se le crea en el momento
              $fichaAlumno = $this->fichaAlumnoRepository->create($request->fichaAlumno[0]);
         }
-      
-        $alumno = $this->alumnoRepository->findWithoutFail($persona->alumno->id); //BUSCAMOS EL Alumno ASOCIADO
-        $fichaAlumno = $this->fichaAlumnoRepository->findWithoutFail($persona->alumno->fichaAlumno->idAlumno); //BUSCAMOS la ficha alumno ASOCIADO
 
-        if (empty($persona)) { //VERIFICAMOS SI LA PERSONA ESTÁ VACÍA ANTES DE UPDATEARLA
-            Flash::error('Persona not found');
-
-            return view('home');
-        }
-
-         if (empty($alumno)) { //VERIFICAMOS SI EL Alumno ESTÁ VACÍO ANTES DE UPDATEARLO
-            Flash::error('Alumno not found');
-            return view('home');//PRUEBA, HAY QUE VER LA FORMA DE DEVOLVER CON MENSAJE
-        }
-
+        Helper::updateThis($this->direccionRepository,$request->direccion, $persona->alumno->id);
+        unset($request['direccion']); //Produce el error array to string, por eso direccion se borra antes
         $persona = $this->personaRepository->update($request->all(), $id);
-        $alumno = $this->alumnoRepository->update($request->alumno, $persona->alumno->id);
-        $fichaAlumno = $this->fichaAlumnoRepository->update($request->fichaAlumno[0], $request->fichaAlumno[0]['id']);
-
-        ////////////////////////////////////////////////////////////
-        //////////////////////ALUMNOS SESION////////////////////////
-        ////////////////////////////////////////////////////////////
+        $alumno = Helper::updateThis($this->alumnoRepository,$request->alumno, $persona->alumno->id);
+        Helper::updateThis($this->fichaAlumnoRepository, $request->fichaAlumno[0],  $request->fichaAlumno[0]['id']);
+        
+        /////////////AHORA OCUPAMOS LAS VARIABLES DE SESIÓN/////////////////
         $todosLosAlumnos = $request->session()->get('todosLosAlumnos');
-
-        $todosLosAlumnos =   Helper::deleteFirst($todosLosAlumnos);
+        $todosLosAlumnos =  Helper::deleteFirst($todosLosAlumnos); //Borramos el primer elemento del array, que fue el que acabamos de utilizar y updatear
 
         if ($todosLosAlumnos!=null) {
            
            // \Session::flash('flash_message','Alumno editado exitósamente.');
-
-            $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los alumnos checkeados por el apoderado 
-             return redirect()->route('alumnosPostulantes.edit', json_decode($todosLosAlumnos[0])->idPersona);
+            $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los alumnos que nos van quedando en la misma variable
+            return redirect()->route('alumnosPostulantes.edit', json_decode($todosLosAlumnos[0])->idPersona);
         }
-        session()->forget('todosLosAlumnos');
+        session()->forget('todosLosAlumnos'); //cuando quede ningún alumno en la variable la olvidaremos
 
-
-
-        ////////////////////////////////////////////////////////////
-        //////////////////END ALUMNOS SESION////////////////////////
-        ////////////////////////////////////////////////////////////
-
-         cambioDeEstados($alumno);
+        $this->cambioDeEstados($alumno, $request); //Método que está en el mismo controller. Cambiamos los estados de los Alumnos
 
         \Session::flash('flash_message','Alumno editado exitósamente.');
         return view('MatriculaPostulante.FinProcesoMatricula');
     }
 
-    public function cambioDeEstados($alumno)
+
+
+    /*MÉTODO PARA VALIDAR Y DESPEJAR EL CONTROLLER*/
+    public function validaciones($request){
+            /////////////////////////////////////////////
+        ///////CUSTOM VALIDATION FICHA ALUMNO////////
+        /////////////////////////////////////////////
+
+        $validate = Helper::manualValidation($request->fichaAlumno, (new CreateFichaAlumnoRequest()), "1)Errores de la Ficha del Alumno: ", 1);
+        $validate = $validate . Helper::manualValidation($request->padre, (new CreatePersonaRequest()), "2)Errores de los datos del Padre: ",2);
+        $validate = $validate . Helper::manualValidation($request->madre, (new CreatePersonaRequest()), "3)Errores de los datos de la Madre: ",3);
+        $validate = $validate . Helper::manualValidation($request->pContacto, (new CreatePersonaRequest()), "4)Errores de los datos del Primer Contacto: ",4);
+        $validate = $validate . Helper::manualValidation($request->sContacto, (new CreatePersonaRequest()), "5)Errores de los datos del Segundo Contacto: ",5);
+
+        return $validate;
+
+        /////////////////////////////////////////////
+        ///////////////END CUSTOM VALIDATION/////////
+        /////////////////////////////////////////////
+
+    }
+
+
+/*Método que cambia los estados de Alumno y Apderado*/
+    public function cambioDeEstados($alumno, $request)
     {
-        
-        ////////////////////////////////////////////////////////////
-        //////////////////CAMBIOS A LOS ESTADOS/////////////////////
-        ////////////////////////////////////////////////////////////
         
         /**********Objetivo?: Saber que el apoderado***************/
         /*********ya hizo la matricula de su alumno ***************/
         $estadoApoderado= ["estado" => "MatriculaRevisadaPorApoderado"];
         $estadoAlumno= ["estado" => "MatriculaRevisadaPorApoderado"];
 
-        $idAlumnos = $request->session()->get('idAlumnos');
+        $idAlumnos = $request->session()->get('idAlumnos'); //con esta variable de sesión le cambiamos los estados a todos los alumnos que el apoderado haya checado.
 
         foreach ($idAlumnos as $key) {
            $alumno = $this->alumnoRepository->update($estadoAlumno, json_decode($key)->id);
@@ -180,10 +226,6 @@ class AlumnoPController extends AppBaseController
         $apoderado = $this->apoderadoRepository->update($estadoApoderado, $alumno->idApoderado);
 
         session()->forget('idAlumnos');
-
-        ////////////////////////////////////////////////////////////
-        //////////////END CAMBIOS A LOS ESTADOS/////////////////////
-        ////////////////////////////////////////////////////////////
 
     }
 

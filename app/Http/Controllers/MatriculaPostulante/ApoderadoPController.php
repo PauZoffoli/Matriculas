@@ -8,6 +8,11 @@ use App\Repositories\ApoderadoRepository;
 use App\Http\Requests\CreatePersonaRequest;
 use App\Http\Requests\UpdatePersonaRequest;
 use App\Repositories\PersonaRepository;
+use App\Http\Requests\CreateDireccionRequest;
+use App\Http\Requests\UpdateDireccionRequest;
+use App\Repositories\DireccionRepository;
+use App\Http\Requests\UpdateAlumnoRequest;
+use App\Repositories\AlumnoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -25,11 +30,30 @@ class ApoderadoPController extends AppBaseController
     private $apoderadoRepository;
       /** @var  PersonaRepository */
     private $personaRepository;
+  private $direccionRepository;
+   private $alumnoRepository;
 
-    public function __construct(ApoderadoRepository $apoderadoRepo, PersonaRepository $personaRepo)
+    public function __construct(ApoderadoRepository $apoderadoRepo,AlumnoRepository $alumnoRepo,PersonaRepository $personaRepo, DireccionRepository $direccionRepo)
     {
         $this->personaRepository = $personaRepo;
         $this->apoderadoRepository = $apoderadoRepo;
+         $this->direccionRepository = $direccionRepo;
+         $this->alumnoRepository = $alumnoRepo;
+
+    }
+    
+    //Método para chequear un bundle de cosas básicas del controller.
+    public function checkIfExist($id){
+        
+        $persona = Helper::checkthis($this->personaRepository, $id, 'Persona');
+        
+        $validate = Helper::checkthisValue($persona->apoderado, 'Apoderado');
+        $validate = $validate . Helper::checkthisValue($persona->alumno, 'Alumno');
+        if ($validate!=null) {
+           Flash::error($validate);
+        return redirect(route('home'))->send();
+        }
+        return $persona;
 
     }
 
@@ -43,15 +67,7 @@ class ApoderadoPController extends AppBaseController
      */
     public function edit($id)
     {
-        $persona = $this->personaRepository->findWithoutFail($id);
-
-        if (empty($persona)) {
-            Flash::error('Persona not found');
-
-            return redirect(route('personas.index'));
-        }
-
-         //  dd($apoderado->find(4)->alumnos()->get());
+        $persona = $this->checkIfExist($id); //Chequeamos todas las clases que necesitemos antes.
 
         return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona);
 
@@ -67,50 +83,26 @@ class ApoderadoPController extends AppBaseController
      */
     public function update($id, UpdateApoderadoRequest $request) //Debería cambiar la request
     {
+    
+        $persona = $this->checkIfExist($id); //Chequeamos todas las clases que necesitemos antes, y pasamos por parámetro a persona.
 
-        ////////////////////////////////////////////////////////////
-        //////////////////SECCIÓN PERSONA APODERADO/////////////////
-        ////////////////////////////////////////////////////////////
-        $persona = $this->personaRepository->findWithoutFail($id); //BUSCAMOS LA PERSONA POR DEFECTO
-        if($persona->apoderado==null){ //Verificamos que LA PERSONA TENGA UN APODERADO ASOCIADO
-          throw ValidationException::withMessages([
-                'Error' => [trans('La persona no tiene un apoderado asociado')],
-            ]);
-        }
-       
-        $apoderado = $this->apoderadoRepository->findWithoutFail($persona->apoderado->id); //BUSCAMOS EL APODERADO ASOCIADO
-       
-        if (empty($persona)) { //VERIFICAMOS SI LA PERSONA ESTÁ VACÍA ANTES DE UPDATEARLA
-            Flash::error('Persona not found');
-
-            return view('home');
-        }
-
-         if (empty($apoderado)) { //VERIFICAMOS SI EL APODERADO ESTÁ VACÍO ANTES DE UPDATEARLO
-            Flash::error('Apoderado not found');
-            return view('home');//PRUEBA, HAY QUE VER LA FORMA DE DEVOLVER CON MENSAJE
-        }
-
-
+        Helper::updateThis($this->direccionRepository,$request->direccion, $persona->direccion->id);
+        unset($request['direccion']); //Produce el error array to string, por eso direccion se borra antes
         $persona = $this->personaRepository->update($request->all(), $id);
-        $apoderado = $this->apoderadoRepository->update($request->apoderado, $persona->apoderado->id);
+        Helper::updateThis($this->apoderadoRepository, $request->apoderado, $persona->apoderado->id);
         
         ////////////////////////////////////////////////////////////
         //////////////////////ALUMNOS SELECCIONADOS/////////////////
         ////////////////////////////////////////////////////////////
-        $primerAlumno = Helper::obtainObject('alumnosCheck', $request, 0); //Método Helper trae un objet si que comprueba ofsets, arrays nulls, etc.
+        $primerAlumno = Helper::obtainObject('alumnosCheck', $request, 0, 'apoderadosPostulantes.edit', 'Usted no ha escogido ningún alumno.', $id); //Método Helper trae un objet si es que comprueba ofsets, arrays nulls, etc.
 
-        if($primerAlumno == null){ //Si no escogió ningún alumno vuelve a la página anterior
-            return redirect(route('apoderadosPostulantes.edit', $id))->with('error', 'Usted no ha escogido ningún alumno.');
-        }
 
         $todosLosAlumnos =   Helper::obtainAllObjects('alumnosCheck', $request) ;
         $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los alumnos checkeados por el apoderado en una variable de sesión, esta variable se irá borrando en la medida que se ocupe
 
         $request->session()->put('idAlumnos', $todosLosAlumnos);//Guardamos los alumnos para sacar sus id y cambiar sus estados al final del proceo de matrícula
-        ////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////
+
+        /////////////////////////////////////////////////////////////
 
         Flash::success('Apoderado editado exitósamente.');
         return redirect()->route('alumnosPostulantes.edit',  $primerAlumno->idPersona); //vamos a editar el primer alumno de la lista, mediante su id de Persona

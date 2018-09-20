@@ -94,15 +94,17 @@ class Persona extends Model
      * @var array
      */
     public static $rules = [
+       // 'PNombre' => 'required|min:1',
+         // 'ApPat' => 'required'
         
     ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function direccione()
+    public function direccion()
     {
-        return $this->belongsTo(\App\Models\Direccione::class);
+        return $this->belongsTo(\App\Models\Direccion::class, 'idDireccion');
     }
 
     /**
@@ -158,12 +160,14 @@ class Persona extends Model
     }
     */
 
+
+
      /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function alumnoResponsables()
     {
-            return $this->belongsToMany(\App\Models\Alumno::class, 'alumno_responsable', 'idPersona', 'id');
+            return $this->belongsToMany(\App\Models\Alumno::class, 'alumno_responsable', 'idPersona', 'idAlumno');
     }
 
 
@@ -173,6 +177,19 @@ class Persona extends Model
     public function alumno()
     {
         return $this->hasOne(\App\Models\Alumno::class, 'idPersona');
+    }
+
+    public function alumnos()
+    {
+        return $this->hasManyThrough(
+            \App\Models\Alumno::class,
+            \App\Models\Apoderado::class,
+            'idPersona', // Foreign key on users table...
+            'idApoderado', // Foreign key on posts table...
+          'id',
+          'id'
+        );
+
     }
 
     /**

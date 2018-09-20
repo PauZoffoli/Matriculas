@@ -71,7 +71,7 @@ class AlumnoResponsable extends Model
      **/
     public function alumno()
     {
-        return $this->belongsTo(\App\Models\Alumno::class);
+        return $this->belongsTo(\App\Models\Alumno::class, 'idAlumno');
     }
 
     /**
