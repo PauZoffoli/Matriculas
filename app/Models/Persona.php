@@ -111,6 +111,7 @@ class Persona extends Model
     public function tipos()
     {
             return $this->belongsToMany(\App\Models\Tipo::class, 'tipo_persona','idPersona','idTipo');
+            
     }
 
 
@@ -138,7 +139,10 @@ class Persona extends Model
         }
         return false;
     }
- 
+    
+    public function personasApoderadoPostulante(){
+        return $this->hasTipo('ApoderadoPostulante');
+    }
    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -179,6 +183,6 @@ class Persona extends Model
      */
     public function apoderado()
     {
-        return $this->hasOne(\App\Models\Apoderado::class, 'id');
+        return $this->hasOne(\App\Models\Apoderado::class, 'idPersona');
     }
 }

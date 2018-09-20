@@ -8,22 +8,30 @@
         <th>Apellido Paterno</th>
         <th>Apellido Materno</th>
         <th>Rut</th>
-        <th>Tipo Persona</th>
+        <th>Género</th>
+         <th>tipos</th>
             <th colspan="3">Acción</th>
         </tr>
+
     </thead>
     <tbody >
-    @foreach($apoderados as $apoderado)
+    @foreach($personas as $persona)
         <tr>
-            <td>{!! $apoderado->pnombre  !!}</td>
-            <td>{!! $apoderado->ApPat!!}</td>
-            <td>{!! $apoderado->ApMat  !!}</td>
-            <td>{!! $apoderado->rut !!}</td>
-            <td>{!! $apoderado->tipoPersona  !!}</td>
+            <td>{!! $persona->PNombre  !!}</td>
+            <td>{!! $persona->ApPat !!}</td>
+            <td>{!! $persona->ApMat  !!}</td>
+            <td>{!! $persona->rut !!}</td>
+            <td>{!! $persona->genero !!}</td>
+            
+            <td>
+                @foreach ($persona->tipos as $element)
+                    {{ $element->nombre }}
+                @endforeach
+            </td>
             <td>
                 {!! Form::open() !!}
                 <div class='btn-group'>
-                    <a href="{!! route('revisorPost.edit', [$postulacion->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i>Generar Contrato</a>
+                    <a href="{!! route('apoSecretariadoContr.edit', [$persona->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i>Generar Contrato</a>
                    
                 </div>
                 {!! Form::close() !!}
@@ -33,7 +41,8 @@
     </tbody>
 
 </table>
-@if (!is_a($postulacions, 'Illuminate\Database\Eloquent\Collection'))
-    <div class="pull-right">{!! $postulacions->render() !!}</div>
+@if (!is_a($personas, 'Illuminate\Database\Eloquent\Collection'))
+    <div class="pull-right">{!! $personas->render() !!}</div>
 @endif
+
 

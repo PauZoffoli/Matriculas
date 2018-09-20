@@ -7,6 +7,8 @@
             <table>
                 <tr>
                     <td>Matriculas IDOP</td>
+                    <td>&nbsp;</td> 
+                    <td><a class="btn btn-primary "  href="{!! route('apoSecretariadoContr.index') !!}"><span class="glyphicon glyphicon-repeat"></span></a></td>
                 </tr>
             </table>
         </h1>
@@ -16,7 +18,7 @@
 <table>
 
   <tr>
-       {!! Form::open(array('method' => 'Get', 'route' => array('secretariadoContr.searchApoderado') )) !!}
+       {!! Form::open(array('method' => 'Get', 'route' => array('apoSecretariadoContr.searchPersona') )) !!}
     <td>     {!! Form::text('rut', null, ['class' => 'form-control', 'placeholder' => 'Buscar rut apoderado','oninput'=>"checkRut(this)",'maxlength'=>"11"]) !!}</td>
     <td>  <button  class="btn btn-primary ">Buscar Apoderado</button></td>
      {!! Form::close() !!}

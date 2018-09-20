@@ -77,12 +77,10 @@ Route::resource('tipoPersonas', 'TipoPersonaController');
 
 
 
-
-//Métodos para el index secretariado junto a buscador por rut(apoSecretariadoContr)
-
-Route::resource('apoSecretariadoContr', 'VistaSecretariado\ApoderadoSecretariadoController');
-
-
-
 Route::resource('apoderadosPostulantes', 'MatriculaPostulante\ApoderadoPController');
 
+//Métodos para el index secretariado junto a buscador por rut(apoSecretariadoContr)
+Route::resource('apoSecretariadoContr', 'VistaSecretariado\ApoderadoSecretariadoController');
+Route::resource('PersonaSecretariadoContr', 'VistaSecretariado\PersonaSecretariadoController');
+
+Route::get('searchPersona', 'VistaSecretariado\ApoderadoSecretariadoController@searchPersona')->name('apoSecretariadoContr.searchPersona');
