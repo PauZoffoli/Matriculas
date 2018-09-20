@@ -88,7 +88,8 @@ class AlumnoPController extends AppBaseController
         $madre = null;
         $pContacto = null;
         $sContacto = null;
-      
+        $var = Helper::getPossibleStatuses('comunas', 'nombreComu');
+      dd($var);
         if (!$persona->alumnoResponsables->isEmpty()) {
  
             foreach ($persona->alumnoResponsables as $value) {

@@ -32,6 +32,67 @@ class Helper extends Controller
     }
     */
 
+    public static function getEnumValues($table, $column) {
+      $type = DB::select(DB::raw("SHOW COLUMNS FROM $table WHERE Field = '{$column}'"))[0]->Type ;
+      preg_match('/^enum\((.*)\)$/', $type, $matches);
+      $enum = array();
+      foreach( explode(',', $matches[1]) as $value )
+      {
+        $v = trim( $value, "'" );
+        $enum = array_add($enum, $v, $v);
+      }
+      return $enum;
+    }
+
+    public static function getPossibleStatuses($table, $column){
+        $type = DB::select(DB::raw("SHOW COLUMNS FROM $table WHERE Field = '{$column}'"))[0]->Type;
+        dd($type);
+        preg_match('/^enum\((.*)\)$/', $type, $matches);
+        $values = array();
+        foreach(explode(',', $matches[1]) as $value){
+            $values[] = trim($value, "'");
+        }
+        return $values;
+    }
+
+    <?php
+
+/* get ENUM values String from specified DB table column using my Database Class
+// (using substituted table and col names.)
+$DB = new Database();
+$sql = "SHOW COLUMNS FROM tbl_the_table LIKE 'category'";
+$DB->get_data($sql);
+while($DB->row = mysql_fetch_array($DB->result_id)) {
+  $type = $DB->row["Type"];
+}
+
+// format the values
+// $type currently has the value of: enum('Equipment','Set','Show')
+
+
+// ouput will be: Equipment','Set','Show')
+$output = str_replace("enum('", "", $type);
+
+ // $output will now be: Equipment','Set','Show
+$output = str_replace("')", "", $output);
+
+// array $results contains the ENUM values
+$results = explode("','", $output);
+
+// create HTML select object
+echo"<select name=\\"the_name\\">\
+";
+
+// now output the array items as HTML Options
+for($i = 0; $i < count($results); $i++) {
+  echo "<option value=\\"$results[$i]\\">$results[$i]</option>\
+";
+}
+
+// close HTML select object
+echo"</select>";
+?>*/
+
    // https://stackoverflow.com/questions/42371728/laravel-redirect-inside-of-trait
     
     //Chequea a cualquiera que no sea la persona
