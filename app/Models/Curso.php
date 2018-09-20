@@ -67,13 +67,7 @@ class Curso extends Model
         return $this->hasMany(\App\Models\Alumno::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function alumnos()
-    {
-        return $this->hasMany(\App\Models\Alumno::class);
-    }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

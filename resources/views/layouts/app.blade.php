@@ -166,4 +166,45 @@
 
     @yield('scripts')
 </body>
+
+<!--SCRIPT PARA LOS CANDIDATOS-->
+<script>
+
+    var parentesco = document.getElementById("parentesco");
+    var otroParentesco = document.getElementById("otroParentesco");
+     otroParentesco.maxlength = 30;
+
+    if (parentesco.value == "12") {
+
+        otroParentesco.disabled='';
+        otroParentesco.required = true;
+
+
+    }else {
+       otroParentesco.value = '';
+       otroParentesco.disabled='true';
+
+   }
+
+   
+   function changetextboxParentesco()
+   {
+    if (parentesco.value == "12") {
+
+        otroParentesco.disabled='';
+        otroParentesco.required = true;
+
+    } else {
+        otroParentesco.value = '';
+        otroParentesco.disabled='true';
+
+    }
+}
+
+</script>
+
+
+<!-- Validador Rut-->
+    <script src="{{ asset('js/validarRUT.js')}}"></script>
+
 </html>
