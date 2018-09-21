@@ -60,7 +60,15 @@ class FichaAlumno extends Model
         'esAlergico',
         'AlergicoA',
         'grupoSanguineo',
-        'idAlumno'
+        'idAlumno',
+        'viveConPadre',
+        'viveConMadre',
+        'viveConAbuelos',
+        'viveConTios',
+        'viveConTutor',
+        'observacionesSalud'
+    
+    
     ];
 
     /**
@@ -85,7 +93,13 @@ class FichaAlumno extends Model
         'esAlergico' => 'boolean',
         'AlergicoA' => 'string',
         'grupoSanguineo' => 'string',
-        'idAlumno' => 'integer'
+        'idAlumno' => 'integer',
+        'viveConPadre' => 'boolean',
+        'viveConMadre' => 'boolean',
+        'viveConAbuelos' => 'boolean',
+        'viveConTios' => 'boolean',
+        'viveConTutor' => 'boolean',
+        'observacionesSalud'  => 'string'
     ];
 
     /**

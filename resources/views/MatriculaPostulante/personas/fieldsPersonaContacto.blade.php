@@ -78,46 +78,49 @@ $idUserTXT = $asd;*/
     {!! Form::number($fonoCeluLBL,  ( isset($fonoCeluTXT) ? $fonoCeluTXT : null ), ['class' => 'form-control']) !!}
 </div>
 
+
+@if(isset($rutLBL))
 <!-- Rut Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('rut', 'Rut:') !!}
     {!! Form::text($rutLBL,  ( isset($rutTXT) ? $rutTXT : null ), ['class' => 'form-control']) !!}
 </div>
+@endif
 
 <!-- Genero Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('genero', 'Genero:') !!}
-    {!! Form::text($generoLBL,  ( isset($generoTXT) ? $generoTXT : null ), ['class' => 'form-control']) !!}
+
+     {!! Form::select($generoLBL, App\Enums\Genero::getPossibleENUM(), ( isset($generoTXT) ? $generoTXT : null ),  array('id' => $generoLBL, 'class' => 'form-control', 'placeholder' => "Seleccione el genero de la persona")) !!}
 </div>
 
 <!-- Email Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('email', 'Email:') !!}
+    {!! Form::label('email', 'Email (Opcional):') !!}
     {!! Form::email($emailLBL,  ( isset($emailTXT) ? $emailTXT : null ), ['class' => 'form-control']) !!}
 </div>
 
+@if(isset($fechaNacimientoLBL))
 <!-- Fechanacimiento Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('fechaNacimiento', 'Fechanacimiento:') !!}
     {!! Form::date($fechaNacimientoLBL,  ( isset($fechaNacimientoTXT) ? $fechaNacimientoTXT : null ), ['class' => 'form-control']) !!}
 </div>
+@endif
 
+@if(isset($estadoCivilLBL))
 <!-- Estadocivil Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('estadoCivil', 'Estadocivil:') !!}
-    {!! Form::text($estadoCivilLBL,  ( isset($estadoCivilTXT) ? $estadoCivilTXT : null ), ['class' => 'form-control']) !!}
+        {!! Form::select($estadoCivilLBL, App\Enums\EstadoCivil::getPossibleENUM(),  ( isset($estadoCivilTXT) ? $estadoCivilTXT : null ),  array('id' => $estadoCivilLBL, 'class' => 'form-control', 'placeholder' => "Seleccione el estado civil")) !!}
 </div>
+@endif
 
-<!-- Iddireccion Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('idDireccion', 'Iddireccion:') !!}
-    {!! Form::number($idDireccionLBL,  ( isset($idDireccionTXT) ? $idDireccionTXT : null ), ['class' => 'form-control']) !!}
-</div>
-
+@if(isset($parentescoLBL))
     <!-- Parentesco Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('parentesco', 'Parentesco:') !!}
-    {!! Form::text($parentescoLBL,  ( isset($parentescoTXT) ? $parentescoTXT : null ), ['class' => 'form-control']) !!}
+    {!! Form::select($parentescoLBL, App\Enums\ParentescoAlumnoResponsableEnum::getPossibleENUM(), ( isset($parentescoTXT) ? $parentescoTXT : null ),  array('id' => $parentescoLBL, 'class' => 'form-control', 'placeholder' => "Seleccione el parentesco del alumno con el contacto")) !!}
 </div>
 
 <!-- Otroparentesco Field -->
@@ -125,3 +128,4 @@ $idUserTXT = $asd;*/
     {!! Form::label('otroParentesco', 'Otroparentesco:') !!}
     {!! Form::text($otroParentescoLBL, ( isset($otroParentescoTXT) ? $otroParentescoTXT : null ), ['class' => 'form-control']) !!}
 </div>
+@endif

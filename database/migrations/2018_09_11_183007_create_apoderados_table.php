@@ -48,6 +48,9 @@ class CreateApoderadosTable extends Migration
 
             $table->string('profesion');
 
+            $table->string('participacionCargo')->nullable($value = true);
+            $table->integer('participacionAnio')->nullable($value = true);
+            $table->string('participacionObservacion')->nullable($value = true);
 
             $table->enum('paisDeOrigen', [
 'Afganistán',

@@ -2,7 +2,7 @@
 <!-- Idcomuna Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('idComuna', 'Idcomuna:') !!}
-    {!! Form::select('direccion[idComuna]', $comuna,  ( isset($persona->direccion->idComuna) ? $persona->direccion->Idcomuna : null ), ['class' => 'form-control']) !!}
+     {!! Form::select('direccion[idComuna]', App\Enums\ComunaEnum::getPossibleENUM(), ( isset($persona->direccion->idComuna) ? $persona->direccion->Idcomuna : null ),  array('id' => 'direccion[idComuna]', 'class' => 'form-control')) !!}
 
 </div>
 

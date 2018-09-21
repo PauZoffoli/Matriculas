@@ -25,19 +25,20 @@
 <!-- Nroconvivientes Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nroConvivientes', 'Nroconvivientes:') !!}
-    {!! Form::number('fichaAlumno[0][nroConvivientes]', null, ['class' => 'form-control']) !!}
+    {!! Form::select('fichaAlumno[0][nroConvivientes]', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17, 18, 19, 20], ( isset($persona->alumno->fichaAlumno[0]) ? $persona->alumno->fichaAlumno[0]['nroConvivientes'] : null ) ,  array('id'=> 'fichaAlumno[0][nroConvivientes]', 'class' => 'form-control', 'placeholder' => 'Seleccione el número de habitantes de la vivienda del alumno')) !!}
+
 </div>
 
 <!-- Totalhijos Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('totalHijos', 'Totalhijos:') !!}
-    {!! Form::number('fichaAlumno[0][totalHijos]', null, ['class' => 'form-control']) !!}
+    {!! Form::label('totalHijos', 'Total de hermanos que viven con el alumno (pueden ser hermanos no sanguíneos, siempre que vivan con el alumno)') !!}
+    {!! Form::select('fichaAlumno[0][totalHijos]', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17, 18, 19, 20], ( isset($persona->alumno->fichaAlumno[0]) ? $persona->alumno->fichaAlumno[0]['totalHijos'] : null ) ,  array('id'=> 'fichaAlumno[0][totalHijos]', 'class' => 'form-control', 'placeholder' => 'Seleccione el total de hermanos sanguíneos que tenga.')) !!}
 </div>
 
 <!-- Nrodehijo Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nroDeHijo', 'Nrodehijo:') !!}
-    {!! Form::number('fichaAlumno[0][nroDeHijo]', null, ['class' => 'form-control']) !!}
+    {!! Form::select('fichaAlumno[0][nroDeHijo]', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17, 18, 19, 20], ( isset($persona->alumno->fichaAlumno[0]) ? $persona->alumno->fichaAlumno[0]['nroDeHijo'] : null ) ,  array('id'=> 'fichaAlumno[0][nroDeHijo]', 'class' => 'form-control', 'placeholder' => 'Seleccione su lugar entre los hermanos, por ejemplo: Yo soy el segundo hermano, escojo el lugar 2.')) !!}
 </div>
 
 <!-- Nrohermaidop Field -->
@@ -61,8 +62,10 @@
 <!-- Isaprefonasa Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('isapreFonasa', 'Isaprefonasa:') !!}
-    {!! Form::text('fichaAlumno[0][isapreFonasa]', null, ['class' => 'form-control']) !!}
+    {!! Form::select('fichaAlumno[0][isapreFonasa]', App\Enums\IsapreFonasaEnum::getPossibleENUM(), ( isset($persona->alumno->fichaAlumno[0]) ? $persona->alumno->fichaAlumno[0]['isapreFonasa'] : null ) ,  array('id'=> 'fichaAlumno[0][isapreFonasa]', 'class' => 'form-control', 'placeholder' => 'Seleccione Isapre o Fonasa')) !!}
+    
 </div>
+
 
 <!-- Segurocomple Field -->
 <div class="form-group col-sm-6">
@@ -72,6 +75,8 @@
         {!! Form::checkbox('fichaAlumno[0][seguroComple]', '1', null) !!} 1
     </label>
 </div>
+
+ParentescoAlumnoEnum
 
 <!-- Enfermedades Field -->
 <div class="form-group col-sm-6">
@@ -103,20 +108,61 @@
 <!-- Gruposanguineo Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('grupoSanguineo', 'Gruposanguineo:') !!}
-    {!! Form::text('fichaAlumno[0][grupoSanguineo]', null, ['class' => 'form-control']) !!}
+    {!! Form::select('fichaAlumno[0][grupoSanguineo]', App\Enums\GrupoSanguineoEnum::getPossibleENUM(), ( isset($persona->alumno->fichaAlumno[0]) ? $persona->alumno->fichaAlumno[0]['grupoSanguineo'] : null ) ,  array('id'=> 'fichaAlumno[0][grupoSanguineo]', 'class' => 'form-control', 'placeholder' => 'Seleccione su Grupo Sanguineo')) !!}
 </div>
 
-<!-- Idalumno Field -->
+
+
+<!-- viveConPadre Field -->
+<div class="form-group col-sm-2">
+    {!! Form::label('viveConPadre', 'viveConPadre:') !!}
+    <label class="checkbox-inline">
+        {!! Form::hidden('viveConPadre', false) !!}
+        {!! Form::checkbox('fichaAlumno[0][viveConPadre]', '0', null) !!} 
+    </label>
+</div>
+
+<!-- viveConMadre Field -->
+<div class="form-group col-sm-2">
+    {!! Form::label('viveConMadre', 'viveConMadre:') !!}
+    <label class="checkbox-inline">
+        {!! Form::hidden('viveConMadre', false) !!}
+        {!! Form::checkbox('fichaAlumno[0][viveConMadre]', '0', null) !!} 
+    </label>
+</div>
+
+<!-- viveConAbuelos Field -->
+<div class="form-group col-sm-2">
+    {!! Form::label('viveConAbuelos', 'viveConAbuelos:') !!}
+    <label class="checkbox-inline">
+        {!! Form::hidden('viveConAbuelos', false) !!}
+        {!! Form::checkbox('fichaAlumno[0][viveConAbuelos]', '0', null) !!} 
+    </label>
+</div>
+
+
+<!-- viveConTios Field -->
+<div class="form-group col-sm-2">
+    {!! Form::label('viveConTios', 'viveConTios:') !!}
+    <label class="checkbox-inline">
+        {!! Form::hidden('viveConTios', false) !!}
+        {!! Form::checkbox('fichaAlumno[0][viveConTios]', '0', null) !!} 
+    </label>
+</div>
+
+
+<!-- viveConTutor Field -->
+<div class="form-group col-sm-2">
+    {!! Form::label('viveConTutor', 'viveConTutor:') !!}
+    <label class="checkbox-inline">
+        {!! Form::hidden('viveConTutor', false) !!}
+        {!! Form::checkbox('fichaAlumno[0][viveConTutor]', '0', null) !!} 
+    </label>
+</div>
+
+<!-- observacionesSalud Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('idAlumno', 'Idalumno:') !!}
-    {!! Form::number('fichaAlumno[0][idAlumno]', null, ['class' => 'form-control']) !!}
+    {!! Form::label('observacionesSalud', 'observacionesSalud:') !!}
+    {!! Form::text('fichaAlumno[0][observacionesSalud]', null, ['class' => 'form-control']) !!}
 </div>
-
-<!-- Idalumno Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('idAlumno', 'Idalumno:') !!}
-    {!! Form::number('fichaAlumno[0][idAlumno]', null, ['class' => 'form-control']) !!}
-</div>
-
-
 

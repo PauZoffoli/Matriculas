@@ -41,7 +41,7 @@ class CreateAlumnosTable extends Migration
                 'antiguo'])->nullable($value = true)->default('nuevo');
 
             $table->enum('estado', [
-                'MatriculaRevisadaPorApoderado'
+                'MatriculaRevisadaPorApoderado',
                 'Revisar', 
                 'Revisado',
                 'Aprobado',

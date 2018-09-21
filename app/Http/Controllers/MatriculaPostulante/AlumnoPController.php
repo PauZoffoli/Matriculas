@@ -99,26 +99,6 @@ echo $f->format(1432);
         $madre = null;
         $pContacto = null;
         $sContacto = null;
-        //$var = Helper::getPossibleStatuses('comunas', 'nombreComu');
-        $cursos = new Curso; //ENUMERADORES
-        $cursos = $cursos->all();
-        $cursos =  Helper::getEnumValuesFromTable($cursos, 'nivel', 'basicaMedia');
-
-        $comuna = new Comuna; //ENUMERADORES
-        $comuna = $comuna->all();
-        $comuna =  Helper::getEnumValueFromTable($comuna, 'nombreComu');
-
-        $datosEnums = new Persona; //ENUMERADORES
-        $datosEnums = $datosEnums->all();
-        $datosEnums =  Helper::getEnumValueFromTable($datosEnums, 'genero');
-
-        
-       $genero= Enums\Genero::getPossibleENUM();
-   //    $estadoCivilPadres= Enums\EstadoCivil::getKeys();
-
-
-      // dd(Enums\Genero::getPossibleENUM());
-      dd(Enums\ComunaEnum::getPossibleENUM());
 
 
         if (!$persona->alumnoResponsables->isEmpty()) {
@@ -151,7 +131,7 @@ echo $f->format(1432);
             
         }       
 
-        return view('MatriculaPostulante.alumnos.edit')->with('persona', $persona)->with('padre',$padre)->with('madre',$madre)->with('pContacto',$pContacto)->with('sContacto',$sContacto)->with('cursos' , $cursos)->with('comuna' , $comuna);
+        return view('MatriculaPostulante.alumnos.edit')->with('persona', $persona)->with('padre',$padre)->with('madre',$madre)->with('pContacto',$pContacto)->with('sContacto',$sContacto);
 
     }
 

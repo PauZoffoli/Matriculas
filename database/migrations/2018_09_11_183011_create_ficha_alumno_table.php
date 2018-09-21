@@ -55,10 +55,20 @@ class CreateFichaAlumnoTable extends Migration
                 'Fonasa'])->default('Isapre');
 
             $table->tinyInteger('seguroComple')->default(0);
+
+            //Agregado Ahora Último
+            $table->tinyInteger('viveConPadre')->default(0);
+            $table->tinyInteger('viveConMadre')->default(0);
+            $table->tinyInteger('viveConAbuelos')->default(0);
+            $table->tinyInteger('viveConTios')->default(0);
+            $table->tinyInteger('viveConTutor')->default(0);
+            $table->string('observacionesSalud')->nullable($value = true);
+
             $table->string('enfermedades');
             $table->string('medicamentos');
             $table->tinyInteger('esAlergico')->default(0);
             $table->string('AlergicoA')->default(0);
+
 
             $table->enum('grupoSanguineo', [
                 'A+', 

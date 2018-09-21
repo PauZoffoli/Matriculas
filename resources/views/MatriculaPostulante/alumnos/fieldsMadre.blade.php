@@ -12,12 +12,7 @@
 'rutLBL' => 'madre[rut]',
 'generoLBL' => 'madre[genero]',
 'emailLBL' => 'madre[email]',
-'fechaNacimientoLBL' => 'madre[fechaNacimiento]',
 'estadoCivilLBL' => 'madre[estadoCivil]',
-'idDireccionLBL' => 'madre[idDireccion]',
-'idUserLBL' => 'madre[idUser]',
-'parentescoLBL' => 'madre[parentesco]',
-'otroParentescoLBL' => 'madre[otroParentesco]',
 
 
 
@@ -31,11 +26,7 @@
 'rutTXT' => ( isset($madre->rut) ? $madre->rut : null ),
 'generoTXT' => ( isset($madre->genero) ? $madre->genero : null ),
 'emailTXT' => ( isset($madre->email) ? $madre->email : null ),
-'fechaNacimientoTXT' => ( isset($madre->fechaNacimiento) ? $madre->fechaNacimiento: null ),
 'estadoCivilTXT' => ( isset($madre->estadoCivil) ? $madre->estadoCivil : null ),
-'idDireccionTXT' => ( isset($madre->idDireccion) ? $madre->idDireccion : null ),
-'parentescoTXT' => ( isset($madre->parentesco) ? $madre->parentesco : null ),
-'otroParentescoTXT' => ( isset($madre->otroParentesco) ? $madre->otroParentesco : null ),
 
 
     ])
