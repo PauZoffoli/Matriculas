@@ -1,7 +1,9 @@
+
 <!-- Idcomuna Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('idComuna', 'Idcomuna:') !!}
-    {!! Form::number('direccion[idComuna]', null, ['class' => 'form-control']) !!}
+    {!! Form::select('direccion[idComuna]', $comuna,  ( isset($persona->direccion->idComuna) ? $persona->direccion->Idcomuna : null ), ['class' => 'form-control']) !!}
+
 </div>
 
 <!-- Calle Field -->

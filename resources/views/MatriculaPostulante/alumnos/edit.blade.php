@@ -21,12 +21,12 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="">
-                   {!! Form::model($alumno, ['route' => ['alumnosPostulantes.update', $alumno->id], 'method' => 'patch']) !!}
+                   {!! Form::model($persona, ['route' => ['alumnosPostulantes.update', $persona->id], 'method' => 'patch']) !!}
 
 
 <section class="content-header">
         <h1>
-            1) Datos del Alumno/a {{ $alumno->PNombre . ' ' . $alumno->ApPat }}
+            1) Datos del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
         </h1> <br>
 </section>
        <div class="box box-success" style="background-color: #E4FDE4!important;">
@@ -41,7 +41,7 @@
 
 <section class="content-header">
         <h1>
-           2) Ficha Social del Alumno/a {{ $alumno->PNombre . ' ' . $alumno->ApPat }}
+           2) Ficha Social del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
         </h1> <br>
 </section>
        <div class="box box-success" style="background-color: #E4FDE4!important;">
@@ -49,29 +49,38 @@
                <div class="row">
                  
                 @include('MatriculaPostulante.alumnos.fields_ficha_alumno')
-                  
+                   <div class="form-group col-sm-12">
+                 
+                {!! Form::label('padreOMadre', '¿Qué relación tiene el apoderado con el alumno?') !!}
+                 {!! Form::select('padreOMadre', [ 'No es el padre ni la madre','Padre', 'Madre'],  null ,  array('id' => 'padreOMadre', 'class' => 'form-control','onChange' => 'apoderadoPadreOMadre();')) !!}
+              
+</div>
+
                </div>
            </div>
        </div>
 
+<div id="esPadre">
 <section class="content-header">
+
         <h1>
-           3) Padre del Alumno/a {{ $alumno->PNombre . ' ' . $alumno->ApPat }}
+           3) Padre del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
         </h1> <br>
 </section>
        <div class="box box-success" style="background-color: #E4FDE4!important;">
            <div class="box-body">
                <div class="row">
-                 
+               
                 @include('MatriculaPostulante.alumnos.fieldsPadre')
                   
                </div>
            </div>
        </div>
-
+</div>
+<div id="esMadre">
 <section class="content-header">
         <h1>
-           4) Madre del Alumno/a {{ $alumno->PNombre . ' ' . $alumno->ApPat }}
+           4) Madre del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
         </h1> <br>
 </section>
        <div class="box box-success" style="background-color: #E4FDE4!important;">
@@ -83,10 +92,10 @@
                </div>
            </div>
        </div>
-
+</div>
 <section class="content-header">
         <h1>
-           5) Contacto Nro 1 del Alumno/a {{ $alumno->PNombre . ' ' . $alumno->ApPat }}
+           5) Contacto Nro 1 del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
         </h1> <br>
 </section>
        <div class="box box-success" style="background-color: #E4FDE4!important;">
@@ -102,7 +111,7 @@
 
 <section class="content-header">
         <h1>
-          6)  Contacto Nro 2 del Alumno/a {{ $alumno->PNombre . ' ' . $alumno->ApPat }}
+          6)  Contacto Nro 2 del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
         </h1> <br>
 </section>
        <div class="box box-success" style="background-color: #E4FDE4!important;">
@@ -131,4 +140,59 @@
            </div>
        </div>
    </div>
+
+
+
+
+<script>
+
+    function apoderadoPadreOMadre(){
+
+        var apoderadoPadreOMadre = document.getElementById("padreOMadre");
+        var esPadre = document.getElementById("esPadre");
+        var esMadre = document.getElementById("esMadre");
+
+
+    /*    if( apoderadoPadreOMadre.value=="0"){
+
+            esMadre.style.display = "block";
+            $('#esMadre').find('input, textarea, button, select').removeAttr('disabled');
+            $('#esMadre').find('input, textarea, button, select').attr('required',true);
+
+            esPadre.style.display = "block";
+            $('#esPadre').find('input, textarea, button, select').removeAttr('disabled');
+            $('#esPadre').find('input, textarea, button, select').attr('required',true);
+
+        }
+        if( apoderadoPadreOMadre.value=="1"){
+            esPadre.style.display = "none";
+            $('#esPadre').find('input, textarea, button, select').attr('disabled','disabled');
+            $('#esPadre').find('input, textarea, button, select').attr('required',false);
+
+            esMadre.style.display = "block";
+            $('#esMadre').find('input, textarea, button, select').removeAttr('disabled');
+            $('#esMadre').find('input, textarea, button, select').attr('required',true);
+
+        }
+
+        if( apoderadoPadreOMadre.value=="2"){
+            esMadre.style.display = "none";
+            $('#esMadre').find('input, textarea, button, select').attr('disabled','disabled');
+            $('#esMadre').find('input, textarea, button, select').attr('required',false);
+
+            esPadre.style.display = "block";
+            $('#esPadre').find('input, textarea, button, select').removeAttr('disabled');
+            $('#esPadre').find('input, textarea, button, select').attr('required',true);
+        }
+       */
+
+    }
+</script>
+
+<script >
+var select = document.getElementById('padreOMadre');
+select.onchange = apoderadoPadreOMadre;
+window.onload = apoderadoPadreOMadre;
+</script>
+
 @endsection

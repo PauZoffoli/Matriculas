@@ -37,3 +37,15 @@
 
 
     ])
+
+    <!-- Parentesco Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('parentesco', 'Parentesco:') !!}
+    {!! Form::text('pContacto[parentesco]', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Otroparentesco Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('otroParentesco', 'Otroparentesco:') !!}
+    {!! Form::text('pContacto[otroParentesco]', null, ['class' => 'form-control']) !!}
+</div>

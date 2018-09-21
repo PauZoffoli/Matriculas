@@ -30,6 +30,7 @@ use App\Models\Repitencias;
 use App\Models\FichaAlumno;
 use App\Models\Apoderado;
 use App\Models\Curso;
+use App\Models\Comuna;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Collection;
 class AlumnoPController extends AppBaseController
@@ -74,7 +75,10 @@ class AlumnoPController extends AppBaseController
     }
     /**
      * Show the form for editing the specified Alumno.
-     *
+     *@php //https://laracasts.com/discuss/channels/laravel/laravel-convert-amount-in-digit-to-words?page=1 number formatter
+    $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
+echo $f->format(1432);
+@endphp
      * @param  int $id
      *
      * @return Response
@@ -93,6 +97,12 @@ class AlumnoPController extends AppBaseController
         $cursos = new Curso;
         $cursos = $cursos->all();
         $cursos =  Helper::getEnumValuesFromTable($cursos, 'nivel', 'basicaMedia');
+
+        $comuna = new Comuna;
+        $comuna = $comuna->all();
+        $comuna =  Helper::getEnumValueFromTable($comuna, 'nombreComu');
+   
+
         if (!$persona->alumnoResponsables->isEmpty()) {
  
             foreach ($persona->alumnoResponsables as $value) {
@@ -123,7 +133,7 @@ class AlumnoPController extends AppBaseController
             
         }       
 
-        return view('MatriculaPostulante.alumnos.edit')->with('alumno', $persona)->with('padre',$padre)->with('madre',$madre)->with('pContacto',$pContacto)->with('sContacto',$sContacto)->with('cursos' , $cursos);
+        return view('MatriculaPostulante.alumnos.edit')->with('persona', $persona)->with('padre',$padre)->with('madre',$madre)->with('pContacto',$pContacto)->with('sContacto',$sContacto)->with('cursos' , $cursos)->with('comuna' , $comuna);
 
     }
 
@@ -152,6 +162,7 @@ class AlumnoPController extends AppBaseController
      */
     public function update($id, UpdateAlumnoRequest $request) //Debería cambiar la request
     {
+
         $persona = $this->checkIfExist($id); //Chequeamos si es que las entidades que necesitamos existen
 
         $validate = $this->validaciones($request); // Primero hay que hacer las validaciones de las clases que no se validan en el request de los parámetros de la función
@@ -161,11 +172,16 @@ class AlumnoPController extends AppBaseController
           ]);
         }
 
+
         if($persona->alumno->fichaAlumno==null){ //Si el alumno no tiene una ficha asociada, se le crea en el momento
              $fichaAlumno = $this->fichaAlumnoRepository->create($request->fichaAlumno[0]);
         }
 
-        Helper::updateThis($this->direccionRepository,$request->direccion, $persona->alumno->id);
+        $persona->alumno->repitencia()->sync($request->repitencia); //AGREGAMOS LOS DATOS PIVOTE DE LAS REPITENCIAS https://stackoverflow.com/questions/23968415/laravel-eloquent-attach-vs-sync 
+
+        $request->request->add(['alumno[repitencias]' => $persona->alumno->repitencia()->count()]); //cambiamos el valor del request"repitencias que tiene el número de repitencias del alumno"
+
+        Helper::updateThis($this->direccionRepository,$request->direccion, $persona->direccion->id);
         unset($request['direccion']); //Produce el error array to string, por eso direccion se borra antes
         $persona = $this->personaRepository->update($request->all(), $id);
         $alumno = Helper::updateThis($this->alumnoRepository,$request->alumno, $persona->alumno->id);
@@ -174,6 +190,10 @@ class AlumnoPController extends AppBaseController
         /////////////AHORA OCUPAMOS LAS VARIABLES DE SESIÓN/////////////////
         $todosLosAlumnos = $request->session()->get('todosLosAlumnos');
         $todosLosAlumnos =  Helper::deleteFirst($todosLosAlumnos); //Borramos el primer elemento del array, que fue el que acabamos de utilizar y updatear
+
+        if($request->padreOMadre!=null){
+            
+        }
 
         if ($todosLosAlumnos!=null) {
            
@@ -222,6 +242,12 @@ class AlumnoPController extends AppBaseController
         $estadoAlumno= ["estado" => "MatriculaRevisadaPorApoderado"];
 
         $idAlumnos = $request->session()->get('idAlumnos'); //con esta variable de sesión le cambiamos los estados a todos los alumnos que el apoderado haya checado.
+
+       
+        if ($idAlumnos==null) {
+           Flash::error( "La variable de sesión no existe! Usted ya ha inscrito a su alumno.");
+           return redirect(route('home'))->send();
+         }
 
         foreach ($idAlumnos as $key) {
            $alumno = $this->alumnoRepository->update($estadoAlumno, json_decode($key)->id);
@@ -290,13 +316,5 @@ class AlumnoPController extends AppBaseController
     {
         abort(404);
     }
-     //$erros = app()->make('App\Http\Requests\CreateFichaAlumnoRequest');// $validate->validate($request->fichaAlumno, $validate->rules(), $validate->messages());
- //$validate->validate($request->fichaAlumno, $validate->rules(), $validate->messages());
- //dd($validate->fails());
-//$input=(new FichaAlumno($request->fichaAlumno[0]));
-//CreateFichaAlumnoRequest::validate($request->fichaAlumno[0], $input->rules(), $input->messages());
-           //  $input = CreateFichaAlumnoRequest::validate($request->fichaAlumno[0], CreateFichaAlumnoRequest::rules());
-          
-          //  $input('App\Http\Requests\CreateFichaAlumnoRequest'); // FormRequest
-            // dd("hola");
+
 }

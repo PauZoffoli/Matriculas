@@ -21,6 +21,7 @@ use Response;
 use Illuminate\Validation\ValidationException;
 use App\Models\Alumno;
 use App\Http\Controllers\Helpers\Helper;
+use App\Models\Comuna;
 class ApoderadoPController extends AppBaseController
 {
 
@@ -68,8 +69,11 @@ class ApoderadoPController extends AppBaseController
     public function edit($id)
     {
         $persona = $this->checkIfExist($id); //Chequeamos todas las clases que necesitemos antes.
+        $comuna = new Comuna;
+        $comuna = $comuna->all();
+        $comuna =  Helper::getEnumValueFromTable($comuna, 'nombreComu');
 
-        return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona);
+        return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona)->with('comuna', $comuna);
 
     }
 

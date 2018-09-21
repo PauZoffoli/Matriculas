@@ -25,6 +25,7 @@
 
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+   <script src="jquery-3.3.1.min.js"></script>
 
     @yield('css')
 </head>
@@ -202,6 +203,10 @@
 }
 
 </script>
+
+
+
+
 
 
 <!-- Validador Rut-->

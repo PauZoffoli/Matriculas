@@ -31,6 +31,15 @@ class Helper extends Controller
 
     }
     */
+    public static function getEnumValueFromTable($table, $pValue ) {
+
+      $enum = array();
+      foreach ($table as $value) {
+         $enum = array_add($enum, $value->id, $value->$pValue );
+     }
+     asort($enum);
+     return $enum;
+    }
     public static function getEnumValuesFromTable($table, $pValue, $sValue ) {
 
       $enum = array();
