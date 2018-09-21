@@ -78,12 +78,6 @@ $idUserTXT = $asd;*/
     {!! Form::number($fonoCeluLBL,  ( isset($fonoCeluTXT) ? $fonoCeluTXT : null ), ['class' => 'form-control']) !!}
 </div>
 
-<!-- Iduser Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('idUser', 'Iduser:') !!}
-    {!! Form::number($idUserLBL,  ( isset($idUserTXT) ? $idUserTXT : null ), ['class' => 'form-control']) !!}
-</div>
-
 <!-- Rut Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('rut', 'Rut:') !!}
@@ -108,12 +102,6 @@ $idUserTXT = $asd;*/
     {!! Form::date($fechaNacimientoLBL,  ( isset($fechaNacimientoTXT) ? $fechaNacimientoTXT : null ), ['class' => 'form-control']) !!}
 </div>
 
-<!-- Fechadefuncion Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('fechaDefuncion', 'Fechadefuncion:') !!}
-    {!! Form::date($fechaDefuncionLBL,  ( isset($fechaDefuncionTXT) ? $fechaDefuncionTXT : null ), ['class' => 'form-control']) !!}
-</div>
-
 <!-- Estadocivil Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('estadoCivil', 'Estadocivil:') !!}
@@ -124,4 +112,16 @@ $idUserTXT = $asd;*/
 <div class="form-group col-sm-6">
     {!! Form::label('idDireccion', 'Iddireccion:') !!}
     {!! Form::number($idDireccionLBL,  ( isset($idDireccionTXT) ? $idDireccionTXT : null ), ['class' => 'form-control']) !!}
+</div>
+
+    <!-- Parentesco Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('parentesco', 'Parentesco:') !!}
+    {!! Form::text($parentescoLBL,  ( isset($parentescoTXT) ? $parentescoTXT : null ), ['class' => 'form-control']) !!}
+</div>
+
+<!-- Otroparentesco Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('otroParentesco', 'Otroparentesco:') !!}
+    {!! Form::text($otroParentescoLBL, ( isset($otroParentescoTXT) ? $otroParentescoTXT : null ), ['class' => 'form-control']) !!}
 </div>

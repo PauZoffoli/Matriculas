@@ -13,10 +13,12 @@
 'generoLBL' => 'sContacto[genero]',
 'emailLBL' => 'sContacto[email]',
 'fechaNacimientoLBL' => 'sContacto[fechaNacimiento]',
-'fechaDefuncionLBL' => 'sContacto[fechaDefuncion]',
 'estadoCivilLBL' => 'sContacto[estadoCivil]',
 'idDireccionLBL' => 'sContacto[idDireccion]',
 'idUserLBL' => 'sContacto[idUser]',
+'parentescoLBL' => 'sContacto[parentesco]',
+'otroParentescoLBL' => 'sContacto[otroParentesco]',
+
 
 
 'PNombreTXT' =>( isset($sContacto->PNombre) ? $sContacto->PNombre : null ), 
@@ -30,10 +32,11 @@
 'generoTXT' => ( isset($sContacto->genero) ? $sContacto->genero : null ),
 'emailTXT' => ( isset($sContacto->email) ? $sContacto->email : null ),
 'fechaNacimientoTXT' => ( isset($sContacto->fechaNacimiento) ? $sContacto->fechaNacimiento: null ),
-'fechaDefuncionTXT' => ( isset($sContacto->fechaDefuncion) ? $sContacto->fechaDefuncion : null ),
 'estadoCivilTXT' => ( isset($sContacto->estadoCivil) ? $sContacto->estadoCivil : null ),
 'idDireccionTXT' => ( isset($sContacto->idDireccion) ? $sContacto->idDireccion : null ),
-'idUserTXT' => ( isset($sContacto->idUser) ? $sContacto->idUser : null ),
+'parentescoTXT' => ( isset($sContacto->parentesco) ? $sContacto->parentesco : null ),
+'otroParentescoTXT' => ( isset($sContacto->otroParentesco) ? $sContacto->otroParentesco : null ),
+
 
 
     ])

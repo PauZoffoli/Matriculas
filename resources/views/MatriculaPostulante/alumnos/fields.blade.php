@@ -21,12 +21,6 @@
     {!! Form::text('alumno[condicion]', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Estado Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('estado', 'Estado:') !!}
-    {!! Form::text('alumno[estado]', null, ['class' => 'form-control']) !!}
-</div>
-
 <!-- Estadocivilpadres Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('estadoCivilPadres', 'Estadocivilpadres:') !!}
@@ -63,23 +57,24 @@
   <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></span>
-      
-      {!! Form::select('enumerator', [0,1,2,3,4,5],  count($persona->alumno->repitencia) ,  array('id' => 'enumerator', 'class' => 'form-control', 'onChange' => 'changeCantidadRepitencias();')) !!}
+
+      {!! Form::select('enumerator', [0,1,2,3,4,5],  $persona->alumno->repitencia()->count() ,  array('id' => 'enumerator', 'class' => 'form-control', 'onChange' => 'changeCantidadRepitencias();')) !!}
 
          {!! Form::select('repitencia[0]', $cursos, ( isset($persona->alumno->repitencia[0]) ? $persona->alumno->repitencia[0]->id : null ) ,  array('id'=> 'pRepetido', 'class' => 'form-control')) !!}
     {!! Form::select('repitencia[1]', $cursos, ( isset($persona->alumno->repitencia[1]) ? $persona->alumno->repitencia[1]->id : null ) ,  array('id'=> 'sRepetido','class' => 'form-control')) !!}    
      {!! Form::select('repitencia[2]', $cursos,( isset($persona->alumno->repitencia[2]) ? $persona->alumno->repitencia[2]->id : null ) ,  array('id'=> 'tRepetido','class' => 'form-control')) !!}
       {!! Form::select('repitencia[3]', $cursos, ( isset($persona->alumno->repitencia[3]) ? $persona->alumno->repitencia[3]->id : null ) ,  array('id'=> 'cRepetido','class' => 'form-control ')) !!}
        {!! Form::select('repitencia[4]', $cursos, ( isset($persona->alumno->repitencia[4]) ? $persona->alumno->repitencia[4]->id : null ) ,  array('id'=> 'qRepetido','class' => 'form-control')) !!}
+
+      
     </div>
   </div>
 </div>
 
 
-
-
-
 <!-- FUNCIÓN PARA CREAR DINÁMICAMENTE TEXTBOXES EN FUNCION A LA CANTIDAD SELECCIONADA EN UN DDL https://stackoverflow.com/questions/43950669/how-to-dynamically-create-text-boxes-on-selection-of-a-dropdown .triggerHandler("rightnow");.triggerHandler("rightnow");-->
+
+
 
 
 <script>
@@ -92,7 +87,6 @@
         var tRepetido = document.getElementById("tRepetido");
         var cRepetido = document.getElementById("cRepetido");
         var qRepetido = document.getElementById("qRepetido");
-
 
         if( enumerator.value=="0"){
             document.getElementById("pRepetido").style.display = "none";
@@ -219,9 +213,9 @@
 </script>
 
 <script >
- var select = document.getElementById('enumerator');
-select.onchange = changeCantidadRepitencias;
-window.onload = changeCantidadRepitencias;
+var select = document.getElementById('enumerator');
+select.onchange = changeCantidadRepitencias();
+window.onload = changeCantidadRepitencias();
 </script>
 
 

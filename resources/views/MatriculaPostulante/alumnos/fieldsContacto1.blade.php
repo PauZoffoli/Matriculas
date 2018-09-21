@@ -13,10 +13,12 @@
 'generoLBL' => 'pContacto[genero]',
 'emailLBL' => 'pContacto[email]',
 'fechaNacimientoLBL' => 'pContacto[fechaNacimiento]',
-'fechaDefuncionLBL' => 'pContacto[fechaDefuncion]',
 'estadoCivilLBL' => 'pContacto[estadoCivil]',
 'idDireccionLBL' => 'pContacto[idDireccion]',
-'idUserLBL' => 'pContacto[idUser]',
+'parentescoLBL' => 'pContacto[parentesco]',
+'otroParentescoLBL' => 'pContacto[otroParentesco]',
+
+
 
 
 'PNombreTXT' =>( isset($pContacto->PNombre) ? $pContacto->PNombre : null ), 
@@ -30,22 +32,10 @@
 'generoTXT' => ( isset($pContacto->genero) ? $pContacto->genero : null ),
 'emailTXT' => ( isset($pContacto->email) ? $pContacto->email : null ),
 'fechaNacimientoTXT' => ( isset($pContacto->fechaNacimiento) ? $pContacto->fechaNacimiento: null ),
-'fechaDefuncionTXT' => ( isset($pContacto->fechaDefuncion) ? $pContacto->fechaDefuncion : null ),
 'estadoCivilTXT' => ( isset($pContacto->estadoCivil) ? $pContacto->estadoCivil : null ),
 'idDireccionTXT' => ( isset($pContacto->idDireccion) ? $pContacto->idDireccion : null ),
-'idUserTXT' => ( isset($pContacto->idUser) ? $pContacto->idUser : null ),
+'parentescoTXT' => ( isset($pContacto->parentesco) ? $pContacto->parentesco : null ),
+'otroParentescoTXT' => ( isset($pContacto->otroParentesco) ? $pContacto->otroParentesco : null ),
 
 
     ])
-
-    <!-- Parentesco Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('parentesco', 'Parentesco:') !!}
-    {!! Form::text('pContacto[parentesco]', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Otroparentesco Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('otroParentesco', 'Otroparentesco:') !!}
-    {!! Form::text('pContacto[otroParentesco]', null, ['class' => 'form-control']) !!}
-</div>

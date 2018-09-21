@@ -30,9 +30,14 @@ use App\Models\Repitencias;
 use App\Models\FichaAlumno;
 use App\Models\Apoderado;
 use App\Models\Curso;
+use App\Models\Persona;
 use App\Models\Comuna;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Collection;
+
+use App\Enums;
+
+
 class AlumnoPController extends AppBaseController
 {
 
@@ -85,8 +90,9 @@ echo $f->format(1432);
      */
     public function edit($id)
     {
+
         $persona = $this->checkIfExist($id);
-        //dd($persona->alumno->repitencia);
+        //dd($persona->alumno->repitencia()->count());
 
         $responsables = null;
         $padre = null;
@@ -94,14 +100,26 @@ echo $f->format(1432);
         $pContacto = null;
         $sContacto = null;
         //$var = Helper::getPossibleStatuses('comunas', 'nombreComu');
-        $cursos = new Curso;
+        $cursos = new Curso; //ENUMERADORES
         $cursos = $cursos->all();
         $cursos =  Helper::getEnumValuesFromTable($cursos, 'nivel', 'basicaMedia');
 
-        $comuna = new Comuna;
+        $comuna = new Comuna; //ENUMERADORES
         $comuna = $comuna->all();
         $comuna =  Helper::getEnumValueFromTable($comuna, 'nombreComu');
-   
+
+        $datosEnums = new Persona; //ENUMERADORES
+        $datosEnums = $datosEnums->all();
+        $datosEnums =  Helper::getEnumValueFromTable($datosEnums, 'genero');
+
+        
+       $genero= Enums\Genero::getPossibleENUM();
+   //    $estadoCivilPadres= Enums\EstadoCivil::getKeys();
+
+
+      // dd(Enums\Genero::getPossibleENUM());
+      dd(Enums\ComunaEnum::getPossibleENUM());
+
 
         if (!$persona->alumnoResponsables->isEmpty()) {
  
@@ -136,21 +154,6 @@ echo $f->format(1432);
         return view('MatriculaPostulante.alumnos.edit')->with('persona', $persona)->with('padre',$padre)->with('madre',$madre)->with('pContacto',$pContacto)->with('sContacto',$sContacto)->with('cursos' , $cursos)->with('comuna' , $comuna);
 
     }
-
-    /*Tabla pivote
-    */
-    //dd($padre);
-        // $responsable = $persona->alumnoResponsables[0]->pivot->pivotParent;
- // $padre = $this->personaRepository->findWithoutFail($padre->id);
-
-   // dd("es padre");
-                    //$persona->pluck($value->pivot->pivotParent);
-                   // $persona->add($value->pivot->pivotParent);
-                  //  array_push($persona, ['padre' => $value->pivot->pivotParent]);
-
-       //dd($responsable->hasTipo("AlumnoPostulante"));
-        //dd($persona->alumnoResponsables[0]->pivot->pivotParent->id);
-
 
     /**
      * Update the specified Apoderado in storage.
@@ -191,9 +194,34 @@ echo $f->format(1432);
         $todosLosAlumnos = $request->session()->get('todosLosAlumnos');
         $todosLosAlumnos =  Helper::deleteFirst($todosLosAlumnos); //Borramos el primer elemento del array, que fue el que acabamos de utilizar y updatear
 
+        ////////////////////////////////////////////////////////////////////
+        ///////////////////////GUARDADO DE CONTACTOS////////////////////////
+        ////////////////////////////////////////////////////////////////////
+        $request->padre;
+        $request->madre;
+        $request->pContacto;
+        $request->sContacto;
+       
+
+        $padre = $persona->alumno->alumnoResponsables()->sync($request->padre);
+        $madre = $persona->alumno->alumnoResponsables()->sync($request->madre);
+        $pContacto = $persona->alumno->alumnoResponsables()->sync($request->pContacto);
+        $sContacto = $persona->alumno->alumnoResponsables()->sync($request->sContacto);
+        
+        dd($padre,
+        $madre,
+        $pContacto,
+        $sContacto);
+
         if($request->padreOMadre!=null){
-            
+            if($request->padreOMadre=="1"){ //Padre Apoderado
+            }
+            if($request->padreOMadre=="2"){ //Madre Apoderada
+            }
+
         }
+       
+
 
         if ($todosLosAlumnos!=null) {
            
@@ -213,9 +241,6 @@ echo $f->format(1432);
 
     /*MÉTODO PARA VALIDAR Y DESPEJAR EL CONTROLLER*/
     public function validaciones($request){
-            /////////////////////////////////////////////
-        ///////CUSTOM VALIDATION FICHA ALUMNO////////
-        /////////////////////////////////////////////
 
         $validate = Helper::manualValidation($request->fichaAlumno, (new CreateFichaAlumnoRequest()), "1)Errores de la Ficha del Alumno: ", 1);
         $validate = $validate . Helper::manualValidation($request->padre, (new CreatePersonaRequest()), "2)Errores de los datos del Padre: ",2);
@@ -224,10 +249,6 @@ echo $f->format(1432);
         $validate = $validate . Helper::manualValidation($request->sContacto, (new CreatePersonaRequest()), "5)Errores de los datos del Segundo Contacto: ",5);
 
         return $validate;
-
-        /////////////////////////////////////////////
-        ///////////////END CUSTOM VALIDATION/////////
-        /////////////////////////////////////////////
 
     }
 

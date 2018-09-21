@@ -13,10 +13,12 @@
 'generoLBL' => 'madre[genero]',
 'emailLBL' => 'madre[email]',
 'fechaNacimientoLBL' => 'madre[fechaNacimiento]',
-'fechaDefuncionLBL' => 'madre[fechaDefuncion]',
 'estadoCivilLBL' => 'madre[estadoCivil]',
 'idDireccionLBL' => 'madre[idDireccion]',
 'idUserLBL' => 'madre[idUser]',
+'parentescoLBL' => 'madre[parentesco]',
+'otroParentescoLBL' => 'madre[otroParentesco]',
+
 
 
 'PNombreTXT' =>( isset($madre->PNombre) ? $madre->PNombre : null ), 
@@ -30,10 +32,10 @@
 'generoTXT' => ( isset($madre->genero) ? $madre->genero : null ),
 'emailTXT' => ( isset($madre->email) ? $madre->email : null ),
 'fechaNacimientoTXT' => ( isset($madre->fechaNacimiento) ? $madre->fechaNacimiento: null ),
-'fechaDefuncionTXT' => ( isset($madre->fechaDefuncion) ? $madre->fechaDefuncion : null ),
 'estadoCivilTXT' => ( isset($madre->estadoCivil) ? $madre->estadoCivil : null ),
 'idDireccionTXT' => ( isset($madre->idDireccion) ? $madre->idDireccion : null ),
-'idUserTXT' => ( isset($madre->idUser) ? $madre->idUser : null ),
+'parentescoTXT' => ( isset($madre->parentesco) ? $madre->parentesco : null ),
+'otroParentescoTXT' => ( isset($madre->otroParentesco) ? $madre->otroParentesco : null ),
 
 
     ])

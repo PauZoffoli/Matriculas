@@ -36,7 +36,6 @@ use Eloquent as Model;
  */
 class Persona extends Model
 {
-
     public $table = 'personas';
     
     const CREATED_AT = 'created_at';
@@ -44,6 +43,7 @@ class Persona extends Model
 
 
     protected $dates = ['deleted_at'];
+
 
 
     public $fillable = [

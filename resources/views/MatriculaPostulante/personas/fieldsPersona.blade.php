@@ -57,8 +57,10 @@
 <!-- Genero Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('genero', 'Genero:') !!}
-    {!! Form::text('genero', null, ['class' => 'form-control']) !!}
+    {!! Form::select('genero', App\Enums\Genero::getPossibleENUM(), ( isset($persona->genero) ? $persona->genero : null ),  array('id' => 'genero', 'class' => 'form-control')) !!}
 </div>
+
+
 
 <!-- Email Field -->
 <div class="form-group col-sm-6">
@@ -72,16 +74,10 @@
     {!! Form::date('fechaNacimiento', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Fechadefuncion Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('fechaDefuncion', 'Fechadefuncion:') !!}
-    {!! Form::date('fechaDefuncion', null, ['class' => 'form-control']) !!}
-</div>
-
 <!-- Estadocivil Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('estadoCivil', 'Estadocivil:') !!}
-    {!! Form::text('estadoCivil', null, ['class' => 'form-control']) !!}
+    {!! Form::select('estadoCivil', App\Enums\EstadoCivil::getPossibleENUM(), ( isset($persona->estadoCivil) ? $persona->estadoCivil : null ),  array('id' => 'estadoCivil', 'class' => 'form-control')) !!}
 </div>
 
  @include('MatriculaPostulante.direccions.fields')
