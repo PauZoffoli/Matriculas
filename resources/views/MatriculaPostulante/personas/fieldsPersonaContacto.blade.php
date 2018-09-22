@@ -125,9 +125,4 @@ $idUserTXT = $asd;*/
     {!! Form::select($parentescoLBL, App\Enums\ParentescoAlumnoResponsableEnum::getPossibleENUM(), ( isset($parentescoTXT) ? $parentescoTXT : "Padre" ),  array('id' => $parentescoLBL, 'class' => 'form-control', 'placeholder' => "Seleccione el parentesco del alumno con el contacto")) !!}
 </div>
 
-<!-- Otroparentesco Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('otroParentesco', 'Otroparentesco:') !!}
-    {!! Form::text($otroParentescoLBL, ( isset($otroParentescoTXT) ? $otroParentescoTXT : null ), ['class' => 'form-control']) !!}
-</div>
 @endif

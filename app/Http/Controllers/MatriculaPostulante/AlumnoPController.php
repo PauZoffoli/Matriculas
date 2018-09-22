@@ -151,8 +151,10 @@ echo $f->format(1432);
      */
     public function update($id, UpdateAlumnoRequest $request) //Debería cambiar la request
     {
+    
 
         $persona = $this->checkIfExist($id); //Chequeamos si es que las entidades que necesitamos existen
+dd("Hola");
 
         $validate = $this->validaciones($request); // Primero hay que hacer las validaciones de las clases que no se validan en el request de los parámetros de la función
         if ($validate!=null) {
@@ -160,8 +162,7 @@ echo $f->format(1432);
               $validate,
           ]);
         }
-
-
+    
         if($persona->alumno->fichaAlumno==null){ //Si el alumno no tiene una ficha asociada, se le crea en el momento
              $fichaAlumno = $this->fichaAlumnoRepository->create($request->fichaAlumno[0]);
         }
@@ -183,14 +184,57 @@ echo $f->format(1432);
         ////////////////////////////////////////////////////////////////////
         ///////////////////////GUARDADO DE CONTACTOS////////////////////////
         ////////////////////////////////////////////////////////////////////
+//dd($request->padreOMadrePC, $request->padreOMadreSC );
 
-       if(isset($persona->alumno->alumnoResponsables[0])){
+
+        if($request->padreOMadrePC =="0" && $request->padreOMadreSC =="0"){ //Si los contactos no son ni el padre ni la madre
+           
+            $this->Contactos($persona, $request);
+        }
+        
+   
+        ////////////////////////////////////////////////////////////////////
+        //////////////////END//GUARDADO DE CONTACTOS////////////////////////
+        ////////////////////////////////////////////////////////////////////
+       
+
+        if ($todosLosAlumnos!=null) {
+           
+           // \Session::flash('flash_message','Alumno editado exitósamente.');
+            $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los alumnos que nos van quedando en la misma variable
+            return redirect()->route('alumnosPostulantes.edit', json_decode($todosLosAlumnos[0])->idPersona);
+        }
+        session()->forget('todosLosAlumnos'); //cuando quede ningún alumno en la variable la olvidaremos
+
+        $this->cambioDeEstados($alumno, $request); //Método que está en el mismo controller. Cambiamos los estados de los Alumnos
+
+        \Session::flash('flash_message','Alumno editado exitósamente.');
+        return view('MatriculaPostulante.FinProcesoMatricula');
+    }
+
+
+
+    /*MÉTODO PARA VALIDAR Y DESPEJAR EL CONTROLLER*/
+    public function validaciones($request){
+
+        $validate = Helper::manualValidation($request->fichaAlumno, (new CreateFichaAlumnoRequest()), "1)Errores de la Ficha del Alumno: ", 1);
+        $validate = $validate . Helper::manualValidation($request->padre, (new CreatePersonaRequest()), "2)Errores de los datos del Padre: ",2);
+        $validate = $validate . Helper::manualValidation($request->madre, (new CreatePersonaRequest()), "3)Errores de los datos de la Madre: ",3);
+        $validate = $validate . Helper::manualValidation($request->pContacto, (new CreatePersonaRequest()), "4)Errores de los datos del Primer Contacto: ",4);
+        $validate = $validate . Helper::manualValidation($request->sContacto, (new CreatePersonaRequest()), "5)Errores de los datos del Segundo Contacto: ",5);
+
+        return $validate;
+
+    }
+
+    public function Contactos($persona, $request){
+        if(isset($persona->alumno->alumnoResponsables[0])){
         $valor = $persona->alumno->alumnoResponsables;
         $tienePadre = null;
         $tieneMadre = null;
         $tienepContacto = null;
         $tienesContacto = null;
-        
+
             foreach ($valor as $key => $value) {
 
                $personaPivotEncontrada = Persona::find($value->pivot->idPersona);
@@ -246,39 +290,6 @@ echo $f->format(1432);
             Helper::createPivot($this->personaRepository,$request->sContacto , $persona->alumno->id , $request->sContacto['parentesco'], "SegundoContacto");
            dd("Creado");
         }
-
-        ////////////////////////////////////////////////////////////////////
-        //////////////////END//GUARDADO DE CONTACTOS////////////////////////
-        ////////////////////////////////////////////////////////////////////
-       
-
-        if ($todosLosAlumnos!=null) {
-           
-           // \Session::flash('flash_message','Alumno editado exitósamente.');
-            $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los alumnos que nos van quedando en la misma variable
-            return redirect()->route('alumnosPostulantes.edit', json_decode($todosLosAlumnos[0])->idPersona);
-        }
-        session()->forget('todosLosAlumnos'); //cuando quede ningún alumno en la variable la olvidaremos
-
-        $this->cambioDeEstados($alumno, $request); //Método que está en el mismo controller. Cambiamos los estados de los Alumnos
-
-        \Session::flash('flash_message','Alumno editado exitósamente.');
-        return view('MatriculaPostulante.FinProcesoMatricula');
-    }
-
-
-
-    /*MÉTODO PARA VALIDAR Y DESPEJAR EL CONTROLLER*/
-    public function validaciones($request){
-
-        $validate = Helper::manualValidation($request->fichaAlumno, (new CreateFichaAlumnoRequest()), "1)Errores de la Ficha del Alumno: ", 1);
-        $validate = $validate . Helper::manualValidation($request->padre, (new CreatePersonaRequest()), "2)Errores de los datos del Padre: ",2);
-        $validate = $validate . Helper::manualValidation($request->madre, (new CreatePersonaRequest()), "3)Errores de los datos de la Madre: ",3);
-        $validate = $validate . Helper::manualValidation($request->pContacto, (new CreatePersonaRequest()), "4)Errores de los datos del Primer Contacto: ",4);
-        $validate = $validate . Helper::manualValidation($request->sContacto, (new CreatePersonaRequest()), "5)Errores de los datos del Segundo Contacto: ",5);
-
-        return $validate;
-
     }
 
 

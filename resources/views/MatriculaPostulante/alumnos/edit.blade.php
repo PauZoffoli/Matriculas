@@ -94,14 +94,16 @@
        </div>
 </div>
 
-                  {!! Form::label('padreOMadrePC', '¿El primer contacto es el padre o la madre?') !!}
-                 {!! Form::select('padreOMadrePC', [ 'No es el padre ni la madre','Padre', 'Madre'],  null ,  array('id' => 'padreOMadrePC', 'class' => 'form-control','onChange' => 'padreOMadrePC();')) !!}
+                 
 <section class="content-header">
         <h1>
            5) Contacto Nro 1 del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
         </h1> <br>
+         {!! Form::label('padreOMadrePC', '¿El primer contacto es el padre o la madre?') !!}
+                 {!! Form::select('padreOMadrePC', [ 'No es el padre ni la madre','Padre', 'Madre'],  null ,  array('id' => 'padreOMadrePC', 'class' => 'form-control','placeholder' =>"Seleccione una opción", 'required' =>'true')) !!}
+          <br>
 </section>
-       <div class="box box-success" style="background-color: #E4FDE4!important;">
+       <div class="box box-success" id="datosPrimerContacto" name="datosPrimerContacto" style="background-color: #E4FDE4!important;">
            <div class="box-body">
                <div class="row">
                  
@@ -110,16 +112,19 @@
                </div>
            </div>
        </div>
-                  {!! Form::label('padreOMadreSC', '¿El segundo contacto es el padre o la madre?') !!}
-                 {!! Form::select('padreOMadreSC', [ 'No es el padre ni la madre','Padre', 'Madre'],  null ,  array('id' => 'padreOMadreSC', 'class' => 'form-control','onChange' => 'padreOMadreSC();')) !!}
+                 
 
 
 <section class="content-header">
         <h1>
           6)  Contacto Nro 2 del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
-        </h1> <br>
+        </h1> 
+         {!! Form::label('padreOMadreSC', '¿El segundo contacto es el padre o la madre?') !!}
+                 {!! Form::select('padreOMadreSC', [ 'No es el padre ni la madre','Padre', 'Madre'],  null ,  array('id' => 'padreOMadreSC', 'class' => 'form-control', 'placeholder' =>"Seleccione una opción", 'required' =>'true')) !!}
+                 <br>
 </section>
-       <div class="box box-success" style="background-color: #E4FDE4!important;">
+
+       <div class="box box-success" id="datosSegundoContacto" name="datosSegundoContacto"  style="background-color: #E4FDE4!important;">
            <div class="box-body">
                <div class="row">
                  
@@ -158,7 +163,7 @@
         var esMadre = document.getElementById("esMadre");
 
 
-    /*    if( apoderadoPadreOMadre.value=="0"){
+       if( apoderadoPadreOMadre.value=="0"){
 
             esMadre.style.display = "block";
             $('#esMadre').find('input, textarea, button, select').removeAttr('disabled');
@@ -189,7 +194,7 @@
             $('#esPadre').find('input, textarea, button, select').removeAttr('disabled');
             $('#esPadre').find('input, textarea, button, select').attr('required',true);
         }
-       */
+       
 
     }
 </script>
@@ -197,6 +202,7 @@
 <script >
 var select = document.getElementById('padreOMadre');
 select.onchange = apoderadoPadreOMadre;
+
 window.onload = apoderadoPadreOMadre;
 </script>
 

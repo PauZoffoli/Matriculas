@@ -204,9 +204,57 @@
 
 </script>
 
+<script >
+    
+
+
+     var padreOMadrePC = document.getElementById("padreOMadrePC");
+      var padreOMadreSC = document.getElementById("padreOMadreSC");
+      function primerContacto(){
+        if(padreOMadrePC.value==null || padreOMadrePC.value=='' || padreOMadrePC.value=='1' || padreOMadrePC.value=='2'){    
+            document.getElementById("datosPrimerContacto").style.display = "none";
+            $('#datosPrimerContacto').find('input, textarea, button, select').attr('disabled','disabled');
+            $('#datosPrimerContacto').find('input, textarea, button, select').attr('required',false);
+        }
+
+        if(padreOMadrePC.value=='0'){
+            document.getElementById("datosPrimerContacto").style.display = "block";
+            $('#datosPrimerContacto').find('input, textarea, button, select').removeAttr('disabled');
+            $('#datosPrimerContacto').find('input, textarea, button, select').attr('required',true);
+        }
+      }
+
+      function segundoContacto(){
+          if(padreOMadreSC.value==null || padreOMadreSC.value=='' || padreOMadreSC.value=='1' || padreOMadreSC.value=='2'){    
+            document.getElementById("datosSegundoContacto").style.display = "none";
+            $('#datosSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
+            $('#datosSegundoContacto').find('input, textarea, button, select').attr('required',false);
+        }
+        if(padreOMadreSC.value=='0'){
+            document.getElementById("datosSegundoContacto").style.display = "block";
+            $('#datosSegundoContacto').find('input, textarea, button, select').removeAttr('disabled');
+            $('#datosSegundoContacto').find('input, textarea, button, select').attr('required',true);
+        }
+      }
+
+
+</script>
 
 
 
+<script >
+function start() {
+  primerContacto();
+  segundoContacto();
+}
+window.onload = start;
+var padreOMadrePC = document.getElementById('padreOMadrePC');
+var padreOMadreSC = document.getElementById('padreOMadreSC');
+padreOMadrePC.onchange = primerContacto;
+padreOMadreSC.onchange = segundoContacto;
+window.onload = start;
+
+</script>
 
 
 <!-- Validador Rut-->

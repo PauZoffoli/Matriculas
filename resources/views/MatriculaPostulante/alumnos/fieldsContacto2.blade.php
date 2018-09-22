@@ -13,7 +13,7 @@
 'emailLBL' => 'sContacto[email]',
 'idUserLBL' => 'sContacto[idUser]',
 'parentescoLBL' => 'sContacto[parentesco]',
-'otroParentescoLBL' => 'sContacto[otroParentesco]',
+
 'idAlumnoLBL' => 'sContacto[idAlumno]',
 
 
@@ -28,7 +28,7 @@
 'generoTXT' => ( isset($sContacto->genero) ? $sContacto->genero : null ),
 'emailTXT' => ( isset($sContacto->email) ? $sContacto->email : null ),
 'parentescoTXT' => ( isset($sContacto->parentesco) ? $sContacto->parentesco : null ),
-'otroParentescoTXT' => ( isset($sContacto->otroParentesco) ? $sContacto->otroParentesco : null ),
+
 'idAlumnoTXT' => ( isset($persona->alumno->id) ? $persona->alumno->id : null ),
 
 
