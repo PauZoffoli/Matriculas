@@ -5,14 +5,20 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
+use App\Models\AlumnoResponsable;
+use App\Models\TipoPersona;
+use App\Models\Tipo;
 use Flash;
+
+
 class Helper extends Controller 
 {
-	public function __construct()
+
+    public function __construct()
     {
-
+       
     }
-
+	
     //https://stackoverflow.com/questions/18945998/laravel-validation-does-not-work-always-fails
     /*
     Validamos y capturamos los mensajes de errores de manera custom
@@ -31,6 +37,31 @@ class Helper extends Controller
 
     }
     */
+    
+    public static function createPivot($repository, $request , $idAlumno, $relacion, $condicion){
+      $responsable = $repository->create($request);
+
+      $tipo = new Tipo();
+      $tipoPersona = new TipoPersona();
+
+
+      foreach ($tipo->all() as $key => $value) {
+        if ($value->nombre == $condicion){
+          $tipoPersona->idTipo = $value->id;
+        }
+      }
+
+
+      $tipoPersona->idPersona = $responsable->id;
+      $alumnoRepo = $tipoPersona->save();
+
+      $alumnoResp = new AlumnoResponsable();
+      $alumnoResp->idAlumno =  $idAlumno;
+      $alumnoResp->idPersona = $responsable->id;
+      $alumnoResp->parentesco = $relacion;
+      $alumnoRepo = $alumnoResp->save();
+    }
+
     public static function getEnumValueFromTable($table, $pValue ) {
 
       $enum = array();

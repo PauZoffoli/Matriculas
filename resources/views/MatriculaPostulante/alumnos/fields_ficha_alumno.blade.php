@@ -76,8 +76,6 @@
     </label>
 </div>
 
-ParentescoAlumnoEnum
-
 <!-- Enfermedades Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('enfermedades', 'Enfermedades:') !!}

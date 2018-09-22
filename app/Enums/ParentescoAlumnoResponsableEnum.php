@@ -17,7 +17,11 @@ abstract class ParentescoAlumnoResponsableEnum extends Enum {
         $values = array();
 
         foreach(explode(',', $matches[1]) as $value){
-            $values[trim($value, "'")] = trim($value, "'");
+           // if(trim($value, "'")!='Padre' && trim($value, "'")!='Madre' ){ 
+                $values[trim($value, "'")] = trim($value, "'");
+            //}
+           
+            
             
         }
         return $values;

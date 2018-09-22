@@ -88,11 +88,14 @@
                <div class="row">
                  
                 @include('MatriculaPostulante.alumnos.fieldsMadre')
-                  
+
                </div>
            </div>
        </div>
 </div>
+
+                  {!! Form::label('padreOMadrePC', '¿El primer contacto es el padre o la madre?') !!}
+                 {!! Form::select('padreOMadrePC', [ 'No es el padre ni la madre','Padre', 'Madre'],  null ,  array('id' => 'padreOMadrePC', 'class' => 'form-control','onChange' => 'padreOMadrePC();')) !!}
 <section class="content-header">
         <h1>
            5) Contacto Nro 1 del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
@@ -107,6 +110,8 @@
                </div>
            </div>
        </div>
+                  {!! Form::label('padreOMadreSC', '¿El segundo contacto es el padre o la madre?') !!}
+                 {!! Form::select('padreOMadreSC', [ 'No es el padre ni la madre','Padre', 'Madre'],  null ,  array('id' => 'padreOMadreSC', 'class' => 'form-control','onChange' => 'padreOMadreSC();')) !!}
 
 
 <section class="content-header">

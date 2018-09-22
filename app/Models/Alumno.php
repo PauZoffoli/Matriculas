@@ -127,7 +127,8 @@ class Alumno extends Model
      **/
     public function alumnoResponsables()
     {
-            return $this->belongsToMany(\App\Models\Persona::class, 'alumno_responsable','idPersona','idAlumno');
+            return $this->belongsToMany(\App\Models\Persona::class, 'alumno_responsable', 'idAlumno','idPersona')
+            ->withPivot('id','parentesco', 'otroParentesco');
     }
 
     /**

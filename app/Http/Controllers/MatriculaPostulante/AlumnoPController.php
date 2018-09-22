@@ -16,6 +16,9 @@ use App\Repositories\FichaAlumnoRepository;
 use App\Http\Requests\CreateDireccionRequest;
 use App\Http\Requests\UpdateDireccionRequest;
 use App\Repositories\DireccionRepository;
+use App\Http\Requests\CreateAlumnoResponsableRequest;
+use App\Http\Requests\UpdateAlumnoResponsableRequest;
+use App\Repositories\AlumnoResponsableRepository;
 
 use App\Repositories\PersonaRepository;
 use App\Http\Controllers\AppBaseController;
@@ -29,6 +32,7 @@ use App\Models\Alumno;
 use App\Models\Repitencias;
 use App\Models\FichaAlumno;
 use App\Models\Apoderado;
+use App\Models\AlumnoResponsable;
 use App\Models\Curso;
 use App\Models\Persona;
 use App\Models\Comuna;
@@ -51,14 +55,16 @@ class AlumnoPController extends AppBaseController
     private $fichaAlumnoRepository;
     private $apoderadoRepository;
     private $direccionRepository;
+    private $alumnoResponsableRepository;
 
-    public function __construct(DireccionRepository $direccionRepo,AlumnoRepository $alumnoRepo, PersonaRepository $personaRepo,FichaAlumnoRepository $fichaAlumnoRepo,ApoderadoRepository $apoderadoRepo)
+    public function __construct(DireccionRepository $direccionRepo,AlumnoRepository $alumnoRepo, PersonaRepository $personaRepo,FichaAlumnoRepository $fichaAlumnoRepo,ApoderadoRepository $apoderadoRepo,AlumnoResponsableRepository $alumnoResponsableRepo)
     {
         $this->personaRepository = $personaRepo;
         $this->alumnoRepository = $alumnoRepo;
         $this->fichaAlumnoRepository = $fichaAlumnoRepo;
         $this->apoderadoRepository = $apoderadoRepo;
         $this->direccionRepository = $direccionRepo;
+        $this->alumnoResponsableRepository = $alumnoResponsableRepo;
 
     }
 
@@ -177,31 +183,74 @@ echo $f->format(1432);
         ////////////////////////////////////////////////////////////////////
         ///////////////////////GUARDADO DE CONTACTOS////////////////////////
         ////////////////////////////////////////////////////////////////////
-        $request->padre;
-        $request->madre;
-        $request->pContacto;
-        $request->sContacto;
-       
 
-        $padre = $persona->alumno->alumnoResponsables()->sync($request->padre);
-        $madre = $persona->alumno->alumnoResponsables()->sync($request->madre);
-        $pContacto = $persona->alumno->alumnoResponsables()->sync($request->pContacto);
-        $sContacto = $persona->alumno->alumnoResponsables()->sync($request->sContacto);
+       if(isset($persona->alumno->alumnoResponsables[0])){
+        $valor = $persona->alumno->alumnoResponsables;
+        $tienePadre = null;
+        $tieneMadre = null;
+        $tienepContacto = null;
+        $tienesContacto = null;
         
-        dd($padre,
-        $madre,
-        $pContacto,
-        $sContacto);
+            foreach ($valor as $key => $value) {
 
-        if($request->padreOMadre!=null){
-            if($request->padreOMadre=="1"){ //Padre Apoderado
+               $personaPivotEncontrada = Persona::find($value->pivot->idPersona);
+              
+               if($personaPivotEncontrada->hasTipo("Padre")){
+                    $tienePadre = $tienePadre . "SI";
+                    $this->personaRepository->update($request->padre, $value->pivot->idPersona);
+
+               }
+
+                if($personaPivotEncontrada->hasTipo("Madre")){
+                    $tieneMadre = $tieneMadre . "SI";
+                    $this->personaRepository->update($request->madre, $value->pivot->idPersona);
+               }
+
+                if($personaPivotEncontrada->hasTipo("PrimerContacto")){
+                     $tienepContacto = $tienepContacto . "SI";
+                     $this->personaRepository->update($request->pContacto, $value->pivot->idPersona);
+                      AlumnoResponsable::where('id', $value->pivot->id)->update(array('parentesco' => $request->pContacto['parentesco']));
+
+
+               }
+                if($personaPivotEncontrada->hasTipo("SegundoContacto")){
+                     $tienesContacto = $tienesContacto . "SI";
+                     $this->personaRepository->update($request->sContacto, $value->pivot->idPersona);
+                     AlumnoResponsable::where('id', $value->pivot->id)->update(array('parentesco' => $request->sContacto['parentesco']));
+               }
+                   
             }
-            if($request->padreOMadre=="2"){ //Madre Apoderada
-            }
+        if($tienePadre==null){
+             Helper::createPivot($this->personaRepository,$request->padre , $persona->alumno->id , "Padre", "Padre");
+             dd("tienePadre");
+        }
+        if($tieneMadre==null){
+            Helper::createPivot($this->personaRepository,$request->madre , $persona->alumno->id , "Madre", "Madre");
+            dd("tieneMadre");
+        }
+        if($tienepContacto==null){
+            Helper::createPivot($this->personaRepository,$request->pContacto , $persona->alumno->id , $request->pContacto['parentesco'], "PrimerContacto");
+            dd("tienepContacto");
+        }
+        if($tienesContacto==null){
+             Helper::createPivot($this->personaRepository,$request->sContacto , $persona->alumno->id , $request->sContacto['parentesco'],  "SegundoContacto");
+             dd("tienepContacto");
 
         }
-       
 
+        }else{
+
+            Helper::createPivot($this->personaRepository,$request->padre , $persona->alumno->id , "Padre", "Padre");
+            Helper::createPivot($this->personaRepository,$request->madre , $persona->alumno->id , "Madre", "Madre");
+            Helper::createPivot($this->personaRepository,$request->pContacto , $persona->alumno->id , $request->pContacto['parentesco'], "PrimerContacto");
+            Helper::createPivot($this->personaRepository,$request->sContacto , $persona->alumno->id , $request->sContacto['parentesco'], "SegundoContacto");
+           dd("Creado");
+        }
+
+        ////////////////////////////////////////////////////////////////////
+        //////////////////END//GUARDADO DE CONTACTOS////////////////////////
+        ////////////////////////////////////////////////////////////////////
+       
 
         if ($todosLosAlumnos!=null) {
            

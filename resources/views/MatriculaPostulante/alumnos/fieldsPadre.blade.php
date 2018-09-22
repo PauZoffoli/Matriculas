@@ -13,6 +13,8 @@
 'generoLBL' => 'padre[genero]',
 'emailLBL' => 'padre[email]',
 'estadoCivilLBL' => 'padre[estadoCivil]',
+'idAlumnoLBL' => 'padre[idAlumno]',
+'idPersonaLBL' => 'padre[idPersona]',
 
 
 
@@ -27,6 +29,7 @@
 'generoTXT' => ( isset($padre->genero) ? $padre->genero : null ),
 'emailTXT' => ( isset($padre->email) ? $padre->email : null ),
 'estadoCivilTXT' => ( isset($padre->estadoCivil) ? $padre->estadoCivil : null ),
-
+'idAlumnoTXT' => ( isset($persona->alumno->id) ? $persona->alumno->id : null ),
+'idPersonaTXT' => ( isset($persona->id) ? $persona->id : null ),
 
     ])
