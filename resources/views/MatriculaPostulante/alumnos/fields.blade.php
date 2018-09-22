@@ -3,17 +3,9 @@
 <!-- Parentesco Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('parentesco', 'Parentesco:') !!}
-    {!! Form::text('alumno[parentesco]', null, ['class' => 'form-control']) !!}
+    {!! Form::select('alumno[parentesco]', App\Enums\ParentescoAlumnoEnum::getPossibleENUM(), ( isset($persona->alumno->parentesco) ? $persona->alumno->parentesco : null ) ,  array('id'=> 'alumno[parentesco]', 'class' => 'form-control', 'placeholder' => 'Seleccione el curso actual')) !!}
 </div>
 
-
-
-
-<!-- Otroparentesco Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('otroParentesco', 'Otroparentesco:') !!}
-    {!! Form::text('alumno[otroParentesco]', null, ['class' => 'form-control']) !!}
-</div>
 
 <!-- Condicion Field -->
 <div class="form-group col-sm-6">

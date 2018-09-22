@@ -240,12 +240,65 @@
 
 </script>
 
+<script>
+
+
+    function apoderadoPadreOMadre(){
+
+        var parentesco = document.getElementById("alumno[parentesco]");
+        var esPadre = document.getElementById("esPadre");
+        var esMadre = document.getElementById("esMadre");
+
+
+
+       if(apoderadoPadreOMadre.value!="Padre" && apoderadoPadreOMadre.value!="Madre" ){
+
+            esMadre.style.display = "block";
+            $('#esMadre').find('input, textarea, button, select').removeAttr('disabled');
+            $('#esMadre').find('input, textarea, button, select').attr('required',true);
+
+            esPadre.style.display = "block";
+            $('#esPadre').find('input, textarea, button, select').removeAttr('disabled');
+            $('#esPadre').find('input, textarea, button, select').attr('required',true);
+
+        }
+        if( parentesco.value=="Padre"){
+            esPadre.style.display = "none";
+            $('#esPadre').find('input, textarea, button, select').attr('disabled','disabled');
+            $('#esPadre').find('input, textarea, button, select').attr('required',false);
+
+            esMadre.style.display = "block";
+            $('#esMadre').find('input, textarea, button, select').removeAttr('disabled');
+            $('#esMadre').find('input, textarea, button, select').attr('required',true);
+
+        }
+
+        if( parentesco.value=="Madre"){
+            esMadre.style.display = "none";
+            $('#esMadre').find('input, textarea, button, select').attr('disabled','disabled');
+            $('#esMadre').find('input, textarea, button, select').attr('required',false);
+
+            esPadre.style.display = "block";
+            $('#esPadre').find('input, textarea, button, select').removeAttr('disabled');
+            $('#esPadre').find('input, textarea, button, select').attr('required',true);
+        }
+       
+
+    }
+</script>
+
+<script >
+var select = document.getElementById('alumno[parentesco]');
+select.onchange = apoderadoPadreOMadre;
+
+</script>
 
 
 <script >
 function start() {
   primerContacto();
   segundoContacto();
+   apoderadoPadreOMadre();
 }
 window.onload = start;
 var padreOMadrePC = document.getElementById('padreOMadrePC');

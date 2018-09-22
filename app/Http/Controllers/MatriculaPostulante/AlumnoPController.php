@@ -154,14 +154,18 @@ echo $f->format(1432);
     
 
         $persona = $this->checkIfExist($id); //Chequeamos si es que las entidades que necesitamos existen
-dd("Hola");
 
-        $validate = $this->validaciones($request); // Primero hay que hacer las validaciones de las clases que no se validan en el request de los parámetros de la función
+
+/////////////////////////////////////////////////////esto tiene que descomentarse después
+     /*   $validate = $this->validaciones($request); // Primero hay que hacer las validaciones de las clases que no se validan en el request de los parámetros de la función
         if ($validate!=null) {
           throw ValidationException::withMessages([
               $validate,
           ]);
-        }
+        } */
+/////////////////////////////////////////////////////esto tiene que descomentarse después
+
+        dd($request->padre , $request->madre ,$request->pContacto ,$request->sContacto );
     
         if($persona->alumno->fichaAlumno==null){ //Si el alumno no tiene una ficha asociada, se le crea en el momento
              $fichaAlumno = $this->fichaAlumnoRepository->create($request->fichaAlumno[0]);

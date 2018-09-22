@@ -10,7 +10,7 @@ abstract class ParentescoAlumnoEnum extends Enum {
  static function getPossibleENUM(){
 
         //Se rellena la cadena con los datos por parámetro
-        $cadena = 'SHOW COLUMNS FROM ' . 'alumno' . ' WHERE Field = "' . 'parentesco' . '"';
+        $cadena = 'SHOW COLUMNS FROM ' . 'alumnos' . ' WHERE Field = "' . 'parentesco' . '"';
 
         $type = DB::select(DB::raw($cadena))[0]->Type;
         preg_match('/^enum\((.*)\)$/', $type, $matches);

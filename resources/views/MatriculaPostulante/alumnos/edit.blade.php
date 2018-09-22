@@ -51,8 +51,7 @@
                 @include('MatriculaPostulante.alumnos.fields_ficha_alumno')
                    <div class="form-group col-sm-12">
                  
-                {!! Form::label('padreOMadre', '¿Qué relación tiene el apoderado con el alumno?') !!}
-                 {!! Form::select('padreOMadre', [ 'No es el padre ni la madre','Padre', 'Madre'],  null ,  array('id' => 'padreOMadre', 'class' => 'form-control','onChange' => 'apoderadoPadreOMadre();')) !!}
+
               
 </div>
 
@@ -154,56 +153,5 @@
 
 
 
-<script>
-
-    function apoderadoPadreOMadre(){
-
-        var apoderadoPadreOMadre = document.getElementById("padreOMadre");
-        var esPadre = document.getElementById("esPadre");
-        var esMadre = document.getElementById("esMadre");
-
-
-       if( apoderadoPadreOMadre.value=="0"){
-
-            esMadre.style.display = "block";
-            $('#esMadre').find('input, textarea, button, select').removeAttr('disabled');
-            $('#esMadre').find('input, textarea, button, select').attr('required',true);
-
-            esPadre.style.display = "block";
-            $('#esPadre').find('input, textarea, button, select').removeAttr('disabled');
-            $('#esPadre').find('input, textarea, button, select').attr('required',true);
-
-        }
-        if( apoderadoPadreOMadre.value=="1"){
-            esPadre.style.display = "none";
-            $('#esPadre').find('input, textarea, button, select').attr('disabled','disabled');
-            $('#esPadre').find('input, textarea, button, select').attr('required',false);
-
-            esMadre.style.display = "block";
-            $('#esMadre').find('input, textarea, button, select').removeAttr('disabled');
-            $('#esMadre').find('input, textarea, button, select').attr('required',true);
-
-        }
-
-        if( apoderadoPadreOMadre.value=="2"){
-            esMadre.style.display = "none";
-            $('#esMadre').find('input, textarea, button, select').attr('disabled','disabled');
-            $('#esMadre').find('input, textarea, button, select').attr('required',false);
-
-            esPadre.style.display = "block";
-            $('#esPadre').find('input, textarea, button, select').removeAttr('disabled');
-            $('#esPadre').find('input, textarea, button, select').attr('required',true);
-        }
-       
-
-    }
-</script>
-
-<script >
-var select = document.getElementById('padreOMadre');
-select.onchange = apoderadoPadreOMadre;
-
-window.onload = apoderadoPadreOMadre;
-</script>
 
 @endsection
