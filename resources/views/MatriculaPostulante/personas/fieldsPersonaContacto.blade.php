@@ -118,7 +118,7 @@ $idUserTXT = $asd;*/
 </div>
 @endif
 
-@if(isset($parentescoLBL))
+@if(isset($parentescoLBL)) <!--SI EL APODERADO ES PADRE, PUESTO ASÍ LO ESCOGIO EN EL PARENTESCO-->
 @if($parentescoLBL == "padre[parentesco]" )
     <!-- Parentesco Field -->
 <div class="form-group col-sm-6" style="display: none;">

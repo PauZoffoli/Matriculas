@@ -168,6 +168,31 @@ echo $f->format(1432);
         } */
 /////////////////////////////////////////////////////esto tiene que descomentarse después
 
+        if($request->alumno['parentesco']=="Madre" || $request->alumno['parentesco']=="Padre"){ //Si el parentesco el madre o Padre llenamos los datos de su array para que que todas las variables de contacto luscan igual
+           
+            $getApoderadoPersona = Apoderado::where('id' , $persona->alumno->idApoderado)->first()->persona->getAttributes();
+           
+            if($request->alumno['parentesco']=="Madre"){
+                $request->madre = $getApoderadoPersona;
+                $request->madre['parentesco'] = "Madre";
+            }
+            if($request->alumno['parentesco']=="Padre"){
+                $request->padre = $getApoderadoPersona;
+                $request->madre['parentesco'] = "Padre";
+            }
+            //dd($request->padre , $request->madre);
+        }
+
+        if($request->cantidadDeContactos == "1" || $request->cantidadDeContactos == "2"){
+
+                //si está vacío significa que marcaron padre
+            if(!isset($request->pContacto)){
+                dd($request->pContacto);
+            }
+        }
+
+
+
         dd($request->padre, $request->madre, $request->pContacto, $request->sContacto);
 
 
