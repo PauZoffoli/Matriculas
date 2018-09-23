@@ -211,7 +211,7 @@
      var padreOMadrePC = document.getElementById("padreOMadrePC");
       var padreOMadreSC = document.getElementById("padreOMadreSC");
       function primerContacto(){
-        if(padreOMadrePC.value==null || padreOMadrePC.value=='' || padreOMadrePC.value=='1' || padreOMadrePC.value=='2'){    
+        if(padreOMadrePC.value==null || padreOMadrePC.value=='' || padreOMadrePC.value=='1'){    
             document.getElementById("datosPrimerContacto").style.display = "none";
             $('#datosPrimerContacto').find('input, textarea, button, select').attr('disabled','disabled');
             $('#datosPrimerContacto').find('input, textarea, button, select').attr('required',false);
@@ -225,7 +225,7 @@
       }
 
       function segundoContacto(){
-          if(padreOMadreSC.value==null || padreOMadreSC.value=='' || padreOMadreSC.value=='1' || padreOMadreSC.value=='2'){    
+          if(padreOMadreSC.value==null || padreOMadreSC.value=='' || padreOMadreSC.value=='1'){    
             document.getElementById("datosSegundoContacto").style.display = "none";
             $('#datosSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
             $('#datosSegundoContacto').find('input, textarea, button, select').attr('required',false);
@@ -256,10 +256,12 @@
             esMadre.style.display = "block";
             $('#esMadre').find('input, textarea, button, select').removeAttr('disabled');
             $('#esMadre').find('input, textarea, button, select').attr('required',true);
+    
 
             esPadre.style.display = "block";
             $('#esPadre').find('input, textarea, button, select').removeAttr('disabled');
             $('#esPadre').find('input, textarea, button, select').attr('required',true);
+
 
         }
         if( parentesco.value=="Padre"){
@@ -288,6 +290,49 @@
 </script>
 
 <script >
+
+
+     var cantidadDeContactos = document.getElementById("cantidadDeContactos");
+
+      function cantContactos(){
+        if(cantidadDeContactos.value==null || cantidadDeContactos.value=='' || cantidadDeContactos.value=='0'){    
+            document.getElementById("headerPrimerContacto").style.display = "none";
+            $('#headerPrimerContacto').find('input, textarea, button, select').attr('disabled','disabled');
+            $('#headerPrimerContacto').find('input, textarea, button, select').attr('required',false);
+
+            document.getElementById("headerSegundoContacto").style.display = "none";
+            $('#headerSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
+            $('#headerSegundoContacto').find('input, textarea, button, select').attr('required',false);
+        }
+
+        if(cantidadDeContactos.value=='1'){
+            document.getElementById("headerPrimerContacto").style.display = "block";
+            $('#headerPrimerContacto').find('input, textarea, button, select').removeAttr('disabled');
+            $('#headerPrimerContacto').find('input, textarea, button, select').attr('required',true);
+
+            document.getElementById("headerSegundoContacto").style.display = "none";
+            $('#headerSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
+            $('#headerSegundoContacto').find('input, textarea, button, select').attr('required',false);
+        }
+
+        if(cantidadDeContactos.value=='2'){
+            document.getElementById("headerPrimerContacto").style.display = "block";
+            $('#headerPrimerContacto').find('input, textarea, button, select').removeAttr('disabled');
+            $('#headerPrimerContacto').find('input, textarea, button, select').attr('required',true);
+
+            document.getElementById("headerSegundoContacto").style.display = "block";
+            $('#headerSegundoContacto').find('input, textarea, button, select').removeAttr('disabled');
+            $('#headerSegundoContacto').find('input, textarea, button, select').attr('required',true);
+
+
+        }
+
+
+      }
+
+</script>
+
+<script >
 var select = document.getElementById('alumno[parentesco]');
 select.onchange = apoderadoPadreOMadre;
 
@@ -299,12 +344,15 @@ function start() {
   primerContacto();
   segundoContacto();
    apoderadoPadreOMadre();
+   cantContactos();
 }
 window.onload = start;
 var padreOMadrePC = document.getElementById('padreOMadrePC');
 var padreOMadreSC = document.getElementById('padreOMadreSC');
 padreOMadrePC.onchange = primerContacto;
 padreOMadreSC.onchange = segundoContacto;
+document.getElementById('cantidadDeContactos').onchange = cantContactos;
+
 window.onload = start;
 
 </script>

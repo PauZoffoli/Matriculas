@@ -210,4 +210,77 @@ class Helper extends Controller
    }
 
 
+   //Método que antes de relacionar un pivote de TipoPersona, verifica si ya existe uno igual
+   public static function pivotAddTipo($tipo, $claseTipoPersona, $apoderadoAlumnos){
+
+     $idTipo = Tipo::where('nombre', $tipo)->first()->id;
+     $claseTipoPersona->idTipo = $idTipo; 
+
+     $existeTipo = TipoPersona::where('idTipo', '=', $idTipo)->where('idPersona', '=', $apoderadoAlumnos->id)->first();
+    //dd(array("idTipo" => $claseTipoPersona->idTipo, "idPersona" => $claseTipoPersona->idPersona));
+     if($existeTipo==null){
+        $val = $apoderadoAlumnos->tipos()->attach($idTipo, array("idTipo" => $claseTipoPersona->idTipo, "idPersona" => $claseTipoPersona->idPersona));
+     }
+
+      $tipoPersonaAgregada = TipoPersona::where('idTipo', '=', $idTipo)->where('idPersona', '=', $apoderadoAlumnos->id)->first(); //Hacemos esto para traernos el tipo que acabamos de agregar
+      return $tipoPersonaAgregada; //Devolvemos una variable de tipo TipoPersona
+
+  }
+
+
+
+      //Ahora debemos crear un AlumnoResponsable con parentesco "Padre"
+   public static function pivotAddAlumnoResponsableApoderado($alumno, $parentesco, $apoderadoAlumnos){
+
+
+     $existeTipo = AlumnoResponsable::where('idAlumno', '=', $alumno['id'])->where('idPersona', '=', $apoderadoAlumnos->id)->first();
+   
+     if($existeTipo==null){ //se crea
+     
+        $alumnoResponsable = new AlumnoResponsable();
+        $alumnoResponsable->idAlumno = $alumno['id'];
+        $alumnoResponsable->idPersona = $apoderadoAlumnos->id;
+        $alumnoResponsable->parentesco = $parentesco;
+        $alumnoResponsable->save();
+         //dd("CREATE");
+     }else { //Se updatea
+     
+         $existeTipo->parentesco = $parentesco;
+         $existeTipo->save();
+          //dd("UPDATEO");
+     }
+
+    $alumnoResponsableAgregado = AlumnoResponsable::where('idAlumno', '=', $alumno['id'])->where('idPersona', '=', $apoderadoAlumnos->id)->first();; //Hacemos esto para traernos lo q que acabamos de agregar
+
+      return $alumnoResponsableAgregado; //Devolvemos una variable de tipo TipoPersona
+
+  }
+
+
+      //Ahora debemos crear un AlumnoResponsable con parentesco "Padre"
+   public static function AddPadreOMadre($alumno, $parentesco, $apoderadoAlumnos){
+
+
+     $existePersonaRut = Persona::where('rut', '=', $alumno['rut'])->first();
+   
+     if($existePersonaRut==null){ //se crea
+     
+        $alumnoResponsable = new Persona();
+        $alumnoResponsable->idAlumno = $alumno['id'];
+        $alumnoResponsable->idPersona = $apoderadoAlumnos->id;
+        $alumnoResponsable->parentesco = $parentesco;
+        $alumnoResponsable->save();
+         //dd("CREATE");
+     }else { //Se updatea
+     
+         $existeTipo->parentesco = $parentesco;
+         $existeTipo->save();
+          //dd("UPDATEO");
+     }
+
+    $alumnoResponsableAgregado = AlumnoResponsable::where('idAlumno', '=', $alumno['id'])->where('idPersona', '=', $apoderadoAlumnos->id)->first();; //Hacemos esto para traernos lo q que acabamos de agregar
+
+      return $alumnoResponsableAgregado; //Devolvemos una variable de tipo TipoPersona
+
+  }
 }

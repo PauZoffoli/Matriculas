@@ -6,7 +6,13 @@
     {!! Form::text('PNombre', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Snombre Field -->
+<!-- idPersona Field -->
+<div class="form-group col-sm-4" style="display: none">
+    {!! Form::label('idPersona', 'idPersona:') !!}
+    {!! Form::text('id', null, ['class' => 'form-control']) !!}
+</div>
+
+
 <div class="form-group col-sm-4">
     {!! Form::label('SNombre', 'Snombre:') !!}
     {!! Form::text('SNombre', null, ['class' => 'form-control']) !!}

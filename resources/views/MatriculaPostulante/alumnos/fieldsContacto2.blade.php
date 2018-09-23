@@ -13,7 +13,7 @@
 'emailLBL' => 'sContacto[email]',
 'idUserLBL' => 'sContacto[idUser]',
 'parentescoLBL' => 'sContacto[parentesco]',
-
+'rutLBL' => 'pContacto[rut]',
 'idAlumnoLBL' => 'sContacto[idAlumno]',
 
 
@@ -31,5 +31,6 @@
 
 'idAlumnoTXT' => ( isset($persona->alumno->id) ? $persona->alumno->id : null ),
 
+'rutTXT' => ( isset($sContacto->rut) ? $sContacto->rut : null ),
 
     ])

@@ -6,6 +6,13 @@
     {!! Form::select('alumno[parentesco]', App\Enums\ParentescoAlumnoEnum::getPossibleENUM(), ( isset($persona->alumno->parentesco) ? $persona->alumno->parentesco : null ) ,  array('id'=> 'alumno[parentesco]', 'class' => 'form-control', 'placeholder' => 'Seleccione el curso actual')) !!}
 </div>
 
+<!-- Condicion Field -->
+<div class="form-group col-sm-6" style="display: none">
+    {!! Form::label('condicion', 'IdAlumno:') !!}
+    {!! Form::text('alumno[id]', null, ['class' => 'form-control']) !!}
+</div>
+
+
 
 <!-- Condicion Field -->
 <div class="form-group col-sm-6">

@@ -119,10 +119,26 @@ $idUserTXT = $asd;*/
 @endif
 
 @if(isset($parentescoLBL))
+@if($parentescoLBL == "padre[parentesco]" )
+    <!-- Parentesco Field -->
+<div class="form-group col-sm-6" style="display: none;">
+    {!! Form::label('parentesco', 'Padre:') !!}
+    {!! Form::select($parentescoLBL,  ["Padre" => "Padre"], "Padre",  array('id' => $parentescoLBL, 'class' => 'form-control')) !!}
+</div>
+@endif
+
+@if($parentescoLBL == "madre[parentesco]")
+    <!-- Parentesco Field -->
+<div class="form-group col-sm-6" style="display: none;">
+    {!! Form::label('parentesco', 'Madre:') !!}
+    {!! Form::select($parentescoLBL, ["Madre"=> "Madre"], "Madre",  array('id' => $parentescoLBL, 'class' => 'form-control')) !!}
+</div>
+@endif
+@if($parentescoLBL != "madre[parentesco]" && $parentescoLBL != "padre[parentesco]")
     <!-- Parentesco Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('parentesco', 'Parentesco:') !!}
     {!! Form::select($parentescoLBL, App\Enums\ParentescoAlumnoResponsableEnum::getPossibleENUM(), ( isset($parentescoTXT) ? $parentescoTXT : "Padre" ),  array('id' => $parentescoLBL, 'class' => 'form-control', 'placeholder' => "Seleccione el parentesco del alumno con el contacto")) !!}
 </div>
-
+@endif
 @endif

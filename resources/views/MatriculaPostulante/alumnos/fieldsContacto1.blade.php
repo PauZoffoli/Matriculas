@@ -13,6 +13,8 @@
 'emailLBL' => 'pContacto[email]',
 'parentescoLBL' => 'pContacto[parentesco]',
 'idAlumnoLBL' => 'pContacto[idAlumno]',
+'rutLBL' => 'pContacto[rut]',
+
 
 
 
@@ -26,8 +28,9 @@
 'generoTXT' => ( isset($pContacto->genero) ? $pContacto->genero : null ),
 'emailTXT' => ( isset($pContacto->email) ? $pContacto->email : null ),
 'parentescoTXT' => ( isset($pContacto->parentesco) ? $pContacto->parentesco : null ),
-
+'rutTXT' => ( isset($pContacto->rut) ? $pContacto->rut : null ),
 'idAlumnoTXT' => ( isset($persona->alumno->id) ? $persona->alumno->id : null ),
+
 
 
     ])

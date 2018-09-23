@@ -108,7 +108,6 @@ echo $f->format(1432);
         $pContacto = null;
         $sContacto = null;
 
-//Cambiar
 
         if (!$persona->alumnoResponsables->isEmpty()) {
  
@@ -168,8 +167,9 @@ echo $f->format(1432);
         } */
 /////////////////////////////////////////////////////esto tiene que descomentarse después
 
-        dd($request->padre, $request->madre, $request->pContacto, $request->sContacto);
 
+
+        //dd($request->alumno['parentesco'], $request->padreOMadrePC,$request->padreOMadreSC  , $request->padre , $request->madre ,$request->pContacto ,$request->sContacto );
 
         if($persona->alumno->fichaAlumno==null){ //Si el alumno no tiene una ficha asociada, se le crea en el momento
              $fichaAlumno = $this->fichaAlumnoRepository->create($request->fichaAlumno[0]);
@@ -190,7 +190,243 @@ echo $f->format(1432);
 
         $todosLosAlumnos =  Helper::deleteFirst($todosLosAlumnos); //Borramos el primer elemento del array, que fue el que acabamos de utilizar y updatear
 
-     
+        ////////////////////////////////////////////////////////////////////
+        ///////////////////////GUARDADO DE CONTACTOS////////////////////////
+        ////////////////////////////////////////////////////////////////////
+        //dd($request->padreOMadrePC, $request->padreOMadreSC );
+
+
+   /*     if($request->padreOMadrePC =="0" && $request->padreOMadreSC =="0"){ //Si los contactos no son ni el padre ni la madre
+            $this->Contactos($persona, $request);
+        }
+        
+        $apoderadoAlumnos = $request->session()->get('apoderadoAlumnos');
+
+        $tipoPersona = new TipoPersona();
+        $tipoPersona->idPersona = $apoderadoAlumnos->id;
+
+
+        //Si el apoderado es padre, madre
+        if($request->alumno['parentesco']=="Padre" || $request->alumno['parentesco']=="Madre"){
+            //Agregar el tipo a la persona Apoderado
+
+            if($request->alumno['parentesco']=="Padre"){
+                Helper::pivotAddTipo('Padre', $tipoPersona, $apoderadoAlumnos); //Llamamos al método para agregar un pivote de TipoPersona
+            }
+
+            if($request->alumno['parentesco']=="Madre"){
+                Helper::pivotAddTipo('Madre', $tipoPersona, $apoderadoAlumnos); //Llamamos al método para agregar un pivote de TipoPersona
+            }
+        }
+
+
+        //Si el padre será el primer contacto
+    if($request->padreOMadrePC == "1"){
+            //Agregar tipos a la persona Padre de ese alumno
+        //Tengo que agregar al padre la relación de tipo Primer Contacto
+        dd("HOLA");
+            
+    }
+
+
+        //si la madre será el segundo contacto
+    if($request->padreOMadreSC == "1"){
+            //Agregar tipos a la persona Madre
+
+    }
+
+        */
+
+
+    //Cómo valido?
+    //Si marcó Parentesco Padre, valido a la madre
+    //Si marcó Parentesco Madre valido al padre
+    //Si marcó 0 contactos no valido nada
+    //Si marcó que desea tener 1 contacto valido Primer Contacto
+    //Si marcó que desea tener 2 contactos valido el Segundo Contacto
+    //Si marcó que desea que la madre sea el primer contacto al momento 
+
+
+
+    //Esto refiere al apoderado
+
+
+//Si el apoderado es padre o madre relacionar a la persona por variable "Padres" siempre y cuando la relación no exista de antes
+//Además. si es padre o madre se va a tener que crear la relación de la Persona APODERADO actual a la tabla
+//Alumo Responsable y relacionarlas
+
+       $apoderadoAlumnos = $request->session()->get('apoderadoAlumnos');
+        if($request->alumno['parentesco']=="Padre" || $request->alumno['parentesco']=="Madre"){ //Si el apoderado es padre o madre
+            
+            $tipoPersona = new TipoPersona();
+            $tipoPersona->idPersona = $apoderadoAlumnos->id;
+            //Agregar el tipo a la persona Apoderado
+
+            if($request->alumno['parentesco']=="Padre"){
+                Helper::pivotAddTipo('Padres', $tipoPersona, $apoderadoAlumnos); //Llamamos al método para agregar un pivote de TipoPersona
+
+                //Ahora debemos crear un AlumnoResponsable con parentesco "Padre"
+                Helper::pivotAddAlumnoResponsableApoderado($request->alumno, "Padre", $apoderadoAlumnos);
+
+                //Ahora debemos comprobar que la madre exista, si no se crea
+                $existePersonaRut = Persona::where('rut', '=', $request->madre['rut'])->first();
+                if ($existePersonaRut ==null){
+                    $madre = $this->personaRepository->create($request->madre);
+                    Helper::pivotAddAlumnoResponsableApoderado($request->alumno, "Madre", $madre);
+
+                }else{
+                     Helper::pivotAddAlumnoResponsableApoderado($request->alumno, "Madre", $request->madre);
+
+                }
+                //dd("Padre Apoderado Creado");
+            }
+
+            if($request->alumno['parentesco']=="Madre"){
+                Helper::pivotAddTipo('Padres', $tipoPersona, $apoderadoAlumnos); //Llamamos al método para agregar un pivote de TipoPersona
+                Helper::pivotAddAlumnoResponsableApoderado($request->alumno, "Madre", $apoderadoAlumnos);
+
+                 $existePersonaRut = Persona::where('rut', '=', $request->padre['rut'])->first();
+             //    dd($existePersonaRut);
+                if ($existePersonaRut ==null){
+                    $padre = $this->personaRepository->create($request->madre); //  dd("ee");
+
+                    Helper::pivotAddAlumnoResponsableApoderado($request->alumno, "Padre", $padre);
+
+                }else{
+                     //     dd("ee");
+                     Helper::pivotAddAlumnoResponsableApoderado($request->alumno, "Padre", $request->all());
+
+                }
+
+               // dd("Madre Apoderado Creado");
+            }
+           //  dd("Padre O Madre");
+        }
+
+        //Si el parentesco del apoderado con el alumno no es ni Padre ni Madre, puede ser cualquier grado de parentesco,
+        //por lo que creo a dos padres, es decir, dos personas mientras su rut no exista en la base de datos.
+
+            //Si su rut existe, no lo edito
+            //Si su rut no existe lo guardo0.
+       // dd($request->all());
+        if($request->alumno['parentesco']!="Padre" && $request->alumno['parentesco']!="Madre"){ //Si es que el parentesco del alumno con el apoderado no ni padre ni madre, tenemos que guardar los datos de ambos.
+
+            //¿Existe su rut de antes?
+
+            $existeRutPadre = Persona::where('rut', $request->padre['rut'])->first();
+            if ($existeRutPadre==null) {//Creo la persona 
+                $this->personaRepository->create($request->padre);
+                dd("Se creó la persona con rut diferente");
+            }else{ //Updateo la la relación de la persona con el Alumno
+                //Tengo que preguntar si anteriormente tenian una relación
+                $existeAlumnoResponsable = AlumnoResponsable::where('idAlumno',$request->alumno['id'])->where('idPersona',$apoderadoAlumnos->id)->first(); //id del alumno e id de la persona
+                
+                if ($existeAlumnoResponsable==null) { //Creo la relación
+                    $AlumnoResponsable = new AlumnoResponsable();
+                    $AlumnoResponsable->idAlumno = $request->alumno['id'];
+                    $AlumnoResponsable->idPersona = $apoderadoAlumnos->id;
+                    $AlumnoResponsable->parentesco = $request->alumno['parentesco'];
+
+                    $AlumnoResponsable->save();
+                    dd("Alumno responsable nuevo creado");
+                }else{
+                   
+                    $existeAlumnoResponsable->parentesco = $request->alumno['parentesco'];
+                    $existeAlumnoResponsable->save();
+                    //dd("Alumno responsable updateo creado");
+                }
+
+            }
+
+            //¿Existe su rut de antes?
+            $existeRutMadre = Persona::where('rut', $request->madre['rut'])->first();
+            if ($existeRutMadre==null) {//Creo la persona 
+                $this->personaRepository->create($request->madre);
+                dd("Se creó la persona con rut diferente");
+            }else{ //Updateo la la relación de la persona con el Alumno
+                //Tengo que preguntar si anteriormente tenian una relación
+                $existeAlumnoResponsable = AlumnoResponsable::where('idAlumno',$request->alumno['id'])->where('idPersona',$apoderadoAlumnos->id)->first(); //id del alumno e id de la persona
+                
+                if ($existeAlumnoResponsable==null) { //Creo la relación
+                    $AlumnoResponsable = new AlumnoResponsable();
+                    $AlumnoResponsable->idAlumno = $request->alumno['id'];
+                    $AlumnoResponsable->idPersona = $apoderadoAlumnos->id;
+                    $AlumnoResponsable->parentesco = $request->alumno['parentesco'];
+
+                    $AlumnoResponsable->save();
+                    dd("Alumno responsable nuevo creado");
+                }else{
+                   
+                    $existeAlumnoResponsable->parentesco = $request->alumno['parentesco'];
+                    $existeAlumnoResponsable->save();
+                     dd("Alumno responsable updateo creado");
+                }
+
+            }
+            dd("Funcó");
+        }
+
+    //Esto refiere a los Contactos
+
+/***************Segundo Contacto***************************/
+        //Preguntar si el rut ingresado existe en la bd:
+//--------->>>>> Si existe los datos de este no se borran, se verifica que ese idPersona ya está asociada a ser un Contacto, 
+            //si no está asociada a ser un contacto, se agrega como Contacto, si está asociada no se hace nada.
+
+       
+        //Verificamos que alumno y persona en AlumnoResponsable no se relacionen de antes:
+           # //- si se relacionan de antes,
+
+                 //1.-Se updatea el "contacto" del AlumnoResponsable a SegundoContacto
+                 //2.-Se pregunta si el parentesco es padre o madre o ninguno de los dos
+                    
+                    //2.1.-Si es ninguno de los dos
+                        //1.- Se updatea el parentesco del AlumnoResponsable con el valor de la variable por default
+                    //2.2.-Si es alguno de los dos
+                            //1.1-Se updatea el parentesco del AlumnoResponsable con el valor de la variable parentesco HTML
+    
+
+           # //- si no se relacionan de antes de hace el attach.
+
+
+//--------->>>>> Si el rut no existe  
+           //1.-Se crea la persona y se le agrega tipo "Contacto"
+           //2.-Se pregunta si el parentesco es padre o madre o ninguno de los dos
+
+//2.1.-Si es ninguno de los dos
+            //1.-Se crea la relación AlumnoResponsable
+            //2.-Se saca parentesco de la variable que viene por default y se guarda
+//2.2.-Si es alguno de los dos
+                //1.1-Se crea la relación AlumnoResponsable
+                //1.2-Se obtiene el parentesco HTML se le pone al "parentesco"    AlumnoResponsable 
+                  
+                
+ //3.-El AlumnoResponsable será un "SegundoContacto"
+//4.- Se salva esta relación
+
+        
+
+
+/***************Primer Contacto***************************/////////
+        //Preguntar si el rut ingresado existe en la bd:
+            //- Si existe los datos de este no se borran, se verifica que ese idPersona ya está asociada a ser un Contacto, 
+            //- si no está asociada a ser un contacto, se agrega como Contacto, si está asociada no se hace nada.
+
+        //Verificamos que alumno y persona en Alumno responsable no se relacionen de antes:
+            //- si se relacionan de antes, updateamos el contacto a primer contacto de alumno responsable
+            //- si no se relacionan de antes de hace el attach.
+
+        //Si el rut del ingresado no existe:
+            //1.-Se crea la persona y se le agrega tipo "Contacto"
+            //2.-Se crea la relación AlumnoResponsable
+
+
+   
+        ////////////////////////////////////////////////////////////////////
+        //////////////////END//GUARDADO DE CONTACTOS////////////////////////
+        ////////////////////////////////////////////////////////////////////
+       
+
         if ($todosLosAlumnos!=null) {
            
            // \Session::flash('flash_message','Alumno editado exitósamente.');
@@ -212,21 +448,10 @@ echo $f->format(1432);
     public function validaciones($request){
 
         $validate = Helper::manualValidation($request->fichaAlumno, (new CreateFichaAlumnoRequest()), "1)Errores de la Ficha del Alumno: ", 1);
-        if(isset($request->padre)){
-             $validate = $validate . Helper::manualValidation($request->padre, (new CreatePersonaRequest()), "2)Errores de los datos del Padre: ",2);
-        }
-        if(isset($request->madre)){
+        $validate = $validate . Helper::manualValidation($request->padre, (new CreatePersonaRequest()), "2)Errores de los datos del Padre: ",2);
         $validate = $validate . Helper::manualValidation($request->madre, (new CreatePersonaRequest()), "3)Errores de los datos de la Madre: ",3);
-        }
-        if(isset($request->pContacto)){
-            
         $validate = $validate . Helper::manualValidation($request->pContacto, (new CreatePersonaRequest()), "4)Errores de los datos del Primer Contacto: ",4);
-        }
-        if(isset($request->sContacto)){
-       $validate = $validate . Helper::manualValidation($request->sContacto, (new CreatePersonaRequest()), "5)Errores de los datos del Segundo Contacto: ",5);
-        }
-
- 
+        $validate = $validate . Helper::manualValidation($request->sContacto, (new CreatePersonaRequest()), "5)Errores de los datos del Segundo Contacto: ",5);
 
         return $validate;
 

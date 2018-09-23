@@ -37,7 +37,7 @@ class AlumnoResponsable extends Model
 
     public $fillable = [
         'parentesco',
-        'otroParentesco',
+        'contacto',
         'idPersona',
         'idAlumno',
         'descripcion'
@@ -51,7 +51,7 @@ class AlumnoResponsable extends Model
     protected $casts = [
         'id' => 'integer',
         'parentesco' => 'string',
-        'otroParentesco' => 'string',
+        'contacto' => 'string',
         'idPersona' => 'integer',
         'idAlumno' => 'integer',
         'descripcion' => 'string'

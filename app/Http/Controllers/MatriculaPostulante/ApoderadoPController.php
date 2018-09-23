@@ -49,7 +49,7 @@ class ApoderadoPController extends AppBaseController
         $persona = Helper::checkthis($this->personaRepository, $id, 'Persona');
         
         $validate = Helper::checkthisValue($persona->apoderado, 'Apoderado');
-        $validate = $validate . Helper::checkthisValue($persona->alumno, 'Alumno');
+       // $validate = $validate . Helper::checkthisValue($persona->alumno, 'Alumno');
         if ($validate!=null) {
            Flash::error($validate);
         return redirect(route('home'))->send();
@@ -105,6 +105,8 @@ class ApoderadoPController extends AppBaseController
         $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los alumnos checkeados por el apoderado en una variable de sesión, esta variable se irá borrando en la medida que se ocupe
 
         $request->session()->put('idAlumnos', $todosLosAlumnos);//Guardamos los alumnos para sacar sus id y cambiar sus estados al final del proceo de matrícula
+
+        $request->session()->put('apoderadoAlumnos', $persona);//Guardamos el apoderado
 
         /////////////////////////////////////////////////////////////
 

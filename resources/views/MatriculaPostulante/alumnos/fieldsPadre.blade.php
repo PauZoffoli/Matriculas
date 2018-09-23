@@ -15,7 +15,7 @@
 'estadoCivilLBL' => 'padre[estadoCivil]',
 'idAlumnoLBL' => 'padre[idAlumno]',
 'idPersonaLBL' => 'padre[idPersona]',
-
+'parentescoLBL' => 'padre[parentesco]',
 
 
 'PNombreTXT' =>( isset($padre->PNombre) ? $padre->PNombre : null ), 
@@ -31,5 +31,6 @@
 'estadoCivilTXT' => ( isset($padre->estadoCivil) ? $padre->estadoCivil : null ),
 'idAlumnoTXT' => ( isset($persona->alumno->id) ? $persona->alumno->id : null ),
 'idPersonaTXT' => ( isset($persona->id) ? $persona->id : null ),
+'parentescoTXT' => ( isset($padre->parentesco) ? $padre->parentesco : null ),
 
     ])

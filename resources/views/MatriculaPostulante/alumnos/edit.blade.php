@@ -88,18 +88,23 @@
                  
                 @include('MatriculaPostulante.alumnos.fieldsMadre')
 
+
                </div>
            </div>
        </div>
 </div>
 
-                 
-<section class="content-header">
+ {!! Form::label('cantidadDeContactosLBL', '¿Cuántos contactos quiere para su alumno?') !!}
+{!! Form::select('cantidadDeContactos', [ 0,1, 2],  null ,  array('id' => 'cantidadDeContactos', 'class' => 'form-control','placeholder' =>"¿Cuántos contactos quiere para su alumno?", 'required' =>'true')) !!}
+<br>
+            
+<div id="headerPrimerContacto" name="headerPrimerContacto" >
+<section class="content-header" >
         <h1>
            5) Contacto Nro 1 del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
         </h1> <br>
-         {!! Form::label('padreOMadrePC', '¿El primer contacto es el padre o la madre?') !!}
-                 {!! Form::select('padreOMadrePC', [ 'No es el padre ni la madre','Padre', 'Madre'],  null ,  array('id' => 'padreOMadrePC', 'class' => 'form-control','placeholder' =>"Seleccione una opción", 'required' =>'true')) !!}
+         {!! Form::label('padreOMadrePC', '¿El primer contacto es el padre?') !!}
+                 {!! Form::select('padreOMadrePC', [ 'No es el padre ni la madre','Padre' ,'Madre'],  null ,  array('id' => 'padreOMadrePC', 'class' => 'form-control','placeholder' =>"Seleccione una opción", 'required' =>'true')) !!}
           <br>
 </section>
        <div class="box box-success" id="datosPrimerContacto" name="datosPrimerContacto" style="background-color: #E4FDE4!important;">
@@ -111,15 +116,15 @@
                </div>
            </div>
        </div>
-                 
+</div>                  
 
-
+<div id="headerSegundoContacto" name="headerSegundoContacto" >
 <section class="content-header">
         <h1>
           6)  Contacto Nro 2 del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
         </h1> 
-         {!! Form::label('padreOMadreSC', '¿El segundo contacto es el padre o la madre?') !!}
-                 {!! Form::select('padreOMadreSC', [ 'No es el padre ni la madre','Padre', 'Madre'],  null ,  array('id' => 'padreOMadreSC', 'class' => 'form-control', 'placeholder' =>"Seleccione una opción", 'required' =>'true')) !!}
+         {!! Form::label('padreOMadreSC', '¿El segundo contacto es la madre?') !!}
+                 {!! Form::select('padreOMadreSC', [ 'No es el padre ni la madre', 'Padre' ,'Madre'],  null ,  array('id' => 'padreOMadreSC', 'class' => 'form-control', 'placeholder' =>"Seleccione una opción", 'required' =>'true')) !!}
                  <br>
 </section>
 
@@ -132,7 +137,7 @@
                </div>
            </div>
        </div>
-
+</div>  
 
 
                       
