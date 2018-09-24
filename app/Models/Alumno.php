@@ -131,6 +131,10 @@ class Alumno extends Model
             ->withPivot('id','parentesco', 'contacto');
     }
 
+    public function alumnoResponsableParent()
+    {
+            return $this->belongsToMany(\App\Models\Persona::class, 'alumno_responsable',  'idAlumno','idPersona')->withPivot('id','parentesco');
+    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/

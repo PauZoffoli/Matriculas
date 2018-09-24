@@ -9,7 +9,7 @@ use App\Models\AlumnoResponsable;
 use App\Models\TipoPersona;
 use App\Models\Tipo;
 use App\Models\Persona;
-
+use App\Models\Alumno;
 use Flash;
 
 
@@ -258,7 +258,7 @@ class Helper extends Controller
 
   }
 
-     //Ahora debemos crear un AlumnoResponsable con parentesco "Padre"
+    //creo o traigo a la persona si existe por rut
    public static function existePersona($persona, $repository){
         $existePersonaRut = Persona::where('rut', '=', $persona['rut'])->first();
 
@@ -283,7 +283,14 @@ class Helper extends Controller
 
     public static function existeTipoPersona($nombreTipo, $persona){
 
-     $idTipo = Tipo::where('nombre', $nombreTipo)->first()->id; //Obtenemos el idTipo según el tipo de relación que queramos, por ejemplo Padre
+     $idTipo = Tipo::where('nombre', $nombreTipo)->first(); //Obtenemos el idTipo según el tipo de relación que queramos, por ejemplo Padre
+
+     //Comprobamos que se nos haya devuelto un valor
+     if(isset($idTipo)){
+      $idTipo= $idTipo->id;
+     }else{
+      $idTipo = null;
+     }
 
      $existeTipoPersona = TipoPersona::where('idTipo', '=', $idTipo)->where('idPersona', '=', $persona->id)->first();
 
@@ -297,6 +304,7 @@ class Helper extends Controller
      }
 
       return $bringTipoPersona; //Devolvemos una variable de tipo TipoPersona
+      //Si queda null es por que no se logró devolver nada
 
   }
 
@@ -310,7 +318,6 @@ class Helper extends Controller
       $bringAlumnoResponsable = null; //variable que vamos a retornar
 
       //Si el alumno ya tiene ese tipo de parentesco relacionado, hay que solo editar el id de la persona con quien relacionamos
-
      
       //Si el alumno ya tiene la relación
        $existeAlumnoResponsable = AlumnoResponsable::where('idAlumno', '=', $alumno['id'])->where('idPersona', '=', $responsable['id'])->first();
@@ -324,6 +331,39 @@ class Helper extends Controller
     
   
       return $bringAlumnoResponsable; //Devolvemos una variable de tipo TipoPersona
+
+  }
+
+
+//CUIDADO CON ESTA FUNCIÓN, CUALQUIERA QUE NO SEA PADRE O MADRE DE ESE ALUMNO LO VA A BORRAR
+  //TAMBIÉN CAMBIA LOS ID DEL ALUMNORELACION
+public static function existeRelacionPorParentesco($idAlumno, $padreExistente, $madreExistente, $parentesco){
+
+       $alumno = new Alumno;
+       $alumno->id = $idAlumno;
+       $persona = new Persona;
+       $persona->id = $padreExistente->id;
+     $alResp = new AlumnoResponsable;
+    $alResp->parentesco = $parentesco; 
+
+//$alumno->alumnoResponsables()->wherePivot('parentesco' ,'=', $parentesco)->sync([$idAlumno => ['parentesco' =>$alResp->parentesco ]]);
+
+
+$alumno->alumnoResponsableParent()->syncWithoutDetaching(
+
+array( 
+    $padreExistente->id  => array( 'parentesco' => "Padre" ),
+    $madreExistente->id  => array( 'parentesco' => "Madre" )
+    
+));
+$alumno->alumnoResponsableParent()->sync(array( $padreExistente->id ,
+    $madreExistente->id )
+    
+);
+
+  
+
+
 
   }
 
@@ -372,4 +412,31 @@ class Helper extends Controller
       return $alumnoResponsableAgregado; //Devolvemos una variable de tipo TipoPersona
 
   }
+
+      public static function contacto1Ficha($request, $ficha){
+        
+        $ficha['PNombrePContacto'] =  $request['PNombre'];
+        $ficha['SNombrePContacto'] =  $request['SNombre'];
+        $ficha['TNombrePContacto'] =  $request['PNombre'];
+        $ficha['ApPatPContacto'] =  $request['ApPat'];
+        $ficha['ApMatPContacto'] =  $request['ApMat'];
+        $ficha['fonoFijoPContacto'] =  $request['fonoFijo'];
+        $ficha['fonoCeluPContacto'] =  $request['fonoCelu'];
+        $ficha['emailPContacto'] =  $request['email'];
+        $ficha['parentescoPContacto'] =  $request['parentesco'];
+        return $ficha;
+      }
+
+        public static function contacto2Ficha($request, $ficha){
+        $ficha['PNombreSContacto'] =  $request['PNombre'];
+        $ficha['SNombreSContacto'] =  $request['SNombre'];
+        $ficha['TNombreSContacto'] =  $request['PNombre'];
+        $ficha['ApPatSContacto'] =  $request['ApPat'];
+        $ficha['ApMatSContacto'] =  $request['ApMat'];
+        $ficha['fonoFijoSContacto'] =  $request['fonoFijo'];
+        $ficha['fonoCeluSContacto'] =  $request['fonoCelu'];
+        $ficha['emailSContacto'] =  $request['email'];
+        $ficha['parentescoSContacto'] =  $request['parentesco'];
+                return $ficha;
+      }
 }

@@ -48,18 +48,6 @@
     {!! Form::number('fonoCelu', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Iduser Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('idUser', 'Iduser:') !!}
-    {!! Form::number('idUser', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Rut Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('rut', 'Rut:') !!}
-    {!! Form::text('rut', null, ['class' => 'form-control']) !!}
-</div>
-
 <!-- Genero Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('genero', 'Genero:') !!}

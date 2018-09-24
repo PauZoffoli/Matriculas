@@ -83,10 +83,10 @@ class CreateFichaAlumnoTable extends Migration
             $table->foreign('idAlumno')->references('id')->on('alumnos')->onDelete('cascade');  
 
             $table->integer('cantidadContactos')->default(0)->nullable();
-            $table->string('PNombrePContacto');
+            $table->string('PNombrePContacto')->nullable($value = true);
             $table->string('SNombrePContacto')->nullable($value = true);
             $table->string('TNombrePContacto')->nullable($value = true);
-            $table->string('ApPatPContacto');
+            $table->string('ApPatPContacto')->nullable($value = true);
             $table->string('ApMatPContacto')->nullable($value = true);
             $table->integer('fonoFijoPContacto')->nullable($value = true);
             $table->integer('fonoCeluPContacto')->nullable($value = true);
@@ -104,12 +104,12 @@ class CreateFichaAlumnoTable extends Migration
                 'Abuelo/Abuela',
                 'Bisabuelo/Bisabuela',
                 'Tatarabuelo/Tatarabuela',
-                'Otro'])->default('Padre');
+                'Otro'])->default('Padre')->nullable($value = true);
 
-            $table->string('PNombreSContacto');
+            $table->string('PNombreSContacto')->nullable($value = true);
             $table->string('SNombreSContacto')->nullable($value = true);
             $table->string('TNombreSContacto')->nullable($value = true);
-            $table->string('ApPatSContacto');
+            $table->string('ApPatSContacto')->nullable($value = true);
             $table->string('ApMatSContacto')->nullable($value = true);
             $table->integer('fonoFijoSContacto')->nullable($value = true);
             $table->integer('fonoCeluSContacto')->nullable($value = true);
@@ -127,7 +127,7 @@ class CreateFichaAlumnoTable extends Migration
                 'Abuelo/Abuela',
                 'Bisabuelo/Bisabuela',
                 'Tatarabuelo/Tatarabuela',
-                'Otro'])->default('Padre');
+                'Otro'])->default('Padre')->nullable($value = true);
 
         });
     }
