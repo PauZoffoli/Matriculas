@@ -19,7 +19,7 @@
 <!-- Causas Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('causas', 'Causas:') !!}
-    {!! Form::number('fichaAlumno[0][causas]', null, ['class' => 'form-control']) !!}
+    {!! Form::text('fichaAlumno[0][causas]', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Nroconvivientes Field -->
@@ -71,8 +71,9 @@
 <div class="form-group col-sm-6">
     {!! Form::label('seguroComple', 'Segurocomple:') !!}
     <label class="checkbox-inline">
-        {!! Form::hidden('seguroComple', false) !!}
-        {!! Form::checkbox('fichaAlumno[0][seguroComple]', '1', null) !!} 1
+
+        {!! Form::hidden('fichaAlumno[0][seguroComple]', '0') !!}
+        {!! Form::checkbox('fichaAlumno[0][seguroComple]', true) !!}
     </label>
 </div>
 
@@ -92,14 +93,17 @@
 <div class="form-group col-sm-6">
     {!! Form::label('esAlergico', 'Esalergico:') !!}
     <label class="checkbox-inline">
-        {!! Form::hidden('esAlergico', false) !!}
-        {!! Form::checkbox('fichaAlumno[0][esAlergico]', '1', null) !!} 1
+
+{!! Form::hidden('fichaAlumno[0][esAlergico]', '0') !!}
+{!! Form::checkbox('fichaAlumno[0][esAlergico]', true) !!}
     </label>
 </div>
 
 <!-- Alergicoa Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('AlergicoA', 'Alergicoa:') !!}
+
+{!! Form::hidden('fichaAlumno[0][AlergicoA]', '0') !!}
     {!! Form::text('fichaAlumno[0][AlergicoA]', null, ['class' => 'form-control']) !!}
 </div>
 
@@ -115,8 +119,9 @@
 <div class="form-group col-sm-2">
     {!! Form::label('viveConPadre', 'viveConPadre:') !!}
     <label class="checkbox-inline">
-        {!! Form::hidden('viveConPadre', false) !!}
-        {!! Form::checkbox('fichaAlumno[0][viveConPadre]', '0', null) !!} 
+
+{!! Form::hidden('fichaAlumno[0][viveConPadre]', '0') !!}
+{!! Form::checkbox('fichaAlumno[0][viveConPadre]', true) !!}
     </label>
 </div>
 
@@ -124,8 +129,9 @@
 <div class="form-group col-sm-2">
     {!! Form::label('viveConMadre', 'viveConMadre:') !!}
     <label class="checkbox-inline">
-        {!! Form::hidden('viveConMadre', false) !!}
-        {!! Form::checkbox('fichaAlumno[0][viveConMadre]', '0', null) !!} 
+
+{!! Form::hidden('fichaAlumno[0][viveConMadre]', '0') !!}
+{!! Form::checkbox('fichaAlumno[0][viveConMadre]', true) !!}
     </label>
 </div>
 
@@ -133,8 +139,9 @@
 <div class="form-group col-sm-2">
     {!! Form::label('viveConAbuelos', 'viveConAbuelos:') !!}
     <label class="checkbox-inline">
-        {!! Form::hidden('viveConAbuelos', false) !!}
-        {!! Form::checkbox('fichaAlumno[0][viveConAbuelos]', '0', null) !!} 
+
+{!! Form::hidden('fichaAlumno[0][viveConAbuelos]', '0') !!}
+{!! Form::checkbox('fichaAlumno[0][viveConAbuelos]', true) !!}
     </label>
 </div>
 
@@ -143,8 +150,10 @@
 <div class="form-group col-sm-2">
     {!! Form::label('viveConTios', 'viveConTios:') !!}
     <label class="checkbox-inline">
-        {!! Form::hidden('viveConTios', false) !!}
-        {!! Form::checkbox('fichaAlumno[0][viveConTios]', '0', null) !!} 
+
+{!! Form::hidden('fichaAlumno[0][viveConTios]', '0') !!}
+{!! Form::checkbox('fichaAlumno[0][viveConTios]', true) !!}
+
     </label>
 </div>
 
@@ -153,8 +162,11 @@
 <div class="form-group col-sm-2">
     {!! Form::label('viveConTutor', 'viveConTutor:') !!}
     <label class="checkbox-inline">
-        {!! Form::hidden('viveConTutor', false) !!}
-        {!! Form::checkbox('fichaAlumno[0][viveConTutor]', '0', null) !!} 
+     
+{!! Form::hidden('fichaAlumno[0][viveConTutor]', '0') !!}
+{!! Form::checkbox('fichaAlumno[0][viveConTutor]', true) !!}
+
+
     </label>
 </div>
 

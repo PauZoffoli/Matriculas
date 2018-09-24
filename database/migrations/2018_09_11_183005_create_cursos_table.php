@@ -15,13 +15,13 @@ class CreateCursosTable extends Migration
     {
         Schema::create('cursos', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
-
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent();
             $table->string('nivel', 60);
             $table->enum('basicaMedia', [
                 'Pre-Básico',
                 'Básico',
-                'Medio'])->default('Básico');
+                'Media'])->default('Básico');
             $table->integer('arancelAnual');
 
         });

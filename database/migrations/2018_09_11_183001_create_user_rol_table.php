@@ -15,7 +15,8 @@ class CreateUserRolTable extends Migration
     {
         Schema::create('user_rol', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent();        
 
             $table->integer('idUser')->unsigned();
             $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');    

@@ -15,8 +15,8 @@ class CreateAlumnosTable extends Migration
     {
         Schema::create('alumnos', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
-            
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent();            
             $table->enum('parentesco', [ //Referente al parentesco con el apoderado
                 'Padre', 
                 'Madre',

@@ -95,7 +95,7 @@
 </div>
 
  {!! Form::label('cantidadDeContactosLBL', '¿Cuántos contactos quiere para su alumno?') !!}
-{!! Form::select('cantidadDeContactos', [ 0,1, 2],  null ,  array('id' => 'cantidadDeContactos', 'class' => 'form-control','placeholder' =>"¿Cuántos contactos quiere para su alumno?", 'required' =>'true')) !!}
+{!! Form::select('fichaAlumno[0][cantidadContactos]', [ 0,1, 2],  null ,  array('id' => 'cantidadDeContactos', 'class' => 'form-control','placeholder' =>"¿Cuántos contactos quiere para su alumno?", 'required' =>'true')) !!}
 <br>
             
 <div id="headerPrimerContacto" name="headerPrimerContacto" >
@@ -124,7 +124,7 @@
           6)  Contacto Nro 2 del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
         </h1> 
          {!! Form::label('padreOMadreSC', '¿El segundo contacto es la madre?') !!}
-                 {!! Form::select('padreOMadreSC', [ 'No es el padre ni la madre', 'Padre' ,'Madre'],  null ,  array('id' => 'padreOMadreSC', 'class' => 'form-control', 'placeholder' =>"Seleccione una opción", 'required' =>'true')) !!}
+                 {!! Form::select('padreOMadreSC', [ "0" =>'No es el padre ni la madre', 'Padre' ,'Madre'],  null ,  array('id' => 'padreOMadreSC', 'class' => 'form-control', 'placeholder' =>"Seleccione una opción", 'required' =>'true')) !!}
                  <br>
 </section>
 
@@ -153,8 +153,7 @@
                </div>
            </div>
        </div>
-   </div>
-
+ 
 
 
 

@@ -89,12 +89,14 @@ $idUserTXT = $asd;*/
 </div>
 @endif
 
+@if(isset($generoLBL))
 <!-- Genero Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('genero', 'Genero:') !!}
 
      {!! Form::select($generoLBL, App\Enums\Genero::getPossibleENUM(), ( isset($generoTXT) ? $generoTXT : 'Hombre' ),  array('id' => $generoLBL, 'class' => 'form-control', 'placeholder' => "Seleccione el genero de la persona")) !!}
 </div>
+@endif
 
 <!-- Email Field -->
 <div class="form-group col-sm-6">

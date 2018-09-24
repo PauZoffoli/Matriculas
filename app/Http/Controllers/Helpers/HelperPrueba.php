@@ -100,33 +100,47 @@ echo $f->format(1432);
     {
 
         $persona = $this->checkIfExist($id);
-
+        //dd($persona->alumno->repitencia()->count());
 
         $responsables = null;
         $padre = null;
         $madre = null;
+        $pContacto = null;
+        $sContacto = null;
+
+//Cambiar
 
         if (!$persona->alumnoResponsables->isEmpty()) {
  
             foreach ($persona->alumnoResponsables as $value) {
 
-                if( $value->pivot->pivotParent->hasTipo("Padres")){
+                if( $value->pivot->pivotParent->hasTipo("Padre")){
                 
                     $padre = $value->pivot->pivotParent;
                     
                 }
-                if( $value->pivot->pivotParent->hasTipo("Padres")){
+                if( $value->pivot->pivotParent->hasTipo("Madre")){
                 
                     $madre = $value->pivot->pivotParent;
                     
                 }
 
+                if( $value->pivot->pivotParent->hasTipo("PrimerContacto")){
                 
+                    $pContacto = $value->pivot->pivotParent;
+                    
+                }
+
+                if( $value->pivot->pivotParent->hasTipo("SegundoContacto")){
+                
+                    $sContacto = $value->pivot->pivotParent;
+                    
+                }
             }
             
         }       
 
-        return view('MatriculaPostulante.alumnos.edit')->with('persona', $persona)->with('padre',$padre)->with('madre',$madre);
+        return view('MatriculaPostulante.alumnos.edit')->with('persona', $persona)->with('padre',$padre)->with('madre',$madre)->with('pContacto',$pContacto)->with('sContacto',$sContacto);
 
     }
 
@@ -154,6 +168,7 @@ echo $f->format(1432);
         } */
 /////////////////////////////////////////////////////esto tiene que descomentarse después
 
+
         ///----->>>>>1) Esta sección es solo para colectar los datos de las variables padre, madre, pContacto y sContacto//////////////////////////////////
 
         if($request->alumno['parentesco']=="Madre" || $request->alumno['parentesco']=="Padre"){ //Si el parentesco es madre o Padre llenamos los datos de su array para que que todas las variables de contacto luscan igual
@@ -177,8 +192,7 @@ echo $f->format(1432);
             if(isset($request->padreOMadrePC)){
               
                 if($request->padreOMadrePC == "1"){ //1 es padre 2 es madre
-                    $request->fichaAlumno[0]['PNombrePContacto'] =  $request->padre['PNombre'];
-                     $request->request->add(["[fichaAlumno[0]['PNombrePContacto']" => $request->padre['PNombre']]);
+                    $request->pContacto =  $request->padre;
                 }
                 if($request->padreOMadrePC == "2"){
                     $request->pContacto =  $request->madre;
@@ -197,21 +211,7 @@ echo $f->format(1432);
             }
            
         }
-        //$request->request->add(['fichaAlumno' => [0]['PNombrePContacto']]);
-  /*      $dato = $request->fichaAlumno[0];
-    $insert = [
-        "PNombrePContacto" => $request->padre['PNombre']
-    ];
-    array_push($request->fichaAlumno[0],  [
-        "PNombrePContacto" => $request->padre['PNombre']
-    ]);*/
-//sdd($request->all());
 
-    $ficha = $request->fichaAlumno[0];
-    $ficha['PNombrePContacto'] =  $request->padre['PNombre'];
-    $request->merge([ 'fichaAlumno' => ['0' => $ficha ] ]);
-   //    $request->request->add(['variable', 'value']);
-dd($request->fichaAlumno[0], $request->all());
 
         ///----->>>>>2) Una vez colectados los datos procederemos a guardarlos, verificando que no exista el rut con anterioridad: Si existe con anterioridad 
         $padre = null;
@@ -225,6 +225,12 @@ dd($request->fichaAlumno[0], $request->all());
         if(isset($request->madre)){
             $madre = Helper::existePersona($request->madre, $this->personaRepository);
         }
+        if(isset($request->pContacto)){
+            $pContacto = Helper::existePersona($request->pContacto, $this->personaRepository);
+        }
+        if(isset($request->sContacto)){
+            $sContacto = Helper::existePersona($request->sContacto, $this->personaRepository);
+        }
 
 
 
@@ -235,16 +241,43 @@ dd($request->fichaAlumno[0], $request->all());
         if(isset($madre)){
             $madreTipo = Helper::existeTipoPersona("Padres", $madre);
         }
+        if(isset($pContacto)){
+            $pContactoTipo = Helper::existeTipoPersona("Contacto",$pContacto);
+        }
+        if(isset($sContacto)){
+            $sContactoTipo = Helper::existeTipoPersona("Contacto",$sContacto);
+        }
+
+// dd("HASTA TIPOS " , $request->padre, $request->madre, $request->pContacto, $request->sContacto);
+// dd("HASTA TIPOS " , $padre, $madre, $pContacto, $sContacto);
+        ///----->>>>>4)Ahora procedemos a crear a los alumnos responsables
+
+        //$alumno = Helper::comprobarQueElRutExista($request); //Buscamos si el rut del alumno efectivamente existe, para evitar pilleria
+        //Debemos comprobar que ese rut sea de un alumno
+       // dd($padre, $madre, $pContacto, $sContacto);
 
 
       //tenemos que pasarle las personas que ya existan
         if(isset($request->padre)){
+            $padreAlumnoR = Helper::yaExisteElParentesco($request->alumno, $padre, $this->alumnoResponsableRepository, "Padre", null);
            $padreAlumnoR = Helper::existeAlumnoResponsable($request->alumno, $padre, $this->alumnoResponsableRepository, "Padre", null);
         }
         if(isset($request->madre)){
+            $padreAlumnoR = Helper::yaExisteElParentesco($request->alumno, $madre, $this->alumnoResponsableRepository, "Madre", null);
             $madreAlumnoR = Helper::existeAlumnoResponsable($request->alumno, $madre, $this->alumnoResponsableRepository, "Madre", null);
         }
 
+        if(isset($request->pContacto)){
+            $padreAlumnoR = Helper::yaExisteElParentesco($request->alumno, $pContacto, $this->alumnoResponsableRepository, "", null);
+            $pContactoAlumnoR = Helper::existeAlumnoResponsable($request->alumno, $pContacto, $this->alumnoResponsableRepository, $request->pContacto['parentesco'], "PrimerContacto");
+            //dd("HOLA", $request->alumno, $pContacto, $this->alumnoResponsableRepository, $request->pContacto['parentesco'], "PrimerContacto");}
+          
+        }
+
+        if(isset( $request->sContacto)){
+            $padreAlumnoR = Helper::yaExisteElParentesco($request->alumno, $request->sContacto, $this->alumnoResponsableRepository, "", null);
+            $sContactoAlumnoR = Helper::existeAlumnoResponsable($request->alumno, $request->sContacto, $this->alumnoResponsableRepository, $request->sContacto['parentesco'], "SegundoContacto");
+        }
 
 
  dd($request->padre, $request->madre, $request->pContacto, $request->sContacto);

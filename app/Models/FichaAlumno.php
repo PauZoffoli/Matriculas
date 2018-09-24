@@ -66,8 +66,31 @@ class FichaAlumno extends Model
         'viveConAbuelos',
         'viveConTios',
         'viveConTutor',
-        'observacionesSalud'
-    
+        'observacionesSalud',
+
+        'cantidadContactos',
+        'PNombrePContacto',
+        'SNombrePContacto',
+        'TNombrePContacto',
+        'ApPatPContacto',
+        'ApMatPContacto',
+        'fonoFijoPContacto',
+        'fonoCeluPContacto',
+        'emailPContacto',
+        'parentescoPContacto',
+        
+
+        'PNombreSContacto',
+        'SNombreSContacto',
+        'TNombreSContacto',
+        'ApPatSContacto',
+        'ApMatSContacto',
+        'fonoFijoSContacto',
+        'fonoCeluSContacto',
+        'emailSContacto',
+        'parentescoSContacto'
+
+
     
     ];
 
@@ -99,7 +122,28 @@ class FichaAlumno extends Model
         'viveConAbuelos' => 'boolean',
         'viveConTios' => 'boolean',
         'viveConTutor' => 'boolean',
-        'observacionesSalud'  => 'string'
+        'observacionesSalud'  => 'string',
+        'cantidadContactos'  => 'integer',
+        'PNombrePContacto'  => 'string',
+        'SNombrePContacto' => 'string',
+        'TNombrePContacto' => 'string',
+        'ApPatPContacto' => 'string',
+        'ApMatPContacto' => 'string',
+        'fonoFijoPContacto' => 'integer',
+        'fonoCeluPContacto' => 'integer',
+        'emailPContacto'   => 'string',
+        'parentescoPContacto' => 'string',
+
+        'PNombreSContacto'  => 'string',
+        'SNombreSContacto'  => 'string',
+        'TNombreSContacto'  => 'string',
+        'ApPatSContacto'  => 'string',
+        'ApMatSContacto'  => 'string',
+        'fonoFijoSContacto' => 'integer',
+        'fonoCeluSContacto' => 'integer',
+        'emailSContacto'  => 'string',
+        'parentescoSContacto' => 'string'
+
     ];
 
     /**

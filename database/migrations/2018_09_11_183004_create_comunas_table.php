@@ -15,8 +15,8 @@ class CreateComunasTable extends Migration
     {
         Schema::create('comunas', function (Blueprint $table) {
             $table->increments('id')->unique();
-            $table->timestamps();
-            
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent();            
             $table->string('nombreComu');
 
             $table->string('codigoUnico');

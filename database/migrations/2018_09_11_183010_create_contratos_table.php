@@ -15,8 +15,8 @@ class CreateContratosTable extends Migration
     {
         Schema::create('contratos', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
-
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent();
             $table->integer('idApoderado')->unsigned()->nullable($value = true);
             $table->foreign('idApoderado')->references('id')->on('apoderados')->onDelete('cascade');
 

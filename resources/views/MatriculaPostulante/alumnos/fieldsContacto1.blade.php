@@ -2,35 +2,24 @@
 
 
     [
-'PNombreLBL' => 'pContacto[PNombre]',
-'SNombreLBL' => 'pContacto[SNombre]',
-'TNombreLBL' => 'pContacto[TNombre]',
-'ApPatLBL' => 'pContacto[ApPat]',
-'ApMatLBL' => 'pContacto[ApMat]',
-'fonoFijoLBL' => 'pContacto[fonoFijo]',
-'fonoCeluLBL' => 'pContacto[fonoCelu]',
-'generoLBL' => 'pContacto[genero]',
-'emailLBL' => 'pContacto[email]',
-'parentescoLBL' => 'pContacto[parentesco]',
-'idAlumnoLBL' => 'pContacto[idAlumno]',
-'rutLBL' => 'pContacto[rut]',
+'PNombreLBL' => 'fichaAlumno[0][PNombrePContacto]',
+'SNombreLBL' => 'fichaAlumno[0][SNombrePContacto]',
+'TNombreLBL' => 'fichaAlumno[0][TNombrePContacto]',
+'ApPatLBL' => 'fichaAlumno[0][ApPatPContacto]',
+'ApMatLBL' => 'fichaAlumno[0][ApMatPContacto]',
+'fonoFijoLBL' => 'fichaAlumno[0][fonoFijoPContacto]',
+'fonoCeluLBL' => 'fichaAlumno[0][fonoCeluPContacto]',
+'emailLBL' => 'fichaAlumno[0][emailPContacto]',
+'parentescoLBL' => 'fichaAlumno[0][parentescoPContacto]',
 
-
-
-
-'PNombreTXT' =>( isset($pContacto->PNombre) ? $pContacto->PNombre : null ), 
-'SNombreTXT' => ( isset($pContacto->SNombre) ? $pContacto->SNombre : null ),
-'TNombreTXT' =>( isset($pContacto->TNombre) ? $pContacto->TNombre : null ),
-'ApPatTXT' => ( isset($pContacto->ApPat) ? $pContacto->ApPat : null ),
-'ApMatTXT' => ( isset($pContacto->ApMat) ? $pContacto->ApMat : null ),
-'fonoFijoTXT' => ( isset($pContacto->fonoFijo) ? $pContacto->fonoFijo : null ),
-'fonoCeluTXT' =>( isset($pContacto->fonoCelu) ? $pContacto->fonoCelu : null ),
-'generoTXT' => ( isset($pContacto->genero) ? $pContacto->genero : null ),
-'emailTXT' => ( isset($pContacto->email) ? $pContacto->email : null ),
-'parentescoTXT' => ( isset($pContacto->parentesco) ? $pContacto->parentesco : null ),
-'rutTXT' => ( isset($pContacto->rut) ? $pContacto->rut : null ),
-'idAlumnoTXT' => ( isset($persona->alumno->id) ? $persona->alumno->id : null ),
-
-
+'PNombreTXT' => null, 
+'SNombreTXT' => null, 
+'TNombreTXT' => null, 
+'ApPatTXT' => null, 
+'ApMatTXT' => null, 
+'fonoFijoTXT' => null, 
+'fonoCeluTXT' => null, 
+'emailTXT' => null, 
+'parentescoTXT' => null, 
 
     ])

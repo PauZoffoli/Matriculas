@@ -2,35 +2,25 @@
 
 
     [
-'PNombreLBL' => 'sContacto[PNombre]',
-'SNombreLBL' => 'sContacto[SNombre]',
-'TNombreLBL' => 'sContacto[TNombre]',
-'ApPatLBL' => 'sContacto[ApPat]',
-'ApMatLBL' => 'sContacto[ApMat]',
-'fonoFijoLBL' => 'sContacto[fonoFijo]',
-'fonoCeluLBL' => 'sContacto[fonoCelu]',
-'generoLBL' => 'sContacto[genero]',
-'emailLBL' => 'sContacto[email]',
-'idUserLBL' => 'sContacto[idUser]',
-'parentescoLBL' => 'sContacto[parentesco]',
-'rutLBL' => 'pContacto[rut]',
-'idAlumnoLBL' => 'sContacto[idAlumno]',
+'PNombreLBL' => 'fichaAlumno[0][PNombreSContacto]',
+'SNombreLBL' => 'fichaAlumno[0][SNombreSContacto]',
+'TNombreLBL' => 'fichaAlumno[0][TNombreSContacto]',
+'ApPatLBL' => 'fichaAlumno[0][ApPatSContacto]',
+'ApMatLBL' => 'fichaAlumno[0][ApMatSContacto]',
+'fonoFijoLBL' => 'fichaAlumno[0][fonoFijoSContacto]',
+'fonoCeluLBL' => 'fichaAlumno[0][fonoCeluSContacto]',
+'emailLBL' => 'fichaAlumno[0][emailSContacto]',
+'parentescoLBL' => 'fichaAlumno[0][parentescoSContacto]',
 
+'PNombreTXT' => null, 
+'SNombreTXT' => null, 
+'TNombreTXT' => null, 
+'ApPatTXT' => null, 
+'ApMatTXT' => null, 
+'fonoFijoTXT' => null, 
+'fonoCeluTXT' => null, 
+'emailTXT' => null, 
+'parentescoTXT' => null, 
 
-
-'PNombreTXT' =>( isset($sContacto->PNombre) ? $sContacto->PNombre : null ), 
-'SNombreTXT' => ( isset($sContacto->SNombre) ? $sContacto->SNombre : null ),
-'TNombreTXT' =>( isset($sContacto->TNombre) ? $sContacto->TNombre : null ),
-'ApPatTXT' => ( isset($sContacto->ApPat) ? $sContacto->ApPat : null ),
-'ApMatTXT' => ( isset($sContacto->ApMat) ? $sContacto->ApMat : null ),
-'fonoFijoTXT' => ( isset($sContacto->fonoFijo) ? $sContacto->fonoFijo : null ),
-'fonoCeluTXT' =>( isset($sContacto->fonoCelu) ? $sContacto->fonoCelu : null ),
-'generoTXT' => ( isset($sContacto->genero) ? $sContacto->genero : null ),
-'emailTXT' => ( isset($sContacto->email) ? $sContacto->email : null ),
-'parentescoTXT' => ( isset($sContacto->parentesco) ? $sContacto->parentesco : null ),
-
-'idAlumnoTXT' => ( isset($persona->alumno->id) ? $persona->alumno->id : null ),
-
-'rutTXT' => ( isset($sContacto->rut) ? $sContacto->rut : null ),
 
     ])

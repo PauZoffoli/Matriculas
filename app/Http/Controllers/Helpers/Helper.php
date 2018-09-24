@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\AlumnoResponsable;
 use App\Models\TipoPersona;
 use App\Models\Tipo;
+use App\Models\Persona;
+
 use Flash;
 
 
@@ -209,7 +211,7 @@ class Helper extends Controller
       
    }
 
-
+   /*DEPRECADO*********************************/
    //Método que antes de relacionar un pivote de TipoPersona, verifica si ya existe uno igual
    public static function pivotAddTipo($tipo, $claseTipoPersona, $apoderadoAlumnos){
 
@@ -228,7 +230,7 @@ class Helper extends Controller
   }
 
 
-
+   /*DEPRECADO*********************************/
       //Ahora debemos crear un AlumnoResponsable con parentesco "Padre"
    public static function pivotAddAlumnoResponsableApoderado($alumno, $parentesco, $apoderadoAlumnos){
 
@@ -256,7 +258,94 @@ class Helper extends Controller
 
   }
 
+     //Ahora debemos crear un AlumnoResponsable con parentesco "Padre"
+   public static function existePersona($persona, $repository){
+        $existePersonaRut = Persona::where('rut', '=', $persona['rut'])->first();
 
+        $bringPersona = null;
+        if($existePersonaRut==null){ //se crea
+          $bringPersona = $repository->create($persona);
+       }else{  //Si la persona ya se encontraba no se updatea, solo se trae
+          $bringPersona = $existePersonaRut;
+       }
+       return $bringPersona;
+    }
+
+         //Comprobamos que el rut del Alumno efectivamente exista
+   public static function comprobarQueElRutExista($persona){
+        $existePersonaRut = Persona::where('rut', '=', $persona['rut'])->first();
+        $mensaje = null;
+        if($existePersonaRut==null){ //se crea
+            $mensaje = "El rut del alumno no existe, no sea pillo ;)";
+        }
+       return $mensaje;
+    }
+
+    public static function existeTipoPersona($nombreTipo, $persona){
+
+     $idTipo = Tipo::where('nombre', $nombreTipo)->first()->id; //Obtenemos el idTipo según el tipo de relación que queramos, por ejemplo Padre
+
+     $existeTipoPersona = TipoPersona::where('idTipo', '=', $idTipo)->where('idPersona', '=', $persona->id)->first();
+
+     $bringTipoPersona = null;
+     if($existeTipoPersona==null){
+        $bringTipoPersona = $persona->tipos()->attach($idTipo, array("idTipo" => $idTipo, "idPersona" =>  $persona->id)); //Si la relación no está hecha la hacemos
+       
+     }else{
+        $bringTipoPersona = $existeTipoPersona; //Si la relación ya está hecha la traemos
+        
+     }
+
+      return $bringTipoPersona; //Devolvemos una variable de tipo TipoPersona
+
+  }
+
+
+  //tenemos que pasarle el alumno de siempre
+  //tenemos que pasar el responsable, nuevo o antiguo
+  //tenemos que pasar el repo
+  //tenemos que pasar el parentesco que queramos 
+  //tenemos que pasar el contacto que queramos
+  public static function existeAlumnoResponsable($alumno, $responsable, $repository, $parentesco, $contacto){
+      $bringAlumnoResponsable = null; //variable que vamos a retornar
+
+      //Si el alumno ya tiene ese tipo de parentesco relacionado, hay que solo editar el id de la persona con quien relacionamos
+
+     
+      //Si el alumno ya tiene la relación
+       $existeAlumnoResponsable = AlumnoResponsable::where('idAlumno', '=', $alumno['id'])->where('idPersona', '=', $responsable['id'])->first();
+
+        if($existeAlumnoResponsable==null){ //Si la relación no existe, créala
+            $bringAlumnoResponsable = $repository->create( array("idAlumno" => $alumno['id'], "idPersona" =>   $responsable['id'], "parentesco" =>  $parentesco,  "contacto" =>  $contacto)); //Si la relación no está hecha la hacemos
+       
+        }else{ //Si la relación existe, updateala
+            $bringAlumnoResponsable = $repository->update(array("idAlumno" => $alumno['id'], "idPersona" =>  $responsable['id'], "parentesco" =>  $parentesco,  "contacto" =>  $contacto), $existeAlumnoResponsable->id);
+        }
+    
+  
+      return $bringAlumnoResponsable; //Devolvemos una variable de tipo TipoPersona
+
+  }
+
+//verifica si ese parentesco o Contacto ya existe, para poder editarlo
+  public static function yaExisteElParentesco($alumno, $responsable, $repository, $parentesco, $contacto){
+      $parentescoOContacto = null;
+      $repetidoParentesco = AlumnoResponsable::where('idAlumno', '=', $alumno['id'])->where('parentesco', '=', $parentesco)->first();
+    
+      $repetidoContacto = AlumnoResponsable::where('idAlumno', '=', $alumno['id'])->where('contacto', '=', $contacto)->first();
+
+      if(isset($repetidoParentesco)){
+         $parentescoOContacto = $repository->update(array("idPersona" =>  $responsable->id),$repetidoParentesco->id);
+      }
+      if(!isset($repetidoContacto)){
+          $parentescoOContacto = $repository->update(array("idPersona" =>  $responsable->id),$repetidoContacto->id);
+      }
+
+
+      return $parentescoOContacto;
+  }
+
+    /*DEPRECADO*************************/
       //Ahora debemos crear un AlumnoResponsable con parentesco "Padre"
    public static function AddPadreOMadre($alumno, $parentesco, $apoderadoAlumnos){
 

@@ -15,8 +15,8 @@ class CreateBecaAlumnoTable extends Migration
     {
         Schema::create('detalle_beca_alumno', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
-
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent();
             $table->integer('idAlumno')->unsigned();
             $table->foreign('idAlumno')->references('id')->on('alumnos')->onDelete('cascade');    
 

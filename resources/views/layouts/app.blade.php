@@ -168,41 +168,6 @@
     @yield('scripts')
 </body>
 
-<!--SCRIPT PARA LOS CANDIDATOS-->
-<script>
-
-    var parentesco = document.getElementById("parentesco");
-    var otroParentesco = document.getElementById("otroParentesco");
-     otroParentesco.maxlength = 30;
-
-    if (parentesco.value == "12") {
-
-        otroParentesco.disabled='';
-        otroParentesco.required = true;
-
-
-    }else {
-       otroParentesco.value = '';
-       otroParentesco.disabled='true';
-
-   }
-
-   
-   function changetextboxParentesco()
-   {
-    if (parentesco.value == "12") {
-
-        otroParentesco.disabled='';
-        otroParentesco.required = true;
-
-    } else {
-        otroParentesco.value = '';
-        otroParentesco.disabled='true';
-
-    }
-}
-
-</script>
 
 <script >
     
@@ -211,7 +176,7 @@
      var padreOMadrePC = document.getElementById("padreOMadrePC");
       var padreOMadreSC = document.getElementById("padreOMadreSC");
       function primerContacto(){
-        if(padreOMadrePC.value==null || padreOMadrePC.value=='' || padreOMadrePC.value=='1'){    
+        if(padreOMadrePC.value==null || padreOMadrePC.value=='' || padreOMadrePC.value=='1'|| padreOMadrePC.value=='2'){    
             document.getElementById("datosPrimerContacto").style.display = "none";
             $('#datosPrimerContacto').find('input, textarea, button, select').attr('disabled','disabled');
             $('#datosPrimerContacto').find('input, textarea, button, select').attr('required',false);
@@ -225,7 +190,7 @@
       }
 
       function segundoContacto(){
-          if(padreOMadreSC.value==null || padreOMadreSC.value=='' || padreOMadreSC.value=='1'){    
+          if(padreOMadreSC.value==null || padreOMadreSC.value=='' || padreOMadreSC.value=='1'|| padreOMadreSC.value=='2'){    
             document.getElementById("datosSegundoContacto").style.display = "none";
             $('#datosSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
             $('#datosSegundoContacto').find('input, textarea, button, select').attr('required',false);
@@ -245,13 +210,13 @@
 
     function apoderadoPadreOMadre(){
 
-        var parentesco = document.getElementById("alumno[parentesco]");
+      
         var esPadre = document.getElementById("esPadre");
         var esMadre = document.getElementById("esMadre");
 
 
 
-       if(apoderadoPadreOMadre.value!="Padre" && apoderadoPadreOMadre.value!="Madre" ){
+       if(document.getElementById("alumno[parentesco]").value!="Padre" && document.getElementById("alumno[parentesco]").value!="Madre" ){
 
             esMadre.style.display = "block";
             $('#esMadre').find('input, textarea, button, select').removeAttr('disabled');
@@ -264,7 +229,7 @@
 
 
         }
-        if( parentesco.value=="Padre"){
+        if( document.getElementById("alumno[parentesco]").value=="Padre"){
             esPadre.style.display = "none";
             $('#esPadre').find('input, textarea, button, select').attr('disabled','disabled');
             $('#esPadre').find('input, textarea, button, select').attr('required',false);
@@ -275,7 +240,7 @@
 
         }
 
-        if( parentesco.value=="Madre"){
+        if( document.getElementById("alumno[parentesco]").value=="Madre"){
             esMadre.style.display = "none";
             $('#esMadre').find('input, textarea, button, select').attr('disabled','disabled');
             $('#esMadre').find('input, textarea, button, select').attr('required',false);
@@ -299,6 +264,7 @@
             document.getElementById("headerPrimerContacto").style.display = "none";
             $('#headerPrimerContacto').find('input, textarea, button, select').attr('disabled','disabled');
             $('#headerPrimerContacto').find('input, textarea, button, select').attr('required',false);
+
 
             document.getElementById("headerSegundoContacto").style.display = "none";
             $('#headerSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
@@ -333,13 +299,6 @@
 </script>
 
 <script >
-var select = document.getElementById('alumno[parentesco]');
-select.onchange = apoderadoPadreOMadre;
-
-</script>
-
-
-<script >
 function start() {
   primerContacto();
   segundoContacto();
@@ -347,10 +306,10 @@ function start() {
    cantContactos();
 }
 window.onload = start;
-var padreOMadrePC = document.getElementById('padreOMadrePC');
-var padreOMadreSC = document.getElementById('padreOMadreSC');
-padreOMadrePC.onchange = primerContacto;
-padreOMadreSC.onchange = segundoContacto;
+
+document.getElementById('padreOMadrePC').onchange = primerContacto;
+document.getElementById('padreOMadreSC').onchange = segundoContacto;
+ document.getElementById('alumno[parentesco]').onchange = apoderadoPadreOMadre;  //PARENTESCO ALUMNO APODERADO
 document.getElementById('cantidadDeContactos').onchange = cantContactos;
 
 window.onload = start;

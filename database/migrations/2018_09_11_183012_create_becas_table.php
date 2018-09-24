@@ -15,8 +15,8 @@ class CreateBecasTable extends Migration
     {
         Schema::create('becas', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
-            $table->string('descripcion');
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent();            $table->string('descripcion');
             $table->integer('porcentaje');
         });
     }

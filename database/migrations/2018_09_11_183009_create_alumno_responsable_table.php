@@ -15,8 +15,8 @@ class CreateAlumnoResponsableTable extends Migration
     {
         Schema::create('alumno_responsable', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
-            $table->enum('parentesco', [
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent();            $table->enum('parentesco', [
                 'Padre', 
                 'Madre',
                 'Padrastro',
