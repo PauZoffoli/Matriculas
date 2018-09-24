@@ -69,7 +69,7 @@ class Direccion extends Model
      **/
     public function comuna()
     {
-        return $this->belongsTo(\App\Models\Comuna::class);
+        return $this->belongsTo(\App\Models\Comuna::class, 'idComuna');
     }
 
     /**
@@ -77,6 +77,6 @@ class Direccion extends Model
      **/
     public function personas()
     {
-        return $this->hasMany(\App\Models\Persona::class, 'id');
+        return $this->hasMany(\App\Models\Persona::class, 'idDireccion');
     }
 }

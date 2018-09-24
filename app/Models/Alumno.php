@@ -92,7 +92,7 @@ class Alumno extends Model
      **/
     public function apoderado()
     {
-        return $this->belongsTo(\App\Models\Apoderado::class);
+        return $this->belongsTo(\App\Models\Apoderado::class, 'idApoderado');
     }
 
     /**
@@ -100,7 +100,7 @@ class Alumno extends Model
      **/
     public function curso()
     {
-        return $this->belongsTo(\App\Models\Curso::class);
+        return $this->belongsTo(\App\Models\Curso::class, 'idCursoPostu');
     }
 
     
@@ -154,4 +154,6 @@ class Alumno extends Model
     {
         return $this->belongsToMany(\App\Models\Curso::class, 'repitencias', 'idAlumno', 'idCurso');
     }
+
+    
 }

@@ -2,121 +2,92 @@
 
 namespace App\Http\Controllers\VistaSecretariado;
 
-use App\Http\Requests
+use App\Http\Requests;
 use App\Repositories\PersonaRepository;
 use App\Http\Controllers\AppBaseController;
+
+
+use App\Http\Requests\CreateDireccionRequest;
+use App\Http\Requests\UpdateDireccionRequest;
+use App\Repositories\DireccionRepository;
+
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Exceptions\Handler;
 use App\Models\Persona;
+use App\Model\Apoderado;
 use Auth;
 
 use Exception;
 
 
-class InscripcionRevisorPostulacionController extends AppBaseController
+class PersonaSecretariadoController extends AppBaseController
 {
-    /** @var  PostulacionRepository */
-    private $personaRepository;
+    
+    private $PersonaRepository;
+    private $direccionRepository;
 
-    public function __construct(PersonaRepository $personaRepo)
+    public function __construct(PersonaRepository $personaRepo,DireccionRepository $direccionRepo)
     {
-        $this->personaRepository = $personaRepo;
+        $this->PersonaRepository = $personaRepo;
+        $this->direccionRepository = $direccionRepo;
 
     }
 
-
-
-    /**
-     * Display a listing of the Postulacion.
-     *
-     * @param Request $request
-     * @return Response
-     */
+   
     public function index(Request $request)
     {
        abort(404);
            
     }
 
-     /**
-     * Show the form for creating a new Postulacion.
-     *
-     * @return Response
-     */
+ 
     public function create()
     {
         abort(404);
     }
 
-    /**
-     * Store a newly created Postulacion in storage.
-     *
-     * @param CreatePostulacionRequest $request
-     *
-     * @return Response
-     */
+  
     public function store(CreatePostulacionRequest $request)
     {
 
        abort(404);
 
 }
-    /**
-     * Display the specified Postulacion.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
+    
     public function show($id)
     {
         abort(404);
     }
 
-    /**
-     * Show the form for editing the specified Postulacion.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
+ 
     public function edit($id)
     {
        abort(404);
     }
 
-    /**
-     * Update the specified Postulacion in storage.
-     *
-     * @param  int              $id
-     * @param UpdatePostulacionRequest $request
-     *
-     * @return Response
-     */
-    public function update($id, UpdatePersonaRequest $request)
+  
+    public function update($id, Request $request)
     {
 
 
-        $postulacion = $this->postulacionRepository->findWithoutFail($id);
+        $persona = $this->PersonaRepository->findWithoutFail($id);
 
-        if (empty($postulacion)) {
+        if (empty($persona)) {
             Flash::error('Persona no encontrada');
 
             return redirect(route('secretariado.index'));
         }
+        
+        $this->direccionRepository->update($request->direccion, $persona->idDireccion);
+        unset($request['direccion']);
 
-        //$request['nombreFunc'] = $request['nombreFunc'];
-
-        //$postulacion = $this->postulacionRepository->update($request->all(), $id);
-     
-        //dd($postulacion);
-        $redirect = 'apoSecretariadoContr/'. $id .'/edit';
-       //dd( $redirect);
-
-         return redirect($redirect)->with('message', 'Postulación editada exitósamente');
+         $persona = $this->PersonaRepository->update($request->all(), $id);
+         $redirect = 'apoSecretariadoContr/'. $id .'/edit';
+    
+         return redirect($redirect)->with('message', 'Persona editada exitósamente');
     }
 
     /**

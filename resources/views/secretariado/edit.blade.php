@@ -52,6 +52,21 @@
                </div>
            </div>
        </div>
+
+        <h1 class="pull-right">
+<table>
+
+  <tr>
+        {!! Form::model($persona, ['route' => ['alumnoSecretariadoContr.update', $persona->apoderado->id], 'method' => 'patch']) !!}    
+        
+    <td>  <button  class="btn btn-primary ">Siguiente</button></td>
+     {!! Form::close() !!}
+  </tr>
+
+ 
+</table>
+
+        </h1>       
 @endsection
    
 

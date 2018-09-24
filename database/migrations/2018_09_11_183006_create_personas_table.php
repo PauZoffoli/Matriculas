@@ -60,7 +60,7 @@ class CreatePersonasTable extends Migration
                 'Separado/a',
                 'Conviviente'])->nullable($value = true)->default('Soltero/a')->nullable($value = true);
 
-            $table->integer('idDireccion')->unsigned()->nullable($value = true);
+            $table->integer('idDireccion')->unsigned();
             $table->foreign('idDireccion')->references('id')->on('direcciones')->onDelete('cascade');
 
         });

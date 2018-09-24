@@ -39,6 +39,8 @@ class ApoderadoSecretariadoController extends AppBaseController
             ->with('personas', $var);
     }
 
+    
+
    
     public function searchPersona(Request $request) {
 
@@ -63,7 +65,7 @@ class ApoderadoSecretariadoController extends AppBaseController
         
     }
 
-        public function edit($id)
+    public function edit($id)
     {
         $persona = $this->personaRepository->findWithoutFail($id);
 
@@ -72,8 +74,11 @@ class ApoderadoSecretariadoController extends AppBaseController
 
             return redirect(route('apoSecretariadoContr.index'));
         }
+       // dd($persona->direccion->comuna);
  
         return view('secretariado.edit')->with('persona' , $persona);
     }
+
+    
 
 }

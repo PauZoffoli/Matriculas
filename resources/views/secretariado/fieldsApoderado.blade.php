@@ -1,13 +1,36 @@
-<div class="form-group col-sm-4 {{ $errors->has('profesion') ? ' has-error' : '' }}">
-    {!! Form::label('profesion', 'Profesion:') !!}
-    {!! Form::text('paisDeOrigen',  $persona->apoderado->profesion, ['class' => 'form-control', 'placeholder' => 'Ingrese su primer nombre','required' => '', 'pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}", 'title' => 'No debe tener más de 30 caracteres']) !!}
+<div class="form-group col-sm-6">
+    {!! Form::label('idApoderado', 'IdApoderado:') !!}
+    {!! Form::number('apoderado[id]', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Niveleducacional Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('nivelEducacional', 'Niveleducacional:') !!}
+    {!! Form::text('apoderado[nivelEducacional]', null, ['class' => 'form-control']) !!}
+</div>
 
-<!-- Snombrecand Field -->
-<div class="form-group col-sm-4 {{ $errors->has('paisDeOrigen') ? ' has-error' : '' }}">
-    {!! Form::label('paisDeOrigen', 'País de origen: ')  !!}
-    {!! Form::text('paisDeOrigen', $persona->apoderado->paisDeOrigen, ['class' => 'form-control', 'placeholder' => 'Ingrese su segundo nombre','pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}", 'title' => 'No puede tener más de 30 caracteres']) !!}
+<!-- Profesion Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('profesion', 'Profesion:') !!}
+    {!! Form::text('apoderado[profesion]', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Paisdeorigen Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('paisDeOrigen', 'Paisdeorigen:') !!}
+    {!! Form::text('apoderado[paisDeOrigen]', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Idpersona Field https://laracasts.com/discuss/channels/laravel/form-model-binding-relations-how-to-bindpopulate-relations-in-a-form?page=1 -->
+<div class="form-group col-sm-6">
+    {!! Form::label('idPersona', 'Idpersona:') !!}
+    {!! Form::number('apoderado[idPersona]', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Estado Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('estado', 'Estado:') !!}
+    {!! Form::text('apoderado[estado]', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group col-sm-10">

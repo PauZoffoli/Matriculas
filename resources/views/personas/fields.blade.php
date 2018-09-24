@@ -1,4 +1,4 @@
-<!-- Pnombre Field -->
+  <!-- Pnombre Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('PNombre', 'Pnombre:') !!}
     {!! Form::text('PNombre', null, ['class' => 'form-control']) !!}
