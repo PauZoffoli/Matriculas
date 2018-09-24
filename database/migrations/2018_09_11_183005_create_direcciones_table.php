@@ -15,8 +15,8 @@ class CreateDireccionesTable extends Migration
     {
         Schema::create('direcciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
-            $table->integer('idComuna')->unsigned();
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent();            $table->integer('idComuna')->unsigned();
             $table->foreign('idComuna')->references('id')->on('comunas')->onDelete('cascade');    
             $table->string('calle');
             $table->string('nroCalle');

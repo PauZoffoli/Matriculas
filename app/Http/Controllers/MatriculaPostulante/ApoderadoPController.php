@@ -21,6 +21,7 @@ use Response;
 use Illuminate\Validation\ValidationException;
 use App\Models\Alumno;
 use App\Http\Controllers\Helpers\Helper;
+use App\Models\Comuna;
 class ApoderadoPController extends AppBaseController
 {
 
@@ -48,7 +49,7 @@ class ApoderadoPController extends AppBaseController
         $persona = Helper::checkthis($this->personaRepository, $id, 'Persona');
         
         $validate = Helper::checkthisValue($persona->apoderado, 'Apoderado');
-        $validate = $validate . Helper::checkthisValue($persona->alumno, 'Alumno');
+       // $validate = $validate . Helper::checkthisValue($persona->alumno, 'Alumno');
         if ($validate!=null) {
            Flash::error($validate);
         return redirect(route('home'))->send();
@@ -68,8 +69,11 @@ class ApoderadoPController extends AppBaseController
     public function edit($id)
     {
         $persona = $this->checkIfExist($id); //Chequeamos todas las clases que necesitemos antes.
+        $comuna = new Comuna;
+        $comuna = $comuna->all();
+        $comuna =  Helper::getEnumValueFromTable($comuna, 'nombreComu');
 
-        return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona);
+        return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona)->with('comuna', $comuna);
 
     }
 
@@ -81,13 +85,15 @@ class ApoderadoPController extends AppBaseController
      *
      * @return Response
      */
-    public function update($id, UpdateApoderadoRequest $request) //Debería cambiar la request
+    public function update($id, CreatePersonaRequest $request) //Debería cambiar la request
     {
     
         $persona = $this->checkIfExist($id); //Chequeamos todas las clases que necesitemos antes, y pasamos por parámetro a persona.
 
         Helper::updateThis($this->direccionRepository,$request->direccion, $persona->direccion->id);
         unset($request['direccion']); //Produce el error array to string, por eso direccion se borra antes
+         $request->request->add(['estado' => 'ApoderadoSeRevisa']);
+
         $persona = $this->personaRepository->update($request->all(), $id);
         Helper::updateThis($this->apoderadoRepository, $request->apoderado, $persona->apoderado->id);
         
@@ -101,6 +107,8 @@ class ApoderadoPController extends AppBaseController
         $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los alumnos checkeados por el apoderado en una variable de sesión, esta variable se irá borrando en la medida que se ocupe
 
         $request->session()->put('idAlumnos', $todosLosAlumnos);//Guardamos los alumnos para sacar sus id y cambiar sus estados al final del proceo de matrícula
+
+        $request->session()->put('apoderadoAlumnos', $persona);//Guardamos el apoderado
 
         /////////////////////////////////////////////////////////////
 

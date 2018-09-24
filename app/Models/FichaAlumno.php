@@ -60,7 +60,38 @@ class FichaAlumno extends Model
         'esAlergico',
         'AlergicoA',
         'grupoSanguineo',
-        'idAlumno'
+        'idAlumno',
+        'viveConPadre',
+        'viveConMadre',
+        'viveConAbuelos',
+        'viveConTios',
+        'viveConTutor',
+        'observacionesSalud',
+
+        'cantidadContactos',
+        'PNombrePContacto',
+        'SNombrePContacto',
+        'TNombrePContacto',
+        'ApPatPContacto',
+        'ApMatPContacto',
+        'fonoFijoPContacto',
+        'fonoCeluPContacto',
+        'emailPContacto',
+        'parentescoPContacto',
+        
+
+        'PNombreSContacto',
+        'SNombreSContacto',
+        'TNombreSContacto',
+        'ApPatSContacto',
+        'ApMatSContacto',
+        'fonoFijoSContacto',
+        'fonoCeluSContacto',
+        'emailSContacto',
+        'parentescoSContacto'
+
+
+    
     ];
 
     /**
@@ -85,7 +116,34 @@ class FichaAlumno extends Model
         'esAlergico' => 'boolean',
         'AlergicoA' => 'string',
         'grupoSanguineo' => 'string',
-        'idAlumno' => 'integer'
+        'idAlumno' => 'integer',
+        'viveConPadre' => 'boolean',
+        'viveConMadre' => 'boolean',
+        'viveConAbuelos' => 'boolean',
+        'viveConTios' => 'boolean',
+        'viveConTutor' => 'boolean',
+        'observacionesSalud'  => 'string',
+        'cantidadContactos'  => 'integer',
+        'PNombrePContacto'  => 'string',
+        'SNombrePContacto' => 'string',
+        'TNombrePContacto' => 'string',
+        'ApPatPContacto' => 'string',
+        'ApMatPContacto' => 'string',
+        'fonoFijoPContacto' => 'integer',
+        'fonoCeluPContacto' => 'integer',
+        'emailPContacto'   => 'string',
+        'parentescoPContacto' => 'string',
+
+        'PNombreSContacto'  => 'string',
+        'SNombreSContacto'  => 'string',
+        'TNombreSContacto'  => 'string',
+        'ApPatSContacto'  => 'string',
+        'ApMatSContacto'  => 'string',
+        'fonoFijoSContacto' => 'integer',
+        'fonoCeluSContacto' => 'integer',
+        'emailSContacto'  => 'string',
+        'parentescoSContacto' => 'string'
+
     ];
 
     /**

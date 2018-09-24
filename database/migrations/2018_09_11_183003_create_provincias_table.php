@@ -15,8 +15,8 @@ class CreateProvinciasTable extends Migration
     {
         Schema::create('provincias', function (Blueprint $table) {
             $table->increments('id')->unique();
-            $table->timestamps();
-            $table->string('nombreProv');
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent();            $table->string('nombreProv');
             $table->string('codigoUnico');
             $table->integer('idRegion')->unsigned();
             $table->foreign('idRegion')->references('id')->on('regiones')->onDelete('cascade');

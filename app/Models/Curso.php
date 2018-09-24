@@ -24,9 +24,11 @@ class Curso extends Model
 {
 
     public $table = 'cursos';
-    
+
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
+
 
 
     protected $dates = ['deleted_at'];
@@ -45,7 +47,7 @@ class Curso extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'nivel' => 'integer',
+        'nivel' => 'string',
         'basicaMedia' => 'string',
         'arancelAnual' => 'integer'
     ];

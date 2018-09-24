@@ -15,8 +15,8 @@ class CreateApoderadosTable extends Migration
     {
         Schema::create('apoderados', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
-
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent();
             $table->enum('nivelEducacional', [
             'Sin estudios', 
             'Pre-Kínder', 
@@ -48,6 +48,9 @@ class CreateApoderadosTable extends Migration
 
             $table->string('profesion');
 
+            $table->string('participacionCargo')->nullable($value = true);
+            $table->integer('participacionAnio')->nullable($value = true);
+            $table->string('participacionObservacion')->nullable($value = true);
 
             $table->enum('paisDeOrigen', [
 'Afganistán',
