@@ -266,11 +266,12 @@ dd($request->all());
     }
 
 
-
+    /*revisar*/
     /*MÉTODO PARA VALIDAR Y DESPEJAR EL CONTROLLER*/
     public function validaciones($request){
 
         $validate = Helper::manualValidation($request->fichaAlumno, (new CreateFichaAlumnoRequest()), "1)Errores de la Ficha del Alumno: ", 1);
+
         if(isset($request->padre)){
              $validate = $validate . Helper::manualValidation($request->padre, (new CreatePersonaRequest()), "2)Errores de los datos del Padre: ",2);
         }
