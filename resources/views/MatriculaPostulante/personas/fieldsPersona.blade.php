@@ -1,9 +1,10 @@
 <!--para las personas ALUMNO Y APODERADO-->
 
-<!-- Pnombre Field -->
-<div class="form-group col-sm-4">
-    {!! Form::label('PNombre', 'Pnombre:') !!}
-    {!! Form::text('PNombre', null, ['class' => 'form-control']) !!}
+
+<!-- Pnombrecand Field -->
+<div class="form-group col-sm-4 {{ $errors->has('PNombre') ? ' has-error' : '' }}">
+    {!! Form::label('PNombre', 'Primer Nombre:') !!}
+    {!! Form::text('PNombre', null, ['class' => 'form-control', 'placeholder' => 'Ingrese primer nombre','required' => '', 'pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}", 'title' => 'No debe tener más de 30 caracteres']) !!}
 </div>
 
 <!-- idPersona Field -->
@@ -12,78 +13,64 @@
     {!! Form::text('id', null, ['class' => 'form-control']) !!}
 </div>
 
-
-<div class="form-group col-sm-4">
-    {!! Form::label('SNombre', 'Snombre:') !!}
-    {!! Form::text('SNombre', null, ['class' => 'form-control']) !!}
+<!-- Snombrecand Field -->
+<div class="form-group col-sm-4 {{ $errors->has('SNombre') ? ' has-error' : '' }}">
+    {!! Form::label('SNombre', 'Segundo Nombre:',array('class' => 'opcional'))  !!}
+    {!! Form::text('SNombre', null, ['class' => 'form-control', 'placeholder' => 'Ingrese segundo nombre','pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}", 'title' => 'No puede tener más de 30 caracteres']) !!}
 </div>
 
-<!-- Tnombre Field -->
-<div class="form-group col-sm-4 ">
-    {!! Form::label('TNombre', 'Tnombre:') !!}
-    {!! Form::text('TNombre', null, ['class' => 'form-control']) !!}
+
+<!-- Tnombrecand Field -->
+<div class="form-group col-sm-4 {{ $errors->has('TNombre') ? ' has-error' : '' }}">
+    {!! Form::label('TNombre', 'Tercer Nombre:',array('class' => 'opcional')) !!}
+    {!! Form::text('TNombre', null, ['class' => 'form-control', 'placeholder' => 'Ingrese tercer nombre','pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}",  'title' => 'No puede tener más de 30 caracteres']) !!}
 </div>
 
-<!-- Appat Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('ApPat', 'Appat:') !!}
-    {!! Form::text('ApPat', null, ['class' => 'form-control']) !!}
+
+<!-- ApPat Field -->
+<div class="form-group col-sm-6 {{ $errors->has('ApPat') ? ' has-error' : '' }}">
+    {!! Form::label('ApPat', 'Apellido Paterno:') !!}
+    {!! Form::text('ApPat', null, ['class' => 'form-control', 'placeholder' => 'Ingrese apellido paterno.','required' => '', 'pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}",  'title' => 'No puede tener más de 30 caracteres']) !!}
 </div>
 
-<!-- Apmat Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('ApMat', 'Apmat:') !!}
-    {!! Form::text('ApMat', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Fonofijo Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('fonoFijo', 'Fonofijo:') !!}
-    {!! Form::number('fonoFijo', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Fonocelu Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('fonoCelu', 'Fonocelu:') !!}
-    {!! Form::number('fonoCelu', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Iduser Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('idUser', 'Iduser:') !!}
-    {!! Form::number('idUser', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Rut Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('rut', 'Rut:') !!}
-    {!! Form::text('rut', null, ['class' => 'form-control']) !!}
+<!-- ApMat Field -->
+<div class="form-group col-sm-6 {{ $errors->has('ApMat') ? ' has-error' : '' }}">
+    {!! Form::label('ApMat', 'Apellido Materno:') !!}
+    {!! Form::text('ApMat', null, ['class' => 'form-control', 'placeholder' => 'Ingrese apellido materno', 'pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}",  'title' => 'No puede tener más de 30 caracteres']) !!}
 </div>
 
 <!-- Genero Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('genero', 'Genero:') !!}
-    {!! Form::select('genero', App\Enums\Genero::getPossibleENUM(), ( isset($persona->genero) ? $persona->genero : null ),  array('id' => 'genero', 'class' => 'form-control')) !!}
+<div class="form-group col-sm-3">
+    {!! Form::label('genero', 'Sexo:') !!}
+    {!! Form::select('genero', App\Enums\Genero::getPossibleENUM(), ( isset($persona->genero) ? $persona->genero : null ),  array('id' => 'genero', 'class' => 'form-control', 'required' => 'true', 'placeholder' => 'Seleccione sexo')) !!}
 </div>
 
-
-
-<!-- Email Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('email', 'Email:') !!}
-    {!! Form::email('email', null, ['class' => 'form-control']) !!}
-</div>
 
 <!-- Fechanacimiento Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('fechaNacimiento', 'Fechanacimiento:') !!}
-    {!! Form::date('fechaNacimiento', null, ['class' => 'form-control']) !!}
+<div class="form-group col-sm-3 {{ $errors->has('fechaNacimiento') ? ' has-error' : '' }}">
+    {!! Form::label('fechaNacimiento', 'Fecha de Nacimiento:') !!}
+    {!! Form::date('fechaNacimiento', (isset($persona->fechaNacimiento) && $persona->fechaNacimiento ? Carbon\Carbon::parse($persona->fechaNacimiento)->format('Y-m-d')  : date('Y-m-d')), ['class' => 'form-control', 'placeholder' => 'dd-mm-YYYY', 'required' => 'true']) !!}
 </div>
 
 <!-- Estadocivil Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('estadoCivil', 'Estadocivil:') !!}
-    {!! Form::select('estadoCivil', App\Enums\EstadoCivil::getPossibleENUM(), ( isset($persona->estadoCivil) ? $persona->estadoCivil : null ),  array('id' => 'estadoCivil', 'class' => 'form-control')) !!}
+<div class="form-group col-sm-3 {{ $errors->has('estadoCivil') ? ' has-error' : '' }}">
+    {!! Form::label('estadoCivil', 'Estado Civil:') !!}
+    {!! Form::select('estadoCivil', App\Enums\EstadoCivil::getPossibleENUM(), ( isset($persona->estadoCivil) ? $persona->estadoCivil : null ),  array('id' => 'estadoCivil', 'class' => 'form-control', 'required' => 'true', 'placeholder' => 'Seleccione estado civil')) !!}
 </div>
 
- @include('MatriculaPostulante.direccions.fields')
+
+
+<!-- Correoapo Field -->
+<div class="form-group col-sm-3 {{ $errors->has('email') ? ' has-error' : '' }}">
+    {!! Form::label('email', 'Correo electrónico:') !!}
+    {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'ejemplo@gmail.com', 'maxlength' => "100", 'required' => 'true']) !!}
+</div>
+
+
+<!-- Fonofijoapo Field -->
+<div class="form-group col-sm-3 {{ $errors->has('fonoFijo') ? ' has-error' : '' }}">
+    {!! Form::label('fonoFijo', 'Teléfono Fijo:',array('class' => 'opcional')) !!}
+    {!! Form::tel('fonoFijo', null, ['class' => 'form-control', 'placeholder' => 'Ingrese teléfono fijo (Ej: 226213316)', 'pattern' => "[0-9]{9}", 'title' => 'No puede tener más de nueve dígitos']) !!}
+</div>
+
+

@@ -54,7 +54,8 @@ class Alumno extends Model
         'idPersona',
         'idApoderado',
         'idCursoActual',
-        'idCursoPostu'
+        'idCursoPostu',
+        'paisDeOrigen'
     ];
 
     /**
@@ -73,7 +74,8 @@ class Alumno extends Model
         'idPersona' => 'integer',
         'idApoderado' => 'integer',
         'idCursoActual' => 'integer',
-        'idCursoPostu' => 'integer'
+        'idCursoPostu' => 'integer',
+        'paisDeOrigen' => 'string'
     ];
 
     /**
@@ -131,6 +133,10 @@ class Alumno extends Model
             ->withPivot('id','parentesco', 'contacto');
     }
 
+    public function alumnoResponsableParent()
+    {
+            return $this->belongsToMany(\App\Models\Persona::class, 'alumno_responsable',  'idAlumno','idPersona')->withPivot('id','parentesco');
+    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/

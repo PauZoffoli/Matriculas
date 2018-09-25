@@ -21,7 +21,7 @@ class CreateCursosTable extends Migration
             $table->enum('basicaMedia', [
                 'Pre-Básico',
                 'Básico',
-                'Media'])->default('Básico');
+                'Medio'])->default('Básico');
             $table->integer('arancelAnual');
 
         });

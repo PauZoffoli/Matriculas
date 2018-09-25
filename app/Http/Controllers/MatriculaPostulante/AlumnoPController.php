@@ -153,12 +153,12 @@ echo $f->format(1432);
           ]);
         } */
 /////////////////////////////////////////////////////esto tiene que descomentarse después
-
+dd($request->all());
         ///----->>>>>1) Esta sección es solo para colectar los datos de las variables padre, madre, pContacto y sContacto//////////////////////////////////
 
         if($request->alumno['parentesco']=="Madre" || $request->alumno['parentesco']=="Padre"){ //Si el parentesco es madre o Padre llenamos los datos de su array para que que todas las variables de contacto luscan igual
            
-            $getApoderadoPersona = Apoderado::where('id' , $persona->alumno->idApoderado)->first()->persona->getAttributes();
+            $getApoderadoPersona = Apoderado::where('id' , $persona->alumno->idApoderado)->first()->persona->getAttributes(); //Obtenemos el actual apoderado
            
             if($request->alumno['parentesco']=="Madre"){
                 $request->madre = $getApoderadoPersona;
@@ -168,110 +168,86 @@ echo $f->format(1432);
                 $request->padre = $getApoderadoPersona;
                 $request->padre['parentesco'] = "Padre";
             }
-            //dd($request->padre , $request->madre);
+         
         }
 
-        if($request->cantidadDeContactos == "1" || $request->cantidadDeContactos == "2"){ //Cuantos contactos decidí inscribir
+
+        $cantidadDeContactos = $request->fichaAlumno[0]['cantidadContactos']; //inicializamos la variable que recibimos desde la vista para usarla más adelante
+
+        //Aquí agregamos Apoderado Madre o Padre como primer y segundo contacto si es que marcó la opción
+        if($cantidadDeContactos == "1" || $cantidadDeContactos == "2"){ //Cuantos contactos decidí inscribir
           //  dd(isset($request->padreOMadrePC));
             //si está vacío significa que marcaron padre o Madre
-            if(isset($request->padreOMadrePC)){
+            $ficha = null;
+            $ficha = $request->fichaAlumno[0]; //Tomamos los datos de la ficha para editarlos
+
+            if(isset($request->padreOMadrePC)){ //cambiamos el primer contacto
               
-                if($request->padreOMadrePC == "1"){ //1 es padre 2 es madre
-                    $request->fichaAlumno[0]['PNombrePContacto'] =  $request->padre['PNombre'];
-                     $request->request->add(["[fichaAlumno[0]['PNombrePContacto']" => $request->padre['PNombre']]);
+                if($request->padreOMadrePC == "1"){ //Quiere que el apoderado sea primer contacto
+                    $ficha =  Helper::contacto1Ficha($request->padre, $ficha);
                 }
-                if($request->padreOMadrePC == "2"){
-                    $request->pContacto =  $request->madre;
+                if($request->padreOMadrePC == "2"){ //2 es madre
+                    $ficha = Helper::contacto1Ficha($request->madre, $ficha);
                 }
             }
-            
 
-            if(isset($request->padreOMadreSC)){
-               // dd($request->pContacto);
+            if(isset($request->padreOMadreSC)){ //Cambiamos el segundo contacto
+             
                 if($request->padreOMadreSC == "1"){ //1 es padre 2 es madre
-                    $request->sContacto =  $request->padre;
+                    $ficha = Helper::contacto2Ficha($request->padre, $ficha);
                 }
                 if($request->padreOMadreSC == "2"){
-                    $request->sContacto =  $request->madre;
+                    $ficha = Helper::contacto2Ficha($request->madre, $ficha);
                 }
             }
+             $request->merge([ 'fichaAlumno' => ['0' => $ficha ] ]); //mergeamos la fichaAlumno con los datos que agregamos
            
         }
-        //$request->request->add(['fichaAlumno' => [0]['PNombrePContacto']]);
-  /*      $dato = $request->fichaAlumno[0];
-    $insert = [
-        "PNombrePContacto" => $request->padre['PNombre']
-    ];
-    array_push($request->fichaAlumno[0],  [
-        "PNombrePContacto" => $request->padre['PNombre']
-    ]);*/
-//sdd($request->all());
-
-    $ficha = $request->fichaAlumno[0];
-    $ficha['PNombrePContacto'] =  $request->padre['PNombre'];
-    $request->merge([ 'fichaAlumno' => ['0' => $ficha ] ]);
-   //    $request->request->add(['variable', 'value']);
-dd($request->fichaAlumno[0], $request->all());
-
-        ///----->>>>>2) Una vez colectados los datos procederemos a guardarlos, verificando que no exista el rut con anterioridad: Si existe con anterioridad 
-        $padre = null;
-        $madre = null;
-        $pContacto = null;
-        $sContacto = null;
+   
+        ///----->>>>>2) Una vez colectados los datos de Padre y madre procederemos a guardarlos, verificando que no exista el rut con anterioridad: Si existe con anterioridad, vamos a trabajar con los datos antiguos
+        $padreExistente = null;
+        $madreExistente = null;
+ 
 
         if(isset($request->padre)){
-            $padre = Helper::existePersona($request->padre, $this->personaRepository);
+            $padreExistente = Helper::existePersona($request->padre, $this->personaRepository); //Padre antiguo o nueva con la que vamos a trabajar
         }
         if(isset($request->madre)){
-            $madre = Helper::existePersona($request->madre, $this->personaRepository);
+            $madreExistente = Helper::existePersona($request->madre, $this->personaRepository); //madre antigua o nueva con la que vamos a trabajar
         }
-
-
 
         ///----->>>>>3)Ahora procedemos a añadir los tipos de las variable anteriores
-        if(isset($padre)){
-            $padreTipo = Helper::existeTipoPersona("Padres", $padre);
+        if(isset($padreExistente)){
+            Helper::existeTipoPersona("Padres", $padreExistente); //estas variables 
         }
-        if(isset($madre)){
-            $madreTipo = Helper::existeTipoPersona("Padres", $madre);
-        }
-
-
-      //tenemos que pasarle las personas que ya existan
-        if(isset($request->padre)){
-           $padreAlumnoR = Helper::existeAlumnoResponsable($request->alumno, $padre, $this->alumnoResponsableRepository, "Padre", null);
-        }
-        if(isset($request->madre)){
-            $madreAlumnoR = Helper::existeAlumnoResponsable($request->alumno, $madre, $this->alumnoResponsableRepository, "Madre", null);
+        if(isset($madreExistente)){
+            Helper::existeTipoPersona("Padres", $madreExistente);
         }
 
+        ///----->>>>>4) SINCRONIZAMOS los datos de padres y madres del contacto, evitando que pueda haber más de un padre
+        //o el regristro es borrado 
+        Helper::existeRelacionPorParentesco($request->alumno['id'] , $padreExistente,  $madreExistente, "Padre");
 
-
- dd($request->padre, $request->madre, $request->pContacto, $request->sContacto);
-        //dd($padreAlumnoR, $madreAlumnoR, (isset($pContactoAlumnoR) ? ($pContactoAlumnoR) : null),(isset($sContactoAlumnoR) ? ($sContactoAlumnoR) : null));
-       // dd($request->padre, $request->madre, $request->pContacto, $request->sContacto);
-        dd($padreTipo, $madreTipo, $pContactoTipo, $sContactoTipo);
 
         if($persona->alumno->fichaAlumno==null){ //Si el alumno no tiene una ficha asociada, se le crea en el momento
              $fichaAlumno = $this->fichaAlumnoRepository->create($request->fichaAlumno[0]);
         }
 
+
+        //------------>5)Updateamos todo
         $persona->alumno->repitencia()->sync($request->repitencia); //AGREGAMOS LOS DATOS PIVOTE DE LAS REPITENCIAS https://stackoverflow.com/questions/23968415/laravel-eloquent-attach-vs-sync 
-
         $request->request->add(['alumno[repitencias]' => $persona->alumno->repitencia()->count()]); //cambiamos el valor del request"repitencias que tiene el número de repitencias del alumno"
-
         Helper::updateThis($this->direccionRepository,$request->direccion, $persona->direccion->id);
         unset($request['direccion']); //Produce el error array to string, por eso direccion se borra antes
         $persona = $this->personaRepository->update($request->all(), $id);
         $alumno = Helper::updateThis($this->alumnoRepository,$request->alumno, $persona->alumno->id);
         Helper::updateThis($this->fichaAlumnoRepository, $request->fichaAlumno[0],  $request->fichaAlumno[0]['id']);
         
-        /////////////AHORA OCUPAMOS LAS VARIABLES DE SESIÓN/////////////////
+        //------------>6)Jugamos con las variables de sesión para ir cerrando el proceso de matrícula
+        //********************************************
         $todosLosAlumnos = $request->session()->get('todosLosAlumnos');
-
         $todosLosAlumnos =  Helper::deleteFirst($todosLosAlumnos); //Borramos el primer elemento del array, que fue el que acabamos de utilizar y updatear
 
-     
         if ($todosLosAlumnos!=null) {
            
            // \Session::flash('flash_message','Alumno editado exitósamente.');
@@ -281,6 +257,8 @@ dd($request->fichaAlumno[0], $request->all());
         session()->forget('todosLosAlumnos'); //cuando quede ningún alumno en la variable la olvidaremos
         session()->forget('apoderadoAlumnos');
 
+        //------------>7)Cambiamos los estados una vez terminado todo para que el apoderado no pueda volver a acceder a hacer cambios
+        //********************************************
         $this->cambioDeEstados($alumno, $request); //Método que está en el mismo controller. Cambiamos los estados de los Alumnos
 
         \Session::flash('flash_message','Alumno editado exitósamente.');
@@ -288,22 +266,23 @@ dd($request->fichaAlumno[0], $request->all());
     }
 
 
-
+    /*revisar*/
     /*MÉTODO PARA VALIDAR Y DESPEJAR EL CONTROLLER*/
     public function validaciones($request){
 
         $validate = Helper::manualValidation($request->fichaAlumno, (new CreateFichaAlumnoRequest()), "1)Errores de la Ficha del Alumno: ", 1);
+
         if(isset($request->padre)){
              $validate = $validate . Helper::manualValidation($request->padre, (new CreatePersonaRequest()), "2)Errores de los datos del Padre: ",2);
         }
         if(isset($request->madre)){
         $validate = $validate . Helper::manualValidation($request->madre, (new CreatePersonaRequest()), "3)Errores de los datos de la Madre: ",3);
         }
-        if(isset($request->pContacto)){
+        if(isset($request->fichaAlumno[0]['cantidadContactos'])){
             
         $validate = $validate . Helper::manualValidation($request->pContacto, (new CreatePersonaRequest()), "4)Errores de los datos del Primer Contacto: ",4);
         }
-        if(isset($request->sContacto)){
+        if(isset($request->fichaAlumno[0]['cantidadContactos'])){
        $validate = $validate . Helper::manualValidation($request->sContacto, (new CreatePersonaRequest()), "5)Errores de los datos del Segundo Contacto: ",5);
         }
 
@@ -313,70 +292,7 @@ dd($request->fichaAlumno[0], $request->all());
 
     }
 
-    public function Contactos($persona, $request){
-        if(isset($persona->alumno->alumnoResponsables[0])){
-        $valor = $persona->alumno->alumnoResponsables;
-        $tienePadre = null;
-        $tieneMadre = null;
-        $tienepContacto = null;
-        $tienesContacto = null;
 
-            foreach ($valor as $key => $value) {
-
-               $personaPivotEncontrada = Persona::find($value->pivot->idPersona);
-              
-               if($personaPivotEncontrada->hasTipo("Padre")){
-                    $tienePadre = $tienePadre . "SI";
-                    $this->personaRepository->update($request->padre, $value->pivot->idPersona);
-
-               }
-
-                if($personaPivotEncontrada->hasTipo("Madre")){
-                    $tieneMadre = $tieneMadre . "SI";
-                    $this->personaRepository->update($request->madre, $value->pivot->idPersona);
-               }
-
-                if($personaPivotEncontrada->hasTipo("PrimerContacto")){
-                     $tienepContacto = $tienepContacto . "SI";
-                     $this->personaRepository->update($request->pContacto, $value->pivot->idPersona);
-                      AlumnoResponsable::where('id', $value->pivot->id)->update(array('parentesco' => $request->pContacto['parentesco']));
-
-
-               }
-                if($personaPivotEncontrada->hasTipo("SegundoContacto")){
-                     $tienesContacto = $tienesContacto . "SI";
-                     $this->personaRepository->update($request->sContacto, $value->pivot->idPersona);
-                     AlumnoResponsable::where('id', $value->pivot->id)->update(array('parentesco' => $request->sContacto['parentesco']));
-               }
-                   
-            }
-        if($tienePadre==null){
-             Helper::createPivot($this->personaRepository,$request->padre , $persona->alumno->id , "Padre", "Padre");
-             dd("tienePadre");
-        }
-        if($tieneMadre==null){
-            Helper::createPivot($this->personaRepository,$request->madre , $persona->alumno->id , "Madre", "Madre");
-            dd("tieneMadre");
-        }
-        if($tienepContacto==null){
-            Helper::createPivot($this->personaRepository,$request->pContacto , $persona->alumno->id , $request->pContacto['parentesco'], "PrimerContacto");
-            dd("tienepContacto");
-        }
-        if($tienesContacto==null){
-             Helper::createPivot($this->personaRepository,$request->sContacto , $persona->alumno->id , $request->sContacto['parentesco'],  "SegundoContacto");
-             dd("tienepContacto");
-
-        }
-
-        }else{
-
-            Helper::createPivot($this->personaRepository,$request->padre , $persona->alumno->id , "Padre", "Padre");
-            Helper::createPivot($this->personaRepository,$request->madre , $persona->alumno->id , "Madre", "Madre");
-            Helper::createPivot($this->personaRepository,$request->pContacto , $persona->alumno->id , $request->pContacto['parentesco'], "PrimerContacto");
-            Helper::createPivot($this->personaRepository,$request->sContacto , $persona->alumno->id , $request->sContacto['parentesco'], "SegundoContacto");
-           dd("Creado");
-        }
-    }
 
 
 /*Método que cambia los estados de Alumno y Apderado*/
