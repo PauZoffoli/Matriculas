@@ -100,7 +100,72 @@ ul
 	{margin-bottom:0cm;}
 -->
 </style>
+  <div style='mso-element:header' id=h1>
 
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='margin-left:46.05pt;border-collapse:collapse;mso-padding-alt:0cm 3.5pt 0cm 3.5pt'>
+
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+
+  <td width=146 valign=top style='width:109.25pt;padding:0cm 3.5pt 0cm 3.5pt'>
+
+ <p class=MsoNormal><span style='position:absolute;z-index:1;margin-left:-35px;
+  margin-top:0px;width:50px;height:78px'><img width=50 height=63
+  img src="images/logoIDOPBn.png"></span><a
+  name="_GoBack"></a></p>
+
+  <p class=MsoHeader align=center style='text-align:center'><b><span
+  lang=ES-TRAD style='font-size:12.0pt;mso-bidi-font-size:11.0pt;font-family:
+  "Californian FB","serif";mso-fareast-language:ES-TRAD;mso-no-proof:yes'><!--[if gte vml 1]><v:shapetype
+   id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+   path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+   <v:stroke joinstyle="miter"/>
+   <v:formulas>
+    <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+    <v:f eqn="sum @0 1 0"/>
+    <v:f eqn="sum 0 0 @1"/>
+    <v:f eqn="prod @2 1 2"/>
+    <v:f eqn="prod @3 21600 pixelWidth"/>
+    <v:f eqn="prod @3 21600 pixelHeight"/>
+    <v:f eqn="sum @0 0 1"/>
+    <v:f eqn="prod @6 1 2"/>
+    <v:f eqn="prod @7 21600 pixelWidth"/>
+    <v:f eqn="sum @8 21600 0"/>
+    <v:f eqn="prod @7 21600 pixelHeight"/>
+    <v:f eqn="sum @10 21600 0"/>
+   </v:formulas>
+   <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+   <o:lock v:ext="edit" aspectratio="t"/>
+  </v:shapetype><v:shape id="_x0000_s2050" type="#_x0000_t75" style='position:absolute;
+   left:0;text-align:left;margin-left:-64.05pt;margin-top:-4.4pt;width:49.7pt;
+   height:64.9pt;z-index:1'>
+   <v:imagedata src="image002.png" o:title="IDOP ByN"/>
+  </v:shape><![endif]--></span></b><b><span lang=ES-TRAD style='font-size:12.0pt;
+  mso-bidi-font-size:11.0pt;font-family:"Californian FB","serif"'>Colegio Idop</span></b><span
+  lang=ES-TRAD style='font-size:9.0pt;mso-bidi-font-size:11.0pt'><o:p></o:p></span></p>
+  <p class=MsoHeader align=center style='text-align:center'><span lang=ES-TRAD
+  style='font-size:9.0pt;mso-bidi-font-size:11.0pt'>Fono 225482412<o:p></o:p></span></p>
+  <p class=MsoHeader align=center style='text-align:center'><span lang=ES-TRAD>L</span><span
+  lang=ES-TRAD style='font-size:9.0pt;mso-bidi-font-size:11.0pt'>a Cisterna</span></p>
+  </td>
+  <td width=207 valign=top style='width:155.35pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoHeader><span lang=ES-TRAD><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width=207 style='width:155.35pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoHeader align=center style='text-align:center'><span lang=ES-TRAD>N
+  º </span><!--[if supportFields]><span lang=ES-TRAD><span style='mso-element:
+  field-begin'></span><span style='mso-spacerun:yes'> </span>MERGEFIELD
+  &quot;Ncont&quot; <span style='mso-element:field-separator'></span></span><![endif]--><span
+  lang=ES-TRAD><span style='mso-no-proof:yes'>00266</span></span><!--[if supportFields]><span
+  lang=ES-TRAD><span style='mso-element:field-end'></span></span><![endif]--><span
+  lang=ES-TRAD><span style='mso-spacerun:yes'>   </span>/ P2017</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoHeader><span lang=ES-TRAD><o:p>&nbsp;</o:p></span></p>
+
+</div>
 </head>
 
 <body lang=ES>
@@ -109,15 +174,12 @@ ul
 
 <p class=MsoNormal align=center style='margin-right:-11.6pt;text-align:center'><b><u><span
 lang=ES-TRAD style='font-family:"Arial",sans-serif'>P A G A R É </span></u></b></p>
-
-<p class=MsoNormal style='margin-right:60.85pt;line-height:120%;text-autospace:
-none'><span style='position:absolute;z-index:-1895825920;margin-left:70px;
-margin-top:4px;width:637px;height:73px'><img width=637 height=73
-src="Pagare%202017_archivos/image001.gif"></span></p>
+<br>
+<div style="border: ridge #000000 1px;">
 
 <p class=MsoNormal style='margin-right:60.85pt;line-height:120%;text-autospace:
 none'><b><i><span lang=ES-TRAD style='font-size:10.0pt;line-height:120%;
-font-family:"Arial",sans-serif'>Nombre del beneficiario: Colegio IDOP Limitada</span></i></b></p>
+font-family:"Arial",sans-serif'>Nombre del beneficiario: Fundación Educacional Colegio IDOP</span></i></b></p>
 
 <p class=MsoNormal style='margin-top:0cm;margin-right:60.85pt;margin-bottom:
 0cm;margin-left:7.0pt;margin-bottom:.0001pt;line-height:120%;text-autospace:
@@ -128,8 +190,8 @@ font-family:"Arial",sans-serif'>Domicilio: Vicuña Mackenna 316, La
 <p class=MsoNormal style='margin-top:0cm;margin-right:60.85pt;margin-bottom:
 0cm;margin-left:7.0pt;margin-bottom:.0001pt;line-height:120%;text-autospace:
 none'><b><i><sub><span lang=ES-TRAD style='font-size:10.0pt;line-height:120%;
-font-family:"Arial",sans-serif'>RUT: 77.065.730-K</span></sub></i></b></p>
-
+font-family:"Arial",sans-serif'>RUT: 65.154.596-K</span></sub></i></b></p>
+</div>
 <p class=MsoNormal style='margin-right:60.85pt;line-height:120%;text-autospace:
 none'><span lang=ES-TRAD style='font-size:10.0pt;line-height:120%;font-family:
 "Arial",sans-serif'>&nbsp;</span></p>
@@ -167,7 +229,7 @@ name="_GoBack"></a><span lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial
 
 <p class=MsoNormal style='margin-right:-11.6pt;text-align:justify'><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>Debo y
-pagaré incondicionalmente a la orden del Colegio IDOP Limitada, o a quien sus
+pagaré incondicionalmente a la orden de Fundación Educacional Colegio IDOP, o a quien sus
 derechos represente, en su domicilio de calle Vicuña Mackenna<span
 style='letter-spacing:1.0pt'> </span>316,<span style='letter-spacing:1.0pt'> </span>Comuna<span
 style='letter-spacing:1.0pt'> </span>de<span style='letter-spacing:1.0pt'> </span>La<span style='letter-spacing:1.0pt'> </span>Cisterna,<span style='letter-spacing:1.0pt'> </span>ciudad<span
@@ -182,10 +244,10 @@ que me  obligo a pagar íntegramente a la vista. </span></p>
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>La
 cantidad antes indicada me obligo a pagarla en {{ $req->nroCuotas }} cuotas, iguales y sucesivas,
 según el siguiente detalle:</span></p>
-
+<br>
 <div align=center>
 
-<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=270
+<table class=MsoNormalTable align=center border=0 cellspacing=0 cellpadding=0 width=270
  style='width:202.75pt;border-collapse:collapse'>
  <tr style='height:18.3pt'>
   <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
@@ -264,7 +326,10 @@ lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span><sp
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{ $alumno->persona->ApPat }}</span><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{ $alumno->persona->ApMat }}</span></p>
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{ $alumno->persona->ApMat }}</span>
+
+</p>
+
 @endforeach
 <p class=MsoNormal style='margin-right:-11.6pt;text-align:justify'><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></p>
@@ -335,8 +400,8 @@ lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'></span></b>
 </span><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  $datos->persona->direccion->calle }}</span></b><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span></b><b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  $datos->persona->direccion->nroCalle }}</span></b><b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> comuna de
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  $datos->persona->direccion->nroCalle }} </span></b><b><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>comuna de
 </span></b><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  $datos->persona->direccion->comuna->nombreComu }}</span></b><b><span lang=ES-TRAD style='font-size:10.0pt;font-family:
 "Arial",sans-serif'> </span></b></p>

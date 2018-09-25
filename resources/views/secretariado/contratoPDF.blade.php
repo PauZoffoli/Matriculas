@@ -4,8 +4,11 @@ xmlns:w="urn:schemas-microsoft-com:office:word"
 xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
 xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
 xmlns="http://www.w3.org/TR/REC-html40">
-
-<head>
+{{ Carbon\Carbon::setLocale('es') }}
+{{ Carbon\Carbon::now()->diffForHumans() }}
+{{ Carbon\Carbon::setLocale('es') }}
+{{ Carbon\Carbon::now()->format('F Y H') }}
+<head> 
 <meta http-equiv=Content-Type content="text/html; charset=windows-1252">
 <meta name=ProgId content=Word.Document>
 <meta name=Generator content="Microsoft Word 15">
@@ -771,13 +774,81 @@ ul
  <o:shapelayout v:ext="edit">
   <o:idmap v:ext="edit" data="1"/>
  </o:shapelayout></xml><![endif]-->
+   <div style='mso-element:header' id=h1>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='margin-left:46.05pt;border-collapse:collapse;mso-padding-alt:0cm 3.5pt 0cm 3.5pt'>
+
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+
+  <td width=146 valign=top style='width:109.25pt;padding:0cm 3.5pt 0cm 3.5pt'>
+
+ <p class=MsoNormal><span style='position:absolute;z-index:1;margin-left:-35px;
+  margin-top:0px;width:50px;height:78px'><img width=50 height=63
+  img src="images/logoIDOPBn.png"></span><a
+  name="_GoBack"></a></p>
+
+  <p class=MsoHeader align=center style='text-align:center'><b><span
+  lang=ES-TRAD style='font-size:12.0pt;mso-bidi-font-size:11.0pt;font-family:
+  "Californian FB","serif";mso-fareast-language:ES-TRAD;mso-no-proof:yes'><!--[if gte vml 1]><v:shapetype
+   id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+   path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+   <v:stroke joinstyle="miter"/>
+   <v:formulas>
+    <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+    <v:f eqn="sum @0 1 0"/>
+    <v:f eqn="sum 0 0 @1"/>
+    <v:f eqn="prod @2 1 2"/>
+    <v:f eqn="prod @3 21600 pixelWidth"/>
+    <v:f eqn="prod @3 21600 pixelHeight"/>
+    <v:f eqn="sum @0 0 1"/>
+    <v:f eqn="prod @6 1 2"/>
+    <v:f eqn="prod @7 21600 pixelWidth"/>
+    <v:f eqn="sum @8 21600 0"/>
+    <v:f eqn="prod @7 21600 pixelHeight"/>
+    <v:f eqn="sum @10 21600 0"/>
+   </v:formulas>
+   <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+   <o:lock v:ext="edit" aspectratio="t"/>
+  </v:shapetype><v:shape id="_x0000_s2050" type="#_x0000_t75" style='position:absolute;
+   left:0;text-align:left;margin-left:-64.05pt;margin-top:-4.4pt;width:49.7pt;
+   height:64.9pt;z-index:1'>
+   <v:imagedata src="image002.png" o:title="IDOP ByN"/>
+  </v:shape><![endif]--></span></b><b><span lang=ES-TRAD style='font-size:12.0pt;
+  mso-bidi-font-size:11.0pt;font-family:"Californian FB","serif"'>Colegio Idop</span></b><span
+  lang=ES-TRAD style='font-size:9.0pt;mso-bidi-font-size:11.0pt'><o:p></o:p></span></p>
+  <p class=MsoHeader align=center style='text-align:center'><span lang=ES-TRAD
+  style='font-size:9.0pt;mso-bidi-font-size:11.0pt'>Fono 225482412<o:p></o:p></span></p>
+  <p class=MsoHeader align=center style='text-align:center'><span lang=ES-TRAD>L</span><span
+  lang=ES-TRAD style='font-size:9.0pt;mso-bidi-font-size:11.0pt'>a Cisterna</span></p>
+  </td>
+  <td width=207 valign=top style='width:155.35pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoHeader><span lang=ES-TRAD><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width=207 style='width:155.35pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoHeader align=center style='text-align:center'><span style='font-size:12.0pt;
+  mso-bidi-font-size:11.0pt;'lang=ES-TRAD>N
+  º </span><!--[if supportFields]><span lang=ES-TRAD><span style='mso-element:
+  field-begin'></span><span style='mso-spacerun:yes'> </span>MERGEFIELD
+  &quot;Ncont&quot; <span style='mso-element:field-separator'></span></span><![endif]--><span
+  lang=ES-TRAD><span style='font-size:12.0pt;
+  mso-bidi-font-size:11.0pt;'>00266</span></span><!--[if supportFields]><span
+  lang=ES-TRAD><span style='mso-element:field-end'></span></span><![endif]--><span
+  lang=ES-TRAD><span style='mso-spacerun:yes'>   </span></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoHeader><span lang=ES-TRAD><o:p>&nbsp;</o:p></span></p>
+
+</div>
 </head>
 
 <body lang=ES style='tab-interval:35.4pt'>
 
 <div class=WordSection1>
 
-<p class=MsoTitle><span lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'><o:p>&nbsp;</o:p></span></p>
+
 
 <p class=MsoTitle><span lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>CONTRATO
 DE PRESTACIÓN DE SERVICIOS EDUCACIONALES<o:p></o:p></span></p>
@@ -793,16 +864,15 @@ mso-font-kerning:72.0pt'><span style='mso-element:field-begin'></span><span
 style='mso-spacerun:yes'> </span>TIME \@ &quot;dd' de 'MMMM' de 'yyyy&quot; <span
 style='mso-element:field-separator'></span></span></b><![endif]--><b
 style='mso-bidi-font-weight:normal'><span style='font-family:"Arial",sans-serif;
-mso-font-kerning:72.0pt'><span style='mso-no-proof:yes'>{{ date('d') }} de {{ date('M') }} de
+mso-font-kerning:72.0pt'><span style='mso-no-proof:yes'>{{ date('d') }} de {{ date('F') }} de
 {{ date('Y') }}</span></span></b><!--[if supportFields]><b style='mso-bidi-font-weight:
 normal'><span style='font-family:"Arial",sans-serif;mso-font-kerning:72.0pt'><span
 style='mso-element:field-end'></span></span></b><![endif]--><span
 style='font-family:"Arial",sans-serif;mso-font-kerning:72.0pt'>, comparecen: <b
-style='mso-bidi-font-weight:normal'>COLEGIO IDOP LIMITADA</b>, RUT número
-setenta y siete millones sesenta y cinco mil setecientos treinta guión k;
-representado legalmente por doña Raquel Martínez Guillén, chilena, casada,
-profesora y Directora de Estudios, cédula nacional de identidad número cuatro
-millones setecientos setenta y seis mil trescientos cuarenta guión uno, todos
+style='mso-bidi-font-weight:normal'>FUNDACIÓN EDUCACIONAL COLEGIO IDOP </b>, RUT número
+setenta y cinco millones ciento cincuenta y cuatro mil quinientos noventa y seis guión k;
+representado legalmente por don Manuel Mundaca Martínez, chileno, soltero,
+profesor de Estado de Física y Matemática, cédula nacional de identidad número doce millones ochocientos ochenta mil setecientos cuatro guión siete, todos
 domiciliados en calle Vicuña Mackenna número trescientos dieciséis, comuna de <st1:PersonName
 ProductID="la Cisterna" w:st="on">La Cisterna</st1:PersonName>, quienes en
 adelante se denominarán <b style='mso-bidi-font-weight:normal'>El Colegio</b>,
@@ -908,13 +978,8 @@ letter-spacing:-.1pt;mso-font-kerning:72.0pt;mso-ansi-language:ES-TRAD'><o:p></o
 <p class=MsoNormal style='text-align:justify'><b style='mso-bidi-font-weight:
 normal'><span lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-ansi-language:
 ES-TRAD'>PRIMERO</span></b><span lang=ES-TRAD style='font-family:"Arial",sans-serif;
-mso-ansi-language:ES-TRAD'>: El Colegio IDOP – Instituto de Orientación
-Psicopedagógica-, se encuentra reconocido oficialmente por resolución exenta
-del Ministerio de Educación número nueve mil trescientos setenta y nueve, de
-veinte de Julio de mil novecientos ochenta y uno, ampliada y modificada por
-otras resoluciones; su sostenedor es la sociedad “Colegio IDOP Limitada”, según
-consta en resolución número trescientos setenta y ocho, de dieciséis de <span
-class=GramE>Marzo</span> de mil novecientos noventa y ocho.<o:p></o:p></span></p>
+mso-ansi-language:ES-TRAD'>: La Fundación Educacional Colegio IDOP, se encuentra reconocido oficialmente por resolución exenta del Ministerio de Educación número nueve mil trescientos setenta y nueve, de veinte de Julio de mil novecientos ochenta y uno, ampliada y modificada por otras resoluciones; su sostenedor es la “Fundación Educacional Colegio IDOP”, según consta en resolución número dos mil ciento cuarenta y tres, del cinco de <span
+class=GramE>junio </span> de dos mil dieciocho.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='text-align:justify'><span lang=ES-TRAD
 style='font-family:"Arial",sans-serif;mso-ansi-language:ES-TRAD'><span
@@ -1071,275 +1136,266 @@ fuerza mayor, se obliga a:<o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:18.0pt;text-align:justify;text-indent:
 -18.0pt;mso-list:l5 level1 lfo1;tab-stops:list 18.0pt'><![if !supportLists]><span
-lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-fareast-font-family:
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-fareast-font-family:
 Arial;mso-ansi-language:ES-TRAD'><span style='mso-list:Ignore'>1)<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
-dir=LTR></span><span lang=ES-TRAD style='font-family:"Arial",sans-serif;
-mso-ansi-language:ES-TRAD'>Entregar, durante la vigencia del presente contrato,
-la atención necesaria para que el alumno desarrolle el proceso educativo dentro
-de un adecuado nivel académico, dando énfasis al desarrollo de una formación
-integral, desde una perspectiva cristiana.<o:p></o:p></span></p>
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-ansi-language:ES-TRAD'>Entregar,
+durante la vigencia del presente contrato, la atención necesaria para que el
+alumno desarrolle el proceso educativo dentro de un adecuado nivel académico,
+dando énfasis al desarrollo de una formación integral, desde una perspectiva
+cristiana.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:18.0pt;text-align:justify;text-indent:
 -18.0pt;mso-list:l5 level1 lfo1;tab-stops:list 18.0pt'><![if !supportLists]><span
-lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-fareast-font-family:
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-fareast-font-family:
 Arial;mso-ansi-language:ES-TRAD'><span style='mso-list:Ignore'>2)<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
-dir=LTR></span><span lang=ES-TRAD style='font-family:"Arial",sans-serif;
-mso-ansi-language:ES-TRAD'>Impartir la enseñanza contenida en los planes y
-programas de estudio aprobados por el Ministerio de Educación, del respectivo
-nivel.<o:p></o:p></span></p>
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-ansi-language:ES-TRAD'>Impartir
+la enseñanza contenida en los planes y programas de estudio aprobados por el
+Ministerio de Educación, del respectivo nivel.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:18.0pt;text-align:justify;text-indent:
 -18.0pt;mso-list:l5 level1 lfo1;tab-stops:list 18.0pt'><![if !supportLists]><span
-lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-fareast-font-family:
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-fareast-font-family:
 Arial;mso-ansi-language:ES-TRAD'><span style='mso-list:Ignore'>3)<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
-dir=LTR></span><span lang=ES-TRAD style='font-family:"Arial",sans-serif;
-mso-ansi-language:ES-TRAD'>Difundir el contenido del proyecto educativo y los
-reglamentos internos de la institución.<o:p></o:p></span></p>
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-ansi-language:ES-TRAD'>Difundir
+el contenido del proyecto educativo y los reglamentos internos de la
+institución.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:18.0pt;text-align:justify;text-indent:
 -18.0pt;mso-list:l5 level1 lfo1;tab-stops:list 18.0pt'><![if !supportLists]><span
-lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-fareast-font-family:
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-fareast-font-family:
 Arial;mso-ansi-language:ES-TRAD'><span style='mso-list:Ignore'>4)<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
-dir=LTR></span><span lang=ES-TRAD style='font-family:"Arial",sans-serif;
-mso-ansi-language:ES-TRAD'>Promover actividades extraprogramáticas o
-complementarias, que estimulen el desarrollo físico, espiritual e intelectual
-del alumno, en los cursos que el colegio estime conveniente.<o:p></o:p></span></p>
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-ansi-language:ES-TRAD'>Promover
+actividades extraprogramáticas o complementarias, que estimulen el desarrollo
+físico, espiritual e intelectual del alumno, en los cursos que el colegio
+estime conveniente.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='text-align:justify'><b style='mso-bidi-font-weight:
-normal'><span lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-ansi-language:
-ES-TRAD'>CUARTO</span></b><span lang=ES-TRAD style='font-family:"Arial",sans-serif;
-mso-ansi-language:ES-TRAD'>: <b>El apoderado /<span class=GramE>a<span
-style='font-weight:normal'><span style='mso-spacerun:yes'>  </span>se</span></span></b>
-obliga a:<o:p></o:p></span></p>
+normal'><span lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-ansi-language:
+ES-TRAD'>CUARTO</span></b><span lang=ES-TRAD style='font-family:"Arial","sans-serif";
+mso-ansi-language:ES-TRAD'>: <b>El apoderado /a</b><span
+style='mso-spacerun:yes'>  </span>se obliga a:<o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:18.0pt;text-align:justify;text-indent:
 -18.0pt;mso-list:l1 level1 lfo2;tab-stops:list 18.0pt'><![if !supportLists]><span
-lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-fareast-font-family:
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-fareast-font-family:
 Arial;mso-ansi-language:ES-TRAD'><span style='mso-list:Ignore'>1)<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
-dir=LTR></span><span lang=ES-TRAD style='font-family:"Arial",sans-serif;
-mso-ansi-language:ES-TRAD'>Conocer, aceptar y promover el proyecto educativo
-del colegio, el cual se inspira en principios, valores y enseñanza
-cristiano-católica.<o:p></o:p></span></p>
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-ansi-language:ES-TRAD'>Conocer,
+aceptar y promover el “proyecto educativo del colegio”, el cual se inspira en
+principios, valores y enseñanza cristiano-católica.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:18.0pt;text-align:justify;text-indent:
 -18.0pt;mso-list:l1 level1 lfo2;tab-stops:list 18.0pt'><![if !supportLists]><span
-lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-fareast-font-family:
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-fareast-font-family:
 Arial;mso-ansi-language:ES-TRAD'><span style='mso-list:Ignore'>2)<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
-dir=LTR></span><span lang=ES-TRAD style='font-family:"Arial",sans-serif;
-mso-ansi-language:ES-TRAD'>Favorecer las tareas educativas y formativas que, en
-beneficio del alumno, conciba y desarrolle el colegio.<o:p></o:p></span></p>
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-ansi-language:ES-TRAD'>Favorecer
+las tareas educativas y formativas que, en beneficio del alumno, conciba y
+desarrolle el colegio.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:18.0pt;text-align:justify;text-indent:
 -18.0pt;mso-list:l1 level1 lfo2;tab-stops:list 18.0pt'><![if !supportLists]><span
-lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-fareast-font-family:
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-fareast-font-family:
 Arial;mso-ansi-language:ES-TRAD'><span style='mso-list:Ignore'>3)<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
-dir=LTR></span><span style='font-family:"Arial",sans-serif'>Colaborar con el
-proceso psicopedagógico de su (s) pupilo (s), cumpliendo con las exigencias
-definidas por el Colegio.</span><span lang=ES-TRAD style='font-family:"Arial",sans-serif;
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+style='font-family:"Arial","sans-serif"'>Colaborar con el proceso
+psicopedagógico de su (s) pupilo (s), cumpliendo con las exigencias definidas
+por el Colegio.</span><span lang=ES-TRAD style='font-family:"Arial","sans-serif";
 mso-ansi-language:ES-TRAD'><o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:18.0pt;text-align:justify;text-indent:
 -18.0pt;mso-list:l1 level1 lfo2;tab-stops:list 18.0pt'><![if !supportLists]><span
-style='font-family:"Arial",sans-serif;mso-fareast-font-family:Arial'><span
-style='mso-list:Ignore'>4)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span dir=LTR></span><span style='font-family:
-"Arial",sans-serif'>Cumplir y acatar las normas dispuestas en el Reglamento de
-Evaluación y Promoción Escolar. <o:p></o:p></span></p>
+style='font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>4)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:"Arial","sans-serif"'>Cumplir
+y acatar las normas dispuestas en el Reglamento de Evaluación y Promoción
+Escolar. <o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:18.0pt;text-align:justify;text-indent:
 -18.0pt;mso-list:l1 level1 lfo2;tab-stops:list 18.0pt'><![if !supportLists]><span
-lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-fareast-font-family:
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-fareast-font-family:
 Arial;mso-ansi-language:ES-TRAD'><span style='mso-list:Ignore'>5)<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
-dir=LTR></span><span lang=ES-TRAD style='font-family:"Arial",sans-serif;
-mso-ansi-language:ES-TRAD'>Acatar los reglamentos internos del colegio</span><span
-style='font-family:"Courier New"'>, </span><span style='font-family:"Arial",sans-serif'>especialmente
-en los Deberes del Apoderado y en lo referente al alumno, aceptando así las
-sanciones por su no-cumplimiento.</span><span lang=ES-TRAD style='font-family:
-"Arial",sans-serif;mso-ansi-language:ES-TRAD'><o:p></o:p></span></p>
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-ansi-language:ES-TRAD'>Acatar
+los reglamentos internos del colegio</span><span style='font-family:"Courier New"'>,
+</span><span style='font-family:"Arial","sans-serif"'>especialmente en los
+Deberes del Apoderado y en lo referente al alumno, aceptando así las sanciones
+por su no-cumplimiento.</span><span lang=ES-TRAD style='font-family:"Arial","sans-serif";
+mso-ansi-language:ES-TRAD'><o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:18.0pt;text-align:justify;text-indent:
 -18.0pt;mso-list:l1 level1 lfo2;tab-stops:list 18.0pt'><![if !supportLists]><span
-lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-fareast-font-family:
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-fareast-font-family:
 Arial;mso-ansi-language:ES-TRAD'><span style='mso-list:Ignore'>6)<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
-dir=LTR></span><span lang=ES-TRAD style='font-family:"Arial",sans-serif;
-mso-ansi-language:ES-TRAD'>Conocer, aceptar y poner en práctica el ´´
-Reglamento de Padres y Apoderados ´´, el cual será entregado en este acto.<o:p></o:p></span></p>
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-ansi-language:ES-TRAD'>Conocer,
+aceptar y poner en práctica el ´´ Reglamento de Padres y Apoderados ´´, el cual
+será entregado en este acto.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:18.0pt;text-align:justify;text-indent:
 -18.0pt;mso-list:l1 level1 lfo2;tab-stops:list 18.0pt'><![if !supportLists]><span
-style='font-family:"Arial",sans-serif;mso-fareast-font-family:Arial'><span
-style='mso-list:Ignore'>7)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span dir=LTR></span><span style='font-family:
-"Arial",sans-serif'>Cumplir oportunamente con los pagos de matrícula fijada por
-el Ministerio de Educación, en el caso que <span class=GramE>corresponda<span
-style='mso-spacerun:yes'>  </span>y</span>, con el pago de financiamiento
-compartido, el que para el año 2017 será determinado por el Ministerio de
-Educación de acuerdo al procedimiento contenido <st1:PersonName
+style='font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
+style='mso-list:Ignore'>7)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:"Arial","sans-serif"'>Cumplir
+oportunamente con los pagos de matrícula fijada por el Ministerio de Educación,
+en el caso que corresponda<span style='mso-spacerun:yes'>  </span>y, con el
+pago de financiamiento compartido, el que para el año 2019 será determinado por
+el Ministerio de Educación de acuerdo al procedimiento contenido <st1:PersonName
 ProductID="la Ley N" w:st="on">la Ley N</st1:PersonName>º 20.845, publicada en
 el Diario Oficial el 08 de junio de 2015, y en el Decreto Nº 478 publicado en
 el Diario Oficial el 29 de enero de 2016.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:18.0pt;text-align:justify'><span
-style='font-family:"Arial",sans-serif'>Que, de acuerdo a lo dispuesto en <st1:PersonName
+style='font-family:"Arial","sans-serif"'>Que, de acuerdo a lo dispuesto en <st1:PersonName
 ProductID="la Resoluci&#65523;n Exenta" w:st="on">la Resolución Exenta</st1:PersonName>
-Nº 2234 de 31 de agosto de 2015 de <st1:PersonName
+Nº 312 de 24 de enero de 2018 de <st1:PersonName
 ProductID="la Secretar&#65517;a Regional" w:st="on">la Secretaría Regional</st1:PersonName>
 Ministerial de <st1:PersonName ProductID="la Regi&#65523;n Metropolitana"
 w:st="on">la Región Metropolitana</st1:PersonName>, se procedió a fijar el
-monto de 10,30271 Unidades de Fomento para Pre Kínder- Kínder; 12,93314
-Unidades de Fomento para 1º- 2 Básico; 15,56357 Unidades de Fomento para de 3º
-a 8º Básico y 15,56357 de I a IV Medio, como el cobro por alumno para el año
-escolar 2016, el cual, para todos los efectos del presente contrato tiene el
-valor de referencial.<o:p></o:p></span></p>
+monto de 9.9308 Unidades de Fomento para Pre Kínder- Kínder y primero Básico;
+12,5609 Unidades de Fomento para<span style='mso-spacerun:yes'>  </span>2
+Básico; 15,1921 Unidades de Fomento para de 3º a 8º Básico y 15,1921 de I a IV
+Medio, como el cobro por alumno para el año escolar 2018, el cual, para todos
+los efectos del presente contrato tiene el valor de referencial.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:21.3pt;text-align:justify'><span
-style='font-size:8.0pt;font-family:"Arial",sans-serif'><o:p>&nbsp;</o:p></span></p>
+style='font-size:8.0pt;font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
 
 <p class=MsoNormal style='margin-left:21.3pt;text-align:justify'><span
-style='font-family:"Arial",sans-serif'>Que una vez que el Ministerio de
+style='font-family:"Arial","sans-serif"'>Que una vez que el Ministerio de
 Educación fije los montos a cobrar, se procederá a informar a los apoderados el
-monto final a pagar, el <span class=GramE>cual</span> para facilitar el pago,
-se dividirá en <b style='mso-bidi-font-weight:normal'>once cuotas iguales fijas
-en pesos,</b> pagaderas a partir del mes de marzo de 2017.<o:p></o:p></span></p>
+monto final a pagar, el cual para facilitar el pago, se dividirá en <b
+style='mso-bidi-font-weight:normal'>once cuotas iguales fijas en pesos,</b>
+pagaderas a partir del mes de marzo de 2019.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:21.3pt;text-align:justify'><span
-style='font-family:"Arial",sans-serif'>El vencimiento de cada <span
-class=GramE>cuota,</span> será dentro de los primeros cinco días de cada mes, a
-contar del mes de marzo de 2017.<o:p></o:p></span></p>
+style='font-family:"Arial","sans-serif"'>El vencimiento de cada cuota, será
+dentro de los primeros cinco días de cada mes, a contar del mes de marzo de
+2019.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:18.0pt;text-align:justify;text-indent:
 -18.0pt;mso-list:l1 level1 lfo2;tab-stops:list 18.0pt'><![if !supportLists]><span
-lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-fareast-font-family:
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-fareast-font-family:
 Arial;mso-ansi-language:ES-TRAD'><span style='mso-list:Ignore'>8)<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
-dir=LTR></span><span style='font-family:"Arial",sans-serif'>Apoyar las tareas
-educativas y formativas que en beneficio del alumno conciba y desarrolle el
-Colegio. Ejecutar las instrucciones necesarias para alcanzar dicho objetivo.</span><span
-lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-ansi-language:ES-TRAD'><o:p></o:p></span></p>
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+style='font-family:"Arial","sans-serif"'>Apoyar las tareas educativas y
+formativas que en beneficio del alumno conciba y desarrolle el Colegio.
+Ejecutar las instrucciones necesarias para alcanzar dicho objetivo.</span><span
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-ansi-language:ES-TRAD'><o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:18.0pt;text-align:justify;text-indent:
 -18.0pt;mso-list:l1 level1 lfo2;tab-stops:list 18.0pt'><![if !supportLists]><span
-lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-fareast-font-family:
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-fareast-font-family:
 Arial;mso-ansi-language:ES-TRAD'><span style='mso-list:Ignore'>9)<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
-dir=LTR></span><span lang=ES-TRAD style='font-family:"Arial",sans-serif;
-mso-ansi-language:ES-TRAD'>Prestar asistencia profesional externa a su pupilo,
-cuando el colegio lo requiera a través de sus profesionales.<o:p></o:p></span></p>
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-ansi-language:ES-TRAD'>Prestar
+asistencia profesional externa a su pupilo, cuando el colegio lo requiera a
+través de sus profesionales.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:18.0pt;text-align:justify;text-indent:
 -18.0pt;mso-list:l1 level1 lfo2;tab-stops:list 18.0pt'><![if !supportLists]><span
-lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-fareast-font-family:
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-fareast-font-family:
 Arial;mso-ansi-language:ES-TRAD'><span style='mso-list:Ignore'>10)<span
 style='font:7.0pt "Times New Roman"'>&nbsp; </span></span></span><![endif]><span
-dir=LTR></span><span lang=ES-TRAD style='font-family:"Arial",sans-serif;
-mso-ansi-language:ES-TRAD'>Dar cumplimientos a los compromisos académicos,
-culturales, sociales, religiosos, solidarios, deportivos, formativos o de otro
-tipo, programados por el Colegio, Centro de Padres o del curso y debidamente
-autorizados por <st1:PersonName ProductID="la Direcci&#65523;n" w:st="on">la <span
- class=GramE>Dirección</span></st1:PersonName><span class=GramE><span
-style='mso-spacerun:yes'>  </span>del</span> establecimiento, o por la
-autoridad que corresponda.<o:p></o:p></span></p>
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-ansi-language:ES-TRAD'>Dar
+cumplimientos a los compromisos académicos, culturales, sociales, religiosos,
+solidarios, deportivos, formativos o de otro tipo, programados por el Colegio,
+Centro de Padres o del curso y debidamente autorizados por <st1:PersonName
+ProductID="la Direcci&#65523;n" w:st="on">la Dirección</st1:PersonName><span
+style='mso-spacerun:yes'>  </span>del establecimiento, o por la autoridad que
+corresponda.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='text-align:justify'><b style='mso-bidi-font-weight:
-normal'><span lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-ansi-language:
-ES-TRAD'>QUINTO</span></b><span lang=ES-TRAD style='font-family:"Arial",sans-serif;
+normal'><span lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-ansi-language:
+ES-TRAD'>QUINTO</span></b><span lang=ES-TRAD style='font-family:"Arial","sans-serif";
 mso-ansi-language:ES-TRAD'>: <b>El alumno /a</b> se obliga a:<o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:18.0pt;text-align:justify;text-indent:
 -18.0pt;mso-list:l6 level1 lfo3;tab-stops:list 18.0pt'><![if !supportLists]><span
-lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-fareast-font-family:
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-fareast-font-family:
 Arial;mso-ansi-language:ES-TRAD'><span style='mso-list:Ignore'>1)<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
-dir=LTR></span><span lang=ES-TRAD style='font-family:"Arial",sans-serif;
-mso-ansi-language:ES-TRAD'>Cumplir con lo establecido en el proyecto educativo
-y en los reglamentos internos y manual de convivencia escolar del colegio, así como
-también el reglamento de evaluación y promoción.<o:p></o:p></span></p>
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-ansi-language:ES-TRAD'>Cumplir
+con lo establecido en el proyecto educativo y en los reglamentos internos y
+manual de convivencia escolar del colegio, así como también el reglamento de
+evaluación y promoción.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:18.0pt;text-align:justify;text-indent:
 -18.0pt;mso-list:l6 level1 lfo3;tab-stops:list 18.0pt'><![if !supportLists]><span
-lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-fareast-font-family:
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-fareast-font-family:
 Arial;mso-ansi-language:ES-TRAD'><span style='mso-list:Ignore'>2)<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
-dir=LTR></span><span lang=ES-TRAD style='font-family:"Arial",sans-serif;
-mso-ansi-language:ES-TRAD'>Asistir regularmente a las clases y actividades
-planificadas por el colegio.<o:p></o:p></span></p>
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-ansi-language:ES-TRAD'>Asistir
+regularmente a las clases y actividades planificadas por el colegio.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:18.0pt;text-align:justify;text-indent:
 -18.0pt;mso-list:l6 level1 lfo3;tab-stops:list 18.0pt'><![if !supportLists]><span
-lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-fareast-font-family:
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-fareast-font-family:
 Arial;mso-ansi-language:ES-TRAD'><span style='mso-list:Ignore'>3)<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
-dir=LTR></span><span lang=ES-TRAD style='font-family:"Arial",sans-serif;
-mso-ansi-language:ES-TRAD'>Mantener un comportamiento y presentación personal <span
-class=GramE>de acuerdo a</span> las exigencias que el colegio establezca en sus
-reglamentos; además de mantener relaciones interpersonales compatibles con los
-principios y postulados que persigue la institución. Para ello tendrá a su
-disposición el reglamento interno del alumno, el que aparece en la libreta
-oficial de comunicaciones.<o:p></o:p></span></p>
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-ansi-language:ES-TRAD'>Mantener
+un comportamiento y presentación personal de acuerdo a las exigencias que el
+colegio establezca en sus reglamentos; además de mantener relaciones
+interpersonales compatibles con los principios y postulados que persigue la
+institución. Para ello tendrá a su disposición el reglamento interno del
+alumno, el que aparece en la libreta oficial de comunicaciones.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:18.0pt;text-align:justify;text-indent:
 -18.0pt;mso-list:l6 level1 lfo3;tab-stops:list 18.0pt'><![if !supportLists]><span
-lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-fareast-font-family:
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-fareast-font-family:
 Arial;mso-ansi-language:ES-TRAD'><span style='mso-list:Ignore'>4)<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
-dir=LTR></span><span lang=ES-TRAD style='font-family:"Arial",sans-serif;
-mso-ansi-language:ES-TRAD'>Portar y usar la libreta de comunicaciones del
-colegio.<o:p></o:p></span></p>
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-ansi-language:ES-TRAD'>Portar
+y usar la libreta de comunicaciones del colegio.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='margin-left:18.0pt;text-align:justify;text-indent:
 -18.0pt;mso-list:l6 level1 lfo3;tab-stops:list 18.0pt'><![if !supportLists]><span
-lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-fareast-font-family:
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-fareast-font-family:
 Arial;mso-ansi-language:ES-TRAD'><span style='mso-list:Ignore'>5)<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
-dir=LTR></span><span lang=ES-TRAD style='font-family:"Arial",sans-serif;
-mso-ansi-language:ES-TRAD'>Dar cumplimiento a los compromisos académicos,
-culturales, sociales, religiosos, solidarios, deportivos, formativos o de otro
-tipo, programados por el Colegio, Centro de Padres o del curso y debidamente
-autorizado por <st1:PersonName ProductID="la Direcci&#65523;n" w:st="on">la <span
- class=GramE>Dirección</span></st1:PersonName><span class=GramE><span
-style='mso-spacerun:yes'>  </span>del</span> establecimiento, o por la
-autoridad que corresponda.<o:p></o:p></span></p>
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-ansi-language:ES-TRAD'>Dar
+cumplimiento a los compromisos académicos, culturales, sociales, religiosos,
+solidarios, deportivos, formativos o de otro tipo, programados por el Colegio,
+Centro de Padres o del curso y debidamente autorizado por <st1:PersonName
+ProductID="la Direcci&#65523;n" w:st="on">la Dirección</st1:PersonName><span
+style='mso-spacerun:yes'>  </span>del establecimiento, o por la autoridad que
+corresponda.<o:p></o:p></span></p>
 
-<p class=MsoNormal style='text-align:justify'><b><span style='font-family:"Arial",sans-serif'>SEXTO</span></b><span
-lang=ES-TRAD style='font-family:"Arial",sans-serif;mso-ansi-language:ES-TRAD'>:
-El cumplimiento de las obligaciones emanadas de <span class=GramE>este<span
-style='mso-spacerun:yes'>  </span>contrato</span>, salvo la establecida en la
-cláusula cuarta número cinco, comenzará a regir desde el inicio del año
-escolar; sin perjuicio de que el cumplimiento del pagaré notarial, será
-obligatorio desde el momento en que se matricula al alumno.<o:p></o:p></span></p>
+<p class=MsoNormal style='text-align:justify'><b><span style='font-family:"Arial","sans-serif"'>SEXTO</span></b><span
+lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-ansi-language:ES-TRAD'>:
+El cumplimiento de las obligaciones emanadas de este<span
+style='mso-spacerun:yes'>  </span>contrato, salvo la establecida en la cláusula
+cuarta número cinco, comenzará a regir desde el inicio del año escolar; sin
+perjuicio de que el cumplimiento del pagaré notarial, será obligatorio desde el
+momento en que se matricula al alumno.<o:p></o:p></span></p>
 
 <p class=MsoBodyText><b style='mso-bidi-font-weight:normal'><span lang=ES-TRAD
-style='font-size:10.0pt;font-family:"Arial",sans-serif'>SEPTIMO</span></b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>: El
+style='font-size:10.0pt;font-family:"Arial","sans-serif"'>SEPTIMO</span></b><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial","sans-serif"'>: El
 presente contrato no regirá para el apoderado que haya retirado a sus pupilos y
 mantengan deudas por servicios educacionales ya prestados, saldo que estará
 consignado en el pagaré.<b style='mso-bidi-font-weight:normal'><o:p></o:p></b></span></p>
 
 <p class=MsoBodyText><b style='mso-bidi-font-weight:normal'><span lang=ES-TRAD
-style='font-size:10.0pt;font-family:"Arial",sans-serif'>OCTAVO:</span></b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> Si
+style='font-size:10.0pt;font-family:"Arial","sans-serif"'>OCTAVO:</span></b><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial","sans-serif"'> Si
 hubiere retraso en el pago de la cuota de escolaridad por parte de el
 apoderado, los montos adeudados se verán gravados por las multas y recargos que
 se hayan fijado dentro de los límites legales. Si la demora supera los <b
 style='mso-bidi-font-weight:normal'>sesenta días</b>, sin justificación
 socioeconómica comprobable, u otras comunicadas personalmente al administrador
-de la institución, El Colegio procederá a ejecutar el cobro <span class=GramE>pre-judicial</span>
-y judicial, con costas de cargo del deudor, por una empresa externa. <o:p></o:p></span></p>
+de la institución, El Colegio procederá a ejecutar el cobro pre-judicial y
+judicial, con costas de cargo del deudor, por una empresa externa. <o:p></o:p></span></p>
 
 <p class=MsoBodyText><span lang=ES-TRAD style='font-size:8.0pt;font-family:
-"Arial",sans-serif'><o:p>&nbsp;</o:p></span></p>
+"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
 
 <p class=MsoBodyText><span lang=ES-TRAD style='font-size:10.0pt;font-family:
-"Arial",sans-serif'>Para un mejor ejercicio de las medidas precedentes, el
+"Arial","sans-serif"'>Para un mejor ejercicio de las medidas precedentes, el
 apoderado, por este mismo acto, viene en conferir mandato irrevocable a don Carlos<span
 style='letter-spacing:2.0pt'> </span>Alberto<span style='letter-spacing:2.0pt'>
 </span>Torres<span style='letter-spacing:2.0pt'> </span>Muñoz, abogado,<span
@@ -1351,66 +1407,64 @@ style='letter-spacing:3.0pt'> </span>cuarenta<span style='letter-spacing:3.0pt'>
 </span>y<span style='letter-spacing:3.0pt'> </span>ocho<span style='letter-spacing:
 3.0pt'> </span>guión cuatro, con domicilio comercial en calle Vicuña Mackenna
 número trescientos dieciséis, comuna de <st1:PersonName ProductID="la Cisterna"
-w:st="on">La Cisterna</st1:PersonName>; o en su defecto, al Administrador de
-Colegio IDOP Ltda., o a los sostenedores o representantes legales del
+w:st="on">La Cisterna</st1:PersonName>; o en su defecto, al Administrador
+Educacional de Colegio IDOP., o a los sostenedores o representantes legales del
 establecimiento, indistintamente; para que en su nombre y representación,
-suscriba pagaré y/o letras de cambio a la orden de Colegio IDOP Ltda., por el
-monto adeudado por concepto de arancel, matrícula u otras deudas que deriven
-del presente contrato, todo esto en conformidad con los artículos doscientos
-cuarenta y uno del Código de Comercio y dos mil ciento sesenta y nueve del
-Código Civil.<o:p></o:p></span></p>
+suscriba pagaré y/o letras de cambio a la orden de Fundación Educacional
+Colegio IDOP., por el monto adeudado por concepto de arancel, matrícula u otras
+deudas que deriven del presente contrato, todo esto en conformidad con los
+artículos doscientos cuarenta y uno del Código de Comercio y dos mil ciento
+sesenta y nueve del Código Civil.<o:p></o:p></span></p>
 
 <p class=MsoBodyText><b style='mso-bidi-font-weight:normal'><span lang=ES-TRAD
-style='font-size:10.0pt;font-family:"Arial",sans-serif'>NOVENO:</span></b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;mso-bidi-font-weight:
-bold'> El apoderado faculta a El Colegio a informar el protesto correspondiente
-en la base de informes comerciales.<o:p></o:p></span></p>
+style='font-size:10.0pt;font-family:"Arial","sans-serif"'>NOVENO:</span></b><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial","sans-serif";
+mso-bidi-font-weight:bold'> El apoderado faculta a El Colegio a informar el
+protesto correspondiente en la base de informes comerciales.<o:p></o:p></span></p>
 
 <p class=MsoBodyText><b style='mso-bidi-font-weight:normal'><span lang=ES-TRAD
-style='font-size:10.0pt;font-family:"Arial",sans-serif'>DÉCIMO:</span></b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> Si el
+style='font-size:10.0pt;font-family:"Arial","sans-serif"'>DÉCIMO:</span></b><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial","sans-serif"'> Si el
 alumno ya matriculado es retirado del establecimiento, no se procederá a la
 devolución de las sumas de dinero canceladas a título de matrícula o de cuotas
 de escolaridad, en la parte devengada a la fecha del retiro formal del alumno.<o:p></o:p></span></p>
 
 <p class=MsoBodyText><b style='mso-bidi-font-weight:normal'><span lang=ES-TRAD
-style='font-size:10.0pt;font-family:"Arial",sans-serif'>UNDÉCIMO:</span></b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> Se dará
+style='font-size:10.0pt;font-family:"Arial","sans-serif"'>UNDÉCIMO:</span></b><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial","sans-serif"'> Se dará
 término a este contrato por las siguientes causales:<o:p></o:p></span></p>
 
 <p class=MsoBodyText style='margin-left:18.0pt;text-indent:-18.0pt;mso-list:
 l3 level1 lfo5;tab-stops:list 18.0pt'><![if !supportLists]><span lang=ES-TRAD
-style='font-size:10.0pt;font-family:"Arial",sans-serif;mso-fareast-font-family:
-Arial'><span style='mso-list:Ignore'>1)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span dir=LTR></span><span lang=ES-TRAD
-style='font-size:10.0pt;font-family:"Arial",sans-serif'>Retiro voluntario del
-alumno.<o:p></o:p></span></p>
+style='font-size:10.0pt;font-family:"Arial","sans-serif";mso-fareast-font-family:
+Arial'><span style='mso-list:Ignore'>1)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=ES-TRAD style='font-size:10.0pt;
+font-family:"Arial","sans-serif"'>Retiro voluntario del alumno.<o:p></o:p></span></p>
 
 <p class=MsoBodyText style='margin-left:18.0pt;text-indent:-18.0pt;mso-list:
 l3 level1 lfo5;tab-stops:list 18.0pt'><![if !supportLists]><span lang=ES-TRAD
-style='font-size:10.0pt;font-family:"Arial",sans-serif;mso-fareast-font-family:
-Arial'><span style='mso-list:Ignore'>2)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span dir=LTR></span><span lang=ES-TRAD
-style='font-size:10.0pt;font-family:"Arial",sans-serif'>Incumplimiento de
-contrato por parte del apoderado.<o:p></o:p></span></p>
+style='font-size:10.0pt;font-family:"Arial","sans-serif";mso-fareast-font-family:
+Arial'><span style='mso-list:Ignore'>2)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=ES-TRAD style='font-size:10.0pt;
+font-family:"Arial","sans-serif"'>Incumplimiento de contrato por parte del
+apoderado.<o:p></o:p></span></p>
 
 <p class=MsoBodyText style='margin-left:18.0pt;text-indent:-18.0pt;mso-list:
 l3 level1 lfo5;tab-stops:list 18.0pt'><![if !supportLists]><span lang=ES-TRAD
-style='font-size:10.0pt;font-family:"Arial",sans-serif;mso-fareast-font-family:
-Arial'><span style='mso-list:Ignore'>3)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span dir=LTR></span><span lang=ES-TRAD
-style='font-size:10.0pt;font-family:"Arial",sans-serif'>Si conforme al
-procedimiento contemplado en el reglamento interno de esta institución, se ha
-determinado que el alumno ha incurrido en un incumplimiento disciplinario o de
-convivencia, que merezca sancionarlo.<o:p></o:p></span></p>
+style='font-size:10.0pt;font-family:"Arial","sans-serif";mso-fareast-font-family:
+Arial'><span style='mso-list:Ignore'>3)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=ES-TRAD style='font-size:10.0pt;
+font-family:"Arial","sans-serif"'>Si conforme al procedimiento contemplado en
+el reglamento interno de esta institución, se ha determinado que el alumno ha
+incurrido en un incumplimiento disciplinario o de convivencia, que merezca
+sancionarlo.<o:p></o:p></span></p>
 
 <p class=MsoBodyText><b style='mso-bidi-font-weight:normal'><span lang=ES-TRAD
-style='font-size:10.0pt;font-family:"Arial",sans-serif'>DUODÉCIMO:</span></b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> Un
+style='font-size:10.0pt;font-family:"Arial","sans-serif"'>DUODÉCIMO:</span></b><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial","sans-serif"'> Un
 ejemplar del presente contrato queda en poder de El Apoderado, y otro en poder
-del representante legal de Colegio IDOP Ltda., <span class=GramE>quienes</span>
-a través de sus firmas, expresan su conformidad con lo expuesto en este
-documento.<o:p></o:p></span></p>
+del representante legal de Colegio IDOP , quienes a través de sus firmas,
+expresan su conformidad con lo expuesto en este documento.<o:p></o:p></span></p>
 
 <p class=MsoBodyText><span lang=ES-TRAD style='font-size:10.0pt;font-family:
 "Arial",sans-serif'><o:p>&nbsp;</o:p></span></p>
@@ -1426,7 +1480,7 @@ documento.<o:p></o:p></span></p>
  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
   <td width=231 colspan=2 valign=top style='width:173.6pt;padding:0cm 3.5pt 0cm 3.5pt'>
   <p class=MsoBodyText align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:9.0pt'>Raquel Martínez Guillén<o:p></o:p></span></p>
+  lang=ES-TRAD style='font-size:9.0pt'>Manuel Mundaca Guillén<o:p></o:p></span></p>
   </td>
   <td width=28 valign=top style='width:21.25pt;padding:0cm 3.5pt 0cm 3.5pt'>
   <p class=MsoBodyText><span lang=ES-TRAD style='font-size:9.0pt'><o:p>&nbsp;</o:p></span></p>
@@ -1497,7 +1551,7 @@ documento.<o:p></o:p></span></p>
   <td width=123 valign=top style='width:92.1pt;border:none;border-bottom:solid windowtext 1.0pt;
   padding:0cm 3.5pt 0cm 3.5pt'>
   <p class=MsoBodyText align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:9.0pt'>4.446.340-1<o:p></o:p></span></p>
+  lang=ES-TRAD style='font-size:9.0pt'>12.880.704-7<o:p></o:p></span></p>
   </td>
   <td width=28 valign=top style='width:21.25pt;padding:0cm 3.5pt 0cm 3.5pt'>
   <p class=MsoBodyText><span lang=ES-TRAD style='font-size:9.0pt'><o:p>&nbsp;</o:p></span></p>
@@ -1544,7 +1598,7 @@ documento.<o:p></o:p></span></p>
   LEGAL <o:p></o:p></span></b></p>
   <p class=MsoBodyText align=center style='text-align:center'><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:8.0pt'>COLEGIO
-  IDOP LIMITADA.</span></b><b style='mso-bidi-font-weight:normal'><span
+  IDOP.</span></b><b style='mso-bidi-font-weight:normal'><span
   lang=ES-TRAD style='font-size:9.0pt'><o:p></o:p></span></b></p>
   </td>
   <td width=28 valign=top style='width:21.25pt;padding:0cm 3.5pt 0cm 3.5pt'>
