@@ -189,13 +189,13 @@
         if(padreOMadrePC.value==null || padreOMadrePC.value=='' || padreOMadrePC.value=='1'|| padreOMadrePC.value=='2'){    
             document.getElementById("datosPrimerContacto").style.display = "none";
             $('#datosPrimerContacto').find('input, textarea, button, select').attr('disabled','disabled');
-            $('#datosPrimerContacto').find('input, textarea, button, select').attr('required',false);
+            
         }
 
         if(padreOMadrePC.value=='0'){
             document.getElementById("datosPrimerContacto").style.display = "block";
             $('#datosPrimerContacto').find('input, textarea, button, select').removeAttr('disabled');
-            $('#datosPrimerContacto').find('input, textarea, button, select').attr('required',true);
+            
         }
       }
 
@@ -203,12 +203,12 @@
           if(padreOMadreSC.value==null || padreOMadreSC.value=='' || padreOMadreSC.value=='1'|| padreOMadreSC.value=='2'){    
             document.getElementById("datosSegundoContacto").style.display = "none";
             $('#datosSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
-            $('#datosSegundoContacto').find('input, textarea, button, select').attr('required',false);
+           
         }
         if(padreOMadreSC.value=='0'){
             document.getElementById("datosSegundoContacto").style.display = "block";
             $('#datosSegundoContacto').find('input, textarea, button, select').removeAttr('disabled');
-            $('#datosSegundoContacto').find('input, textarea, button, select').attr('required',true);
+            
         }
       }
 
@@ -230,34 +230,33 @@
 
             esMadre.style.display = "block";
             $('#esMadre').find('input, textarea, button, select').removeAttr('disabled');
-            $('#esMadre').find('input, textarea, button, select').attr('required',true);
     
 
             esPadre.style.display = "block";
             $('#esPadre').find('input, textarea, button, select').removeAttr('disabled');
-            $('#esPadre').find('input, textarea, button, select').attr('required',true);
+
 
 
         }
         if( document.getElementById("alumno[parentesco]").value=="Padre"){
-            esPadre.style.display = "none";
+            esPadre.style.display = "block";
             $('#esPadre').find('input, textarea, button, select').attr('disabled','disabled');
-            $('#esPadre').find('input, textarea, button, select').attr('required',false);
+           
 
             esMadre.style.display = "block";
             $('#esMadre').find('input, textarea, button, select').removeAttr('disabled');
-            $('#esMadre').find('input, textarea, button, select').attr('required',true);
+           
 
         }
 
         if( document.getElementById("alumno[parentesco]").value=="Madre"){
-            esMadre.style.display = "none";
+            esMadre.style.display = "block";
             $('#esMadre').find('input, textarea, button, select').attr('disabled','disabled');
-            $('#esMadre').find('input, textarea, button, select').attr('required',false);
+            
 
             esPadre.style.display = "block";
             $('#esPadre').find('input, textarea, button, select').removeAttr('disabled');
-            $('#esPadre').find('input, textarea, button, select').attr('required',true);
+            
         }
        
 
@@ -271,34 +270,34 @@
 
       function cantContactos(){
         if(cantidadDeContactos.value==null || cantidadDeContactos.value=='' || cantidadDeContactos.value=='0'){    
-            document.getElementById("headerPrimerContacto").style.display = "none";
+            document.getElementById("headerPrimerContacto").style.display = "block";
             $('#headerPrimerContacto').find('input, textarea, button, select').attr('disabled','disabled');
-            $('#headerPrimerContacto').find('input, textarea, button, select').attr('required',false);
+ 
 
 
-            document.getElementById("headerSegundoContacto").style.display = "none";
+            document.getElementById("headerSegundoContacto").style.display = "block";
             $('#headerSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
-            $('#headerSegundoContacto').find('input, textarea, button, select').attr('required',false);
+           
         }
 
         if(cantidadDeContactos.value=='1'){
             document.getElementById("headerPrimerContacto").style.display = "block";
             $('#headerPrimerContacto').find('input, textarea, button, select').removeAttr('disabled');
-            $('#headerPrimerContacto').find('input, textarea, button, select').attr('required',true);
+            
 
-            document.getElementById("headerSegundoContacto").style.display = "none";
+            document.getElementById("headerSegundoContacto").style.display = "block";
             $('#headerSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
-            $('#headerSegundoContacto').find('input, textarea, button, select').attr('required',false);
+          
         }
 
         if(cantidadDeContactos.value=='2'){
             document.getElementById("headerPrimerContacto").style.display = "block";
             $('#headerPrimerContacto').find('input, textarea, button, select').removeAttr('disabled');
-            $('#headerPrimerContacto').find('input, textarea, button, select').attr('required',true);
+       
 
             document.getElementById("headerSegundoContacto").style.display = "block";
             $('#headerSegundoContacto').find('input, textarea, button, select').removeAttr('disabled');
-            $('#headerSegundoContacto').find('input, textarea, button, select').attr('required',true);
+       
 
 
         }
@@ -486,8 +485,6 @@
 
 
 
-<!-- Validador Rut-->
-    <script src="{{ asset('js/validarRUT.js')}}"></script>
 
 
 
@@ -495,11 +492,12 @@
 
 <script>
 function start() {
-    changeCantidadRepitencias();
+   changeCantidadRepitencias();
    primerContacto();
-  segundoContacto();
+   segundoContacto();
    apoderadoPadreOMadre();
    cantContactos();
+
    
 }
 </script>
@@ -511,4 +509,6 @@ document.getElementById('cantidadDeContactos').onchange = cantContactos;
 document.getElementById('padreOMadrePC').onchange = primerContacto;
 document.getElementById('padreOMadreSC').onchange = segundoContacto;
 document.getElementById('alumno[parentesco]').onchange = apoderadoPadreOMadre; 
+
 </script>
+
