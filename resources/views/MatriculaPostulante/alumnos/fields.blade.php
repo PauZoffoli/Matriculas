@@ -1,14 +1,18 @@
+<!-- Celular Field -->
+<div class="form-group col-sm-3 {{ $errors->has('fonoCelu') ? ' has-error' : '' }}">
+    {!! Form::label('fonoCelu', 'Teléfono Celular:') !!}
+    {!! Form::tel('fonoCelu', null, ['class' => 'form-control', 'placeholder' => 'Ingrese teléfono celular (Ej: 984337683)','pattern' => "[0-9]{9}", 'title' => 'No puede tener más de nueve dígitos']) !!}
+</div>
+
+
+
 <!-- Paisdeorigen Field -->
 <div class="form-group col-sm-3">
     {!! Form::label('paisDeOrigen', 'País de origen:') !!}
     {!! Form::select('alumno[paisDeOrigen]', App\Enums\PaisEnum::getPossibleENUM(), ( isset($persona->alumno) ? $persona->alumno->paisDeOrigen : null ),  array('id' => 'alumno[paisDeOrigen]', 'required' => 'true', 'class' => 'form-control', "placeholder" => "Seleccione un país de origen")) !!}
 </div>
 
-<!-- Parentesco Field -->
-<div class="form-group col-sm-3">
-    {!! Form::label('parentesco', 'Parentesco:') !!}
-    {!! Form::select('alumno[parentesco]', App\Enums\ParentescoAlumnoEnum::getPossibleENUM(), ( isset($persona->alumno->parentesco) ? $persona->alumno->parentesco : null ) ,  array('id'=> 'alumno[parentesco]', 'class' => 'form-control', 'placeholder' => 'Seleccione el curso actual', 'required' => 'true')) !!}
-</div>
+
 
 <!-- Condicion Field -->
 <div class="form-group col-sm-6" style="display: none">
@@ -22,14 +26,6 @@
 <div class="form-group col-sm-6" style="display: none">
     {!! Form::label('condicion', 'Condicion:') !!}
     {!! Form::text('alumno[condicion]', null, ['class' => 'form-control']) !!}
-</div>
-
-
-
-<!-- Estadocivilpadres Field -->
-<div class="form-group col-sm-3 {{ $errors->has('$persona->alumno->estadoCivilPadres') ? ' has-error' : '' }}">
-    {!! Form::label('alumno[estadoCivilPadres]', 'Estado Civil de los Padres:') !!}
-    {!! Form::select('alumno[estadoCivilPadres]', App\Enums\EstadoCivilPadresEnum::getPossibleENUM(), ( isset($persona->alumno) ? $persona->alumno->estadoCivilPadres : null ),  array('id' => 'alumno[estadoCivilPadres]', 'class' => 'form-control', 'placeholder' => 'Seleccione el estado civil de los padres del alumno', 'required' => 'true')) !!}
 </div>
 
 
@@ -55,6 +51,21 @@
 
 </div>
 
+<!-- Parentesco Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('parentesco', 'Parentesco del APODERADO con el alumno:') !!}
+    {!! Form::select('alumno[parentesco]', App\Enums\ParentescoAlumnoEnum::getPossibleENUM(), ( isset($persona->alumno->parentesco) ? $persona->alumno->parentesco : null ) ,  array('id'=> 'alumno[parentesco]', 'class' => 'form-control', 'placeholder' => 'Seleccione el curso actual', 'required' => 'true')) !!}
+</div>
+
+
+
+<!-- Estadocivilpadres Field -->
+<div class="form-group col-sm-3 {{ $errors->has('$persona->alumno->estadoCivilPadres') ? ' has-error' : '' }}">
+    {!! Form::label('alumno[estadoCivilPadres]', 'Estado Civil de los Padres del Alumnno:') !!}
+    {!! Form::select('alumno[estadoCivilPadres]', App\Enums\EstadoCivilPadresEnum::getPossibleENUM(), ( isset($persona->alumno) ? $persona->alumno->estadoCivilPadres : null ),  array('id' => 'alumno[estadoCivilPadres]', 'class' => 'form-control', 'placeholder' => 'Seleccione el estado civil de los padres del alumno', 'required' => 'true')) !!}
+</div>
+
+
 
 
 <div class="form-group" >
@@ -79,149 +90,5 @@
 
 
 <!-- FUNCIÓN PARA CREAR DINÁMICAMENTE TEXTBOXES EN FUNCION A LA CANTIDAD SELECCIONADA EN UN DDL https://stackoverflow.com/questions/43950669/how-to-dynamically-create-text-boxes-on-selection-of-a-dropdown .triggerHandler("rightnow");.triggerHandler("rightnow");-->
-
-
-
-
-<script>
-
-    function changeCantidadRepitencias(){
-
-        var enumerator = document.getElementById("enumerator");
-        var pRepetido = document.getElementById("pRepetido");
-        var sRepetido = document.getElementById("sRepetido");
-        var tRepetido = document.getElementById("tRepetido");
-        var cRepetido = document.getElementById("cRepetido");
-        var qRepetido = document.getElementById("qRepetido");
-
-        if( enumerator.value=="0"){
-            document.getElementById("pRepetido").style.display = "none";
-            document.getElementById("sRepetido").style.display = "none";
-            document.getElementById("tRepetido").style.display = "none";
-            document.getElementById("cRepetido").style.display = "none";
-            document.getElementById("qRepetido").style.display = "none";
-
-            document.getElementById("pRepetido").disabled = true;
-            document.getElementById("sRepetido").disabled = true;
-            document.getElementById("tRepetido").disabled = true;
-            document.getElementById("cRepetido").disabled = true;
-            document.getElementById("qRepetido").disabled = true;
-
-            document.getElementById("pRepetido").required = false;
-            document.getElementById("sRepetido").required = false;
-            document.getElementById("tRepetido").required = false;
-            document.getElementById("cRepetido").required = false;
-            document.getElementById("qRepetido").required = false;
-
-        }
-        if(enumerator.value=='1'){
-
-            document.getElementById("pRepetido").style.display = "block";
-            document.getElementById("sRepetido").style.display = "none";
-            document.getElementById("tRepetido").style.display = "none";
-            document.getElementById("cRepetido").style.display = "none";
-            document.getElementById("qRepetido").style.display = "none";
-
-            document.getElementById("pRepetido").disabled = false;
-            document.getElementById("sRepetido").disabled = true;
-            document.getElementById("tRepetido").disabled = true;
-            document.getElementById("cRepetido").disabled = true;
-            document.getElementById("qRepetido").disabled = true;
-
-            document.getElementById("pRepetido").required = true;
-            document.getElementById("sRepetido").required = false;
-            document.getElementById("tRepetido").required = false;
-            document.getElementById("cRepetido").required = false;
-            document.getElementById("qRepetido").required = false;
-        }
-        if(enumerator.value=='2'){
-            document.getElementById("pRepetido").style.display = "block";
-            document.getElementById("sRepetido").style.display = "block";
-            document.getElementById("tRepetido").style.display = "none";
-            document.getElementById("cRepetido").style.display = "none";
-            document.getElementById("qRepetido").style.display = "none";
-
-            document.getElementById("pRepetido").disabled = false;
-            document.getElementById("sRepetido").disabled = false;
-            document.getElementById("tRepetido").disabled = true;
-            document.getElementById("cRepetido").disabled = true;
-            document.getElementById("qRepetido").disabled = true;
-
-            document.getElementById("pRepetido").required = true;
-            document.getElementById("sRepetido").required = true;
-            document.getElementById("tRepetido").required = false;
-            document.getElementById("cRepetido").required = false;
-            document.getElementById("qRepetido").required = false;
-         
-        }
-        if(enumerator.value=='3'){
-            document.getElementById("pRepetido").style.display = "block";
-            document.getElementById("sRepetido").style.display = "block";
-            document.getElementById("tRepetido").style.display = "block";
-            document.getElementById("cRepetido").style.display = "none";
-            document.getElementById("qRepetido").style.display = "none";
-
-            document.getElementById("pRepetido").disabled = false;
-            document.getElementById("sRepetido").disabled = false;
-            document.getElementById("tRepetido").disabled = false;
-            document.getElementById("cRepetido").disabled = true;
-            document.getElementById("qRepetido").disabled = true;
-
-            document.getElementById("pRepetido").required = true;
-            document.getElementById("sRepetido").required = true;
-            document.getElementById("tRepetido").required = true;
-            document.getElementById("cRepetido").required = false;
-            document.getElementById("qRepetido").required = false;
-           
-        }
-        if(enumerator.value=='4'){
-            document.getElementById("pRepetido").style.display = "block";
-            document.getElementById("sRepetido").style.display = "block";
-            document.getElementById("tRepetido").style.display = "block";
-            document.getElementById("cRepetido").style.display = "block";
-            document.getElementById("qRepetido").style.display = "none";
-
-            document.getElementById("pRepetido").disabled = false;
-            document.getElementById("sRepetido").disabled = false;
-            document.getElementById("tRepetido").disabled = false;
-            document.getElementById("cRepetido").disabled = false;
-            document.getElementById("qRepetido").disabled = true;
-
-            document.getElementById("pRepetido").required = true;
-            document.getElementById("sRepetido").required = true;
-            document.getElementById("tRepetido").required = true;
-            document.getElementById("cRepetido").required = true;
-            document.getElementById("qRepetido").required = false;
-       
-        }
-        if(enumerator.value=='5'){
-            document.getElementById("pRepetido").style.display = "block";
-            document.getElementById("sRepetido").style.display = "block";
-            document.getElementById("tRepetido").style.display = "block";
-            document.getElementById("cRepetido").style.display = "block";
-            document.getElementById("qRepetido").style.display = "block";
-
-            document.getElementById("pRepetido").disabled = false;
-            document.getElementById("sRepetido").disabled = false;
-            document.getElementById("tRepetido").disabled = false;
-            document.getElementById("cRepetido").disabled = false;
-            document.getElementById("qRepetido").disabled = false;
-
-            document.getElementById("pRepetido").required = true;
-            document.getElementById("sRepetido").required = true;
-            document.getElementById("tRepetido").required = true;
-            document.getElementById("cRepetido").required = true;
-            document.getElementById("qRepetido").required = true;
-           
-        }
-
-    }
-</script>
-
-<script >
-var select = document.getElementById('enumerator');
-select.onchange = changeCantidadRepitencias;
-window.onload = changeCantidadRepitencias();
-</script>
 
 

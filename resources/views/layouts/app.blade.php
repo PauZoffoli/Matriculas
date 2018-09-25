@@ -298,27 +298,138 @@
 
 </script>
 
-<script >
-function start() {
-  primerContacto();
-  segundoContacto();
-   apoderadoPadreOMadre();
-   cantContactos();
-}
-window.onload = start;
 
-document.getElementById('padreOMadrePC').onchange = primerContacto;
-document.getElementById('padreOMadreSC').onchange = segundoContacto;
- document.getElementById('alumno[parentesco]').onchange = apoderadoPadreOMadre;  //PARENTESCO ALUMNO APODERADO
-document.getElementById('cantidadDeContactos').onchange = cantContactos;
 
-window.onload = start;
 
+
+<script>
+
+    function changeCantidadRepitencias(){
+
+        if( document.getElementById('enumerator').value=="0"){
+            document.getElementById("pRepetido").style.display = "none";
+            document.getElementById("sRepetido").style.display = "none";
+            document.getElementById("tRepetido").style.display = "none";
+            document.getElementById("cRepetido").style.display = "none";
+            document.getElementById("qRepetido").style.display = "none";
+
+            document.getElementById("pRepetido").disabled = true;
+            document.getElementById("sRepetido").disabled = true;
+            document.getElementById("tRepetido").disabled = true;
+            document.getElementById("cRepetido").disabled = true;
+            document.getElementById("qRepetido").disabled = true;
+
+            document.getElementById("pRepetido").required = false;
+            document.getElementById("sRepetido").required = false;
+            document.getElementById("tRepetido").required = false;
+            document.getElementById("cRepetido").required = false;
+            document.getElementById("qRepetido").required = false;
+
+        }
+        if(document.getElementById('enumerator').value=='1'){
+
+            document.getElementById("pRepetido").style.display = "block";
+            document.getElementById("sRepetido").style.display = "none";
+            document.getElementById("tRepetido").style.display = "none";
+            document.getElementById("cRepetido").style.display = "none";
+            document.getElementById("qRepetido").style.display = "none";
+
+            document.getElementById("pRepetido").disabled = false;
+            document.getElementById("sRepetido").disabled = true;
+            document.getElementById("tRepetido").disabled = true;
+            document.getElementById("cRepetido").disabled = true;
+            document.getElementById("qRepetido").disabled = true;
+
+            document.getElementById("pRepetido").required = true;
+            document.getElementById("sRepetido").required = false;
+            document.getElementById("tRepetido").required = false;
+            document.getElementById("cRepetido").required = false;
+            document.getElementById("qRepetido").required = false;
+        }
+        if(document.getElementById('enumerator').value=='2'){
+            document.getElementById("pRepetido").style.display = "block";
+            document.getElementById("sRepetido").style.display = "block";
+            document.getElementById("tRepetido").style.display = "none";
+            document.getElementById("cRepetido").style.display = "none";
+            document.getElementById("qRepetido").style.display = "none";
+
+            document.getElementById("pRepetido").disabled = false;
+            document.getElementById("sRepetido").disabled = false;
+            document.getElementById("tRepetido").disabled = true;
+            document.getElementById("cRepetido").disabled = true;
+            document.getElementById("qRepetido").disabled = true;
+
+            document.getElementById("pRepetido").required = true;
+            document.getElementById("sRepetido").required = true;
+            document.getElementById("tRepetido").required = false;
+            document.getElementById("cRepetido").required = false;
+            document.getElementById("qRepetido").required = false;
+         
+        }
+        if(document.getElementById('enumerator').value=='3'){
+            document.getElementById("pRepetido").style.display = "block";
+            document.getElementById("sRepetido").style.display = "block";
+            document.getElementById("tRepetido").style.display = "block";
+            document.getElementById("cRepetido").style.display = "none";
+            document.getElementById("qRepetido").style.display = "none";
+
+            document.getElementById("pRepetido").disabled = false;
+            document.getElementById("sRepetido").disabled = false;
+            document.getElementById("tRepetido").disabled = false;
+            document.getElementById("cRepetido").disabled = true;
+            document.getElementById("qRepetido").disabled = true;
+
+            document.getElementById("pRepetido").required = true;
+            document.getElementById("sRepetido").required = true;
+            document.getElementById("tRepetido").required = true;
+            document.getElementById("cRepetido").required = false;
+            document.getElementById("qRepetido").required = false;
+           
+        }
+        if(document.getElementById('enumerator').value=='4'){
+            document.getElementById("pRepetido").style.display = "block";
+            document.getElementById("sRepetido").style.display = "block";
+            document.getElementById("tRepetido").style.display = "block";
+            document.getElementById("cRepetido").style.display = "block";
+            document.getElementById("qRepetido").style.display = "none";
+
+            document.getElementById("pRepetido").disabled = false;
+            document.getElementById("sRepetido").disabled = false;
+            document.getElementById("tRepetido").disabled = false;
+            document.getElementById("cRepetido").disabled = false;
+            document.getElementById("qRepetido").disabled = true;
+
+            document.getElementById("pRepetido").required = true;
+            document.getElementById("sRepetido").required = true;
+            document.getElementById("tRepetido").required = true;
+            document.getElementById("cRepetido").required = true;
+            document.getElementById("qRepetido").required = false;
+       
+        }
+        if(document.getElementById('enumerator').value=='5'){
+            document.getElementById("pRepetido").style.display = "block";
+            document.getElementById("sRepetido").style.display = "block";
+            document.getElementById("tRepetido").style.display = "block";
+            document.getElementById("cRepetido").style.display = "block";
+            document.getElementById("qRepetido").style.display = "block";
+
+            document.getElementById("pRepetido").disabled = false;
+            document.getElementById("sRepetido").disabled = false;
+            document.getElementById("tRepetido").disabled = false;
+            document.getElementById("cRepetido").disabled = false;
+            document.getElementById("qRepetido").disabled = false;
+
+            document.getElementById("pRepetido").required = true;
+            document.getElementById("sRepetido").required = true;
+            document.getElementById("tRepetido").required = true;
+            document.getElementById("cRepetido").required = true;
+            document.getElementById("qRepetido").required = true;
+           
+        }
+
+    }
 </script>
 
-
-<!-- Validador Rut-->
-    <script src="{{ asset('js/validarRUT.js')}}"></script>
 
 
 <script >
@@ -362,4 +473,32 @@ window.onload = start;
 }
 </script>
 
+
+
+
+<!-- Validador Rut-->
+    <script src="{{ asset('js/validarRUT.js')}}"></script>
+
+
+
 </html>
+
+<script>
+function start() {
+    changeCantidadRepitencias();
+   primerContacto();
+  segundoContacto();
+   apoderadoPadreOMadre();
+   cantContactos();
+   
+}
+</script>
+<script>
+//https://stackoverflow.com/questions/9902002/javascript-how-to-run-the-same-function-onload-and-onchange
+window.onload = start; //primero va el onload
+document.getElementById('enumerator').onchange = changeCantidadRepitencias;
+document.getElementById('cantidadDeContactos').onchange = cantContactos;
+document.getElementById('padreOMadrePC').onchange = primerContacto;
+document.getElementById('padreOMadreSC').onchange = segundoContacto;
+document.getElementById('alumno[parentesco]').onchange = apoderadoPadreOMadre; 
+</script>
