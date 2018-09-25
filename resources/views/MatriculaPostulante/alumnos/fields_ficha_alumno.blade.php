@@ -13,7 +13,7 @@
 <!-- Ingresofamiliarm Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('ingresoFamiliarM', 'Ingreso familiar total mensual:') !!}
-    {!! Form::number('fichaAlumno[0][ingresoFamiliarM]', null, ['class' => 'form-control', 'required' => 'true', 'maxlength'=> "11"]) !!}
+    {!! Form::number('fichaAlumno[0][ingresoFamiliarM]', null, ['class' => 'form-control', 'required' => 'true', 'maxlength'=> 11]) !!}
 </div>
 
 

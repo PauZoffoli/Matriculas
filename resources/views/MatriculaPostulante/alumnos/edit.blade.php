@@ -45,9 +45,7 @@
 <!-- Submit Field -->
 
 
-     
-         
-    
+             @include('MatriculaPostulante.alumnos.fields_ficha_alumno')
                </div>
 
                   
@@ -68,7 +66,7 @@
            <div class="box-body">
                <div class="row">
                  
-               
+
                    <div class="form-group col-sm-12">
                  
 
@@ -91,8 +89,7 @@
            <div class="box-body">
                <div class="row">
                
-              
-                  
+
                </div>
            </div>
        </div>
@@ -107,8 +104,7 @@
       
            <div class="box-body">
                <div class="row">
-                 
-                
+ 
 
 
                </div>
@@ -123,16 +119,14 @@
         <h1>
            5) Contacto Nro 1 del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
         </h1> <br>
-         {!! Form::label('padreOMadrePC', '¿Quién es el primer contacto?') !!}
-                 {!! Form::select('padreOMadrePC', [ 'No es el padre ni la madre','Padre' ,'Madre'],  null ,  array('id' => 'padreOMadrePC', 'class' => 'form-control','placeholder' =>"Seleccione una opción", 'required' =>'true')) !!}
-          <br>
+
 </section>
     
           <div  id="datosPrimerContacto" name="datosPrimerContacto" >
            <div class="box-body">
                <div class="row">
                  
-                @include('MatriculaPostulante.alumnos.fieldsContacto1')
+  
                   
                </div>
            </div>
@@ -143,14 +137,15 @@
         <h1>
           6)  Contacto Nro 2 del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
         </h1> 
-              <br>
+
 </section>
 
        <div id="datosSegundoContacto" name="datosSegundoContacto"  >
            <div class="box-body">
                <div class="row">
                  
-           
+   
+                  
                </div>
            </div>
        </div>

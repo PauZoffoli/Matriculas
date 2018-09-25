@@ -9,7 +9,7 @@
 </section>
 <div class="form-group col-sm-3">
     {!! Form::label('idComuna', 'Comuna:') !!}
-     {!! Form::select('direccion[idComuna]', App\Enums\ComunaEnum::getPossibleENUM(), ( isset($persona->direccion->idComuna) ? $persona->direccion->Idcomuna : null ),  array('id' => 'direccion[idComuna]', 'class' => 'form-control', 'required' => 'true')) !!}
+     {!! Form::select('direccion[idComuna]', App\Enums\ComunaEnum::getPossibleENUM(), ( isset($persona->direccion->idComuna) ? $persona->direccion->Idcomuna : null ),  array('id' => 'direccion[idComuna]', 'class' => 'form-control', 'required' => 'true', 'maxlength' => "191")) !!}
 
 </div>
 
@@ -25,19 +25,19 @@
 <!-- Nrocalle Field -->
 <div class="form-group col-sm-2 {{ $errors->has('$persona->direccion->nroCalle') ? ' has-error' : '' }}">
     {!! Form::label('numeroCalle', 'Número de Calle:') !!}
-    {!! Form::text('direccion[nroCalle]', null, ['class' => 'form-control' , 'required' => 'true']) !!}
+    {!! Form::text('direccion[nroCalle]', null, ['class' => 'form-control' , 'required' => 'true', 'maxlength' => "191"]) !!}
 </div>
 
 <!-- Dpto Field -->
 <div class="form-group col-sm-1  {{ $errors->has('$persona->direccion->dpto') ? ' has-error' : '' }}">
     {!! Form::label('dpto', 'Dpto:') !!}
-    {!! Form::text('direccion[dpto]', null, ['class' => 'form-control', 'placeholder' => 'Departamento']) !!}
+    {!! Form::text('direccion[dpto]', null, ['class' => 'form-control', 'placeholder' => 'Departamento', 'maxlength' => "50"]) !!}
 </div>
 
 <!-- Bloquetorre Field -->
 <div class="form-group col-sm-2  {{ $errors->has('$persona->direccion->bloqueTorre') ? ' has-error' : '' }}">
     {!! Form::label('bloqueTorre', 'Bloque o Torre:') !!}
-    {!! Form::text('direccion[bloqueTorre]', null, ['class' => 'form-control', 'placeholder' => 'Bloque o Torre']) !!}
+    {!! Form::text('direccion[bloqueTorre]', null, ['class' => 'form-control', 'placeholder' => 'Bloque o Torre', 'maxlength' => "50"]) !!}
 </div>
 
 

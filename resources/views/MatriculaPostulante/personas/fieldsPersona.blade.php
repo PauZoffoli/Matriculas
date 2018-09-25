@@ -15,7 +15,7 @@
 
 <!-- Snombrecand Field -->
 <div class="form-group col-sm-4 {{ $errors->has('SNombre') ? ' has-error' : '' }}">
-    {!! Form::label('SNombre', 'Segundo Nombre: ')  !!}
+    {!! Form::label('SNombre', 'Segundo Nombre:',array('class' => 'opcional'))  !!}
     {!! Form::text('SNombre', null, ['class' => 'form-control', 'placeholder' => 'Ingrese segundo nombre','pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}", 'title' => 'No puede tener más de 30 caracteres']) !!}
 </div>
 
@@ -36,7 +36,7 @@
 <!-- ApMat Field -->
 <div class="form-group col-sm-6 {{ $errors->has('ApMat') ? ' has-error' : '' }}">
     {!! Form::label('ApMat', 'Apellido Materno:') !!}
-    {!! Form::text('ApMat', null, ['class' => 'form-control', 'placeholder' => 'Ingrese apellido materno','required' => '', 'pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}",  'title' => 'No puede tener más de 30 caracteres']) !!}
+    {!! Form::text('ApMat', null, ['class' => 'form-control', 'placeholder' => 'Ingrese apellido materno', 'pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}",  'title' => 'No puede tener más de 30 caracteres']) !!}
 </div>
 
 <!-- Genero Field -->
@@ -70,7 +70,7 @@
 <!-- Fonofijoapo Field -->
 <div class="form-group col-sm-3 {{ $errors->has('fonoFijo') ? ' has-error' : '' }}">
     {!! Form::label('fonoFijo', 'Teléfono Fijo:',array('class' => 'opcional')) !!}
-    {!! Form::tel('fonoFijo', null, ['class' => 'form-control', 'placeholder' => 'Ingrese teléfono fijo en caso que posea (Ej: 226213316)', 'pattern' => "[0-9]{9}", 'title' => 'No puede tener más de nueve dígitos']) !!}
+    {!! Form::tel('fonoFijo', null, ['class' => 'form-control', 'placeholder' => 'Ingrese teléfono fijo (Ej: 226213316)', 'pattern' => "[0-9]{9}", 'title' => 'No puede tener más de nueve dígitos']) !!}
 </div>
 
 

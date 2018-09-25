@@ -28,6 +28,16 @@
    <script src="jquery-3.3.1.min.js"></script>
 
     @yield('css')
+
+    <style>
+    .opcional:after{ 
+        content:'(Opcional)'; 
+        color:red; 
+        padding-left:5px;
+    }
+    </style>
+
+
 </head>
 
 <body class="skin-blue sidebar-mini">

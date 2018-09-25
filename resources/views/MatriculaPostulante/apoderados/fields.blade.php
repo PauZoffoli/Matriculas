@@ -14,9 +14,6 @@
     {!! Form::tel('fonoCelu', null, ['class' => 'form-control', 'placeholder' => 'Ingrese teléfono celular (Ej: 984337683)','required' => 'true','pattern' => "[0-9]{9}", 'title' => 'No puede tener más de nueve dígitos']) !!}
 </div>
 
-
-
-
 <!-- Paisdeorigen Field -->
 <div class="form-group col-sm-6">
 	{!! Form::label('paisDeOrigen', 'País de origen:') !!}
@@ -32,7 +29,7 @@
 <!-- Profesion Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('profesion', 'Profesión/Oficio:') !!}
-    {!! Form::text('apoderado[profesion]', null, ['class' => 'form-control']) !!}
+    {!! Form::text('apoderado[profesion]', null, ['class' => 'form-control', 'maxlength' => "100", 'required' => "true"]) !!}
 </div>
 
 
