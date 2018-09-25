@@ -15,8 +15,8 @@ class CreateTipoPersonaTable extends Migration
     {
         Schema::create('tipo_persona', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
-
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent();
             $table->integer('idTipo')->unsigned();
             $table->foreign('idTipo')->references('id')->on('tipos')->onDelete('cascade');    
 

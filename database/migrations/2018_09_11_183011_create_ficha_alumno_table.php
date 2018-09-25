@@ -15,12 +15,16 @@ class CreateFichaAlumnoTable extends Migration
     {
         Schema::create('ficha_alumno', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
-
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent();
             $table->integer('ingresoFamiliarM');
-
-            $table->integer('causas'); //QUE ES ESTO?
-
+                        //Agregado Ahora Último
+            $table->tinyInteger('viveConPadre')->default(0);
+            $table->tinyInteger('viveConMadre')->default(0);
+            $table->tinyInteger('viveConAbuelos')->default(0);
+            $table->tinyInteger('viveConTios')->default(0);
+            $table->tinyInteger('viveConTutor')->default(0);
+            $table->string('causas'); //QUE ES ESTO?
             $table->integer('nroConvivientes');
             $table->integer('totalHijos');
             $table->integer('nroDeHijo');
@@ -55,10 +59,15 @@ class CreateFichaAlumnoTable extends Migration
                 'Fonasa'])->default('Isapre');
 
             $table->tinyInteger('seguroComple')->default(0);
+
+
+            
+
             $table->string('enfermedades');
             $table->string('medicamentos');
             $table->tinyInteger('esAlergico')->default(0);
             $table->string('AlergicoA')->default(0);
+            $table->string('observacionesSalud')->nullable($value = true);
 
             $table->enum('grupoSanguineo', [
                 'A+', 
@@ -71,9 +80,55 @@ class CreateFichaAlumnoTable extends Migration
                 'O-'])->default('O+');
 
             $table->integer('idAlumno')->unsigned()->unique();
-            $table->foreign('idAlumno')->references('id')->on('alumnos')->onDelete('cascade');    
+            $table->foreign('idAlumno')->references('id')->on('alumnos')->onDelete('cascade');  
 
-           
+            $table->integer('cantidadContactos')->default(0)->nullable();
+            $table->string('PNombrePContacto');
+            $table->string('SNombrePContacto')->nullable($value = true);
+            $table->string('TNombrePContacto')->nullable($value = true);
+            $table->string('ApPatPContacto');
+            $table->string('ApMatPContacto')->nullable($value = true);
+            $table->integer('fonoFijoPContacto')->nullable($value = true);
+            $table->integer('fonoCeluPContacto')->nullable($value = true);
+            $table->string('emailPContacto')->nullable($value = true);
+            $table->enum('parentescoPContacto', [
+                'Padre', 
+                'Madre',
+                'Padrastro',
+                'Madrastra',
+                'Tutor/Tutura Legal',
+                'Hermano/Hermana',
+                'Tío/Tía',
+                'Tío Abuelo/Tía Abuela',
+                'Primo/Prima',
+                'Abuelo/Abuela',
+                'Bisabuelo/Bisabuela',
+                'Tatarabuelo/Tatarabuela',
+                'Otro'])->default('Padre');
+
+            $table->string('PNombreSContacto');
+            $table->string('SNombreSContacto')->nullable($value = true);
+            $table->string('TNombreSContacto')->nullable($value = true);
+            $table->string('ApPatSContacto');
+            $table->string('ApMatSContacto')->nullable($value = true);
+            $table->integer('fonoFijoSContacto')->nullable($value = true);
+            $table->integer('fonoCeluSContacto')->nullable($value = true);
+            $table->string('emailSContacto')->nullable($value = true);
+            $table->enum('parentescoSContacto', [
+                'Padre', 
+                'Madre',
+                'Padrastro',
+                'Madrastra',
+                'Tutor/Tutura Legal',
+                'Hermano/Hermana',
+                'Tío/Tía',
+                'Tío Abuelo/Tía Abuela',
+                'Primo/Prima',
+                'Abuelo/Abuela',
+                'Bisabuelo/Bisabuela',
+                'Tatarabuelo/Tatarabuela',
+                'Otro'])->default('Padre');
+
         });
     }
 

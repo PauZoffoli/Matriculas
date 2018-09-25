@@ -530,4 +530,8 @@ INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) 
 INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) VALUES (NULL, NULL, NULL, 'Administrador', 'Administrador colegio');
 INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) VALUES (NULL, NULL, NULL, 'Otro', 'Otro cargo colegio');
 
+<<<<<<< HEAD
 
+=======
+INSERT INTO `ficha_alumno` (`id`, `created_at`, `updated_at`, `ingresoFamiliarM`, `viveConPadre`, `viveConMadre`, `viveConAbuelos`, `viveConTios`, `viveConTutor`, `causas`, `nroConvivientes`, `totalHijos`, `nroDeHijo`, `nroHermaIDOP`, `tenenciaVivienda`, `estudiaCon`, `isapreFonasa`, `seguroComple`, `enfermedades`, `medicamentos`, `esAlergico`, `AlergicoA`, `observacionesSalud`, `grupoSanguineo`, `idAlumno`, `PNombrePContacto`, `SNombrePContacto`, `TNombrePContacto`, `ApPatPContacto`, `ApMatPContacto`, `fonoFijoPContacto`, `fonoCeluPContacto`, `emailPContacto`, `parentescoPContacto`, `PNombreSContacto`, `SNombreSContacto`, `TNombreSContacto`, `ApPatSContacto`, `ApMatSContacto`, `fonoFijoSContacto`, `fonoCeluSContacto`, `emailSContacto`, `parentescoSContacto`) VALUES (NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '6', '1', '0', '0', '0', '0', 'Muchas', '2', '2', '2', '2', 'Arrendatario', 'Tutor/Tutura Legal', 'Isapre', '0', 'eter', 'eter', '1', 'eter', 'eter', 'O+', '1', 'eter', 'eter', 'eter', 'eter', 'eter', '123', '123', '123@asd.cl', 'Tío/Tía', 'eter', 'eter', 'eter', 'eter', 'eter', '123', '123', 'eter@eter.cl', 'Madrastra');
+>>>>>>> a32661ceb8e5dd54a3627deaa60b56fd8d707fc4

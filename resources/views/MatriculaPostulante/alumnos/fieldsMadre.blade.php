@@ -12,11 +12,9 @@
 'rutLBL' => 'madre[rut]',
 'generoLBL' => 'madre[genero]',
 'emailLBL' => 'madre[email]',
-'fechaNacimientoLBL' => 'madre[fechaNacimiento]',
-'fechaDefuncionLBL' => 'madre[fechaDefuncion]',
 'estadoCivilLBL' => 'madre[estadoCivil]',
-'idDireccionLBL' => 'madre[idDireccion]',
-'idUserLBL' => 'madre[idUser]',
+'idAlumnoLBL' => 'madre[idAlumno]',
+'parentescoLBL' => 'madre[parentesco]',
 
 
 'PNombreTXT' =>( isset($madre->PNombre) ? $madre->PNombre : null ), 
@@ -29,11 +27,8 @@
 'rutTXT' => ( isset($madre->rut) ? $madre->rut : null ),
 'generoTXT' => ( isset($madre->genero) ? $madre->genero : null ),
 'emailTXT' => ( isset($madre->email) ? $madre->email : null ),
-'fechaNacimientoTXT' => ( isset($madre->fechaNacimiento) ? $madre->fechaNacimiento: null ),
-'fechaDefuncionTXT' => ( isset($madre->fechaDefuncion) ? $madre->fechaDefuncion : null ),
 'estadoCivilTXT' => ( isset($madre->estadoCivil) ? $madre->estadoCivil : null ),
-'idDireccionTXT' => ( isset($madre->idDireccion) ? $madre->idDireccion : null ),
-'idUserTXT' => ( isset($madre->idUser) ? $madre->idUser : null ),
+'idAlumnoTXT' => ( isset($persona->alumno->id) ? $persona->alumno->id : null ),
 
-
+'parentescoTXT' => ( isset($madre->parentesco) ? $madre->parentesco : null ),
     ])
