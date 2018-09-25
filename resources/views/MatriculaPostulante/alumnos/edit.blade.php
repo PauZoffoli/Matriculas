@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="content-header">
+    <section class="content-header"  style="color: #5B5494;">
         <h1>
-            Alumno
+            DATOS DEL ALUMNO
         </h1>
    </section>
    <div class="content">
@@ -18,33 +18,56 @@
         {{ session()->get('error') }}
     </div>
 @endif
-       <div class="box box-primary">
+
+
+       <div class="">
            <div class="box-body">
                <div class="">
+
                    {!! Form::model($persona, ['route' => ['alumnosPostulantes.update', $persona->id], 'method' => 'patch']) !!}
 
 
+
+ <div class="box box-solid box-primary" style="background-color: #E5ECFB!important;">
 <section class="content-header">
         <h1>
             1) Datos del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
         </h1> <br>
 </section>
-       <div class="box box-success" style="background-color: #E4FDE4!important;">
+         
            <div class="box-body">
                <div class="row">
-                 
+
+
+
+<div class="box-body">
+<!-- Idcomuna Field -->
+<!-- Submit Field -->
+
+
+                  @include('MatriculaPostulante.personas.fieldsPersona')
+                  
                  @include('MatriculaPostulante.alumnos.fields')
+                  @include('MatriculaPostulante.direccions.fields')
+         
+    
+               </div>
+
                   
                </div>
            </div>
        </div>
-
+<div class="box box-solid box-primary" style="background-color: #E5ECFB!important;">
 <section class="content-header">
         <h1>
            2) Ficha Social del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
         </h1> <br>
 </section>
-       <div class="box box-success" style="background-color: #E4FDE4!important;">
+        <div class="form-group col-sm-12">
+    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+       <input type="button" name="clear" value="CLEAR ALL DATOS PRUEBA" onclick="clearForm(this.form);" >
+
+</div>
            <div class="box-body">
                <div class="row">
                  
@@ -59,6 +82,7 @@
            </div>
        </div>
 
+ <div class="box box-solid box-primary" style="background-color: #E5ECFB!important;">
 <div id="esPadre">
 <section class="content-header">
 
@@ -66,7 +90,7 @@
            3) Padre del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
         </h1> <br>
 </section>
-       <div class="box box-success" style="background-color: #E4FDE4!important;">
+        
            <div class="box-body">
                <div class="row">
                
@@ -76,13 +100,14 @@
            </div>
        </div>
 </div>
+<div class="box box-solid box-primary" style="background-color: #E5ECFB!important;">
 <div id="esMadre">
 <section class="content-header">
         <h1>
            4) Madre del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
         </h1> <br>
 </section>
-       <div class="box box-success" style="background-color: #E4FDE4!important;">
+      
            <div class="box-body">
                <div class="row">
                  
@@ -97,8 +122,7 @@
  {!! Form::label('cantidadDeContactosLBL', '¿Cuántos contactos quiere para su alumno?') !!}
 {!! Form::select('fichaAlumno[0][cantidadContactos]', [ 0,1, 2],  null ,  array('id' => 'cantidadDeContactos', 'class' => 'form-control','placeholder' =>"¿Cuántos contactos quiere para su alumno?", 'required' =>'true')) !!}
 <br>
-            
-<div id="headerPrimerContacto" name="headerPrimerContacto" >
+<div class="box box-solid box-primary"  id="headerPrimerContacto" name="headerPrimerContacto" style="background-color: #E5ECFB!important;">       
 <section class="content-header" >
         <h1>
            5) Contacto Nro 1 del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
@@ -107,7 +131,8 @@
                  {!! Form::select('padreOMadrePC', [ 'No es el padre ni la madre','Padre' ,'Madre'],  null ,  array('id' => 'padreOMadrePC', 'class' => 'form-control','placeholder' =>"Seleccione una opción", 'required' =>'true')) !!}
           <br>
 </section>
-       <div class="box box-success" id="datosPrimerContacto" name="datosPrimerContacto" style="background-color: #E4FDE4!important;">
+    
+          <div  id="datosPrimerContacto" name="datosPrimerContacto" >
            <div class="box-body">
                <div class="row">
                  
@@ -117,8 +142,7 @@
            </div>
        </div>
 </div>                  
-
-<div id="headerSegundoContacto" name="headerSegundoContacto" >
+<div class="box box-solid box-primary"  id="headerSegundoContacto" name="headerSegundoContacto"  style="background-color: #E5ECFB!important;">       
 <section class="content-header">
         <h1>
           6)  Contacto Nro 2 del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
@@ -128,7 +152,7 @@
                  <br>
 </section>
 
-       <div class="box box-success" id="datosSegundoContacto" name="datosSegundoContacto"  style="background-color: #E4FDE4!important;">
+       <div id="datosSegundoContacto" name="datosSegundoContacto"  >
            <div class="box-body">
                <div class="row">
                  
@@ -145,15 +169,16 @@
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('alumnos.index') !!}" class="btn btn-default">Cancel</a>
+    
 </div>
 
+   <input type="button" name="clear" value="CLEAR ALL DATOS PRUEBA" onclick="clearForm(this.form);" >
 
                    {!! Form::close() !!}
                </div>
            </div>
        </div>
- 
+ </div>
 
 
 

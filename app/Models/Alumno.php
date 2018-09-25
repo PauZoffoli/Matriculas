@@ -54,7 +54,8 @@ class Alumno extends Model
         'idPersona',
         'idApoderado',
         'idCursoActual',
-        'idCursoPostu'
+        'idCursoPostu',
+        'paisDeOrigen'
     ];
 
     /**
@@ -73,7 +74,8 @@ class Alumno extends Model
         'idPersona' => 'integer',
         'idApoderado' => 'integer',
         'idCursoActual' => 'integer',
-        'idCursoPostu' => 'integer'
+        'idCursoPostu' => 'integer',
+        'paisDeOrigen' => 'string'
     ];
 
     /**

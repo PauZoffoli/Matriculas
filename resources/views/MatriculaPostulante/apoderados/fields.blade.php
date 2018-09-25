@@ -1,4 +1,3 @@
-@include('MatriculaPostulante.personas.fieldsPersona')
 
 
 
@@ -7,58 +6,26 @@
 <!-- APODERADOS -->
 
 <!-- Idpersona Field https://laracasts.com/discuss/channels/laravel/form-model-binding-relations-how-to-bindpopulate-relations-in-a-form?page=1 -->
+
+<!-- Paisdeorigen Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('idApoderado', 'IdApoderado:') !!}
-    {!! Form::number('apoderado[id]', null, ['class' => 'form-control']) !!}
+	{!! Form::label('paisDeOrigen', 'País de origen:') !!}
+    {!! Form::select('apoderado[paisDeOrigen]', App\Enums\PaisEnum::getPossibleENUM(), ( isset($persona->apoderado) ? $persona->apoderado->paisDeOrigen : null ),  array('id' => 'apoderado[paisDeOrigen]', 'class' => 'form-control')) !!}
 </div>
 
 <!-- Niveleducacional Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('nivelEducacional', 'Niveleducacional:') !!}
-    {!! Form::text('apoderado[nivelEducacional]', null, ['class' => 'form-control']) !!}
+    {!! Form::label('nivelEducacional', 'Nivel Educacional:') !!}
+     {!! Form::select('apoderado[nivelEducacional]', App\Enums\NivelEducacionalEnum::getPossibleENUM(), ( isset($persona->apoderado) ? $persona->apoderado->nivelEducacional : null ),  array('id' => 'apoderado[nivelEducacional]', 'class' => 'form-control')) !!}
 </div>
 
 <!-- Profesion Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('profesion', 'Profesion:') !!}
+    {!! Form::label('profesion', 'Profesión/Oficio:') !!}
     {!! Form::text('apoderado[profesion]', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Paisdeorigen Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('paisDeOrigen', 'Paisdeorigen:') !!}
-    {!! Form::text('apoderado[paisDeOrigen]', null, ['class' => 'form-control']) !!}
-</div>
 
 <!-- Idpersona Field https://laracasts.com/discuss/channels/laravel/form-model-binding-relations-how-to-bindpopulate-relations-in-a-form?page=1 -->
-<div class="form-group col-sm-6">
-    {!! Form::label('idPersona', 'Idpersona:') !!}
-    {!! Form::number('apoderado[idPersona]', null, ['class' => 'form-control']) !!}
-</div>
 
-<!-- Estado Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('estado', 'Estado:') !!}
-    {!! Form::text('apoderado[estado]', null, ['class' => 'form-control']) !!}
-</div>
-
-
-<!-- MOSTRAMOS TODOS LOS ALUMNOS ASOCIADOS-->
-@php $index = 0; @endphp
-@foreach ($persona->apoderado->alumnos  as $alumno)
-    <p>
-        {{ Form::label('alumno', $alumno->persona->PNombre . ' ' . $alumno->persona->ApPat . ' ' . $alumno->persona->rut  ) }}
-       {{ Form::checkbox('alumnosCheck['. $index++ .']', $alumno, $persona->apoderado->alumnos->contains($alumno->id) ) }}
-
-       
-    </p>
-@endforeach
-
-
-
-<!-- Submit Field -->
-<div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('apoderados.index') !!}" class="btn btn-default">Cancel</a>
-</div>
 

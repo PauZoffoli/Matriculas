@@ -1,9 +1,13 @@
- @include('MatriculaPostulante.personas.fieldsPersona')
+<!-- Paisdeorigen Field -->
+<div class="form-group col-sm-3">
+    {!! Form::label('paisDeOrigen', 'País de origen:') !!}
+    {!! Form::select('alumno[paisDeOrigen]', App\Enums\PaisEnum::getPossibleENUM(), ( isset($persona->alumno) ? $persona->alumno->paisDeOrigen : null ),  array('id' => 'alumno[paisDeOrigen]', 'required' => 'true', 'class' => 'form-control', "placeholder" => "Seleccione un país de origen")) !!}
+</div>
 
 <!-- Parentesco Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-3">
     {!! Form::label('parentesco', 'Parentesco:') !!}
-    {!! Form::select('alumno[parentesco]', App\Enums\ParentescoAlumnoEnum::getPossibleENUM(), ( isset($persona->alumno->parentesco) ? $persona->alumno->parentesco : null ) ,  array('id'=> 'alumno[parentesco]', 'class' => 'form-control', 'placeholder' => 'Seleccione el curso actual')) !!}
+    {!! Form::select('alumno[parentesco]', App\Enums\ParentescoAlumnoEnum::getPossibleENUM(), ( isset($persona->alumno->parentesco) ? $persona->alumno->parentesco : null ) ,  array('id'=> 'alumno[parentesco]', 'class' => 'form-control', 'placeholder' => 'Seleccione el curso actual', 'required' => 'true')) !!}
 </div>
 
 <!-- Condicion Field -->
@@ -15,48 +19,51 @@
 
 
 <!-- Condicion Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6" style="display: none">
     {!! Form::label('condicion', 'Condicion:') !!}
     {!! Form::text('alumno[condicion]', null, ['class' => 'form-control']) !!}
 </div>
 
+
+
 <!-- Estadocivilpadres Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('estadoCivilPadres', 'Estadocivilpadres:') !!}
-    {!! Form::text('alumno[estadoCivilPadres]', null, ['class' => 'form-control']) !!}
+<div class="form-group col-sm-3 {{ $errors->has('$persona->alumno->estadoCivilPadres') ? ' has-error' : '' }}">
+    {!! Form::label('alumno[estadoCivilPadres]', 'Estado Civil de los Padres:') !!}
+    {!! Form::select('alumno[estadoCivilPadres]', App\Enums\EstadoCivilPadresEnum::getPossibleENUM(), ( isset($persona->alumno) ? $persona->alumno->estadoCivilPadres : null ),  array('id' => 'alumno[estadoCivilPadres]', 'class' => 'form-control', 'placeholder' => 'Seleccione el estado civil de los padres del alumno', 'required' => 'true')) !!}
 </div>
 
 
+
 <!-- Idapoderado Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6" style="display: none">
     {!! Form::label('idApoderado', 'Idapoderado:') !!}
     {!! Form::number('alumno[idApoderado]', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Idcursoactual Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('idCursoActual', 'Idcursoactual:') !!}
+<div class="form-group col-sm-3">
+    {!! Form::label('idCursoActual', 'Curso Actual:') !!}
 
-     {!! Form::select('alumno[idCursoActual]', App\Enums\CursoEnum::getPossibleENUM(), ( isset($persona->alumno->idCursoActual) ? $persona->alumno->idCursoActual : null ) ,  array('id'=> 'alumno[idCursoActual]', 'class' => 'form-control', 'placeholder' => 'Seleccione el curso actual')) !!}
+     {!! Form::select('alumno[idCursoActual]', App\Enums\CursoEnum::getPossibleENUM(), ( isset($persona->alumno->idCursoActual) ? $persona->alumno->idCursoActual : null ) ,  array('id'=> 'alumno[idCursoActual]','required' => 'true', 'class' => 'form-control', 'placeholder' => 'Seleccione el curso actual')) !!}
 </div>
 
 <!-- Idcursopostu Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('idCursoPostu', 'Idcursopostu:') !!}
+<div class="form-group col-sm-3">
+    {!! Form::label('idCursoPostu', 'Curso a Postular para 2019:') !!}
 
-      {!! Form::select('alumno[idCursoPostu]', App\Enums\CursoEnum::getPossibleENUM(), ( isset($persona->alumno->idCursoPostu) ? $persona->alumno->idCursoPostu : null ) ,  array('id'=> 'alumno[idCursoPostu]', 'class' => 'form-control', 'placeholder' => 'Seleccione el curso a postular')) !!}
+      {!! Form::select('alumno[idCursoPostu]', App\Enums\CursoEnum::getPossibleENUM(), ( isset($persona->alumno->idCursoPostu) ? $persona->alumno->idCursoPostu : null ) ,  array('id'=> 'alumno[idCursoPostu]', 'required' => 'true', 'class' => 'form-control', 'placeholder' => 'Seleccione el curso a postular')) !!}
 
 </div>
 
 
 
-<div class="form-group">
-  <label class="col-md-4 control-label">¿Cuántas veces ha repetido el alumno?</label>
-  <div class="col-md-4 inputGroupContainer">
+<div class="form-group" >
+  <label class="col-sm-12 control-label">¿Cuántas veces ha repetido el alumno?</label>
+  <div class="col-sm-12 inputGroupContainer">
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></span>
 
-      {!! Form::select('enumerator', [0,1,2,3,4,5],  $persona->alumno->repitencia()->count() ,  array('id' => 'enumerator', 'class' => 'form-control')) !!}
+      {!! Form::select('enumerator', [0,1,2,3,4,5],  $persona->alumno->repitencia()->count() ,  array('id' => 'enumerator', 'class' => 'form-control','placeholder' => 'Seleccione la cantidad de veces que ha repetido el alumno', 'required'=>'true')) !!}
 
          {!! Form::select('repitencia[0]', App\Enums\CursoEnum::getPossibleENUM(), ( isset($persona->alumno->repitencia[0]) ? $persona->alumno->repitencia[0]->id : null ) ,  array('id'=> 'pRepetido', 'class' => 'form-control', 'placeholder' => 'Seleccione el 1er Curso REPETIDO')) !!}
     {!! Form::select('repitencia[1]', App\Enums\CursoEnum::getPossibleENUM(), ( isset($persona->alumno->repitencia[1]) ? $persona->alumno->repitencia[1]->id : null ) ,  array('id'=> 'sRepetido','class' => 'form-control', 'placeholder' => 'Seleccione el 2do Curso REPETIDO')) !!}    
