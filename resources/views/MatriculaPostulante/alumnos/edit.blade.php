@@ -113,7 +113,7 @@
 </div>
 
  {!! Form::label('cantidadDeContactosLBL', '¿Cuántos contactos quiere para su alumno?') !!}
-
+ {!! Form::select('fichaAlumno[0][cantidadContactos]', [ 0,1, 2],  null ,  array('id' => 'cantidadDeContactos', 'class' => 'form-control','placeholder' =>"¿Cuántos contactos quiere para su alumno?", 'required' =>'true')) !!}
 <div class="box box-solid box-primary"  id="headerPrimerContacto" name="headerPrimerContacto" style="background-color: #E5ECFB!important;">       
 <section class="content-header" >
         <h1>
@@ -126,7 +126,7 @@
            <div class="box-body">
                <div class="row">
                  
-  
+                @include('MatriculaPostulante.alumnos.fieldsContacto1')
                   
                </div>
            </div>
