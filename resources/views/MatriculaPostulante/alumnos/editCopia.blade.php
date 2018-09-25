@@ -45,7 +45,12 @@
 <!-- Submit Field -->
 
 
-             @include('MatriculaPostulante.alumnos.fields_ficha_alumno')
+                  @include('MatriculaPostulante.personas.fieldsPersona')
+                  
+                 @include('MatriculaPostulante.alumnos.fields')
+                  @include('MatriculaPostulante.direccions.fields')
+         
+    
                </div>
 
                   
@@ -66,7 +71,7 @@
            <div class="box-body">
                <div class="row">
                  
-
+                @include('MatriculaPostulante.alumnos.fields_ficha_alumno')
                    <div class="form-group col-sm-12">
                  
 
@@ -89,7 +94,8 @@
            <div class="box-body">
                <div class="row">
                
-
+                @include('MatriculaPostulante.alumnos.fieldsPadre')
+                  
                </div>
            </div>
        </div>
@@ -104,7 +110,8 @@
       
            <div class="box-body">
                <div class="row">
- 
+                 
+                @include('MatriculaPostulante.alumnos.fieldsMadre')
 
 
                </div>
@@ -113,20 +120,23 @@
 </div>
 
  {!! Form::label('cantidadDeContactosLBL', '¿Cuántos contactos quiere para su alumno?') !!}
-
+{!! Form::select('fichaAlumno[0][cantidadContactos]', [ 0,1, 2],  null ,  array('id' => 'cantidadDeContactos', 'class' => 'form-control','placeholder' =>"¿Cuántos contactos quiere para su alumno?", 'required' =>'true')) !!}
+<br>
 <div class="box box-solid box-primary"  id="headerPrimerContacto" name="headerPrimerContacto" style="background-color: #E5ECFB!important;">       
 <section class="content-header" >
         <h1>
            5) Contacto Nro 1 del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
         </h1> <br>
-
+         {!! Form::label('padreOMadrePC', '¿Quién es el primer contacto?') !!}
+                 {!! Form::select('padreOMadrePC', [ 'No es el padre ni la madre','Padre' ,'Madre'],  null ,  array('id' => 'padreOMadrePC', 'class' => 'form-control','placeholder' =>"Seleccione una opción", 'required' =>'true')) !!}
+          <br>
 </section>
     
           <div  id="datosPrimerContacto" name="datosPrimerContacto" >
            <div class="box-body">
                <div class="row">
                  
-  
+                @include('MatriculaPostulante.alumnos.fieldsContacto1')
                   
                </div>
            </div>
@@ -137,14 +147,16 @@
         <h1>
           6)  Contacto Nro 2 del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
         </h1> 
-
+         {!! Form::label('padreOMadreSC', '¿Quién es el segundo contacto?') !!}
+                 {!! Form::select('padreOMadreSC', [ "0" =>'No es el padre ni la madre', 'Padre' ,'Madre'],  null ,  array('id' => 'padreOMadreSC', 'class' => 'form-control', 'placeholder' =>"Seleccione una opción", 'required' =>'true')) !!}
+                 <br>
 </section>
 
        <div id="datosSegundoContacto" name="datosSegundoContacto"  >
            <div class="box-body">
                <div class="row">
                  
-   
+                @include('MatriculaPostulante.alumnos.fieldsContacto2')
                   
                </div>
            </div>

@@ -253,7 +253,7 @@ class CreateApoderadosTable extends Migration
         $table->integer('idPersona')->unsigned()->unique();
         $table->foreign('idPersona')->references('id')->on('personas')->onDelete('cascade');
 
-        $table->string('estado', 45);
+        $table->string('estado', 45)->nullable();
          
         });
     }

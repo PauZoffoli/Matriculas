@@ -171,6 +171,9 @@ class Persona extends Model
     }
 
 
+
+
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
