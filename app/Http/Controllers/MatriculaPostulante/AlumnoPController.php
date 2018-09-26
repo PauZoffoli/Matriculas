@@ -160,7 +160,7 @@ echo $f->format(1432);
 
         $persona = $this->checkIfExist($id); //Chequeamos si es que las entidades que necesitamos existen
 
-dd($request->all());
+
 /////////////////////////////////////////////////////esto tiene que descomentarse después
      /*   $validate = $this->validaciones($request); // Primero hay que hacer las validaciones de las clases que no se validan en el request de los parámetros de la función
         if ($validate!=null) {
@@ -196,6 +196,7 @@ dd($request->all());
             //si está vacío significa que marcaron padre o Madre
             $ficha = null;
             $ficha = $request->fichaAlumno[0]; //Tomamos los datos de la ficha para editarlos
+            $ficha['idAlumno'] =  $persona->alumno->id; //Le asignamos el idAlumno
 
             if(isset($request->padreOMadrePC)){ //cambiamos el primer contacto
               
@@ -223,7 +224,7 @@ dd($request->all());
         ///----->>>>>2) Una vez colectados los datos de Padre y madre procederemos a guardarlos, verificando que no exista el rut con anterioridad: Si existe con anterioridad, vamos a trabajar con los datos antiguos
         $padreExistente = null;
         $madreExistente = null;
- 
+
 
         if(isset($request->padre)){
             $padreExistente = Helper::existePersona($request->padre, $this->personaRepository); //Padre antiguo o nueva con la que vamos a trabajar
@@ -243,11 +244,17 @@ dd($request->all());
         ///----->>>>>4) SINCRONIZAMOS los datos de padres y madres del contacto, evitando que pueda haber más de un padre
         //o el regristro es borrado 
         Helper::existeRelacionPorParentesco($request->alumno['id'] , $padreExistente,  $madreExistente, "Padre");
+      
 
+     // dd($request->all());
 
         if($persona->alumno->fichaAlumno==null){ //Si el alumno no tiene una ficha asociada, se le crea en el momento
+
              $fichaAlumno = $this->fichaAlumnoRepository->create($request->fichaAlumno[0]);
+            $request->merge([ 'fichaAlumno' => ['0' =>$fichaAlumno->toArray()] ]);
         }
+
+        $idFicha = FichaAlumno::where('idAlumno' , $persona->alumno->id)->first();
 
 
         //------------>5)Updateamos todo
@@ -260,19 +267,20 @@ dd($request->all());
            $persona->direccion = $direccion;
         }
 
-       
+
         $persona->alumno->repitencia()->sync($request->repitencia); //AGREGAMOS LOS DATOS PIVOTE DE LAS REPITENCIAS https://stackoverflow.com/questions/23968415/laravel-eloquent-attach-vs-sync 
         $request->request->add(['alumno[repitencias]' => $persona->alumno->repitencia()->count()]); //cambiamos el valor del request"repitencias que tiene el número de repitencias del alumno"
-
+ 
             //*-->-------->UPDATE DIRECCION
         $direccion =Helper::updateThis($this->direccionRepository,$request->direccion, $persona->direccion->id);
         unset($request['direccion']); //Produce el error array to string, por eso direccion se borra antes
         $request->request->add(['idDireccion' => $direccion->id]); //guardamos el id de la dirección updateada
 
         $persona = $this->personaRepository->update($request->all(), $id);
+
         $alumno = Helper::updateThis($this->alumnoRepository,$request->alumno, $persona->alumno->id);
-        Helper::updateThis($this->fichaAlumnoRepository, $request->fichaAlumno[0],  $request->fichaAlumno[0]['id']);
-        
+        Helper::updateThis($this->fichaAlumnoRepository, $request->fichaAlumno[0], $idFicha->id);
+       
         //------------>6)Jugamos con las variables de sesión para ir cerrando el proceso de matrícula
         //********************************************
         $todosLosAlumnos = $request->session()->get('todosLosAlumnos');

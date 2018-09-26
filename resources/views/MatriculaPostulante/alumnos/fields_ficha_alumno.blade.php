@@ -10,6 +10,11 @@
     {!! Form::number('fichaAlumno[0][id]', null, ['class' => 'form-control']) !!}
 </div>
 
+<div class="form-group col-sm-3" style="display: none">
+   
+    {!! Form::number('fichaAlumno[0][idAlumno]', $persona->alumno->id, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Ingresofamiliarm Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('ingresoFamiliarM', 'Ingreso familiar total mensual:') !!}

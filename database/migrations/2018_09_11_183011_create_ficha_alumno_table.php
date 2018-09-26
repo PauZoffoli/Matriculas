@@ -52,6 +52,9 @@ class CreateFichaAlumnoTable extends Migration
                 'Bisabuelo/Bisabuela',
                 'Tatarabuelo/Tatarabuela',
                 'Amigo/Amiga',
+                'Amigo/a de la Familia',
+                'Vecino/a',
+                'Padrino/Madrina',
                 'Otro'])->default('Padre');
 
             $table->enum('isapreFonasa', [ //Con que relleno esto
@@ -108,7 +111,7 @@ class CreateFichaAlumnoTable extends Migration
                 'Amigo/a de la Familia',
                 'Vecino/a',
                 'Padrino/Madrina',
-                'Otro'])->default('Padre')->nullable($value = true);
+                'Otro'])->nullable($value = true);
 
             $table->string('PNombreSContacto')->nullable($value = true);
             $table->string('SNombreSContacto')->nullable($value = true);
@@ -134,7 +137,7 @@ class CreateFichaAlumnoTable extends Migration
                 'Amigo/a de la Familia',
                 'Vecino/a',
                 'Padrino/Madrina',
-                'Otro'])->default('Padre')->nullable($value = true);
+                'Otro'])->nullable($value = true);
 
         });
     }
