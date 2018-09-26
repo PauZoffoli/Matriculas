@@ -6,12 +6,12 @@
 
 
 
-
 <!-- Paisdeorigen Field -->
 <div class="form-group col-sm-3">
-    {!! Form::label('paisDeOrigen', 'Nacionalidad (Si tiene doble nacionalidad (Ejemplo: Chilena y otra) prefiera Chile:') !!}
+    {!! Form::label('paisDeOrigen', 'Nacionalidad (Si tiene doble nacionalidad (Chile y X) prefiera Chile:') !!}
     {!! Form::select('alumno[paisDeOrigen]', App\Enums\PaisEnum::getPossibleENUM(), ( isset($persona->alumno) ? $persona->alumno->paisDeOrigen : null ),  array('id' => 'alumno[paisDeOrigen]', 'required' => 'true', 'class' => 'form-control', "placeholder" => "Seleccione un país de origen")) !!}
 </div>
+
 
 
 <!-- Condicion Field -->
@@ -64,11 +64,7 @@
     {!! Form::label('alumno[estadoCivilPadres]', 'Estado Civil de los Padres del Alumnno:') !!}
     {!! Form::select('alumno[estadoCivilPadres]', App\Enums\EstadoCivilPadresEnum::getPossibleENUM(), ( isset($persona->alumno) ? $persona->alumno->estadoCivilPadres : null ),  array('id' => 'alumno[estadoCivilPadres]', 'class' => 'form-control', 'placeholder' => 'Seleccione el estado civil de los padres del alumno', 'required' => 'true')) !!}
 </div>
-<!-- Paisdeorigen Field -->
-<div class="form-group col-sm-12">
-    {!! Form::label('paisDeOrigen', 'Nacionalidad (Si tiene doble nacionalidad (Ejemplo: Chilena y otra) prefiera Chile:') !!}
-    {!! Form::select('alumno[paisDeOrigen]', App\Enums\PaisEnum::getPossibleENUM(), ( isset($persona->alumno) ? $persona->alumno->paisDeOrigen : null ),  array('id' => 'alumno[paisDeOrigen]', 'required' => 'true', 'class' => 'form-control', "placeholder" => "Seleccione un país de origen")) !!}
-</div>
+
 
 
 
