@@ -269,6 +269,8 @@ class CreateAlumnosTable extends Migration
 
             ])->default('Chile')->nullable($value = true);
 
+            
+
 
 
         });

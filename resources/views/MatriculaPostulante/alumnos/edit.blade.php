@@ -8,7 +8,7 @@
    </section>
    <div class="content">
 @include('adminlte-templates::common.errors')
-       <div class="alert alert-warning"><span class="glyphicon glyphicon-ok"></span><em> ERROR en Repitencias</em></div>
+       <div class="alert alert-warning"><span class="glyphicon glyphicon-ok"></span><em>LOS SIGUIENTES DATOS SON ÚNICA Y EXCLUSIVAMENTE REFERIDOS AL ALUMNO</em></div>
   @if(Session::has('flash_message'))
     <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em></div>
 @endif
@@ -29,20 +29,33 @@
 
 
  <div class="box box-solid box-primary" style="background-color: #E5ECFB!important;">
+
+   <div class="pull-right">
+      <div class="form-group  ">
+ {!! Form::label('idCursoPostu', 'Curso a Postular para 2019:') !!}
+
+      {!! Form::select('alumno[idCursoPostu]', App\Enums\CursoEnum::getPossibleENUM(), ( isset($persona->alumno->idCursoPostu) ? $persona->alumno->idCursoPostu : null ) ,  array('id'=> 'alumno[idCursoPostu]', 'required' => 'true', 'class' => 'form-control', 'placeholder' => 'Seleccione el curso a postular' , "readonly"=>"readonly", 'disabled' => 'disabled')) !!}
+  </div>
+</div>
 <section class="content-header">
         <h1>
             1) Datos del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
-        </h1> <br>
+      
+  </h1> <br>
+   
+      
 </section>
          
+
            <div class="box-body">
                <div class="row">
-
 
 
 <div class="box-body">
 <!-- Idcomuna Field -->
 <!-- Submit Field -->
+
+<!-- Idcursopostu Field -->
 
 
                   @include('MatriculaPostulante.personas.fieldsPersona')

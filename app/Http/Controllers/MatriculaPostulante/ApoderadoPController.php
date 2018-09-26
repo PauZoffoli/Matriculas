@@ -68,7 +68,7 @@ class ApoderadoPController extends AppBaseController
      */
     public function edit($id)
     {
-        dd("qwe");
+        
         $persona = $this->checkIfExist($id); //Chequeamos todas las clases que necesitemos antes.
 
         return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona);

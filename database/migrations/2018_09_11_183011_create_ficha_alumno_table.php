@@ -17,19 +17,19 @@ class CreateFichaAlumnoTable extends Migration
             $table->increments('id');
             $table->timestamp('created_at')->nullable()->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrent();
-            $table->integer('ingresoFamiliarM');
+            $table->integer('ingresoFamiliarM')->nullable();
                         //Agregado Ahora Último
             $table->tinyInteger('viveConPadre')->default(0);
             $table->tinyInteger('viveConMadre')->default(0);
             $table->tinyInteger('viveConAbuelos')->default(0);
             $table->tinyInteger('viveConTios')->default(0);
             $table->tinyInteger('viveConTutor')->default(0);
-            $table->string('causas'); //QUE ES ESTO?
-            $table->integer('nroConvivientes');
-            $table->integer('totalHijos');
-            $table->integer('nroDeHijo');
+            $table->string('causas')->nullable(); //QUE ES ESTO?
+            $table->integer('nroConvivientes')->nullable();
+            $table->integer('totalHijos')->nullable();
+            $table->integer('nroDeHijo')->nullable();
 
-            $table->integer('nroHermaIDOP');
+            $table->integer('nroHermaIDOP')->nullable();
             
             $table->enum('tenenciaVivienda', [ //Con que relleno esto
                 'Arrendatario', 
@@ -66,10 +66,10 @@ class CreateFichaAlumnoTable extends Migration
 
             
 
-            $table->string('enfermedades');
-            $table->string('medicamentos');
-            $table->tinyInteger('esAlergico')->default(0);
-            $table->string('AlergicoA')->default(0);
+            $table->string('enfermedades')->nullable();
+            $table->string('medicamentos')->nullable();
+            $table->tinyInteger('esAlergico')->default(0)->nullable();
+            $table->string('AlergicoA')->nullable();
             $table->string('observacionesSalud')->nullable($value = true);
 
             $table->enum('grupoSanguineo', [

@@ -40,8 +40,8 @@ $user = $user->get();
 foreach ($user as $key => $pass) {
     $pass->password = bcrypt($pass->password);
  $pass->save();
-}*/
-
+}
+*/
 
         return view('users.index')
             ->with('users', $users);

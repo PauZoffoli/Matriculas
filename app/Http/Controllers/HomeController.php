@@ -43,7 +43,9 @@ class HomeController extends Controller
         if($persona!=null){ //Comprobar si el usuario tiene una persona
         //Comprobar si ese usuario tiene una persona de tipo ApoderadoPostulante.
             if(Auth::user()->hasRole('ApoderadoPostulante')) { //Comprobar el rol de usuario de la persona
-                return route('apoderadosPostulantes.edit');
+                
+            //el con id de la persona relacionada voy a editar sus datos.
+                return redirect()->route('apoderadosPostulantes.edit', [$persona->id]);
             }
         }
     }
