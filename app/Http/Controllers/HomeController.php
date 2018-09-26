@@ -40,12 +40,10 @@ class HomeController extends Controller
         //https://medium.com/@cvallejo/autenticaci%C3%B3n-de-usuarios-y-roles-en-laravel-5-5-97ab59552d91
 
         //No todos los usuarios tienen por qué tener una persona
-        if($persona!=null){
+        if($persona!=null){ //Comprobar si el usuario tiene una persona
         //Comprobar si ese usuario tiene una persona de tipo ApoderadoPostulante.
-            if($persona->hasTipo('ApoderadoPostulante')) {
-
-            //el con id de la persona relacionada voy a editar sus datos.
-                return redirect()->route('apoderadosPostulantes.edit', [$persona->id]);
+            if(Auth::user()->hasRole('ApoderadoPostulante')) { //Comprobar el rol de usuario de la persona
+                return route('apoderadosPostulantes.edit');
             }
         }
     }

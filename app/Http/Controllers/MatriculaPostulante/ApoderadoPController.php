@@ -68,6 +68,7 @@ class ApoderadoPController extends AppBaseController
      */
     public function edit($id)
     {
+        dd("qwe");
         $persona = $this->checkIfExist($id); //Chequeamos todas las clases que necesitemos antes.
 
         return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona);
@@ -99,7 +100,7 @@ class ApoderadoPController extends AppBaseController
        
          $request->request->add(['estado' => 'ApoderadoSeRevisa']);
 
-        unset($request['direccion']); //Produce el error array to string, por eso direccion se borra antes
+        unset($request['direccion']); //Produce el error array to string, por eso direccion se borra antes de guardar persona
         $request->request->add(['idDireccion' => $direccion->id]); //guardamos el id de la dirección updateada
         $persona = $this->personaRepository->update($request->all(), $id);
         Helper::updateThis($this->apoderadoRepository, $request->apoderado, $persona->apoderado->id);
@@ -107,13 +108,16 @@ class ApoderadoPController extends AppBaseController
         ////////////////////////////////////////////////////////////
         //////////////////////ALUMNOS SELECCIONADOS/////////////////
         ////////////////////////////////////////////////////////////
-        $primerAlumno = Helper::obtainObject('alumnosCheck', $request, 0, 'apoderadosPostulantes.edit', 'Usted no ha escogido ningún alumno.', $id); //Método Helper trae un objet si es que comprueba ofsets, arrays nulls, etc.
+        //Una vez updateado todo procedemos a guardar los datos en una variable de sessión
+
+        $primerAlumno = Helper::obtainObject('alumnosCheck', $request, 0, 'apoderadosPostulantes.edit', 'Usted no ha escogido ningún alumno.', $id); //Acá guardamos el primer objeto de los alumnos seleccionado por el apoderado
 
 
-        $todosLosAlumnos =   Helper::obtainAllObjects('alumnosCheck', $request) ;
+        $todosLosAlumnos =   Helper::obtainAllObjects('alumnosCheck', $request) ; //obtenemos array de todos los alumnos seleccionados.
+        
         $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los alumnos checkeados por el apoderado en una variable de sesión, esta variable se irá borrando en la medida que se ocupe
 
-        $request->session()->put('idAlumnos', $todosLosAlumnos);//Guardamos los alumnos para sacar sus id y cambiar sus estados al final del proceo de matrícula
+        $request->session()->put('idAlumnos', $todosLosAlumnos);//Guardamos los alumnos para sacar sus id y cambiar sus estados al final del proceo de matrícula. Esta no se irá borrando.
 
         $request->session()->put('apoderadoAlumnos', $persona);//Guardamos el apoderado
 

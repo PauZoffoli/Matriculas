@@ -129,11 +129,7 @@ echo $f->format(1432);
             }
 
             //para buscar quién es el primer y segundo contacto hay que ir al parentesco de fichaalumno
-
             //padreOMadreSC padreOMadrePC
-
-
-
 
             
         } 
