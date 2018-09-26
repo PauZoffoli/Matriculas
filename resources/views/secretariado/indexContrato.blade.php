@@ -42,6 +42,7 @@
         <th>Apellido Alumno(a)</th>
         <th>Arancel</th>
         <th>Rut</th>
+        <th colspan="3">Acción</th>
         </tr>
     </thead>
      <tbody >
@@ -60,7 +61,14 @@
             <td>{!!  ( isset($alumno->persona['SNombre']) ? $alumno->persona['SNombre'] : null ) !!}</td>
             <td>{!!  ( isset($alumno->persona['ApPat']) ? $alumno->persona['ApPat'] : null ) !!}</td>
             <td>{!!  ( isset($alumno->curso['arancelAnual']) ? $alumno->curso['arancelAnual'] : null ) !!}</td>
-            <td>{!!  ( isset($alumno->persona['rut']) ? $alumno->persona['rut'] : null ) !!}</td
+            <td>{!!  ( isset($alumno->persona['rut']) ? $alumno->persona['rut'] : null ) !!}</td>
+               <td>
+                {!! Form::open() !!}
+                <div class='btn-group'>
+                    <a href="{!! route('alumnoSecretariadoContr.ficha', ['alumno'=>$alumno]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i>Ver Ficha Alumno</a>
+                </div>
+                {!! Form::close() !!}
+            </td>
         </tr>
     @endforeach
     <thead>

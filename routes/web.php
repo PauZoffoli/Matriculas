@@ -85,7 +85,9 @@ Route::resource('apoderadosPostulantes', 'MatriculaPostulante\ApoderadoPControll
 
 
 //Métodos para el index secretariado junto a buscador por rut(apoSecretariadoContr)
+Route::post('ficha', 'VistaSecretariado\AlumnoSecretariadoController@ficha')->name('alumnoSecretariadoContr.ficha');
 Route::resource('alumnoSecretariadoContr', 'VistaSecretariado\AlumnoSecretariadoController');
+
 Route::resource('apoSecretariadoContr', 'VistaSecretariado\ApoderadoSecretariadoController');
 Route::resource('PersonaSecretariadoContr', 'VistaSecretariado\PersonaSecretariadoController');
 Route::resource('ContratoSecretariadoContr', 'VistaSecretariado\ContratoSecretariadoController');

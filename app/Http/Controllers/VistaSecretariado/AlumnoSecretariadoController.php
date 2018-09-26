@@ -12,6 +12,11 @@ use App\Repositories\PersonaRepository;
 use App\Repositories\AlumnoRepository;
 use Illuminate\Database\Eloquent\Collection;
 
+use App\Models\Apoderado;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Response;
+use Barryvdh\DomPDF\Facade as PDF;
+
 
 class AlumnoSecretariadoController extends AppBaseController
 {
@@ -43,4 +48,53 @@ class AlumnoSecretariadoController extends AppBaseController
             ->with('alumnos', $alumno);
         }
 
+        public function ficha($id)
+        {
+            $input = $id;
+            dd($input);
+            $apoderado = Apoderado::where('id', $input->idApoderado)->first();
+            dd($apoderado);
+            $vista = view('secretariado/fichaPDF')->with('datos',$apoderado)->with('req',$request);
+            $pdf = \PDF::loadHTML($vista);
+            $pdf->setPaper("legal","portrait");
+            return $pdf->stream('pdfFicha');
+        }
+
+         public function show($id)
+    {
+      
+    }
+
+    /**
+     * Show the form for editing the specified Contrato.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function edit($id)
+    {
+    }
+
+    /**
+     * Update the specified Contrato in storage.
+     *
+     * @param  int              $id
+     * @param UpdateContratoRequest $request
+     *
+     * @return Response
+     */
+
+
+    /**
+     * Remove the specified Contrato from storage.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function destroy($id)
+    {
+      
+    }
 }
