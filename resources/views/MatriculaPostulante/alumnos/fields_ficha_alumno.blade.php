@@ -10,6 +10,11 @@
     {!! Form::number('fichaAlumno[0][id]', null, ['class' => 'form-control']) !!}
 </div>
 
+<div class="form-group col-sm-3" style="display: none">
+   
+    {!! Form::number('fichaAlumno[0][idAlumno]', $persona->alumno->id, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Ingresofamiliarm Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('ingresoFamiliarM', 'Ingreso familiar total mensual:') !!}
@@ -27,7 +32,7 @@
 <!-- Nrodehijo Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nroDeHijo', 'Lugar del alumno entre sus hermanos (Si no tiene hermanos marque 0):') !!}
-    {!! Form::select('fichaAlumno[0][nroDeHijo]', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17, 18, 19, 20], ( isset($persona->alumno->fichaAlumno[0]) ? $persona->alumno->fichaAlumno[0]['nroDeHijo'] : null ) ,  array('id'=> 'fichaAlumno[0][nroDeHijo]', 'class' => 'form-control', 'placeholder' => 'Seleccione su lugar entre los hermanos, por ejemplo: Yo soy el segundo hermano, escojo el lugar 2.', 'required' => 'true')) !!}
+    {!! Form::select('fichaAlumno[0][nroDeHijo]', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17, 18, 19, 20], ( isset($persona->alumno->fichaAlumno[0]) ? $persona->alumno->fichaAlumno[0]['nroDeHijo'] : null ) ,  array('id'=> 'fichaAlumno[0][nroDeHijo]', 'class' => 'form-control', 'placeholder' => 'Seleccione el lugar entre los hermanos, por ejemplo: Yo soy el segundo hermano, escojo el lugar 2.', 'required' => 'true')) !!}
 </div>
 
 <!-- Nrohermaidop Field -->
@@ -38,8 +43,8 @@
 
 <!-- Tenenciavivienda Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('tenenciaVivienda', 'Seleccione su tipo de vivienda:') !!}
-    {!! Form::select('fichaAlumno[0][tenenciaVivienda]', App\Enums\TenenciaViviendaEnum::getPossibleENUM(), ( isset($persona->alumno->fichaAlumno[0]) ? $persona->alumno->fichaAlumno[0]['tenenciaVivienda'] : null ) ,  array('id'=> 'fichaAlumno[0][tenenciaVivienda]', 'class' => 'form-control', 'placeholder' => 'Seleccione su tipo de vivienda', 'required' => 'true')) !!}
+    {!! Form::label('tenenciaVivienda', 'Seleccione tipo de vivienda:') !!}
+    {!! Form::select('fichaAlumno[0][tenenciaVivienda]', App\Enums\TenenciaViviendaEnum::getPossibleENUM(), ( isset($persona->alumno->fichaAlumno[0]) ? $persona->alumno->fichaAlumno[0]['tenenciaVivienda'] : null ) ,  array('id'=> 'fichaAlumno[0][tenenciaVivienda]', 'class' => 'form-control', 'placeholder' => 'Seleccione tipo de vivienda', 'required' => 'true')) !!}
 </div>
 
 <!-- Estudiacon Field -->
@@ -169,7 +174,7 @@
 
 <section class="content-header" style="color: gray;">
         <h1>
-           Información Médica 
+           Información Médica del Alumno {{ $persona->PNombre . ' ' . $persona->ApPat }}
         </h1> <br>
 </section>
 
@@ -206,7 +211,7 @@
 <!-- Gruposanguineo Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('grupoSanguineo', 'Grupo Sanguíneo:') !!}
-    {!! Form::select('fichaAlumno[0][grupoSanguineo]', App\Enums\GrupoSanguineoEnum::getPossibleENUM(), ( isset($persona->alumno->fichaAlumno[0]) ? $persona->alumno->fichaAlumno[0]['grupoSanguineo'] : null ) ,  array('id'=> 'fichaAlumno[0][grupoSanguineo]', 'class' => 'form-control', 'placeholder' => 'Seleccione su Grupo Sanguineo', 'required' => 'true')) !!}
+    {!! Form::select('fichaAlumno[0][grupoSanguineo]', App\Enums\GrupoSanguineoEnum::getPossibleENUM(), ( isset($persona->alumno->fichaAlumno[0]) ? $persona->alumno->fichaAlumno[0]['grupoSanguineo'] : null ) ,  array('id'=> 'fichaAlumno[0][grupoSanguineo]', 'class' => 'form-control', 'placeholder' => 'Seleccione Grupo Sanguineo', 'required' => 'true')) !!}
 </div>
 
 

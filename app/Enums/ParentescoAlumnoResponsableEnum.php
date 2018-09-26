@@ -20,10 +20,8 @@ abstract class ParentescoAlumnoResponsableEnum extends Enum {
             if(trim($value, "'")!='Padre' && trim($value, "'")!='Madre' ){  //No puede ser ni padre ni madre
                 $values[trim($value, "'")] = trim($value, "'");
             }
-           
-            
-            
         }
+        
         return $values;
     }
 

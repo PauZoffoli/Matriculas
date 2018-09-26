@@ -37,6 +37,12 @@ $idUserTXT = $asd;*/
 
 <!--para las personas ALUMNO Y APODERADO-->
 
+@if(isset($rutLBL))
+
+<div class="form-group col-sm-12 alert alert-info">
+    <span class="glyphicon glyphicon-warning-sign"></span><em> En caso que realmente no se sepa el padre/madre del alumno, repetir los datos de uno de los dos en los campos "Padre" y "Madre" en ambos cuadros, y favor advertir de esta situación al momento de acercarse a nuestras oficinas para firmar el contrato</em>
+</div>
+@endif
 
 
 <!-- SIN CAMBIOS SIN CAMBIOS-->
@@ -88,10 +94,11 @@ $idUserTXT = $asd;*/
 
 
 @if(isset($rutLBL))
+
 <!-- Rut Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('rut', 'Rut:') !!}
-    {!! Form::text($rutLBL,  ( isset($rutTXT) ? $rutTXT : null ), ['class' => 'form-control','oninput'=>"checkRut(this)",'maxlength'=>"11" , 'required' => 'true', 'placeholder' => 'Ingrese el rut del alumno']) !!}
+    {!! Form::text($rutLBL,  ( isset($rutTXT) ? $rutTXT : null ), ['class' => 'form-control','maxlength'=>"11" , 'required' => 'true', 'placeholder' => 'Ingrese el rut del alumno']) !!}
 
 </div>
 @endif
@@ -127,7 +134,7 @@ $idUserTXT = $asd;*/
 <!-- Estadocivil Field -->
 <div class="form-group col-sm-3 {{ $errors->has('estadoCivil') ? ' has-error' : '' }}">
     {!! Form::label('estadoCivil', 'Estado Civil:') !!}
-        {!! Form::select($estadoCivilLBL, App\Enums\EstadoCivil::getPossibleENUM(),  ( isset($estadoCivilTXT) ? $estadoCivilTXT : null ),  array('id' => $estadoCivilLBL, 'class' => 'form-control', 'placeholder' => "Seleccione el estado civil")) !!}
+        {!! Form::select($estadoCivilLBL, App\Enums\EstadoCivil::getPossibleENUM(),  ( isset($estadoCivilTXT) ? $estadoCivilTXT : null ),  array('id' => $estadoCivilLBL, 'class' => 'form-control','required'=> 'true', 'placeholder' => "Seleccione el estado civil")) !!}
 </div>
 
 

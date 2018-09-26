@@ -153,7 +153,7 @@ echo $f->format(1432);
           ]);
         } */
 /////////////////////////////////////////////////////esto tiene que descomentarse después
-//dd($request->all());
+
         ///----->>>>>1) Esta sección es solo para colectar los datos de las variables padre, madre, pContacto y sContacto//////////////////////////////////
 
         if($request->alumno['parentesco']=="Madre" || $request->alumno['parentesco']=="Padre"){ //Si el parentesco es madre o Padre llenamos los datos de su array para que que todas las variables de contacto luscan igual
@@ -169,8 +169,8 @@ echo $f->format(1432);
                 $request->padre['parentesco'] = "Padre";
             }
          
-        }
-
+        } 
+        
 
         $cantidadDeContactos = $request->fichaAlumno[0]['cantidadContactos']; //inicializamos la variable que recibimos desde la vista para usarla más adelante
 
@@ -180,6 +180,7 @@ echo $f->format(1432);
             //si está vacío significa que marcaron padre o Madre
             $ficha = null;
             $ficha = $request->fichaAlumno[0]; //Tomamos los datos de la ficha para editarlos
+            $ficha['idAlumno'] =  $persona->alumno->id; //Le asignamos el idAlumno
 
             if(isset($request->padreOMadrePC)){ //cambiamos el primer contacto
               
@@ -203,46 +204,68 @@ echo $f->format(1432);
              $request->merge([ 'fichaAlumno' => ['0' => $ficha ] ]); //mergeamos la fichaAlumno con los datos que agregamos
            
         }
+
+
+        //------> 6)Ahora el padre y madre se lo debemos añadir al alumno para evitar pérdidas de datos
+     
+        
    
-        ///----->>>>>2) Una vez colectados los datos de Padre y madre procederemos a guardarlos, verificando que no exista el rut con anterioridad: Si existe con anterioridad, vamos a trabajar con los datos antiguos
+        ///----->>>>>2) Una vez colectados los datos de Padre y madre procederemos a guardarlos, verificando que no exista el rut con anterioridad: Si existe con anterioridad, vamos a trabajar con los datos antiguos.
+        //tambien es importante resaltar que debemos guardar ese cambio de padre o madre para el alumno y así mantenerlo siempre relacionado.
+
         $padreExistente = null;
         $madreExistente = null;
- 
-
         if(isset($request->padre)){
             $padreExistente = Helper::existePersona($request->padre, $this->personaRepository); //Padre antiguo o nueva con la que vamos a trabajar
+            $alumnoConPadreAsociado = Alumno::where('id' , '=', $persona->alumno->id)->update(['idPadre' => $padreExistente->id]); //con el padre que acabamos de crear o update lo retornamos para agregarselo al alumno
         }
         if(isset($request->madre)){
             $madreExistente = Helper::existePersona($request->madre, $this->personaRepository); //madre antigua o nueva con la que vamos a trabajar
+            $alumnoConMadreAsociada = Alumno::where('id' , '=', $persona->alumno->id)->update(['idMadre' => $madreExistente->id]);
         }
 
-        ///----->>>>>3)Ahora procedemos a añadir los tipos de las variable anteriores
-        if(isset($padreExistente)){
-            Helper::existeTipoPersona("Padres", $padreExistente); //estas variables 
-        }
-        if(isset($madreExistente)){
-            Helper::existeTipoPersona("Padres", $madreExistente);
-        }
 
         ///----->>>>>4) SINCRONIZAMOS los datos de padres y madres del contacto, evitando que pueda haber más de un padre
         //o el regristro es borrado 
         Helper::existeRelacionPorParentesco($request->alumno['id'] , $padreExistente,  $madreExistente, "Padre");
+      
 
+     // dd($request->all());
 
         if($persona->alumno->fichaAlumno==null){ //Si el alumno no tiene una ficha asociada, se le crea en el momento
-             $fichaAlumno = $this->fichaAlumnoRepository->create($request->fichaAlumno[0]);
+            $fichaAlumno = $this->fichaAlumnoRepository->create($request->fichaAlumno[0]);
+            $request->merge([ 'fichaAlumno' => ['0' =>$fichaAlumno->toArray()] ]);
         }
+
+        $idFicha = FichaAlumno::where('idAlumno' , $persona->alumno->id)->first();
 
 
         //------------>5)Updateamos todo
+
+        
+        if(!isset($persona->direccion->id)){//Si la persona no tiene una dirección, crearla
+
+           $direccion = $this->direccionRepository->create($request->direccion);
+           $request->request->add(['direccion' => $direccion->toArray()]);
+           $persona->direccion = $direccion;
+        }
+
+
         $persona->alumno->repitencia()->sync($request->repitencia); //AGREGAMOS LOS DATOS PIVOTE DE LAS REPITENCIAS https://stackoverflow.com/questions/23968415/laravel-eloquent-attach-vs-sync 
         $request->request->add(['alumno[repitencias]' => $persona->alumno->repitencia()->count()]); //cambiamos el valor del request"repitencias que tiene el número de repitencias del alumno"
-        Helper::updateThis($this->direccionRepository,$request->direccion, $persona->direccion->id);
+ 
+
+
+            //*-->-------->UPDATE DIRECCION
+        $direccion =Helper::updateThis($this->direccionRepository,$request->direccion, $persona->direccion->id);
         unset($request['direccion']); //Produce el error array to string, por eso direccion se borra antes
+        $request->request->add(['idDireccion' => $direccion->id]); //guardamos el id de la dirección updateada
+
         $persona = $this->personaRepository->update($request->all(), $id);
+
         $alumno = Helper::updateThis($this->alumnoRepository,$request->alumno, $persona->alumno->id);
-        Helper::updateThis($this->fichaAlumnoRepository, $request->fichaAlumno[0],  $request->fichaAlumno[0]['id']);
-        
+        Helper::updateThis($this->fichaAlumnoRepository, $request->fichaAlumno[0], $idFicha->id);
+       
         //------------>6)Jugamos con las variables de sesión para ir cerrando el proceso de matrícula
         //********************************************
         $todosLosAlumnos = $request->session()->get('todosLosAlumnos');

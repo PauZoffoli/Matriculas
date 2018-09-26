@@ -27,6 +27,7 @@ abstract class EstadoCivilPadresEnum extends Enum {
             $values[trim($value, "'")] = trim($value, "'");
             
         }
+        asort($values);
         return $values;
     }
 

@@ -9,7 +9,7 @@
 </section>
 <div class="form-group col-sm-3">
     {!! Form::label('idComuna', 'Comuna:') !!}
-     {!! Form::select('direccion[idComuna]', App\Enums\ComunaEnum::getPossibleENUM(), ( isset($persona->direccion->idComuna) ? $persona->direccion->Idcomuna : null ),  array('id' => 'direccion[idComuna]', 'class' => 'form-control', 'required' => 'true', 'maxlength' => "191")) !!}
+     {!! Form::select('direccion[idComuna]', App\Enums\ComunaEnum::getPossibleENUM(), ( isset($persona->direccion->idComuna) ? $persona->direccion->Idcomuna : 104 ),  array('id' => 'direccion[idComuna]', 'class' => 'form-control', 'required' => 'true', 'maxlength' => "191")) !!}
 
 </div>
 

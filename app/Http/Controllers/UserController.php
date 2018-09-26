@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
-
+use App\Models\User;
 class UserController extends AppBaseController
 {
     /** @var  UserRepository */
@@ -31,6 +31,17 @@ class UserController extends AppBaseController
     {
         $this->userRepository->pushCriteria(new RequestCriteria($request));
         $users = $this->userRepository->all();
+
+//HASHEANDO LA BASE DE DATOS PASSWORD
+/*$user = new User();
+$user = $user->get();
+
+
+foreach ($user as $key => $pass) {
+    $pass->password = bcrypt($pass->password);
+ $pass->save();
+}
+*/
 
         return view('users.index')
             ->with('users', $users);
