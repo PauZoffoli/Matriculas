@@ -187,7 +187,7 @@
 
 
          {!! Form::label('padreOMadrePC', '¿Quién es el primer contacto?') !!}
-                 {!! Form::select('fichaAlumno[0][parentescoPContacto]', [ 'No es el padre ni la madre','Padre' ,'Madre'],  
+                 {!! Form::select('padreOMadrePC', [ 'No es el padre ni la madre','Padre' ,'Madre'],  
 $primerContacto
                   ,  array('id' => 'padreOMadrePC', 'class' => 'form-control','placeholder' =>"Seleccione una opción", 'required' =>'true')) !!}
           <br>
@@ -210,7 +210,7 @@ $primerContacto
           <br>
         </h1> 
          {!! Form::label('padreOMadreSC', '¿Quién es el segundo contacto?') !!}
-                 {!! Form::select('fichaAlumno[0][parentescoSContacto]', [ "0" =>'No es el padre ni la madre', 'Padre' ,'Madre'], $segundoContacto ,  array('id' => 'padreOMadreSC', 'class' => 'form-control', 'placeholder' =>"Seleccione una opción", 'required' =>'true')) !!}
+                 {!! Form::select('padreOMadreSC', [ "0" =>'No es el padre ni la madre', 'Padre' ,'Madre'], $segundoContacto ,  array('id' => 'padreOMadreSC', 'class' => 'form-control', 'placeholder' =>"Seleccione una opción", 'required' =>'true')) !!}
                  <br>
 </section>
 

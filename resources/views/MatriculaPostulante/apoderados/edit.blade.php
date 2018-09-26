@@ -34,6 +34,8 @@
                         @include('MatriculaPostulante.apoderados.fields')
 </div>
                          @include('MatriculaPostulante.direccions.fields')
+
+                         <!--DESPLEGAMOS A LOS ALUMNOS ASOCIADOS-->
 <center>
 <div class="box-body">
 <section class="content-header" >
