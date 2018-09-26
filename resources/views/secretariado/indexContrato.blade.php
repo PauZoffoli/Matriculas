@@ -65,7 +65,7 @@
                <td>
                 {!! Form::open() !!}
                 <div class='btn-group'>
-                    <a href="{!! route('alumnoSecretariadoContr.ficha', ['alumno'=>$alumno]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i>Ver Ficha Alumno</a>
+                    <a href="{!! route('alumnoSecretariadoContr.ficha', [$alumno->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i>Ver Ficha Alumno</a>
                 </div>
                 {!! Form::close() !!}
             </td>
