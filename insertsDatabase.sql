@@ -1,5 +1,4 @@
 
-
 INSERT INTO `regiones` (`id`,`created_at`,`updated_at`,`nombreReg`,`regionOrd`,`codigoUnico` )
 VALUES
 	(1, CURDATE(), CURDATE(), 'Arica y Parinacota','XV','15'),
@@ -423,11 +422,24 @@ VALUES
 	(344,CURDATE(), CURDATE(),'Natales',53,'12401'),
 	(345,CURDATE(), CURDATE(),'Torres del Paine',53,'12402');
 
+
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES (NULL, 'Abel', 'abel@gmail.com', '2018-09-12 00:00:00', '123123', NULL, NULL, NULL);
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES (NULL, 'Adriana', 'adriana@gmail.com', '2018-09-12 00:00:00', '123123', NULL, NULL, NULL);
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES (NULL, 'Juan', 'juan@juan.cl', '2018-09-12 00:00:00', '123123', NULL, NULL, NULL);
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES (NULL, 'Nicole', 'nicole@gmail.com', '2018-09-12 00:00:00', '123123', NULL, NULL, NULL);
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES (NULL, 'Raquel', 'raquel@raquel.cl', '2018-09-12 00:00:00', '123123', NULL, NULL, NULL);
+
+INSERT INTO `cursos` (`id`, `created_at`, `updated_at`, `nivel`, `basicaMedia`, `arancelAnual`) VALUES (NULL, NULL, NULL, '1', 'Básico', '300000');
+
+
+INSERT INTO `direcciones` (`id`, `created_at`, `updated_at`, `idComuna`, `calle`, `nroCalle`, `bloqueTorre`, `dpto`) VALUES (NULL, NULL, NULL, '1', 'siempre viva ', '33', '', '');
+
+INSERT INTO `personas` (`id`, `created_at`, `updated_at`, `PNombre`, `SNombre`, `TNombre`, `ApPat`, `ApMat`, `fonoFijo`, `fonoCelu`, `idUser`, `rut`, `tipoPersona`, `genero`, `email`, `fechaNacimiento`, `fechaDefuncion`, `estadoCivil`, `idDireccion`) VALUES (NULL, NULL, NULL, 'Maria', 'Alejandra', NULL, 'Parra', 'Zufflo', '876778765', '876778765', '1', '171572975', 'Apoderado', 'Mujer', 'mujer@mujer.cl', '2000-09-12 00:00:00', NULL, 'Soltero/a', '1');
+
+INSERT INTO `personas` (`id`, `created_at`, `updated_at`, `PNombre`, `SNombre`, `TNombre`, `ApPat`, `ApMat`, `fonoFijo`, `fonoCelu`, `idUser`, `rut`, `tipoPersona`, `genero`, `email`, `fechaNacimiento`, `fechaDefuncion`, `estadoCivil`, `idDireccion`) VALUES (NULL, NULL, NULL, 'Nicole', 'Almendra', NULL, 'Becerra', 'Altipalan', '967887654', '898776567', '2', '249717428', 'Alumno', 'Mujer', 'adri@adri.cl', '2001-09-03 00:00:00', NULL, 'Viudo/a', '1');
+
+INSERT INTO `personas` (`id`, `created_at`, `updated_at`, `PNombre`, `SNombre`, `TNombre`, `ApPat`, `ApMat`, `fonoFijo`, `fonoCelu`, `idUser`, `rut`, `tipoPersona`, `genero`, `email`, `fechaNacimiento`, `fechaDefuncion`, `estadoCivil`, `idDireccion`) VALUES (NULL, NULL, NULL, 'Sofia', 'Estela', NULL, 'Martinez', 'Sifuentes', NULL, '878776545', '3', '127239355', 'Secretariado', 'Mujer', 'sifusifu@gmail.com', '1987-09-24 00:00:00', NULL, 'Casado/a', '1');
+=======
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES (NULL, 'PauZo', 'pau@gmail.com', '2018-09-13 00:00:00', '123123', NULL, NULL, NULL);
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES (NULL, 'Liz', 'liz@gmail.com', '2018-09-13 00:00:00', '123123', NULL, NULL, NULL);
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES (NULL, 'Mortin', 'mortin@gmail.com', '2018-09-13 00:00:00', '123123', NULL, NULL, NULL);
@@ -509,6 +521,8 @@ INSERT INTO `apoderados` (`id`, `created_at`, `updated_at`, `nivelEducacional`, 
 
 INSERT INTO `alumnos` (`id`, `created_at`, `updated_at`, `parentesco`, `otroParentesco`, `repitencias`, `condicion`, `estado`, `estadoCivilPadres`, `idPersona`, `idApoderado`, `idCursoActual`, `idCursoPostu`) VALUES (NULL, NULL, NULL, 'Padre', NULL, '0', 'nuevo', 'Revisar', 'Casados/as', '3', '1', '1', '1');
 
+
+
 INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) VALUES (NULL, NULL, NULL, 'Apoderado', 'Apoderado con alumnos matriculados');
 INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) VALUES (NULL, NULL, NULL, 'Alumno', 'Alumno matrículado');
 INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) VALUES (NULL, NULL, NULL, 'ApoderadoPostulante', 'Apoderado que aún no firma contrato con la escuela.');
@@ -518,4 +532,6 @@ INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) 
 INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) VALUES (NULL, NULL, NULL, 'Administrador', 'Administrador colegio');
 INSERT INTO `roles` (`id`, `created_at`, `updated_at`, `nombre`, `descripcion`) VALUES (NULL, NULL, NULL, 'Otro', 'Otro cargo colegio');
 
+
 INSERT INTO `ficha_alumno` (`id`, `created_at`, `updated_at`, `ingresoFamiliarM`, `viveConPadre`, `viveConMadre`, `viveConAbuelos`, `viveConTios`, `viveConTutor`, `causas`, `nroConvivientes`, `totalHijos`, `nroDeHijo`, `nroHermaIDOP`, `tenenciaVivienda`, `estudiaCon`, `isapreFonasa`, `seguroComple`, `enfermedades`, `medicamentos`, `esAlergico`, `AlergicoA`, `observacionesSalud`, `grupoSanguineo`, `idAlumno`, `PNombrePContacto`, `SNombrePContacto`, `TNombrePContacto`, `ApPatPContacto`, `ApMatPContacto`, `fonoFijoPContacto`, `fonoCeluPContacto`, `emailPContacto`, `parentescoPContacto`, `PNombreSContacto`, `SNombreSContacto`, `TNombreSContacto`, `ApPatSContacto`, `ApMatSContacto`, `fonoFijoSContacto`, `fonoCeluSContacto`, `emailSContacto`, `parentescoSContacto`) VALUES (NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '6', '1', '0', '0', '0', '0', 'Muchas', '2', '2', '2', '2', 'Arrendatario', 'Tutor/Tutura Legal', 'Isapre', '0', 'eter', 'eter', '1', 'eter', 'eter', 'O+', '1', 'eter', 'eter', 'eter', 'eter', 'eter', '123', '123', '123@asd.cl', 'Tío/Tía', 'eter', 'eter', 'eter', 'eter', 'eter', '123', '123', 'eter@eter.cl', 'Madrastra');
+

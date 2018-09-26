@@ -152,7 +152,7 @@
 <!-- Causas Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('causas', 'Si no vive con ninguno de sus padres sanguíneos indique la razón:') !!}
-    {!! Form::text('fichaAlumno[0][causas]', null, ['class' => 'form-control', 'placeholder'=> 'Si no vive con ninguno de sus padres sanguíneos indique la razón', 'maxlength' => "100"]) !!}
+    {!! Form::text('fichaAlumno[0][causas]', null, ['class' => 'form-control', 'placeholder'=> 'Si no vive con ninguno de sus padres sanguíneos indique la razón:', 'maxlength' => "100"]) !!}
 </div>
 
 <!-- Totalhijos Field -->

@@ -169,7 +169,7 @@ echo $f->format(1432);
           ]);
         } */
 /////////////////////////////////////////////////////esto tiene que descomentarse después
-dd($request->all());
+//dd($request->all());
         ///----->>>>>1) Esta sección es solo para colectar los datos de las variables padre, madre, pContacto y sContacto//////////////////////////////////
 
         if($request->alumno['parentesco']=="Madre" || $request->alumno['parentesco']=="Padre"){ //Si el parentesco es madre o Padre llenamos los datos de su array para que que todas las variables de contacto luscan igual

@@ -7,6 +7,13 @@
 
 
 
+<!-- Paisdeorigen Field -->
+<div class="form-group col-sm-3">
+    {!! Form::label('paisDeOrigen', 'Nacionalidad (Si tiene doble nacionalidad (Ejemplo: Chilena y otra) prefiera Chile:') !!}
+    {!! Form::select('alumno[paisDeOrigen]', App\Enums\PaisEnum::getPossibleENUM(), ( isset($persona->alumno) ? $persona->alumno->paisDeOrigen : null ),  array('id' => 'alumno[paisDeOrigen]', 'required' => 'true', 'class' => 'form-control', "placeholder" => "Seleccione un país de origen")) !!}
+</div>
+
+
 <!-- Condicion Field -->
 <div class="form-group col-sm-6" style="display: none">
     {!! Form::label('condicion', 'IdAlumno:') !!}
