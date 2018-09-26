@@ -16,11 +16,11 @@
 
 <!-- Paisdeorigen Field -->
 <div class="form-group col-sm-6">
+
 	{!! Form::label('paisDeOrigen', 'Nacionalidad (Si tiene doble nacionalidad (Ejemplo: Chilena y otra) prefiera Chile:') !!}
     {!! Form::select('apoderado[paisDeOrigen]', App\Enums\PaisEnum::getPossibleENUM(), ( isset($persona->apoderado->paisDeOrigen) ? $persona->apoderado->paisDeOrigen : 'Chile' ),  array('id' => 'apoderado[paisDeOrigen]', 'class' => 'form-control')) !!}
+
 </div>
-
-
 
 <!-- Niveleducacional Field -->
 <div class="form-group col-sm-6">

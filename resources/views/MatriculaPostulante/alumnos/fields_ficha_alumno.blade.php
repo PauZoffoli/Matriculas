@@ -25,7 +25,7 @@
 <!-- Nroconvivientes Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nroConvivientes', 'Número de Habitantes del Hogar:') !!}
-    {!! Form::select('fichaAlumno[0][nroConvivientes]', [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17, 18, 19, 20], ( isset($persona->alumno->fichaAlumno[0]) ? $persona->alumno->fichaAlumno[0]['nroConvivientes'] : null ) ,  array('id'=> 'fichaAlumno[0][nroConvivientes]', 'class' => 'form-control', 'placeholder' => 'Seleccione el número de habitantes de la vivienda del alumno', 'required' => 'true')) !!}
+    {!! Form::select('fichaAlumno[0][nroConvivientes]', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17, 18, 19, 20], ( isset($persona->alumno->fichaAlumno[0]) ? $persona->alumno->fichaAlumno[0]['nroConvivientes'] : null ) ,  array('id'=> 'fichaAlumno[0][nroConvivientes]', 'class' => 'form-control', 'placeholder' => 'Seleccione el número de habitantes de la vivienda del alumno', 'required' => 'true')) !!}
 
 </div>
 
@@ -38,7 +38,7 @@
 <!-- Nrohermaidop Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nroHermaIDOP', 'Cantidad de Hermanos estudiando en IDOP:') !!}
-    {!! Form::select('fichaAlumno[0][nroHermaIDOP]', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17, 18, 19, 20], ( isset($persona->alumno->fichaAlumno[0]) ? $persona->alumno->fichaAlumno[0]['nroDeHijo'] : null ), ['class' => 'form-control','id'=> 'fichaAlumno[0][nroHermaIDOP]', 'placeholder' => 'Seleccione la cantidad de hermanos estudiando actualmente en IDOP', 'required' => 'true']) !!}
+    {!! Form::select('fichaAlumno[0][nroHermaIDOP]', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17, 18, 19, 20], ( isset($persona->alumno->fichaAlumno[0]) ? $persona->alumno->fichaAlumno[0]['nroDeHijo'] : null ), ['class' => 'form-control','id'=> 'fichaAlumno[0][nroHermaIDOP]', 'placeholder' => 'Cantidad de actualmente en IDOP', 'required' => 'true']) !!}
 </div>
 
 <!-- Tenenciavivienda Field -->
@@ -51,7 +51,7 @@
 <div class="form-group col-sm-6">
     {!! Form::label('estudiaCon', 'Con quién estudia normalmente el alumno:') !!}
 
-        {!! Form::select('fichaAlumno[0][estudiaCon]', App\Enums\EstudiaConEnum::getPossibleENUM(), ( isset($persona->alumno->fichaAlumno[0]) ? $persona->alumno->fichaAlumno[0]['estudiaCon'] : null ) ,  array('id'=> 'fichaAlumno[0][estudiaCon]', 'class' => 'form-control', 'placeholder' => 'Seleccione con quién estudia habitualmente el alumno', 'required' => 'true')) !!}
+        {!! Form::select('fichaAlumno[0][estudiaCon]', App\Enums\EstudiaConEnum::getPossibleENUM(), ( isset($persona->alumno->fichaAlumno[0]) ? $persona->alumno->fichaAlumno[0]['estudiaCon'] : null ) ,  array('id'=> 'fichaAlumno[0][estudiaCon]', 'class' => 'form-control', 'placeholder' => 'Seleccione con quién más estudia el alumno', 'required' => 'true')) !!}
 </div>
 
 
@@ -157,7 +157,7 @@
 <!-- Causas Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('causas', 'Si no vive con ninguno de sus padres sanguíneos indique la razón:') !!}
-    {!! Form::text('fichaAlumno[0][causas]', null, ['class' => 'form-control', 'placeholder'=> 'Si no vive con ninguno de sus padres sanguíneos indique la razón', 'maxlength' => "100"]) !!}
+    {!! Form::text('fichaAlumno[0][causas]', null, ['class' => 'form-control', 'placeholder'=> 'Si no vive con ninguno de sus padres sanguíneos indique la razón:', 'maxlength' => "100"]) !!}
 </div>
 
 <!-- Totalhijos Field -->

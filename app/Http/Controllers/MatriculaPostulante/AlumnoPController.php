@@ -75,12 +75,12 @@ class AlumnoPController extends AppBaseController
         
         $persona = Helper::checkthis($this->personaRepository, $id, 'Persona');
         
-        //$validate = Helper::checkthisValue($persona->alumno, 'Alumno');
-        //$validate = $validate . Helper::checkthisValue($persona->direccion, 'Dirección');
-        /*if ($validate!=null) {
+        $validate = Helper::checkthisValue($persona->alumno, 'Alumno');
+        $validate = $validate . Helper::checkthisValue($persona->direccion, 'Dirección');
+        if ($validate!=null) {
            Flash::error($validate);
         return redirect(route('home'))->send();
-        }*/
+        }
 
 
         return $persona;
@@ -105,38 +105,26 @@ echo $f->format(1432);
         $responsables = null;
         $padre = null;
         $madre = null;
-           
 
-         //Los responsables de ese alumno es: $persona->alumno->alumnoResponsables
-        //Acceder a los datos de AlumnoResponsable $persona->alumno->alumnoResponsables[0]->pivot->parentesco
-        //acceder al padre $value->pivot->pivotParent;
-        if (!$persona->alumno->alumnoResponsables->isEmpty()) { //Si no está vacío es por que tiene responsables
-
+        if (!$persona->alumnoResponsables->isEmpty()) {
  
-            foreach ($persona->alumno->alumnoResponsables as $key => $value) {
+            foreach ($persona->alumnoResponsables as $value) {
 
-                if( $value->pivot->parentesco == "Padre"){ //si es padre el $request padre será esa persona (pivotParent)
+                if( $value->pivot->pivotParent->hasTipo("Padres")){
                 
-                    $padre = $value->pivot->idPersona;
-                    $padre = $this->personaRepository->findWithoutFail($padre); //Buscamos a la persona padre relacionada
-                }
-                if( $value->pivot->parentesco == "Madre"){
-                    $madre = $value->pivot->idPersona;
-                    $madre = $this->personaRepository->findWithoutFail($madre);
+                    $padre = $value->pivot->pivotParent;
                     
                 }
+                if( $value->pivot->pivotParent->hasTipo("Padres")){
+                
+                    $madre = $value->pivot->pivotParent;
+                    
+                }
+
                 
             }
-
-            //para buscar quién es el primer y segundo contacto hay que ir al parentesco de fichaalumno
-            //padreOMadreSC padreOMadrePC
-
             
-        } 
-
-
-
-//dd($padre , $madre);  
+        }       
 
         return view('MatriculaPostulante.alumnos.edit')->with('persona', $persona)->with('padre',$padre)->with('madre',$madre);
 
