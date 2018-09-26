@@ -34,7 +34,7 @@ class CreateAlumnosTable extends Migration
                 'Otro'])->default('Padre');
             $table->string('otroParentesco', 40)->nullable($value = true);
 
-            $table->tinyInteger('repitencias')->default(0);
+            $table->tinyInteger('repitencias')->default(0)->nullable($value = true);;
 
           
              $table->enum('condicion', [
@@ -43,6 +43,7 @@ class CreateAlumnosTable extends Migration
 
             $table->enum('estado', [
                 'MatriculaRevisadaPorApoderado',
+                'MatriculaNoRevisadaPorApoderado',
                 'Revisar', 
                 'Revisado',
                 'Aprobado',
@@ -58,10 +59,10 @@ class CreateAlumnosTable extends Migration
                 'Separados/as',
                 'Convivientes'])->nullable($value = true)->default('Casados/as');
 
-            $table->integer('idPersona')->unsigned()->unique();
+            $table->integer('idPersona')->unsigned()->unique()->nullable($value = true);;
             $table->foreign('idPersona')->references('id')->on('personas')->onDelete('cascade');
 
-            $table->integer('idApoderado')->unsigned();
+            $table->integer('idApoderado')->unsigned()->nullable($value = true);;
             $table->foreign('idApoderado')->references('id')->on('apoderados')->onDelete('cascade');
 
             $table->integer('idCursoActual')->unsigned()->nullable($value = true);
@@ -266,7 +267,7 @@ class CreateAlumnosTable extends Migration
 'Zambia',
 'Zimbabue'
 
-            ])->default('Chile');
+            ])->default('Chile')->nullable($value = true);
 
 
 

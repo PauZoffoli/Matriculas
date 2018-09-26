@@ -160,7 +160,7 @@ echo $f->format(1432);
 
         $persona = $this->checkIfExist($id); //Chequeamos si es que las entidades que necesitamos existen
 
-
+dd($request->all());
 /////////////////////////////////////////////////////esto tiene que descomentarse después
      /*   $validate = $this->validaciones($request); // Primero hay que hacer las validaciones de las clases que no se validan en el request de los parámetros de la función
         if ($validate!=null) {
@@ -169,7 +169,7 @@ echo $f->format(1432);
           ]);
         } */
 /////////////////////////////////////////////////////esto tiene que descomentarse después
-dd($request->all());
+
         ///----->>>>>1) Esta sección es solo para colectar los datos de las variables padre, madre, pContacto y sContacto//////////////////////////////////
 
         if($request->alumno['parentesco']=="Madre" || $request->alumno['parentesco']=="Padre"){ //Si el parentesco es madre o Padre llenamos los datos de su array para que que todas las variables de contacto luscan igual
@@ -251,10 +251,24 @@ dd($request->all());
 
 
         //------------>5)Updateamos todo
+
+        
+        if(!isset($persona->direccion->id)){//Si la persona no tiene una dirección, crearla
+
+           $direccion = $this->direccionRepository->create($request->direccion);
+           $request->request->add(['direccion' => $direccion->toArray()]);
+           $persona->direccion = $direccion;
+        }
+
+       
         $persona->alumno->repitencia()->sync($request->repitencia); //AGREGAMOS LOS DATOS PIVOTE DE LAS REPITENCIAS https://stackoverflow.com/questions/23968415/laravel-eloquent-attach-vs-sync 
         $request->request->add(['alumno[repitencias]' => $persona->alumno->repitencia()->count()]); //cambiamos el valor del request"repitencias que tiene el número de repitencias del alumno"
-        Helper::updateThis($this->direccionRepository,$request->direccion, $persona->direccion->id);
+
+            //*-->-------->UPDATE DIRECCION
+        $direccion =Helper::updateThis($this->direccionRepository,$request->direccion, $persona->direccion->id);
         unset($request['direccion']); //Produce el error array to string, por eso direccion se borra antes
+        $request->request->add(['idDireccion' => $direccion->id]); //guardamos el id de la dirección updateada
+
         $persona = $this->personaRepository->update($request->all(), $id);
         $alumno = Helper::updateThis($this->alumnoRepository,$request->alumno, $persona->alumno->id);
         Helper::updateThis($this->fichaAlumnoRepository, $request->fichaAlumno[0],  $request->fichaAlumno[0]['id']);

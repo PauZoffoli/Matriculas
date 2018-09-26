@@ -84,13 +84,23 @@ class ApoderadoPController extends AppBaseController
      */
     public function update($id, CreatePersonaRequest $request) //Debería cambiar la request
     {
-    
+
         $persona = $this->checkIfExist($id); //Chequeamos todas las clases que necesitemos antes, y pasamos por parámetro a persona.
 
-        Helper::updateThis($this->direccionRepository,$request->direccion, $persona->direccion->id);
-        unset($request['direccion']); //Produce el error array to string, por eso direccion se borra antes
+        //Si la persona no tiene una dirección, crearla
+        if(!isset($persona->direccion->id)){
+
+           $direccion = $this->direccionRepository->create($request->direccion);
+           $request->request->add(['direccion' => $direccion->toArray()]);
+           $persona->direccion = $direccion;
+        }
+
+        $direccion =Helper::updateThis($this->direccionRepository,$request->direccion, $persona->direccion->id);
+       
          $request->request->add(['estado' => 'ApoderadoSeRevisa']);
 
+        unset($request['direccion']); //Produce el error array to string, por eso direccion se borra antes
+        $request->request->add(['idDireccion' => $direccion->id]); //guardamos el id de la dirección updateada
         $persona = $this->personaRepository->update($request->all(), $id);
         Helper::updateThis($this->apoderadoRepository, $request->apoderado, $persona->apoderado->id);
         

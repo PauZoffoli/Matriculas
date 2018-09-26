@@ -127,7 +127,7 @@ $idUserTXT = $asd;*/
 <!-- Estadocivil Field -->
 <div class="form-group col-sm-3 {{ $errors->has('estadoCivil') ? ' has-error' : '' }}">
     {!! Form::label('estadoCivil', 'Estado Civil:') !!}
-        {!! Form::select($estadoCivilLBL, App\Enums\EstadoCivil::getPossibleENUM(),  ( isset($estadoCivilTXT) ? $estadoCivilTXT : null ),  array('id' => $estadoCivilLBL, 'class' => 'form-control', 'placeholder' => "Seleccione el estado civil")) !!}
+        {!! Form::select($estadoCivilLBL, App\Enums\EstadoCivil::getPossibleENUM(),  ( isset($estadoCivilTXT) ? $estadoCivilTXT : null ),  array('id' => $estadoCivilLBL, 'class' => 'form-control','required'=> 'true', 'placeholder' => "Seleccione el estado civil")) !!}
 </div>
 
 
