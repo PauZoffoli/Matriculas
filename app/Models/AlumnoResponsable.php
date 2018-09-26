@@ -81,4 +81,5 @@ class AlumnoResponsable extends Model
     {
         return $this->belongsTo(\App\Models\Persona::class, 'idPersona');
     }
+
 }
