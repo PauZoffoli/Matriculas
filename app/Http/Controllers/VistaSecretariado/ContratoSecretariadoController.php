@@ -77,6 +77,21 @@ class ContratoSecretariadoController extends AppBaseController
                 return $pdf->stream('pdfPagare');
                 //return redirect(route('contratos.index'));  
             break;
+
+            case 'ficha': 
+                $input = $request->all();
+                //dd($input);
+                //$contrato = $this->contratoRepository->create($input);
+                //Flash::success('Contrato saved successfully.');
+                $apoderado = Apoderado::where('id', $request->idApoderado)->first();
+                //dd($apoderado);
+                $vista = view('secretariado/fichaPDF')->with('datos',$apoderado)->with('req',$request);
+                //dd($request->all());
+                $pdf = \PDF::loadHTML($vista);
+                $pdf->setPaper("legal","portrait");
+                return $pdf->stream('pdfFicha');
+                //return redirect(route('contratos.index'));  
+            break;
         }
         
     }

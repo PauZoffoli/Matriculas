@@ -112,7 +112,8 @@
 
                 <div class='btn-group'>
                   <input id='btnContrato' class="btn btn-primary" type='submit' name = 'btnContratoPagare' value = 'contrato'>
-                  <input id='btnPagare' class="btn btn-primary" type='submit' name = 'btnContratoPagare' value = 'pagare'>                   
+                  <input id='btnPagare' class="btn btn-primary" type='submit' name = 'btnContratoPagare' value = 'pagare'>
+                  <input id='btnFicha' class="btn btn-primary" type='submit' name = 'btnContratoPagare' value = 'ficha'>                    
                 </div>
                 {!! Form::close() !!}
             </td>
