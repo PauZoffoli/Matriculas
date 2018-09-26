@@ -33,7 +33,7 @@ class CreatePadresRequest extends FormRequest
         'ApMat' => 'max:40',
         'fonoFijo' => 'nullable|digits_between:8,10|numeric',
         'fonoCelu' => 'required|digits_between:8,10|numeric',
-        'email' => 'nullable|min:1|email|max:100',
+        'email' => 'nullable|email|max:100',
         'estadoCivil' => 'required|max:40'
         ];
     }

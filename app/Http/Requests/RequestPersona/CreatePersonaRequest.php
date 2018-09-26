@@ -26,11 +26,11 @@ class CreatePersonaRequest extends FormRequest
     public function rules()
     {
         return $rules = [
-        'PNombreApod' => 'required'|'min:1'|'max:40',
-        'SNombreApod' => 'nullable'|'min:1'|'max:40',
+        'PNombreApod' => 'required'|'max:40',
+        'SNombreApod' => 'nullable'|'max:40',
         'TNombreApod' => 'nullable'|'max:40',
-        'apPatApo' => 'required'|'min:1'|'max:40',
-        'apMatApo' => 'nullable'|'min:1'|'max:40',
+        'apPatApo' => 'required'|'max:40',
+        'apMatApo' => 'nullable'|'max:40',
         'fonoFijoApo' => 'nullable'|'digits_between:8,10'|'numeric',
         'fonoCeluApo' => 'required'|'digits_between:8,10'|'numeric',
         'rutApo' => 'required'|'min:7'|'max:11',
