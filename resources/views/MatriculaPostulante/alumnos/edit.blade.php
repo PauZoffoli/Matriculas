@@ -119,7 +119,6 @@
        </div>
 </div>
 
-
 @php
   $cantContactos = null;
 @endphp
@@ -136,7 +135,6 @@
  {!! Form::label('cantidadDeContactosLBL', '¿Cuántos contactos quiere para su alumno?') !!}
 {!! Form::select('fichaAlumno[0][cantidadContactos]', [ 0,1, 2],  $cantContactos ,  array('id' => 'cantidadDeContactos', 'class' => 'form-control','placeholder' =>"¿Cuántos contactos quiere para su alumno?", 'required' =>'true')) !!}
 <br>
-
 <div class="box box-solid box-primary"  id="headerPrimerContacto" name="headerPrimerContacto" style="background-color: #E5ECFB!important;">       
 <section class="content-header" >
         <h1>

@@ -458,6 +458,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES (NULL, 'Silvana', 'Silvana@gmail.com', '2018-09-13 00:00:00', '123123', NULL, NULL, NULL);
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES (NULL, 'Special', 'Special@gmail.com', '2018-09-13 00:00:00', '123123', NULL, NULL, NULL);
 
+INSERT INTO `cursos` (`id`, `created_at`, `updated_at`, `nivel`, `basicaMedia`, `arancelAnual`) VALUES (NULL, NULL, NULL, 'PK', 'Pre-Básico', '300000');
+INSERT INTO `cursos` (`id`, `created_at`, `updated_at`, `nivel`, `basicaMedia`, `arancelAnual`) VALUES (NULL, NULL, NULL, 'P', 'Pre-Básico', '300000');
 INSERT INTO `cursos` (`id`, `created_at`, `updated_at`, `nivel`, `basicaMedia`, `arancelAnual`) VALUES (NULL, NULL, NULL, '1', 'Básico', '300000');
 INSERT INTO `cursos` (`id`, `created_at`, `updated_at`, `nivel`, `basicaMedia`, `arancelAnual`) VALUES (NULL, NULL, NULL, '2', 'Básico', '300000');
 INSERT INTO `cursos` (`id`, `created_at`, `updated_at`, `nivel`, `basicaMedia`, `arancelAnual`) VALUES (NULL, NULL, NULL, '3', 'Básico', '300000');
@@ -466,10 +468,10 @@ INSERT INTO `cursos` (`id`, `created_at`, `updated_at`, `nivel`, `basicaMedia`, 
 INSERT INTO `cursos` (`id`, `created_at`, `updated_at`, `nivel`, `basicaMedia`, `arancelAnual`) VALUES (NULL, NULL, NULL, '6', 'Básico', '340000');
 INSERT INTO `cursos` (`id`, `created_at`, `updated_at`, `nivel`, `basicaMedia`, `arancelAnual`) VALUES (NULL, NULL, NULL, '7', 'Básico', '33000');
 INSERT INTO `cursos` (`id`, `created_at`, `updated_at`, `nivel`, `basicaMedia`, `arancelAnual`) VALUES (NULL, NULL, NULL, '8', 'Básico', '312000');
-INSERT INTO `cursos` (`id`, `created_at`, `updated_at`, `nivel`, `basicaMedia`, `arancelAnual`) VALUES (NULL, NULL, NULL, '1', 'Media', '523000');
-INSERT INTO `cursos` (`id`, `created_at`, `updated_at`, `nivel`, `basicaMedia`, `arancelAnual`) VALUES (NULL, NULL, NULL, '2', 'Media', '513000');
-INSERT INTO `cursos` (`id`, `created_at`, `updated_at`, `nivel`, `basicaMedia`, `arancelAnual`) VALUES (NULL, NULL, NULL, '3', 'Media', '520000');
-INSERT INTO `cursos` (`id`, `created_at`, `updated_at`, `nivel`, `basicaMedia`, `arancelAnual`) VALUES (NULL, NULL, NULL, '4', 'Media', '635000');
+INSERT INTO `cursos` (`id`, `created_at`, `updated_at`, `nivel`, `basicaMedia`, `arancelAnual`) VALUES (NULL, NULL, NULL, '1', 'Medio', '523000');
+INSERT INTO `cursos` (`id`, `created_at`, `updated_at`, `nivel`, `basicaMedia`, `arancelAnual`) VALUES (NULL, NULL, NULL, '2', 'Medio', '513000');
+INSERT INTO `cursos` (`id`, `created_at`, `updated_at`, `nivel`, `basicaMedia`, `arancelAnual`) VALUES (NULL, NULL, NULL, '3', 'Medio', '520000');
+INSERT INTO `cursos` (`id`, `created_at`, `updated_at`, `nivel`, `basicaMedia`, `arancelAnual`) VALUES (NULL, NULL, NULL, '4', 'Medio', '635000');
 
 INSERT INTO `direcciones` (`id`, `created_at`, `updated_at`, `idComuna`, `calle`, `nroCalle`, `bloqueTorre`, `dpto`) VALUES (NULL, NULL, NULL, '1', 'siempre viva ', '33', '', '');
 INSERT INTO `direcciones` (`id`, `created_at`, `updated_at`, `idComuna`, `calle`, `nroCalle`, `bloqueTorre`, `dpto`) VALUES (NULL, NULL, NULL, '45', 'Belisario', '756', '', '');
