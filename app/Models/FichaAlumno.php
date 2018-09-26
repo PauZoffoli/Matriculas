@@ -102,7 +102,7 @@ class FichaAlumno extends Model
     protected $casts = [
         'id' => 'integer',
         'ingresoFamiliarM' => 'integer',
-        'causas' => 'integer',
+        'causas' => 'string',
         'nroConvivientes' => 'integer',
         'totalHijos' => 'integer',
         'nroDeHijo' => 'integer',

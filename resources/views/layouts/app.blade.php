@@ -180,6 +180,60 @@
 
 
 <script >
+
+
+     var cantidadDeContactos = document.getElementById("cantidadDeContactos");
+
+      function cantContactos(){
+        if(cantidadDeContactos.value==null || cantidadDeContactos.value=='' || cantidadDeContactos.value=='0'){    
+            document.getElementById("headerPrimerContacto").style.display = "none";
+            $('#headerPrimerContacto').find('input, textarea, button, select').attr('disabled','disabled');
+
+
+
+            document.getElementById("headerSegundoContacto").style.display = "none";
+            $('#headerSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
+           
+        }
+//EL ORDEN ES IMPORTANTE DE EL HEADER ATTRIBUTE REMOVE, POR QUE TENEMOS UN DIV DENTRO DE OTRO LO QUE COMPLICA LAS COSAS.
+        if(cantidadDeContactos.value=='1'){
+            document.getElementById("headerPrimerContacto").style.display = "block";
+            $('#headerPrimerContacto').find('input, textarea, button, select').removeAttr('disabled');
+
+            $('#datosPrimerContacto').find('input, textarea, button, select').attr('disabled','disabled'); //debo desabilitar los campos dentro de primer contacto, solo habilitar los campos del select que pregunta padre madre o ninguno
+             $('#datosSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
+ 
+            
+
+            document.getElementById("headerSegundoContacto").style.display = "none";
+            $('#headerSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
+          
+        }
+
+        if(cantidadDeContactos.value=='2'){
+            document.getElementById("headerPrimerContacto").style.display = "block";
+            $('#headerPrimerContacto').find('input, textarea, button, select').removeAttr('disabled');
+            document.getElementById("headerSegundoContacto").style.display = "block";
+            $('#headerSegundoContacto').find('input, textarea, button, select').removeAttr('disabled');
+
+             $('#datosPrimerContacto').find('input, textarea, button, select').attr('disabled','disabled'); //debo desabilitar los campos dentro de primer contacto, solo habilitar los campos del select que pregunta padre madre o ninguno
+             $('#datosSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
+       
+
+
+
+        }
+
+
+      }
+
+</script>
+
+
+
+
+
+<script >
     
 
 
@@ -239,7 +293,7 @@
 
         }
         if( document.getElementById("alumno[parentesco]").value=="Padre"){
-            esPadre.style.display = "block";
+            esPadre.style.display = "none";
             $('#esPadre').find('input, textarea, button, select').attr('disabled','disabled');
            
 
@@ -250,7 +304,7 @@
         }
 
         if( document.getElementById("alumno[parentesco]").value=="Madre"){
-            esMadre.style.display = "block";
+            esMadre.style.display = "none";
             $('#esMadre').find('input, textarea, button, select').attr('disabled','disabled');
             
 
@@ -262,52 +316,6 @@
 
     }
 </script>
-
-<script >
-
-
-     var cantidadDeContactos = document.getElementById("cantidadDeContactos");
-
-      function cantContactos(){
-        if(cantidadDeContactos.value==null || cantidadDeContactos.value=='' || cantidadDeContactos.value=='0'){    
-            document.getElementById("headerPrimerContacto").style.display = "block";
-            $('#headerPrimerContacto').find('input, textarea, button, select').attr('disabled','disabled');
- 
-
-
-            document.getElementById("headerSegundoContacto").style.display = "block";
-            $('#headerSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
-           
-        }
-
-        if(cantidadDeContactos.value=='1'){
-            document.getElementById("headerPrimerContacto").style.display = "block";
-            $('#headerPrimerContacto').find('input, textarea, button, select').removeAttr('disabled');
-            
-
-            document.getElementById("headerSegundoContacto").style.display = "block";
-            $('#headerSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
-          
-        }
-
-        if(cantidadDeContactos.value=='2'){
-            document.getElementById("headerPrimerContacto").style.display = "block";
-            $('#headerPrimerContacto').find('input, textarea, button, select').removeAttr('disabled');
-       
-
-            document.getElementById("headerSegundoContacto").style.display = "block";
-            $('#headerSegundoContacto').find('input, textarea, button, select').removeAttr('disabled');
-       
-
-
-        }
-
-
-      }
-
-</script>
-
-
 
 
 
@@ -492,20 +500,19 @@
 
 <script>
 function start() {
+    cantContactos();
    changeCantidadRepitencias();
    primerContacto();
    segundoContacto();
    apoderadoPadreOMadre();
-   cantContactos();
-
    
 }
 </script>
 <script>
 //https://stackoverflow.com/questions/9902002/javascript-how-to-run-the-same-function-onload-and-onchange
 window.onload = start; //primero va el onload
-document.getElementById('enumerator').onchange = changeCantidadRepitencias;
 document.getElementById('cantidadDeContactos').onchange = cantContactos;
+document.getElementById('enumerator').onchange = changeCantidadRepitencias;
 document.getElementById('padreOMadrePC').onchange = primerContacto;
 document.getElementById('padreOMadreSC').onchange = segundoContacto;
 document.getElementById('alumno[parentesco]').onchange = apoderadoPadreOMadre; 

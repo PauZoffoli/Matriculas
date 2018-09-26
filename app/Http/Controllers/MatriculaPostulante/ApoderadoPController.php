@@ -69,11 +69,8 @@ class ApoderadoPController extends AppBaseController
     public function edit($id)
     {
         $persona = $this->checkIfExist($id); //Chequeamos todas las clases que necesitemos antes.
-        $comuna = new Comuna;
-        $comuna = $comuna->all();
-        $comuna =  Helper::getEnumValueFromTable($comuna, 'nombreComu');
 
-        return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona)->with('comuna', $comuna);
+        return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona);
 
     }
 
