@@ -322,7 +322,7 @@ echo $f->format(1432);
 
 
 
-/*Método que cambia los estados de Alumno y Apderado*/
+/*Método que cambia los estados de Alumno y Apderado siempre tiene que se lo último en cambiarse*/
     public function cambioDeEstados($alumno, $request)
     {
         

@@ -19,7 +19,7 @@ class CreateProvinciasTable extends Migration
             $table->timestamp('updated_at')->nullable()->useCurrent();            $table->string('nombreProv');
             $table->string('codigoUnico');
             $table->integer('idRegion')->unsigned();
-            $table->foreign('idRegion')->references('id')->on('regiones')->onDelete('cascade');
+            $table->foreign('idRegion')->references('id')->on('regiones');
 
         });
     }

@@ -84,7 +84,7 @@ class CreateFichaAlumnoTable extends Migration
                 'O-'])->default('O+');
 
             $table->integer('idAlumno')->unsigned()->unique();
-            $table->foreign('idAlumno')->references('id')->on('alumnos')->onDelete('cascade');  
+            $table->foreign('idAlumno')->references('id')->on('alumnos');  
 
             $table->integer('cantidadContactos')->default(0)->nullable();
             $table->string('PNombrePContacto')->nullable($value = true);

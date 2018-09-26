@@ -21,7 +21,7 @@ class CreateComunasTable extends Migration
 
             $table->string('codigoUnico');
             $table->integer('idProvincia')->unsigned();
-            $table->foreign('idProvincia')->references('id')->on('provincias')->onDelete('cascade');
+            $table->foreign('idProvincia')->references('id')->on('provincias');
 
         });
     }

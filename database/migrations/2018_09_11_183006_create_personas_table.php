@@ -28,7 +28,7 @@ class CreatePersonasTable extends Migration
             $table->integer('fonoCelu')->nullable($value = true);
 
             $table->integer('idUser')->unsigned()->nullable($value = true)->unique();
-            $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('idUser')->references('id')->on('users');
 
             $table->string('rut')->nullable($value = true);
 
@@ -62,7 +62,7 @@ class CreatePersonasTable extends Migration
                 'Conviviente'])->nullable($value = true)->default('Soltero/a')->nullable($value = true);
 
             $table->integer('idDireccion')->unsigned()->nullable($value = true);
-            $table->foreign('idDireccion')->references('id')->on('direcciones')->onDelete('cascade');
+            $table->foreign('idDireccion')->references('id')->on('direcciones');
 
         });
     }
