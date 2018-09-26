@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\RequestContacto;
+namespace App\Http\Requests\RequestAlumno;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Persona;
+use App\Models\Alumno;
 
-class CreateContactoRequest extends FormRequest
+class CreateAlumnoRequest extends FormRequest
 {
 
     /**
@@ -26,29 +26,30 @@ class CreateContactoRequest extends FormRequest
     public function rules()
     {
        return $rules = [
-        'cantidadContactos' => 'required|integer|between:1,2',
-        'PNombrePContactos' => 'required|min:1|max:40',
-        'SNombrePContacto' => 'required|min:1|max:40',
-        'TNombrePContacto' => 'min:1|max:40',
-        'ApPatPContacto' => 'required|min:1|max:40',
-        'ApMatPContacto' => 'min:1|max:40',
-        'fonoFijoPContacto' => 'numeric|max:9',
-        'fonoCeluPContacto' => 'required|numeric|max:9',
-        'emailPContacto' => 'required|min:1|max:40',
-        'parentescoPContacto' => 'required'
+        'parentesco' => 'required',
+        'otroParentesco' => 'max:40',
+        'repitencias' => '',
+        'condicion' => 'min:1|max:40',
+        'estado' => 'min:1|max:40',
+        'estadoCivilPadres' => 'required|min:1|max:40',
+        'idPersona' => 'required|numeric|min:0|max:9',
+        'idApoderado' => 'required|numeric|max:9',
+        'idCursoActual' => 'required|min:1|max:40',
+        'paisDeOrigen' => 'required'
         ];
     }
 
    /*
-        'cantidadContactos',
-        'PNombrePContacto',
-        'SNombrePContacto',
-        'TNombrePContacto',
-        'ApPatPContacto',
-        'ApMatPContacto',
-        'fonoFijoPContacto',
-        'fonoCeluPContacto',
-        'emailPContacto',
-        'parentescoPContacto',
+        'parentesco' => 'string',
+        'otroParentesco' => 'string',
+        'repitencias' => 'boolean',
+        'condicion' => 'string',
+        'estado' => 'string',
+        'estadoCivilPadres' => 'string',
+        'idPersona' => 'integer',
+        'idApoderado' => 'integer',
+        'idCursoActual' => 'integer',
+        'idCursoPostu' => 'integer',
+        'paisDeOrigen' => 'string'
         */
 }

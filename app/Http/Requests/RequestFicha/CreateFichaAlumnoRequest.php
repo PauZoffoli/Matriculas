@@ -3,9 +3,9 @@
 namespace App\Http\Requests\RequestAlumno;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Alumno;
+use App\Models\FichaAlumno;
 
-class CreateAlumnoRequest extends FormRequest
+class CreateFichaAlumnoRequest extends FormRequest
 {
 
     /**
@@ -26,30 +26,86 @@ class CreateAlumnoRequest extends FormRequest
     public function rules()
     {
        return $rules = [
-        'parentesco' => 'required',
-        'otroParentesco' => 'max:40',
-        'repitencias' => '',
-        'condicion' => 'min:1|max:40',
-        'estado' => 'min:1|max:40',
-        'estadoCivilPadres' => 'required|min:1|max:40',
-        'idPersona' => 'required|numeric|min:0|max:9',
-        'idApoderado' => 'required|numeric|max:9',
-        'idCursoActual' => 'required|min:1|max:40',
-        'paisDeOrigen' => 'required'
+        'ingresoFamiliarM' => 'required|digits_between:1,11|numeric',
+        'causas' => 'max:100',
+        'nroConvivientes' => 'required',
+        'totalHijos' => 'required',
+        'nroDeHijo' => 'required',
+        'nroHermanoIDOP' => 'required',
+        'tenenciaVivienda' => 'required',
+        'estudiaCon' => 'required',
+        'isapreFonasa' => 'required',
+        'seguroComple' => 'required',
+        'enfermedades' => 'max:191',
+        'medicamentos' => 'max:191',
+        'esAlergico' => 'required',
+        'AlergicoA' => 'max:191',
+        'grupoSanguineo' => 'required',
+        'idAlumno' => 'required',
+        'viveConPadre' => 'required',
+        'viveConMadre' => 'required',
+        'viveConAbuelos' => 'required',
+        'viveConTios' => 'required',
+        'viveConTutor' => 'required',
+        'observacionesSalud' => 'required|max:191'
         ];
     }
 
    /*
-        'parentesco' => 'string',
-        'otroParentesco' => 'string',
-        'repitencias' => 'boolean',
-        'condicion' => 'string',
-        'estado' => 'string',
-        'estadoCivilPadres' => 'string',
-        'idPersona' => 'integer',
-        'idApoderado' => 'integer',
-        'idCursoActual' => 'integer',
-        'idCursoPostu' => 'integer',
-        'paisDeOrigen' => 'string'
+      'id' => 'integer',
+        'ingresoFamiliarM' => 'integer',
+        'causas' => 'integer',
+        'nroConvivientes' => 'integer',
+        'totalHijos' => 'integer',
+        'nroDeHijo' => 'integer',
+        'nroHermaIDOP' => 'integer',
+        'tenenciaVivienda' => 'string',
+        'estudiaCon' => 'string',
+        'isapreFonasa' => 'string',
+        'seguroComple' => 'boolean',
+        'enfermedades' => 'string',
+        'medicamentos' => 'string',
+        'esAlergico' => 'boolean',
+        'AlergicoA' => 'string',
+        'grupoSanguineo' => 'string',
+        'idAlumno' => 'integer',
+        'viveConPadre' => 'boolean',
+        'viveConMadre' => 'boolean',
+        'viveConAbuelos' => 'boolean',
+        'viveConTios' => 'boolean',
+        'viveConTutor' => 'boolean',
+        'observacionesSalud'  => 'string',
+        'cantidadContactos'  => 'integer',
+        'PNombrePContacto'  => 'string',
+        'SNombrePContacto' => 'string',
+        'TNombrePContacto' => 'string',
+        'ApPatPContacto' => 'string',
+        'ApMatPContacto' => 'string',
+        'fonoFijoPContacto' => 'integer',
+        'fonoCeluPContacto' => 'integer',
+        'emailPContacto'   => 'string',
+        'parentescoPContacto' => 'string',
+
+        'cantidadContactos',
+        'PNombrePContacto',
+        'SNombrePContacto',
+        'TNombrePContacto',
+        'ApPatPContacto',
+        'ApMatPContacto',
+        'fonoFijoPContacto',
+        'fonoCeluPContacto',
+        'emailPContacto',
+        'parentescoPContacto',
+        
+
+        'PNombreSContacto',
+        'SNombreSContacto',
+        'TNombreSContacto',
+        'ApPatSContacto',
+        'ApMatSContacto',
+        'fonoFijoSContacto',
+        'fonoCeluSContacto',
+        'emailSContacto',
+        'parentescoSContacto'
         */
 }
