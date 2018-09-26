@@ -32,9 +32,13 @@
                         @include('MatriculaPostulante.personas.fieldsPersona')
 
                         @include('MatriculaPostulante.apoderados.fields')
-</div>
-                         @include('MatriculaPostulante.direccions.fields')
 
+                         @include('MatriculaPostulante.direccions.fields')
+                         </div>
+
+                         <!--DESPLEGAMOS A LOS ALUMNOS ASOCIADOS-->
+                         <!--DESPLEGAMOS A LOS ALUMNOS ASOCIADOS-->
+                         <!--DESPLEGAMOS A LOS ALUMNOS ASOCIADOS-->
                          <!--DESPLEGAMOS A LOS ALUMNOS ASOCIADOS-->
 <center>
 <div class="box-body">
@@ -63,6 +67,10 @@
 </center>
 
 
+                         <!--DESPLEGAMOS A LOS ALUMNOS ASOCIADOS-->
+                         <!--DESPLEGAMOS A LOS ALUMNOS ASOCIADOS-->
+                         <!--DESPLEGAMOS A LOS ALUMNOS ASOCIADOS-->
+                         <!--DESPLEGAMOS A LOS ALUMNOS ASOCIADOS-->  
 
                  <!-- Submit Field -->
 <div class="form-group col-sm-12">
