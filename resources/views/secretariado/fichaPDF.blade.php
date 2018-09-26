@@ -327,16 +327,17 @@ table.MsoTableGrid
 <div class=Section1>
 
 <p class=MsoNormal align=right style='text-align:right'><b style='mso-bidi-font-weight:
-normal'><span lang=ES-TRAD style='letter-spacing:2.0pt'>FICHA del Estudiante
-Colegio IDOP</span></b><span lang=ES-TRAD><span
-style='mso-spacerun:yes'>                                                  
-</span>Nº </span><!--[if supportFields]><span lang=ES-TRAD><span
-style='mso-element:field-begin'></span><span
+normal'><span lang=ES-TRAD style='letter-spacing:2.0pt'><span
+style='mso-spacerun:yes'>  </span>FICHA del Estudiante Colegio IDOP</span></b><span
+lang=ES-TRAD><span
+style='mso-spacerun:yes'>                                       </span>Nº </span><!--[if supportFields]><span
+lang=ES-TRAD><span style='mso-element:field-begin'></span><span
 style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Ncont&quot; <span
 style='mso-element:field-separator'></span></span><![endif]--><span
 lang=ES-TRAD><span style='mso-no-proof:yes'>00266</span></span><!--[if supportFields]><span
-lang=ES-TRAD><span style='mso-element:field-end'></span></span><![endif]--></p>
-
+lang=ES-TRAD><span style='mso-element:field-end'></span></span><![endif]--><span
+lang=ES-TRAD><span style='mso-spacerun:yes'>                    </span></span></p>
+<br>
 <table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
  style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
  mso-yfti-tbllook:480;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
@@ -358,7 +359,7 @@ lang=ES-TRAD><span style='mso-element:field-end'></span></span><![endif]--></p>
   border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:
-  .6pt'>Curso año 2016 <b style='mso-bidi-font-weight:normal'><o:p></o:p></b></span></p>
+  .6pt'>Curso año 2017 <b style='mso-bidi-font-weight:normal'><o:p></o:p></b></span></p>
   </td>
   <td width=528 valign=top style='width:396.0pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
@@ -392,7 +393,7 @@ lang=ES-TRAD><span style='mso-element:field-end'></span></span><![endif]--></p>
   border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:
-  .6pt'>Curso 2017 <o:p></o:p></span></p>
+  .6pt'>Curso 2018 <o:p></o:p></span></p>
   </td>
   <td width=528 valign=top style='width:396.0pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
@@ -740,64 +741,51 @@ lang=ES-TRAD><span style='mso-element:field-end'></span></span><![endif]--></p>
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><!--[if supportFields]><b style='mso-bidi-font-weight:
+  normal'><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><span
+  style='mso-element:field-begin'></span><span
+  style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Cual&quot; </span></b><![endif]--><!--[if supportFields]><b
+  style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
+  letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
+  lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+  <tr style='mso-yfti-irow:15'>
+  <td width=199 valign=top style='width:149.4pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:
+  .6pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=528 valign=top style='width:396.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><!--[if supportFields]><b style='mso-bidi-font-weight:
+  normal'><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><span
+  style='mso-element:field-begin'></span><span
+  style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Cual&quot; </span></b><![endif]--><!--[if supportFields]><b
+  style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
+  letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
+  lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+
+
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=199 valign=top style='width:149.4pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=ES-TRAD
-  style='font-size:9.0pt;letter-spacing:.6pt'><o:p>&nbsp;</o:p></span></b></p>
+  style='letter-spacing:.6pt'>Datos del Apoderado (Quien firmará el contrato)<o:p></o:p></span></b></p>
   </td>
- </tr>
- <tr style='mso-yfti-irow:16'>
-  <td width=199 valign=top style='width:149.4pt;border:solid windowtext 1.0pt;
-  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
-  padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:
-  .6pt'><o:p>&nbsp;</o:p></span></p>
-  </td>
-  <td width=528 valign=top style='width:396.0pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
-  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <td width=528 valign=top style='width:396.0pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:
   .6pt'><o:p>&nbsp;</o:p></span></p>
   </td>
  </tr>
- <tr style='mso-yfti-irow:17'>
-  <td width=199 valign=top style='width:149.4pt;border:solid windowtext 1.0pt;
-  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
-  padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:
-  .6pt'><o:p>&nbsp;</o:p></span></p>
-  </td>
-  <td width=528 valign=top style='width:396.0pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
-  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:
-  .6pt'><o:p>&nbsp;</o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:18'>
-  <td width=727 colspan=2 valign=top style='width:545.4pt;border:solid windowtext 1.0pt;
-  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
-  padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=ES-TRAD
-  style='letter-spacing:.6pt'>Datos del Apoderado (quien firmara el contrato</span></b><span
-  lang=ES-TRAD style='letter-spacing:.6pt'>)<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:19'>
-  <td width=199 valign=top style='width:149.4pt;border:solid windowtext 1.0pt;
-  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
-  padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=ES-TRAD style='font-size:10.0pt;letter-spacing:
-  .6pt'><o:p>&nbsp;</o:p></span></p>
-  </td>
-  <td width=528 valign=top style='width:396.0pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
-  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:
-  .6pt'><o:p>&nbsp;</o:p></span></p>
-  </td>
- </tr>
+
  <tr style='mso-yfti-irow:20'>
   <td width=199 valign=top style='width:149.4pt;border:solid windowtext 1.0pt;
   border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
@@ -1003,13 +991,11 @@ lang=ES-TRAD><span style='mso-element:field-end'></span></span><![endif]--></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:27'>
-  <td width=199 valign=top style='width:149.4pt;border:solid windowtext 1.0pt;
+   <td width=199 valign=top style='width:149.4pt;border:solid windowtext 1.0pt;
   border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:
   .6pt'>Nivel educacional del apoderado <o:p></o:p></span></p>
-  <p class=MsoNormal style='margin-left:35.4pt'><span lang=ES-TRAD
-  style='font-size:9.0pt;letter-spacing:.6pt'><o:p>&nbsp;</o:p></span></p>
   </td>
   <td width=528 valign=top style='width:396.0pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
@@ -1019,9 +1005,9 @@ lang=ES-TRAD><span style='mso-element:field-end'></span></span><![endif]--></p>
   normal'><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><span
   style='mso-element:field-begin'></span><span
   style='mso-spacerun:yes'> </span>MERGEFIELD
-  &quot;Niveleducacionalapoderado&quot; <span style='mso-element:field-separator'></span></span></b><![endif]--><b
+  &quot;ProfesionuOficioApoderado&quot; <span style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>Ed. Media completa</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>Dueña de casa</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
@@ -1232,34 +1218,44 @@ lang=ES-TRAD><span style='mso-element:field-end'></span></span><![endif]--></p>
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:1.0pt'><o:p></o:p></span></p>
   </td>
  </tr>
- <tr style='mso-yfti-irow:37'>
+<tr style='mso-yfti-irow:15'>
   <td width=199 valign=top style='width:149.4pt;border:solid windowtext 1.0pt;
   border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:
-  .6pt'>Teléfono de emergencia <o:p></o:p></span></p>
+  .6pt'>Teléfono de emergencia<o:p></o:p></span></p>
   </td>
   <td width=528 valign=top style='width:396.0pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:
-  1.0pt'><o:p>&nbsp;</o:p></span></p>
+  <p class=MsoNormal><!--[if supportFields]><b style='mso-bidi-font-weight:
+  normal'><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><span
+  style='mso-element:field-begin'></span><span
+  style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Cual&quot; </span></b><![endif]--><!--[if supportFields]><b
+  style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
+  letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
+  lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
   </td>
  </tr>
- <tr style='mso-yfti-irow:38'>
+ <tr style='mso-yfti-irow:15'>
   <td width=199 valign=top style='width:149.4pt;border:solid windowtext 1.0pt;
   border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=ES-TRAD style='font-size:10.0pt;letter-spacing:
-  .6pt'><o:p>&nbsp;</o:p></span></p>
+  <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:
+  .6pt'>&nbsp;<o:p></o:p></span></p>
   </td>
   <td width=528 valign=top style='width:396.0pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:
-  .6pt'><o:p>&nbsp;</o:p></span></p>
+  <p class=MsoNormal><!--[if supportFields]><b style='mso-bidi-font-weight:
+  normal'><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><span
+  style='mso-element:field-begin'></span><span
+  style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Cual&quot; </span></b><![endif]--><!--[if supportFields]><b
+  style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
+  letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
+  lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:39'>
@@ -1277,21 +1273,7 @@ lang=ES-TRAD><span style='mso-element:field-end'></span></span><![endif]--></p>
   .6pt'><o:p>&nbsp;</o:p></span></p>
   </td>
  </tr>
- <tr style='mso-yfti-irow:40'>
-  <td width=199 valign=top style='width:149.4pt;border:solid windowtext 1.0pt;
-  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
-  padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:
-  .6pt'><o:p>&nbsp;</o:p></span></p>
-  </td>
-  <td width=528 valign=top style='width:396.0pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
-  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:
-  .6pt'><o:p>&nbsp;</o:p></span></p>
-  </td>
- </tr>
+
  <tr style='mso-yfti-irow:41'>
   <td width=199 valign=top style='width:149.4pt;border:solid windowtext 1.0pt;
   border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
@@ -1315,19 +1297,24 @@ lang=ES-TRAD><span style='mso-element:field-end'></span></span><![endif]--></p>
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
   </td>
  </tr>
- <tr style='mso-yfti-irow:42'>
+ <tr style='mso-yfti-irow:15'>
   <td width=199 valign=top style='width:149.4pt;border:solid windowtext 1.0pt;
   border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:
-  .6pt'><o:p>&nbsp;</o:p></span></p>
+  .6pt'>&nbsp;<o:p></o:p></span></p>
   </td>
   <td width=528 valign=top style='width:396.0pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=ES-TRAD
-  style='font-size:9.0pt;letter-spacing:.6pt'><o:p>&nbsp;</o:p></span></b></p>
+  <p class=MsoNormal><!--[if supportFields]><b style='mso-bidi-font-weight:
+  normal'><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><span
+  style='mso-element:field-begin'></span><span
+  style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Cual&quot; </span></b><![endif]--><!--[if supportFields]><b
+  style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
+  letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
+  lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:43'>
@@ -1487,19 +1474,24 @@ lang=ES-TRAD><span style='mso-element:field-end'></span></span><![endif]--></p>
   letter-spacing:.6pt'><o:p></o:p></span></b></p>
   </td>
  </tr>
- <tr style='mso-yfti-irow:48'>
+ <tr style='mso-yfti-irow:15'>
   <td width=199 valign=top style='width:149.4pt;border:solid windowtext 1.0pt;
   border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:
-  .6pt'><o:p>&nbsp;</o:p></span></p>
+  .6pt'>&nbsp;<o:p></o:p></span></p>
   </td>
   <td width=528 valign=top style='width:396.0pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=ES-TRAD
-  style='font-size:9.0pt;letter-spacing:.6pt'><o:p>&nbsp;</o:p></span></b></p>
+  <p class=MsoNormal><!--[if supportFields]><b style='mso-bidi-font-weight:
+  normal'><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><span
+  style='mso-element:field-begin'></span><span
+  style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Cual&quot; </span></b><![endif]--><!--[if supportFields]><b
+  style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
+  letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
+  lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:49'>
@@ -1637,62 +1629,7 @@ lang=ES-TRAD><span style='mso-element:field-end'></span></span><![endif]--></p>
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt'><o:p></o:p></span></b></p>
   </td>
  </tr>
- <tr style='mso-yfti-irow:54'>
-  <td width=199 valign=top style='width:149.4pt;border:solid windowtext 1.0pt;
-  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
-  padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:
-  .6pt'><o:p>&nbsp;</o:p></span></p>
-  </td>
-  <td width=528 valign=top style='width:396.0pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
-  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt'><o:p>&nbsp;</o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:55'>
-  <td width=199 valign=top style='width:149.4pt;border:solid windowtext 1.0pt;
-  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
-  padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:
-  .6pt'><o:p>&nbsp;</o:p></span></p>
-  </td>
-  <td width=528 valign=top style='width:396.0pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
-  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt'><o:p>&nbsp;</o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:56'>
-  <td width=199 valign=top style='width:149.4pt;border:solid windowtext 1.0pt;
-  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
-  padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:
-  .6pt'><o:p>&nbsp;</o:p></span></p>
-  </td>
-  <td width=528 valign=top style='width:396.0pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
-  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt'><o:p>&nbsp;</o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:57;mso-yfti-lastrow:yes'>
-  <td width=199 valign=top style='width:149.4pt;border:solid windowtext 1.0pt;
-  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
-  padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:
-  .6pt'><o:p>&nbsp;</o:p></span></p>
-  </td>
-  <td width=528 valign=top style='width:396.0pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
-  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=ES-TRAD style='font-size:9.0pt'><o:p>&nbsp;</o:p></span></p>
-  </td>
- </tr>
+
 </table>
 
 <p class=MsoNormal><span lang=ES-TRAD><o:p>&nbsp;</o:p></span></p>
@@ -1704,16 +1641,21 @@ lang=ES-TRAD><span style='mso-element:field-end'></span></span><![endif]--></p>
 <table class=MsoTableGrid border=0 cellspacing=0 cellpadding=0
  style='border-collapse:collapse;border:none;mso-yfti-tbllook:480;mso-padding-alt:
  0cm 5.4pt 0cm 5.4pt;mso-border-insideh:none;mso-border-insidev:none'>
- <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
-  <td width=242 valign=top style='width:181.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes;
+  height:23.65pt'>
+  <td width=142 valign=top style='width:106.5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:23.65pt'>
   <p class=MsoNormal><span lang=ES-TRAD><o:p>&nbsp;</o:p></span></p>
   </td>
-  <td width=242 valign=top style='width:181.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <td width=142 valign=top style='width:106.5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:23.65pt'>
   <p class=MsoNormal><span lang=ES-TRAD><o:p>&nbsp;</o:p></span></p>
   </td>
-  <td width=242 valign=top style='width:181.55pt;border:none;border-top:solid windowtext 1.0pt;
-  mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=ES-TRAD>Firma y Rut Apoderado</span></p>
+  <td width=142 valign=top style='width:106.6pt;border:none;border-top:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:23.65pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-TRAD>Firma
+  y Rut Apoderado</span></p>
   </td>
  </tr>
 </table>
