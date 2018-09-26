@@ -86,6 +86,9 @@ class ApoderadoPController extends AppBaseController
     public function update($id, CreatePersonaRequest $request) //Debería cambiar la request
     {
 
+        //Primero que todo validamos el modelo de Direcciones
+        validaciones($request);
+
         $persona = $this->checkIfExist($id); //Chequeamos todas las clases que necesitemos antes, y pasamos por parámetro a persona.
 
         //Si la persona no tiene una dirección, crearla
@@ -128,6 +131,27 @@ class ApoderadoPController extends AppBaseController
     
 
     }
+
+    /*revisar*/
+    /*MÉTODO PARA VALIDAR Y DESPEJAR EL CONTROLLER*/
+    public function validaciones($request){
+
+        $validate = Helper::manualValidation($request->direccion, (new Request\RequestDireccion\CreateDireccionRequest()), "1)Errores de los datos de la Dirección: ", 1);
+
+       /* if(isset($request->madre)){
+        $validate = $validate . Helper::manualValidation($request->madre, (new CreatePersonaRequest()), "3)Errores de los datos de la Madre: ",3);
+        }
+        if(isset($request->fichaAlumno[0]['cantidadContactos'])){
+            
+        $validate = $validate . Helper::manualValidation($request->pContacto, (new CreatePersonaRequest()), "4)Errores de los datos del Primer Contacto: ",4);
+        }
+        if(isset($request->fichaAlumno[0]['cantidadContactos'])){
+       $validate = $validate . Helper::manualValidation($request->sContacto, (new CreatePersonaRequest()), "5)Errores de los datos del Segundo Contacto: ",5);
+        }*/
+        return $validate;
+
+    }
+
 
     /**
      * Remove the specified Apoderado from storage.
