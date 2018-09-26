@@ -12,8 +12,7 @@
 
 <!-- Paisdeorigen Field -->
 <div class="form-group col-sm-6">
-
-    {!! Form::label('paisDeOrigen', 'Nacionalidad (Si tiene doble nacionalidad (Ejemplo: Chilena y otra) prefiera Chile:') !!}
+    {!! Form::label('paisDeOrigen', 'Nacionalidad (Si tiene doble nacionalidad (Chile y X) prefiera Chile:') !!}
     {!! Form::text('paisDeOrigen', null, ['class' => 'form-control']) !!}
 </div>
 
