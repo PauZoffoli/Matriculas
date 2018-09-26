@@ -22,6 +22,7 @@ class CreateAlumnosTable extends Migration
                 'Madre',
                 'Padrastro',
                 'Madrastra',
+                'Padrino/Madrina',
                 'Tutor/Tutura Legal',
                 'Hermano/Hermana',
                 'Tío/Tía',

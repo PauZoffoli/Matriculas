@@ -180,6 +180,60 @@
 
 
 <script >
+
+
+     var cantidadDeContactos = document.getElementById("cantidadDeContactos");
+
+      function cantContactos(){
+        if(cantidadDeContactos.value==null || cantidadDeContactos.value=='' || cantidadDeContactos.value=='0'){    
+            document.getElementById("headerPrimerContacto").style.display = "none";
+            $('#headerPrimerContacto').find('input, textarea, button, select').attr('disabled','disabled');
+
+
+
+            document.getElementById("headerSegundoContacto").style.display = "none";
+            $('#headerSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
+           
+        }
+//EL ORDEN ES IMPORTANTE DE EL HEADER ATTRIBUTE REMOVE, POR QUE TENEMOS UN DIV DENTRO DE OTRO LO QUE COMPLICA LAS COSAS.
+        if(cantidadDeContactos.value=='1'){
+            document.getElementById("headerPrimerContacto").style.display = "block";
+            $('#headerPrimerContacto').find('input, textarea, button, select').removeAttr('disabled');
+
+            $('#datosPrimerContacto').find('input, textarea, button, select').attr('disabled','disabled'); //debo desabilitar los campos dentro de primer contacto, solo habilitar los campos del select que pregunta padre madre o ninguno
+             $('#datosSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
+ 
+            
+
+            document.getElementById("headerSegundoContacto").style.display = "none";
+            $('#headerSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
+          
+        }
+
+        if(cantidadDeContactos.value=='2'){
+            document.getElementById("headerPrimerContacto").style.display = "block";
+            $('#headerPrimerContacto').find('input, textarea, button, select').removeAttr('disabled');
+            document.getElementById("headerSegundoContacto").style.display = "block";
+            $('#headerSegundoContacto').find('input, textarea, button, select').removeAttr('disabled');
+
+             $('#datosPrimerContacto').find('input, textarea, button, select').attr('disabled','disabled'); //debo desabilitar los campos dentro de primer contacto, solo habilitar los campos del select que pregunta padre madre o ninguno
+             $('#datosSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
+       
+
+
+
+        }
+
+
+      }
+
+</script>
+
+
+
+
+
+<script >
     
 
 
@@ -189,13 +243,13 @@
         if(padreOMadrePC.value==null || padreOMadrePC.value=='' || padreOMadrePC.value=='1'|| padreOMadrePC.value=='2'){    
             document.getElementById("datosPrimerContacto").style.display = "none";
             $('#datosPrimerContacto').find('input, textarea, button, select').attr('disabled','disabled');
-            $('#datosPrimerContacto').find('input, textarea, button, select').attr('required',false);
+            
         }
 
         if(padreOMadrePC.value=='0'){
             document.getElementById("datosPrimerContacto").style.display = "block";
             $('#datosPrimerContacto').find('input, textarea, button, select').removeAttr('disabled');
-            $('#datosPrimerContacto').find('input, textarea, button, select').attr('required',true);
+            
         }
       }
 
@@ -203,12 +257,12 @@
           if(padreOMadreSC.value==null || padreOMadreSC.value=='' || padreOMadreSC.value=='1'|| padreOMadreSC.value=='2'){    
             document.getElementById("datosSegundoContacto").style.display = "none";
             $('#datosSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
-            $('#datosSegundoContacto').find('input, textarea, button, select').attr('required',false);
+           
         }
         if(padreOMadreSC.value=='0'){
             document.getElementById("datosSegundoContacto").style.display = "block";
             $('#datosSegundoContacto').find('input, textarea, button, select').removeAttr('disabled');
-            $('#datosSegundoContacto').find('input, textarea, button, select').attr('required',true);
+            
         }
       }
 
@@ -230,85 +284,38 @@
 
             esMadre.style.display = "block";
             $('#esMadre').find('input, textarea, button, select').removeAttr('disabled');
-            $('#esMadre').find('input, textarea, button, select').attr('required',true);
     
 
             esPadre.style.display = "block";
             $('#esPadre').find('input, textarea, button, select').removeAttr('disabled');
-            $('#esPadre').find('input, textarea, button, select').attr('required',true);
+
 
 
         }
         if( document.getElementById("alumno[parentesco]").value=="Padre"){
             esPadre.style.display = "none";
             $('#esPadre').find('input, textarea, button, select').attr('disabled','disabled');
-            $('#esPadre').find('input, textarea, button, select').attr('required',false);
+           
 
             esMadre.style.display = "block";
             $('#esMadre').find('input, textarea, button, select').removeAttr('disabled');
-            $('#esMadre').find('input, textarea, button, select').attr('required',true);
+           
 
         }
 
         if( document.getElementById("alumno[parentesco]").value=="Madre"){
             esMadre.style.display = "none";
             $('#esMadre').find('input, textarea, button, select').attr('disabled','disabled');
-            $('#esMadre').find('input, textarea, button, select').attr('required',false);
+            
 
             esPadre.style.display = "block";
             $('#esPadre').find('input, textarea, button, select').removeAttr('disabled');
-            $('#esPadre').find('input, textarea, button, select').attr('required',true);
+            
         }
        
 
     }
 </script>
-
-<script >
-
-
-     var cantidadDeContactos = document.getElementById("cantidadDeContactos");
-
-      function cantContactos(){
-        if(cantidadDeContactos.value==null || cantidadDeContactos.value=='' || cantidadDeContactos.value=='0'){    
-            document.getElementById("headerPrimerContacto").style.display = "none";
-            $('#headerPrimerContacto').find('input, textarea, button, select').attr('disabled','disabled');
-            $('#headerPrimerContacto').find('input, textarea, button, select').attr('required',false);
-
-
-            document.getElementById("headerSegundoContacto").style.display = "none";
-            $('#headerSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
-            $('#headerSegundoContacto').find('input, textarea, button, select').attr('required',false);
-        }
-
-        if(cantidadDeContactos.value=='1'){
-            document.getElementById("headerPrimerContacto").style.display = "block";
-            $('#headerPrimerContacto').find('input, textarea, button, select').removeAttr('disabled');
-            $('#headerPrimerContacto').find('input, textarea, button, select').attr('required',true);
-
-            document.getElementById("headerSegundoContacto").style.display = "none";
-            $('#headerSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
-            $('#headerSegundoContacto').find('input, textarea, button, select').attr('required',false);
-        }
-
-        if(cantidadDeContactos.value=='2'){
-            document.getElementById("headerPrimerContacto").style.display = "block";
-            $('#headerPrimerContacto').find('input, textarea, button, select').removeAttr('disabled');
-            $('#headerPrimerContacto').find('input, textarea, button, select').attr('required',true);
-
-            document.getElementById("headerSegundoContacto").style.display = "block";
-            $('#headerSegundoContacto').find('input, textarea, button, select').removeAttr('disabled');
-            $('#headerSegundoContacto').find('input, textarea, button, select').attr('required',true);
-
-
-        }
-
-
-      }
-
-</script>
-
-
 
 
 
@@ -486,8 +493,6 @@
 
 
 
-<!-- Validador Rut-->
-    <script src="{{ asset('js/validarRUT.js')}}"></script>
 
 
 
@@ -495,20 +500,22 @@
 
 <script>
 function start() {
-    changeCantidadRepitencias();
+    cantContactos();
+   changeCantidadRepitencias();
    primerContacto();
-  segundoContacto();
+   segundoContacto();
    apoderadoPadreOMadre();
-   cantContactos();
    
 }
 </script>
 <script>
 //https://stackoverflow.com/questions/9902002/javascript-how-to-run-the-same-function-onload-and-onchange
 window.onload = start; //primero va el onload
-document.getElementById('enumerator').onchange = changeCantidadRepitencias;
 document.getElementById('cantidadDeContactos').onchange = cantContactos;
+document.getElementById('enumerator').onchange = changeCantidadRepitencias;
 document.getElementById('padreOMadrePC').onchange = primerContacto;
 document.getElementById('padreOMadreSC').onchange = segundoContacto;
 document.getElementById('alumno[parentesco]').onchange = apoderadoPadreOMadre; 
+
 </script>
+

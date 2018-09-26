@@ -13,3 +13,4 @@ yarn-error.log
 .env
 .phpunit.result.cache
 insertsDatabase.sql
+app/Http/Controllers/MatriculaPostulante/AlumnoPController.php

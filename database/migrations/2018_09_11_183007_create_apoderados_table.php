@@ -44,9 +44,9 @@ class CreateApoderadosTable extends Migration
             'Doctorado',
             'PostDoctorado'
 
-            ])->default('Pre-Kínder');
+            ])->default('Pre-Kínder')->nullable($value = true);
 
-            $table->string('profesion');
+            $table->string('profesion')->nullable($value = true);
 
             $table->string('participacionCargo')->nullable($value = true);
             $table->integer('participacionAnio')->nullable($value = true);
@@ -248,7 +248,7 @@ class CreateApoderadosTable extends Migration
 'Zambia',
 'Zimbabue'
 
-            ])->default('Chile');
+            ])->default('Chile')->nullable($value = true);
 
         $table->integer('idPersona')->unsigned()->unique();
         $table->foreign('idPersona')->references('id')->on('personas')->onDelete('cascade');

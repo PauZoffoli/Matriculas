@@ -8,7 +8,7 @@
 
 <!-- Paisdeorigen Field -->
 <div class="form-group col-sm-3">
-    {!! Form::label('paisDeOrigen', 'País de origen:') !!}
+    {!! Form::label('paisDeOrigen', 'Nacionalidad (Si tiene doble nacionalidad (Chile y X) prefiera Chile:') !!}
     {!! Form::select('alumno[paisDeOrigen]', App\Enums\PaisEnum::getPossibleENUM(), ( isset($persona->alumno) ? $persona->alumno->paisDeOrigen : null ),  array('id' => 'alumno[paisDeOrigen]', 'required' => 'true', 'class' => 'form-control', "placeholder" => "Seleccione un país de origen")) !!}
 </div>
 
@@ -54,7 +54,7 @@
 <!-- Parentesco Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('parentesco', 'Parentesco del APODERADO con el alumno:') !!}
-    {!! Form::select('alumno[parentesco]', App\Enums\ParentescoAlumnoEnum::getPossibleENUM(), ( isset($persona->alumno->parentesco) ? $persona->alumno->parentesco : null ) ,  array('id'=> 'alumno[parentesco]', 'class' => 'form-control', 'placeholder' => 'Seleccione el curso actual', 'required' => 'true')) !!}
+    {!! Form::select('alumno[parentesco]', App\Enums\ParentescoAlumnoEnum::getPossibleENUM(), ( isset($persona->alumno->parentesco) ? $persona->alumno->parentesco : null ) ,  array('id'=> 'alumno[parentesco]', 'class' => 'form-control', 'placeholder' => 'Seleccione el parentesco del Apoderado con el alumno', 'required' => 'true')) !!}
 </div>
 
 
