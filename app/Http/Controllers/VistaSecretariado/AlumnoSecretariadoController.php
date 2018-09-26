@@ -48,9 +48,9 @@ class AlumnoSecretariadoController extends AppBaseController
             ->with('alumnos', $alumno);
         }
 
-        public function ficha($id)
+        public function ficha($alumno)
         {
-            $input = $id;
+            $input = $alumno;
             dd($input);
             $apoderado = Apoderado::where('id', $input->idApoderado)->first();
             dd($apoderado);
@@ -74,6 +74,14 @@ class AlumnoSecretariadoController extends AppBaseController
      */
     public function edit($id)
     {
+         $input = $id;
+            dd($input);
+            $apoderado = Apoderado::where('id', $input->idApoderado)->first();
+            dd($apoderado);
+            $vista = view('secretariado/fichaPDF')->with('datos',$apoderado)->with('req',$request);
+            $pdf = \PDF::loadHTML($vista);
+            $pdf->setPaper("legal","portrait");
+            return $pdf->stream('pdfFicha');
     }
 
     /**
