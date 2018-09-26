@@ -104,6 +104,9 @@ class CreateFichaAlumnoTable extends Migration
                 'Abuelo/Abuela',
                 'Bisabuelo/Bisabuela',
                 'Tatarabuelo/Tatarabuela',
+                'Amigo/a de la Familia',
+                'Vecino/a',
+                'Padrino/Madrina',
                 'Otro'])->default('Padre')->nullable($value = true);
 
             $table->string('PNombreSContacto')->nullable($value = true);
@@ -127,6 +130,9 @@ class CreateFichaAlumnoTable extends Migration
                 'Abuelo/Abuela',
                 'Bisabuelo/Bisabuela',
                 'Tatarabuelo/Tatarabuela',
+                'Amigo/a de la Familia',
+                'Vecino/a',
+                'Padrino/Madrina',
                 'Otro'])->default('Padre')->nullable($value = true);
 
         });
