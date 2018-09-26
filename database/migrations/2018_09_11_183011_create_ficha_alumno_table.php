@@ -70,6 +70,7 @@ class CreateFichaAlumnoTable extends Migration
             $table->string('observacionesSalud')->nullable($value = true);
 
             $table->enum('grupoSanguineo', [
+                'No lo sé',
                 'A+', 
                 'A-',
                 'AB+',

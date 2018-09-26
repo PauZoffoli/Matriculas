@@ -20,6 +20,7 @@ abstract class TenenciaViviendaEnum extends Enum {
             $values[trim($value, "'")] = trim($value, "'");
             
         }
+        asort($values);
         return $values;
     }
 
