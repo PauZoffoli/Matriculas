@@ -40,7 +40,7 @@ use App\Models\TipoPersona;
 use App\Models\Comuna;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Collection;
-
+use Auth;
 use App\Enums;
 
 
@@ -287,7 +287,7 @@ echo $f->format(1432);
         //------------>7)Cambiamos los estados una vez terminado todo para que el apoderado no pueda volver a acceder a hacer cambios
         //********************************************
         $this->cambioDeEstados($alumno, $request); //Método que está en el mismo controller. Cambiamos los estados de los Alumnos
-
+        Auth::logout();
         \Session::flash('flash_message','Alumno editado exitósamente.');
         return view('MatriculaPostulante.FinProcesoMatricula');
     }
