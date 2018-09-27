@@ -18,10 +18,10 @@ class CreateTipoPersonaTable extends Migration
             $table->timestamp('created_at')->nullable()->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrent();
             $table->integer('idTipo')->unsigned();
-            $table->foreign('idTipo')->references('id')->on('tipos')->onDelete('cascade');    
+            $table->foreign('idTipo')->references('id')->on('tipos');    
 
             $table->integer('idPersona')->unsigned();
-            $table->foreign('idPersona')->references('id')->on('personas')->onDelete('cascade');  
+            $table->foreign('idPersona')->references('id')->on('personas');  
         });
     }
 

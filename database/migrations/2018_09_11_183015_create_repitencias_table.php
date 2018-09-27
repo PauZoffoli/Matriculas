@@ -18,10 +18,10 @@ class CreateRepitenciasTable extends Migration
             $table->timestamp('created_at')->nullable()->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrent();
             $table->integer('idAlumno')->unsigned();
-            $table->foreign('idAlumno')->references('id')->on('alumnos')->onDelete('cascade');    
+            $table->foreign('idAlumno')->references('id')->on('alumnos');    
 
             $table->integer('idCurso')->unsigned();
-            $table->foreign('idCurso')->references('id')->on('cursos')->onDelete('cascade');   
+            $table->foreign('idCurso')->references('id')->on('cursos');   
         });
     }
 

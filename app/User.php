@@ -69,6 +69,15 @@ class User extends Authenticatable
         return $this->hasMany(\App\Models\Persona::class, 'idUser');
     }
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function persona()
+    {
+        return $this->hasOne(\App\Models\Persona::class, 'idUser');
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/

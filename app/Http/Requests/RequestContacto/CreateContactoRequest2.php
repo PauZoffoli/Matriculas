@@ -26,15 +26,15 @@ class CreateContactoRequest2 extends FormRequest
     public function rules()
     {
        return $rules = [
-        'PNombreSContactos' => 'required|min:1|max:40',
-        'SNombreSContacto' => 'required|min:1|max:40',
-        'TNombreSContacto' => 'min:1|max:40',
-        'ApPatSContacto' => 'required|min:1|max:40',
-        'ApMatSContacto' => 'min:1|max:40',
+        'PNombreSContactos' => 'required|min:1|max:50',
+        'SNombreSContacto' => 'required|min:1|max:50',
+        'TNombreSContacto' => 'min:1|max:50',
+        'ApPatSContacto' => 'required|min:1|max:50',
+        'ApMatSContacto' => 'min:1|max:50',
         'fonoFijoSContacto' => 'numeric|max:9',
         'fonoCeluSContacto' => 'required|numeric|max:9',
-        'emailSContacto' => 'required|min:1|max:40',
-        'parentescoSContacto' => 'required'
+        'emailSContacto' => 'required|min:1|max:50',
+        'parentescoSContacto' => 'required|max:191'
         ];
     }
 

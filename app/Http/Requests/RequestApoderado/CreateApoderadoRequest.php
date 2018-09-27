@@ -25,13 +25,10 @@ class CreateApoderadoRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
+    {//como son puros enums no hay nada que validar por que para eso tienen el default
        return $rules = [
-        'nivelEducacional' => 'required|min:1|max:40',
-        'profesion' => 'required|min:1|max:100',
-        'paisDeOrigen' => 'required|min:1|max:40',
-        'idPersona' => 'numeric|min:1|max:40',
-        'estado' => 'required|min:1|max:40'
+            
+      
         ];
     }
 

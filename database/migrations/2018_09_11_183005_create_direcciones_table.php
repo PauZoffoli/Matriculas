@@ -17,7 +17,7 @@ class CreateDireccionesTable extends Migration
             $table->increments('id');
             $table->timestamp('created_at')->nullable()->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrent();            $table->integer('idComuna')->unsigned();
-            $table->foreign('idComuna')->references('id')->on('comunas')->onDelete('cascade');    
+            $table->foreign('idComuna')->references('id')->on('comunas');    
             $table->string('calle');
             $table->string('nroCalle');
             $table->string('bloqueTorre')->nullable($value = true);
