@@ -4,6 +4,7 @@
 /storage/*.key
 /.idea
 /.vscode
+/vendor
 /.vagrant
 Homestead.json
 Homestead.yaml
