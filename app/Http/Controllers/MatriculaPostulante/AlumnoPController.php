@@ -100,7 +100,9 @@ echo $f->format(1432);
     {
 
         $persona = $this->checkIfExist($id);
-
+       //Metodo para que no cambien id en el link
+        $var = $persona->alumno->apoderadoValidation->persona;
+        $this->authorize('pass', $var);
 
         $responsables = null;
         $padre = null;
