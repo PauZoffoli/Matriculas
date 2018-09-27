@@ -34,7 +34,7 @@ class CreateRequestPersonaAlumno extends FormRequest
         'fonoFijoApo' => 'nullable|digits_between:8,10|numeric',
         'fonoCeluApo' => 'nullable|digits_between:8,10|numeric',
         'rutApo' => 'required|min:7|max:11',
-        'correoApo' => 'required|min:1|email|max:100'
+        'correoApo' => 'nullable|min:1|email|max:100'
         ];
 
     }

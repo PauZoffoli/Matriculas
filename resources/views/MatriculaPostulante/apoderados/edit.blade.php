@@ -20,7 +20,7 @@
            <div class="box-body">
                <div class="row">
                    {!! Form::model($persona, ['route' => ['apoderadosPostulantes.update', $persona->id], 'method' => 'patch']) !!}
-
+ @csrf
 <div class="box-body">
 <!-- Idcomuna Field -->
 

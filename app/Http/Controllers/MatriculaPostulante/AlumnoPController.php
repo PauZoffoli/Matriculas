@@ -75,14 +75,9 @@ class AlumnoPController extends AppBaseController
         
         $persona = Helper::checkthis($this->personaRepository, $id, 'Persona');
         
-        $validate = Helper::checkthisValue($persona->alumno, 'Alumno');
-        $validate = $validate . Helper::checkthisValue($persona->direccion, 'Dirección');
-        if ($validate!=null) {
-           Flash::error($validate);
-        return redirect(route('home'))->send();
-        }
-
-
+       // $validate = Helper::checkthisValue($persona->alumno, 'Alumno');
+       // $validate = $validate . Helper::checkthisValue($persona->direccion, 'Dirección');
+       
         return $persona;
 
     }
@@ -159,6 +154,7 @@ echo $f->format(1432);
           ]);
         } */
 /////////////////////////////////////////////////////esto tiene que descomentarse después
+
 
         ///----->>>>>1) Esta sección es solo para colectar los datos de las variables padre, madre, pContacto y sContacto//////////////////////////////////
 
@@ -295,31 +291,49 @@ echo $f->format(1432);
     }
 
 
-    /*revisar*/
+
+
+      /*revisar*/
     /*MÉTODO PARA VALIDAR Y DESPEJAR EL CONTROLLER*/
     public function validaciones($request){
+        $validate = null;
+    //    dd($request->all());
+        $validate = Helper::manualValidation($request->all(), (new \App\Http\Requests\RequestPersona\CreatePersonaRequest()), "1)Errores de los datos de la Persona: ",1);
 
-        $validate = Helper::manualValidation($request->fichaAlumno, (new CreateFichaAlumnoRequest()), "1)Errores de la Ficha del Alumno: ", 1);
+        if(isset($request->apoderado)){
+        $validate = $validate . Helper::manualValidation($request->apoderado, (new \App\Http\Requests\RequestApoderado\CreateApoderadoRequest()), "2)Errores de los datos del apoderado: ",2);
+        }
+        if(isset($request->direccion)){
+        $validate =  $validate . Helper::manualValidation($request->direccion, (new \App\Http\Requests\RequestDireccion\CreateDireccionRequest()), "3)Errores de los datos de la Dirección: ", 3);
+        }
 
+        /*if(isset($request->fichaAlumno)){
+        $validate =  $validate . Helper::manualValidation($request->fichaAlumno, (new \App\Http\Requests\RequestFicha\CreateFichaAlumnoRequest()), "4)Errores de la Ficha del Alumno: ", 4);
+        }
+
+
+/*
         if(isset($request->padre)){
-             $validate = $validate . Helper::manualValidation($request->padre, (new CreatePersonaRequest()), "2)Errores de los datos del Padre: ",2);
+             $validate = $validate . Helper::manualValidation($request->padre, (new \App\Http\Requests\RequestPadres\CreatePadresRequest()), "5)Errores de los datos del Padre: ",5);
         }
         if(isset($request->madre)){
-        $validate = $validate . Helper::manualValidation($request->madre, (new CreatePersonaRequest()), "3)Errores de los datos de la Madre: ",3);
+             $validate = $validate . Helper::manualValidation($request->madre, (new \App\Http\Requests\RequestPadres\CreatePadresRequest()), "6)Errores de los datos de la Madre: ",6);
         }
-        if(isset($request->fichaAlumno[0]['cantidadContactos'])){
-            
-        $validate = $validate . Helper::manualValidation($request->pContacto, (new CreatePersonaRequest()), "4)Errores de los datos del Primer Contacto: ",4);
+    
+        if(isset($request->pContacto)){
+        $validate = $validate . Helper::manualValidation($request->pContacto, (new CreatePersonaRequest()), "7)Errores de los datos del Primer Contacto: ",4);
         }
-        if(isset($request->fichaAlumno[0]['cantidadContactos'])){
-       $validate = $validate . Helper::manualValidation($request->sContacto, (new CreatePersonaRequest()), "5)Errores de los datos del Segundo Contacto: ",5);
-        }
+        //
+        if(isset($request->sContacto)){
+             $validate = $validate . Helper::manualValidation($request->sContacto, (new CreatePersonaRequest()), "8)Errores de los datos del Segundo Contacto: ",5);
+        }*/
 
- 
-
+      
+        
         return $validate;
 
     }
+
 
 
 
