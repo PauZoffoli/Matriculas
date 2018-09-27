@@ -25,9 +25,9 @@ class CreateApoderadoRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
+    {//como son puros enums no hay nada que validar por que para eso tienen el default
        return $rules = [
-    
+            
       
         ];
     }
