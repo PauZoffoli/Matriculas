@@ -1,0 +1,38 @@
+CREATE OR REPLACE VIEW APODERADOUSUARIO AS
+SELECT
+per.PNombre as 'NOMBREAPODERADO',
+per.rut as 'RUTAPODERADO',
+per.ApPat as 'APPATAPODERADO',
+per.ApMat as 'APMATAPODERADO',
+apod.id as 'IDAPODERADO',
+user.id as 'IDUSUARIO',
+user.NAME as 'NAMEUSUARIO'
+FROM personas per
+JOIN users  user
+ON per.id= user.id
+LEFT JOIN apoderados apod
+ON apod.idPersona= per.id;
+
+CREATE OR REPLACE VIEW ALUMNOAPODERADO AS
+SELECT
+al.IDPERSONA as 'IDPERSONAALUMNO',
+al.ID as 'IDALUMNO',
+perso.FECHANACIMIENTO as 'FECHANACALUMNO',
+perso.PNombre as 'NOMBREALUMNO',
+perso.ApPat as 'APELLIDOALUMNO',
+perso.idDireccion as 'DIRECCIONALUMNO',
+perso.RUT as 'RUT ALUMNO',
+apod.idPersona 'IDPERSONAAPODERADO',
+apod.id 'IDAPODERADO',
+personaApoderado.rut 'RUTAPODERADO',
+personaApoderado.PNOMBRE 'NOMBREAPODERADO',
+personaApoderado.ApPat 'APELLIDOAPODERADO'
+FROM alumnos al
+LEFT JOIN personas perso
+ON perso.id= al.idPersona
+JOIN apoderados apod
+ON apod.id= al.idApoderado
+JOIN personas personaApoderado
+ON apod.idPersona= personaApoderado.id;
+
+
