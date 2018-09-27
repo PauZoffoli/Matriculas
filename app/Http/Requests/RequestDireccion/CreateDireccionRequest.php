@@ -26,7 +26,7 @@ class CreateDireccionRequest extends FormRequest
     public function rules()
     {
        return $rules = [
-        'idComuna' => 'required|max:191',
+        'idComuna' => 'required|numeric|digits_between:1,11',
         'calle' => 'required|max:191',
         'nroCalle' => 'required|max:50',
         'bloqueTorre' => 'max:30',

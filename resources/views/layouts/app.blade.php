@@ -449,8 +449,6 @@
     }
 </script>
 
-
-
 <script >
     
     function clearForm(oForm) {
@@ -470,7 +468,9 @@
     case "textarea":
           case "hidden":   
       
-      elements[i].value = ""; 
+     // elements[i].value = ""; 
+      elements[i].required =false; 
+      
       break;
         
     case "radio":
@@ -482,7 +482,8 @@
 
     case "select-one":
     case "select-multi":
-                elements[i].selectedIndex = -1;
+               elements[i].selectedIndex = -1;
+                elements[i].required = false; 
       break;
 
     default: 
@@ -491,6 +492,8 @@
     }
 }
 </script>
+
+
 
 
 

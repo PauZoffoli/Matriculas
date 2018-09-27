@@ -60,16 +60,16 @@ class CreateAlumnosTable extends Migration
                 'Convivientes'])->nullable($value = true)->default('Casados/as');
 
             $table->integer('idPersona')->unsigned()->unique()->nullable($value = true);;
-            $table->foreign('idPersona')->references('id')->on('personas')->onDelete('cascade');
+            $table->foreign('idPersona')->references('id')->on('personas');
 
             $table->integer('idApoderado')->unsigned()->nullable($value = true);;
-            $table->foreign('idApoderado')->references('id')->on('apoderados')->onDelete('cascade');
+            $table->foreign('idApoderado')->references('id')->on('apoderados');
 
             $table->integer('idCursoActual')->unsigned()->nullable($value = true);
-            $table->foreign('idCursoActual')->references('id')->on('cursos')->onDelete('cascade');
+            $table->foreign('idCursoActual')->references('id')->on('cursos');
 
             $table->integer('idCursoPostu')->unsigned()->nullable($value = true);
-            $table->foreign('idCursoPostu')->references('id')->on('cursos')->onDelete('cascade');
+            $table->foreign('idCursoPostu')->references('id')->on('cursos');
 
             $table->enum('paisDeOrigen', [
 'Afganistán',

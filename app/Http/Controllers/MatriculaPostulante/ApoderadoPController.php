@@ -8,9 +8,11 @@ use App\Repositories\ApoderadoRepository;
 use App\Http\Requests\CreatePersonaRequest;
 use App\Http\Requests\UpdatePersonaRequest;
 use App\Repositories\PersonaRepository;
+
 use App\Http\Requests\CreateDireccionRequest;
 use App\Http\Requests\UpdateDireccionRequest;
 use App\Repositories\DireccionRepository;
+
 use App\Http\Requests\UpdateAlumnoRequest;
 use App\Repositories\AlumnoRepository;
 use App\Http\Controllers\AppBaseController;
@@ -89,6 +91,9 @@ class ApoderadoPController extends AppBaseController
     public function update($id, CreatePersonaRequest $request) //Debería cambiar la request
     {
 
+       //dd("Hola");
+
+
         $persona = $this->checkIfExist($id); //Chequeamos todas las clases que necesitemos antes, y pasamos por parámetro a persona.
 
         //Si la persona no tiene una dirección, crearla
@@ -104,6 +109,19 @@ class ApoderadoPController extends AppBaseController
          $request->request->add(['estado' => 'ApoderadoSeRevisa']);
 
         unset($request['direccion']); //Produce el error array to string, por eso direccion se borra antes de guardar persona
+
+
+        /*Se valida antes de updatear
+        */
+
+               //Primero que todo validamos el modelo de DireccioneS
+$validate = $this->validaciones($request); // Primero hay que hacer las validaciones de las clases que no se validan en el request de los parámetros de la función
+if ($validate!=null) {
+  throw ValidationException::withMessages([
+      $validate,
+  ]);
+}
+
         $request->request->add(['idDireccion' => $direccion->id]); //guardamos el id de la dirección updateada
         $persona = $this->personaRepository->update($request->all(), $id);
         Helper::updateThis($this->apoderadoRepository, $request->apoderado, $persona->apoderado->id);
@@ -131,6 +149,26 @@ class ApoderadoPController extends AppBaseController
     
 
     }
+
+    /*revisar*/
+    /*MÉTODO PARA VALIDAR Y DESPEJAR EL CONTROLLER*/
+    public function validaciones($request){
+        $validate = null;
+    //    dd($request->all());
+        $validate = Helper::manualValidation($request->all(), (new \App\Http\Requests\RequestPersona\CreatePersonaRequest()), "1)Errores de los datos de la Persona: ",1);
+
+        if(isset($request->apoderado)){
+        $validate = $validate . Helper::manualValidation($request->apoderado, (new \App\Http\Requests\RequestApoderado\CreateApoderadoRequest()), "2)Errores de los datos del apoderado: ",2);
+        }
+        if(isset($request->direccion)){
+        $validate = Helper::manualValidation($request->direccion, (new \App\Http\Requests\RequestDireccion\CreateDireccionRequest()), "3)Errores de los datos de la Dirección: ", 3);
+        }
+      
+        
+        return $validate;
+
+    }
+
 
     /**
      * Remove the specified Apoderado from storage.

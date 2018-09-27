@@ -19,10 +19,10 @@ class CreateUserRolTable extends Migration
             $table->timestamp('updated_at')->nullable()->useCurrent();        
 
             $table->integer('idUser')->unsigned();
-            $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');    
+            $table->foreign('idUser')->references('id')->on('users');    
 
             $table->integer('idRol')->unsigned();
-            $table->foreign('idRol')->references('id')->on('roles')->onDelete('cascade');    
+            $table->foreign('idRol')->references('id')->on('roles');    
         });
     }
 

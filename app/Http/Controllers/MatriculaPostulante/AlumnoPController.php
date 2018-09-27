@@ -40,7 +40,7 @@ use App\Models\TipoPersona;
 use App\Models\Comuna;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Collection;
-
+use Auth;
 use App\Enums;
 
 
@@ -107,26 +107,30 @@ echo $f->format(1432);
         $responsables = null;
         $padre = null;
         $madre = null;
+           
 
-        if (!$persona->alumnoResponsables->isEmpty()) {
+         //Los responsables de ese alumno es: $persona->alumno->alumnoResponsables
+        //Acceder a los datos de AlumnoResponsable $persona->alumno->alumnoResponsables[0]->pivot->parentesco
+        //acceder al padre $value->pivot->pivotParent;
+        if (!$persona->alumno->alumnoResponsables->isEmpty()) { //Si no está vacío es por que tiene responsables
+
  
-            foreach ($persona->alumnoResponsables as $value) {
+            foreach ($persona->alumno->alumnoResponsables as $key => $value) {
 
-                if( $value->pivot->pivotParent->hasTipo("Padres")){
+                if( $value->pivot->parentesco == "Padre"){ //si es padre el $request padre será esa persona (pivotParent)
                 
-                    $padre = $value->pivot->pivotParent;
+                    $padre = $value->pivot->idPersona;
+                    $padre = $this->personaRepository->findWithoutFail($padre); //Buscamos a la persona padre relacionada
+                }
+                if( $value->pivot->parentesco == "Madre"){
+                    $madre = $value->pivot->idPersona;
+                    $madre = $this->personaRepository->findWithoutFail($madre);
                     
                 }
-                if( $value->pivot->pivotParent->hasTipo("Padres")){
-                
-                    $madre = $value->pivot->pivotParent;
-                    
-                }
-
                 
             }
-            
-        }       
+        }
+
 
         return view('MatriculaPostulante.alumnos.edit')->with('persona', $persona)->with('padre',$padre)->with('madre',$madre);
 
@@ -285,7 +289,7 @@ echo $f->format(1432);
         //------------>7)Cambiamos los estados una vez terminado todo para que el apoderado no pueda volver a acceder a hacer cambios
         //********************************************
         $this->cambioDeEstados($alumno, $request); //Método que está en el mismo controller. Cambiamos los estados de los Alumnos
-
+        Auth::logout();
         \Session::flash('flash_message','Alumno editado exitósamente.');
         return view('MatriculaPostulante.FinProcesoMatricula');
     }
@@ -320,7 +324,7 @@ echo $f->format(1432);
 
 
 
-/*Método que cambia los estados de Alumno y Apderado*/
+/*Método que cambia los estados de Alumno y Apderado siempre tiene que se lo último en cambiarse*/
     public function cambioDeEstados($alumno, $request)
     {
         

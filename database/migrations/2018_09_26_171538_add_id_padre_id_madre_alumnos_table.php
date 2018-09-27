@@ -17,9 +17,9 @@ class AddIdPadreIdMadreAlumnosTable extends Migration
             Schema::table('alumnos', function (Blueprint $table){
 
                 $table->integer('idPadre')->unsigned()->unique()->nullable($value = true);
-                $table->foreign('idPadre')->references('id')->on('personas')->onDelete('cascade');
+                $table->foreign('idPadre')->references('id')->on('personas');
                 $table->integer('idMadre')->unsigned()->unique()->nullable($value = true);
-                $table->foreign('idMadre')->references('id')->on('personas')->onDelete('cascade');
+                $table->foreign('idMadre')->references('id')->on('personas');
             });
 
     }
