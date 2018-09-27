@@ -417,7 +417,7 @@ $alumno->alumnoResponsableParent()->sync(array( $padreExistente->id ,
         
         $ficha['PNombrePContacto'] =  $request['PNombre'];
         $ficha['SNombrePContacto'] =  $request['SNombre'];
-        $ficha['TNombrePContacto'] =  $request['PNombre'];
+        $ficha['TNombrePContacto'] =  $request['TNombre'];
         $ficha['ApPatPContacto'] =  $request['ApPat'];
         $ficha['ApMatPContacto'] =  $request['ApMat'];
         $ficha['fonoFijoPContacto'] =  $request['fonoFijo'];
@@ -430,7 +430,7 @@ $alumno->alumnoResponsableParent()->sync(array( $padreExistente->id ,
         public static function contacto2Ficha($request, $ficha){
         $ficha['PNombreSContacto'] =  $request['PNombre'];
         $ficha['SNombreSContacto'] =  $request['SNombre'];
-        $ficha['TNombreSContacto'] =  $request['PNombre'];
+        $ficha['TNombreSContacto'] =  $request['TNombre'];
         $ficha['ApPatSContacto'] =  $request['ApPat'];
         $ficha['ApMatSContacto'] =  $request['ApMat'];
         $ficha['fonoFijoSContacto'] =  $request['fonoFijo'];
