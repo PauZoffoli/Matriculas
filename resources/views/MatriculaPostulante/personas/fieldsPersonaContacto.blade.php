@@ -98,7 +98,7 @@ $idUserTXT = $asd;*/
 <!-- Rut Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('rut', 'Rut:') !!}
-    {!! Form::text($rutLBL,  ( isset($rutTXT) ? $rutTXT : null ), ['class' => 'form-control','maxlength'=>"11" , 'required' => 'true', 'placeholder' => 'Ingrese el rut del alumno']) !!}
+    {!! Form::text($rutLBL,  ( isset($rutTXT) ? $rutTXT : null ), ['class' => 'form-control','maxlength'=>"11" , 'required' => 'true','oninput'=>"checkRut(this)" , 'placeholder' => 'Ingrese el rut del alumno']) !!}
 
 </div>
 @endif

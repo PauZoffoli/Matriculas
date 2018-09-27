@@ -510,7 +510,7 @@ function start() {
    primerContacto();
    segundoContacto();
    apoderadoPadreOMadre();
-   checkRut($this);
+
 
 }
 </script>
@@ -522,8 +522,6 @@ document.getElementById('enumerator').onchange = changeCantidadRepitencias;
 document.getElementById('padreOMadrePC').onchange = primerContacto;
 document.getElementById('padreOMadreSC').onchange = segundoContacto;
 document.getElementById('alumno[parentesco]').onchange = apoderadoPadreOMadre; 
-document.getElementById('padre[rut]').onchange =  checkRut($this); 
-document.getElementById('madre[rut]').onchange =  checkRut($this); 
 
 </script>
 

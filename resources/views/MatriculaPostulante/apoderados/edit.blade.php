@@ -75,7 +75,9 @@
                  <!-- Submit Field -->
 <div class="form-group col-sm-12">
 
+     <div class="pull-right">
     {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
+  </div>
       <input type="button" name="clear" value="CLEAR ALL DATOS PRUEBA" onclick="clearForm(this.form);" >
 
 </div>
