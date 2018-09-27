@@ -22,6 +22,9 @@ use Illuminate\Validation\ValidationException;
 use App\Models\Alumno;
 use App\Http\Controllers\Helpers\Helper;
 use App\Models\Comuna;
+use App\Models\Persona;
+
+
 class ApoderadoPController extends AppBaseController
 {
 
@@ -47,7 +50,7 @@ class ApoderadoPController extends AppBaseController
     public function checkIfExist($id){
         
         $persona = Helper::checkthis($this->personaRepository, $id, 'Persona');
-        
+       
         $validate = Helper::checkthisValue($persona->apoderado, 'Apoderado');
        // $validate = $validate . Helper::checkthisValue($persona->alumno, 'Alumno');
         if ($validate!=null) {
@@ -70,7 +73,7 @@ class ApoderadoPController extends AppBaseController
     {
         
         $persona = $this->checkIfExist($id); //Chequeamos todas las clases que necesitemos antes.
-
+        $this->authorize('pass', $persona);
         return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona);
 
     }

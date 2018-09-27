@@ -161,4 +161,9 @@ class Alumno extends Model
     {
         return $this->belongsToMany(\App\Models\Curso::class, 'repitencias', 'idAlumno', 'idCurso');
     }
+
+     public function apoderadoValidation()
+    {
+        return $this->belongsTo(\App\Models\Apoderado::class, 'idApoderado');
+    }
 }
