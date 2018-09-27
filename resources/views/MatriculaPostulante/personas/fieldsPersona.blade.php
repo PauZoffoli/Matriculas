@@ -4,7 +4,7 @@
 <!-- Pnombrecand Field -->
 <div class="form-group col-sm-4 {{ $errors->has('PNombre') ? ' has-error' : '' }}">
     {!! Form::label('PNombre', 'Primer Nombre:') !!}
-    {!! Form::text('PNombre', null, ['class' => 'form-control', 'placeholder' => 'Ingrese primer nombre','required' => '', 'pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}", 'title' => 'No debe tener más de 30 caracteres']) !!}
+    {!! Form::text('PNombre', null, ['class' => 'form-control', 'style' => 'text-transform:uppercase ;','placeholder' => 'Ingrese primer nombre','required' => '', 'pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}", 'title' => 'No debe tener más de 30 caracteres']) !!}
 </div>
 
 <!-- idPersona Field -->
@@ -16,27 +16,27 @@
 <!-- Snombrecand Field -->
 <div class="form-group col-sm-4 {{ $errors->has('SNombre') ? ' has-error' : '' }}">
     {!! Form::label('SNombre', 'Segundo Nombre:',array('class' => 'opcional'))  !!}
-    {!! Form::text('SNombre', null, ['class' => 'form-control', 'placeholder' => 'Ingrese segundo nombre','pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}", 'title' => 'No puede tener más de 30 caracteres']) !!}
+    {!! Form::text('SNombre', null, ['class' => 'form-control','style' => 'text-transform:uppercase ;','placeholder' => 'Ingrese segundo nombre','pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}", 'title' => 'No puede tener más de 30 caracteres']) !!}
 </div>
 
 
 <!-- Tnombrecand Field -->
 <div class="form-group col-sm-4 {{ $errors->has('TNombre') ? ' has-error' : '' }}">
     {!! Form::label('TNombre', 'Tercer Nombre:',array('class' => 'opcional')) !!}
-    {!! Form::text('TNombre', null, ['class' => 'form-control', 'placeholder' => 'Ingrese tercer nombre','pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}",  'title' => 'No puede tener más de 30 caracteres']) !!}
+    {!! Form::text('TNombre', null, ['class' => 'form-control', 'style' => 'text-transform:uppercase ;', 'placeholder' => 'Ingrese tercer nombre','pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}",  'title' => 'No puede tener más de 30 caracteres']) !!}
 </div>
 
 
 <!-- ApPat Field -->
 <div class="form-group col-sm-6 {{ $errors->has('ApPat') ? ' has-error' : '' }}">
     {!! Form::label('ApPat', 'Apellido Paterno:') !!}
-    {!! Form::text('ApPat', null, ['class' => 'form-control', 'placeholder' => 'Ingrese apellido paterno.','required' => '', 'pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}",  'title' => 'No puede tener más de 30 caracteres']) !!}
+    {!! Form::text('ApPat', null, ['class' => 'form-control', 'style' => 'text-transform:uppercase ;', 'placeholder' => 'Ingrese apellido paterno.','required' => '', 'pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}",  'title' => 'No puede tener más de 30 caracteres']) !!}
 </div>
 
 <!-- ApMat Field -->
 <div class="form-group col-sm-6 {{ $errors->has('ApMat') ? ' has-error' : '' }}">
     {!! Form::label('ApMat', 'Apellido Materno:') !!}
-    {!! Form::text('ApMat', null, ['class' => 'form-control', 'placeholder' => 'Ingrese apellido materno', 'pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}",  'title' => 'No puede tener más de 30 caracteres']) !!}
+    {!! Form::text('ApMat', null, ['class' => 'form-control', 'style' => 'text-transform:uppercase ;', 'placeholder' => 'Ingrese apellido materno', 'pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}",  'title' => 'No puede tener más de 30 caracteres']) !!}
 </div>
 
 <!-- Genero Field -->

@@ -16,7 +16,7 @@
 <!-- Calle Field -->
 <div class="form-group col-sm-4 {{ $errors->has('$persona->direccion->calle') ? ' has-error' : '' }}">
     {!! Form::label('direccion[calle]', 'Calle/Dirección:') !!}
-    {!! Form::text('direccion[calle]', null, ['class' => 'form-control', 'placeholder' => 'Ingrese la calle (Sin números). Ejemplo: Vicuña Mackenna', 'required' => 'true', 'maxlength'=> "191"]) !!}
+    {!! Form::text('direccion[calle]', null, ['class' => 'form-control', 'style' => 'text-transform:uppercase ;', 'placeholder' => 'Ingrese la calle (Sin números). Ejemplo: Vicuña Mackenna', 'required' => 'true', 'maxlength'=> "191"]) !!}
 </div>
 
 
@@ -35,7 +35,7 @@
 <!-- Bloquetorre Field -->
 <div class="form-group col-sm-2  {{ $errors->has('$persona->direccion->bloqueTorre') ? ' has-error' : '' }}">
     {!! Form::label('bloqueTorre', 'Bloque o Torre:') !!}
-    {!! Form::text('direccion[bloqueTorre]', null, ['class' => 'form-control', 'placeholder' => 'Bloque o Torre', 'maxlength' => "30"]) !!}
+    {!! Form::text('direccion[bloqueTorre]', null, ['class' => 'form-control', 'style' => 'text-transform:uppercase ;', 'placeholder' => 'Bloque o Torre', 'maxlength' => "30"]) !!}
 </div>
 
 

@@ -157,7 +157,7 @@
 <!-- Causas Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('causas', 'Si no vive con ninguno de sus padres sanguíneos indique la razón:') !!}
-    {!! Form::text('fichaAlumno[0][causas]', null, ['class' => 'form-control', 'placeholder'=> 'Si no vive con ninguno de sus padres sanguíneos indique la razón:', 'maxlength' => "100"]) !!}
+    {!! Form::text('fichaAlumno[0][causas]', null, ['class' => 'form-control', 'style' => 'text-transform:uppercase ;', 'placeholder'=> 'Si no vive con ninguno de sus padres sanguíneos indique la razón:', 'maxlength' => "100"]) !!}
 </div>
 
 <!-- Totalhijos Field -->
@@ -189,13 +189,13 @@
 <!-- Enfermedades Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('enfermedades', 'Enfermedades:') !!}
-    {!! Form::text('fichaAlumno[0][enfermedades]', null, ['class' => 'form-control', 'maxlength' => "191" ]) !!}
+    {!! Form::text('fichaAlumno[0][enfermedades]', null, ['class' => 'form-control', 'style' => 'text-transform:uppercase ;', 'maxlength' => "191" ]) !!}
 </div>
 
 <!-- Medicamentos Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('medicamentos', '¿Qué medicamentos consume de manera permanente?:') !!}
-    {!! Form::text('fichaAlumno[0][medicamentos]', null, ['class' => 'form-control', 'maxlength' => "191" ]) !!}
+    {!! Form::text('fichaAlumno[0][medicamentos]', null, ['class' => 'form-control', 'style' => 'text-transform:uppercase ;', 'maxlength' => "191" ]) !!}
 </div>
 
 
@@ -205,7 +205,7 @@
     {!! Form::label('AlergicoA', '¿A qué es alergico el alumno?:') !!}
 
 {!! Form::hidden('fichaAlumno[0][AlergicoA]', '0') !!}
-    {!! Form::text('fichaAlumno[0][AlergicoA]', null, ['class' => 'form-control', 'maxlength' => "191" ]) !!}
+    {!! Form::text('fichaAlumno[0][AlergicoA]', null, ['class' => 'form-control', 'style' => 'text-transform:uppercase ;', 'maxlength' => "191" ]) !!}
 </div>
 
 <!-- Gruposanguineo Field -->
@@ -218,7 +218,7 @@
 <!-- observacionesSalud Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('observacionesSalud', 'Observaciones a la salud:') !!}
-    {!! Form::text('fichaAlumno[0][observacionesSalud]', null, ['class' => 'form-control', 'maxlength' => "191" ]) !!}
+    {!! Form::text('fichaAlumno[0][observacionesSalud]', null, ['class' => 'form-control', 'style' => 'text-transform:uppercase ;', 'maxlength' => "191" ]) !!}
 </div>
 
 <center>
