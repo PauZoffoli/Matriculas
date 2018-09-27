@@ -468,7 +468,7 @@
     case "textarea":
           case "hidden":   
       
-     // elements[i].value = ""; 
+      //elements[i].value = ""; 
       elements[i].required =false; 
       
       break;

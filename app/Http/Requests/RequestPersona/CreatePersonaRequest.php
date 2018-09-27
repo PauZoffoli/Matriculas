@@ -33,8 +33,7 @@ class CreatePersonaRequest extends FormRequest
         'ApMat' => 'nullable|max:40',
         'fonoFijo' => 'nullable|digits_between:8,10|numeric',
         'fonoCelu' => 'required|digits_between:8,10|numeric',
-        'email' => 'required|min:1|email|max:100',
-        'fechaNacimiento' => ['required','date'],
+        'email' => 'required|min:1|email|max:100'
         ];
 
     }

@@ -27,7 +27,7 @@
 
                    {!! Form::model($persona, ['route' => ['alumnosPostulantes.update', $persona->id], 'method' => 'patch']) !!}
 
-
+ @csrf
 
  <div class="box box-solid box-primary" style="background-color: #E5ECFB!important;">
 

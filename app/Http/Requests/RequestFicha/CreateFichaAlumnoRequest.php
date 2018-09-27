@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\RequestAlumno;
+namespace App\Http\Requests\RequestFicha;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\FichaAlumno;

@@ -12,6 +12,7 @@ abstract class CursoEnum extends Enum {
         $curso = $curso->all();
        $enum = array();
       foreach ($curso as $value) {
+      	
          $enum = array_add($enum, $value->id, $value->nivel . ' ' . $value->basicaMedia );
      }
     
