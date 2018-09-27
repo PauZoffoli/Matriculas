@@ -32,9 +32,13 @@
                         @include('MatriculaPostulante.personas.fieldsPersona')
 
                         @include('MatriculaPostulante.apoderados.fields')
-</div>
-                         @include('MatriculaPostulante.direccions.fields')
 
+                         @include('MatriculaPostulante.direccions.fields')
+                         </div>
+
+                         <!--DESPLEGAMOS A LOS ALUMNOS ASOCIADOS-->
+                         <!--DESPLEGAMOS A LOS ALUMNOS ASOCIADOS-->
+                         <!--DESPLEGAMOS A LOS ALUMNOS ASOCIADOS-->
                          <!--DESPLEGAMOS A LOS ALUMNOS ASOCIADOS-->
 <center>
 <div class="box-body">
@@ -63,11 +67,15 @@
 </center>
 
 
+                         <!--DESPLEGAMOS A LOS ALUMNOS ASOCIADOS-->
+                         <!--DESPLEGAMOS A LOS ALUMNOS ASOCIADOS-->
+                         <!--DESPLEGAMOS A LOS ALUMNOS ASOCIADOS-->
+                         <!--DESPLEGAMOS A LOS ALUMNOS ASOCIADOS-->  
 
                  <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    
+      <input type="button" name="clear" value="CLEAR ALL DATOS PRUEBA" onclick="clearForm(this.form);" >
 </div>
 
                         

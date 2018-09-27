@@ -27,11 +27,8 @@ class CreateApoderadoRequest extends FormRequest
     public function rules()
     {
        return $rules = [
-        'nivelEducacional' => 'required|min:1|max:40',
-        'profesion' => 'required|min:1|max:100',
-        'paisDeOrigen' => 'required|min:1|max:40',
-        'idPersona' => 'numeric|min:1|max:40',
-        'estado' => 'required|min:1|max:40'
+    
+      
         ];
     }
 

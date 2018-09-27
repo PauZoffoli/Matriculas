@@ -1,3 +1,10 @@
+<!-- Correoapo Field -->
+<div class="form-group col-sm-3 {{ $errors->has('email') ? ' has-error' : '' }}">
+    {!! Form::label('email', 'Correo electrónico:') !!}
+    {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'ejemplo@gmail.com', 'maxlength' => "100"]) !!}
+</div>
+
+
 <!-- Celular Field -->
 <div class="form-group col-sm-3 {{ $errors->has('fonoCelu') ? ' has-error' : '' }}">
     {!! Form::label('fonoCelu', 'Teléfono Celular:') !!}

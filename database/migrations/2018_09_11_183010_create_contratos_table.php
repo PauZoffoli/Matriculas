@@ -18,7 +18,7 @@ class CreateContratosTable extends Migration
             $table->timestamp('created_at')->nullable()->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrent();
             $table->integer('idApoderado')->unsigned()->nullable($value = true);
-            $table->foreign('idApoderado')->references('id')->on('apoderados')->onDelete('cascade');
+            $table->foreign('idApoderado')->references('id')->on('apoderados');
 
             $table->string('urlContrato');
             $table->string('urlPagare');

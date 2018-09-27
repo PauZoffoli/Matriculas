@@ -36,10 +36,10 @@ class CreateAlumnoResponsableTable extends Migration
                 'SegundoContacto'])->nullable($value = true);
 
             $table->integer('idPersona')->unsigned();
-            $table->foreign('idPersona')->references('id')->on('personas')->onDelete('cascade');
+            $table->foreign('idPersona')->references('id')->on('personas');
 
             $table->integer('idAlumno')->unsigned();
-            $table->foreign('idAlumno')->references('id')->on('alumnos')->onDelete('cascade');
+            $table->foreign('idAlumno')->references('id')->on('alumnos');
 
             $table->string('descripcion', 40)->nullable($value = true);
         });
