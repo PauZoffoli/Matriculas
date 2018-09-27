@@ -28,7 +28,6 @@ class CreateAlumnoRequest extends FormRequest
        return $rules = [
         'parentesco' => 'required',
         'otroParentesco' => 'max:40',
-        'repitencias' => '',
         'condicion' => 'min:1|max:40',
         'estado' => 'min:1|max:40',
         'estadoCivilPadres' => 'required|min:1|max:40',

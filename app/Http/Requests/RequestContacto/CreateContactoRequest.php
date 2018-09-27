@@ -20,22 +20,22 @@ class CreateContactoRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
+     *between es del 1 al 10
      * @return array
      */
     public function rules()
     {
        return $rules = [
-        'cantidadContactos' => 'required|integer|between:1,2',
-        'PNombrePContactos' => 'required|min:1|max:40',
-        'SNombrePContacto' => 'required|min:1|max:40',
-        'TNombrePContacto' => 'min:1|max:40',
-        'ApPatPContacto' => 'required|min:1|max:40',
-        'ApMatPContacto' => 'min:1|max:40',
+        'cantidadContactos' => 'required|integer|between:0,1,2',
+        'PNombrePContactos' => 'required|min:1|max:50',
+        'SNombrePContacto' => 'required|min:1|max:50',
+        'TNombrePContacto' => 'min:1|max:50',
+        'ApPatPContacto' => 'required|min:1|max:50',
+        'ApMatPContacto' => 'min:1|max:50',
         'fonoFijoPContacto' => 'numeric|max:9',
         'fonoCeluPContacto' => 'required|numeric|max:9',
-        'emailPContacto' => 'required|min:1|max:40',
-        'parentescoPContacto' => 'required'
+        'emailPContacto' => 'required|min:1|max:50',
+        'parentescoPContacto' => 'required|max:191'
         ];
     }
 
