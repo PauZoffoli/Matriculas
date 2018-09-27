@@ -1,7 +1,7 @@
 <!-- Correoapo Field -->
 <div class="form-group col-sm-3 {{ $errors->has('email') ? ' has-error' : '' }}">
     {!! Form::label('email', 'Correo electrónico:') !!}
-    {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'ejemplo@gmail.com', 'maxlength' => "100"]) !!}
+    {!! Form::email('email', null, ['class' => 'form-control', 'style' => 'text-transform:uppercase ;', 'placeholder' => 'ejemplo@gmail.com', 'maxlength' => "100"]) !!}
 </div>
 
 
@@ -25,7 +25,7 @@
 <!-- Condicion Field -->
 <div class="form-group col-sm-6" style="display: none">
     {!! Form::label('condicion', 'Condicion:') !!}
-    {!! Form::text('alumno[condicion]', null, ['class' => 'form-control']) !!}
+    {!! Form::text('alumno[condicion]', null, ['class' => 'form-control', 'style' => 'text-transform:uppercase ;',]) !!}
 </div>
 
 

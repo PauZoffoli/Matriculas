@@ -1,7 +1,7 @@
 <!-- Correoapo Field -->
 <div class="form-group col-sm-3 {{ $errors->has('email') ? ' has-error' : '' }}">
     {!! Form::label('email', 'Correo electrónico:') !!}
-    {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'ejemplo@gmail.com', 'maxlength' => "100", 'required' => 'true']) !!}
+    {!! Form::email('email', null, ['class' => 'form-control', 'style' => 'text-transform:uppercase ;', 'placeholder' => 'ejemplo@gmail.com', 'maxlength' => "100", 'required' => 'true']) !!}
 </div>
 
 
@@ -29,7 +29,7 @@
 <!-- Profesion Field -->
 <div class="form-group col-sm-3">
     {!! Form::label('profesion', 'Profesión/Oficio:') !!}
-    {!! Form::text('apoderado[profesion]', null, ['class' => 'form-control', 'maxlength' => "100", 'required' => "true", 'placeholder' => 'Ingrese su profesión o oficio']) !!}
+    {!! Form::text('apoderado[profesion]', null, ['class' => 'form-control', 'style' => 'text-transform:uppercase ;', 'maxlength' => "100", 'required' => "true", 'placeholder' => 'Ingrese su profesión o oficio']) !!}
 </div>
 <!-- Paisdeorigen Field -->
 <div class="form-group col-sm-12">

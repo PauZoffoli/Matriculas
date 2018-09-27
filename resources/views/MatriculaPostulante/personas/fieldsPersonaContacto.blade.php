@@ -49,26 +49,26 @@ $idUserTXT = $asd;*/
 <!-- Pnombrecand Field -->
 <div class="form-group col-sm-4 {{ $errors->has('PNombre') ? ' has-error' : '' }}">
     {!! Form::label('PNombre', 'Primer Nombre:') !!}
-    {!! Form::text($PNombreLBL, ( isset($PNombreTXT) ? $PNombreTXT : null ), ['class' => 'form-control', 'placeholder' => 'Ingrese su primer nombre','required' => '', 'pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}", 'title' => 'No debe tener más de 30 caracteres']) !!}
+    {!! Form::text($PNombreLBL, ( isset($PNombreTXT) ? $PNombreTXT : null ), ['class' => 'form-control', 'style' => 'text-transform:uppercase ;', 'placeholder' => 'Ingrese su primer nombre','required' => '', 'pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}", 'title' => 'No debe tener más de 30 caracteres']) !!}
 </div>
  
 <!-- Snombrecand Field -->
 <div class="form-group col-sm-4 {{ $errors->has('SNombre') ? ' has-error' : '' }}">
     {!! Form::label('SNombre', 'Segundo Nombre:' ,array('class' => 'opcional'))  !!}
-    {!! Form::text($SNombreLBL,  ( isset($SNombreTXT) ? $SNombreTXT : null ), ['class' => 'form-control', 'placeholder' => 'Ingrese su segundo nombre','pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}", 'title' => 'No puede tener más de 30 caracteres']) !!}
+    {!! Form::text($SNombreLBL,  ( isset($SNombreTXT) ? $SNombreTXT : null ), ['class' => 'form-control', 'style' => 'text-transform:uppercase ;', 'placeholder' => 'Ingrese su segundo nombre','pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}", 'title' => 'No puede tener más de 30 caracteres']) !!}
 </div>
 
 <!-- Tnombrecand Field -->
 <div class="form-group col-sm-4 {{ $errors->has('TNombre') ? ' has-error' : '' }}">
     {!! Form::label('TNombre', 'Tercer Nombre:',array('class' => 'opcional')) !!}
-    {!! Form::text($TNombreLBL,  ( isset($TNombreTXT) ? $TNombreTXT :null  ), ['class' => 'form-control', 'placeholder' => 'Ingrese su tercer nombre','pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}",  'title' => 'No puede tener más de 30 caracteres']) !!}
+    {!! Form::text($TNombreLBL,  ( isset($TNombreTXT) ? $TNombreTXT :null  ), ['class' => 'form-control', 'style' => 'text-transform:uppercase ;', 'placeholder' => 'Ingrese su tercer nombre','pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}",  'title' => 'No puede tener más de 30 caracteres']) !!}
 </div>
 
 
 <!-- ApPat Field -->
 <div class="form-group col-sm-6 {{ $errors->has('ApPatLBL') ? ' has-error' : '' }}">
     {!! Form::label('ApPat', 'Apellido Paterno:') !!}
-    {!! Form::text($ApPatLBL,  ( isset($ApPatTXT) ? $ApPatTXT : null  ), ['class' => 'form-control', 'placeholder' => 'Ingrese su apellido paterno.','required' => 'true', 'pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}",  'title' => 'No puede tener más de 30 caracteres']) !!}
+    {!! Form::text($ApPatLBL,  ( isset($ApPatTXT) ? $ApPatTXT : null  ), ['class' => 'form-control', 'style' => 'text-transform:uppercase ;', 'placeholder' => 'Ingrese su apellido paterno.','required' => 'true', 'pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}",  'title' => 'No puede tener más de 30 caracteres']) !!}
 </div>
 
 
@@ -76,7 +76,7 @@ $idUserTXT = $asd;*/
 <!-- ApMat Field -->
 <div class="form-group col-sm-6 {{ $errors->has('ApMatLBL') ? ' has-error' : '' }}">
     {!! Form::label('ApMat', 'Apellido Materno:') !!}
-    {!! Form::text($ApMatLBL,  ( isset($ApMatTXT) ? $ApMatTXT : null  ), ['class' => 'form-control', 'placeholder' => 'Ingrese su apellido materno', 'pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}",  'title' => 'No puede tener más de 30 caracteres']) !!}
+    {!! Form::text($ApMatLBL,  ( isset($ApMatTXT) ? $ApMatTXT : null  ), ['class' => 'form-control', 'style' => 'text-transform:uppercase ;', 'placeholder' => 'Ingrese su apellido materno', 'pattern' => "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}",  'title' => 'No puede tener más de 30 caracteres']) !!}
 </div>
 
 <!-- Fonofijoapo Field -->
