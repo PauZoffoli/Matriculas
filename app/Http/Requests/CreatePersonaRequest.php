@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Persona;
-
+use Auth;
 class CreatePersonaRequest extends FormRequest
 {
 
@@ -15,6 +15,10 @@ class CreatePersonaRequest extends FormRequest
      */
     public function authorize()
     {
+        //para que nadie más pueda cambiar los datos de otro apoderado
+        //METODO DEPRECADO POR QUE JUAN ENCONTRÓ SOLUCIÓN
+       // return Persona::where('id', $this->id)  ->where('idUser', $this->user()->id)->exists();
+
         return true;
     }
 
