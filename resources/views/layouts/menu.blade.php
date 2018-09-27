@@ -1,10 +1,16 @@
+@if( auth()->user()->hasRole('ApoderadoPostulante') === true)
  @if (Auth::user()->personas->first()!=null)
   
 <li class="{{ Request::is('apoderadosPostulantes*') ? 'active' : '' }}">
     <a href="{!! route('apoderadosPostulantes.edit', Auth::user()->personas->first()->id) !!}"><i class="fa fa-edit"></i><span>Apoderados Postulantes</span></a>
 </li>
 @endif
+@endif
 
+@if( auth()->user()->hasRole('Administrador') === true)
+<li class="{{ Request::is('apoderadosPostulantes*') ? 'active' : '' }}">
+    <a href="{!! route('apoderadosPostulantes.edit', Auth::user()->personas->first()->id) !!}"><i class="fa fa-edit"></i><span>Apoderados Postulantes</span></a>
+</li>
 
 <li class="{{ Request::is('alumnos*') ? 'active' : '' }}">
     <a href="{!! route('alumnos.index') !!}"><i class="fa fa-edit"></i><span>Alumnos</span></a>
@@ -98,3 +104,4 @@
     <a href="{!! route('tipoPersonas.index') !!}"><i class="fa fa-edit"></i><span>Tipo Personas</span></a>
 </li>
 
+@endif
