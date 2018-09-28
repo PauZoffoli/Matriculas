@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 -- Volcado de datos para la tabla `alumnos`
 --
 SET GLOBAL FOREIGN_KEY_CHECKS=0;
+COMMIT;
 
 INSERT INTO `alumnos` (`id`, `created_at`, `updated_at`, `parentesco`, `otroParentesco`, `repitencias`, `condicion`, `estado`, `estadoCivilPadres`, `idPersona`, `idApoderado`, `idCursoActual`, `idCursoPostu`, `paisDeOrigen`, `idPadre`, `idMadre`) VALUES
 (6, NULL, NULL, 'Madre', NULL, NULL, NULL, 'MatriculaNoRevisadaPorApoderado', NULL, 181, 5, NULL, 13, NULL, NULL, NULL),

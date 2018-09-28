@@ -263,7 +263,7 @@ class LoopAlumnosController extends AppBaseController
               
         //------------>6)Jugamos con las variables de sesión para ir cerrando el proceso de matrícula
         //********************************************
-        
+        $todosLosAlumnos = $request->session()->get('todosLosAlumnos');
         $todosLosAlumnos =  Helper::deleteFirst($todosLosAlumnos); //Borramos el primer elemento del array, que fue el que acabamos de utilizar y updatear
 
         if ($todosLosAlumnos!=null) {

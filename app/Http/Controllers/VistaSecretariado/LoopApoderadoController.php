@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\MatriculaPostulante;
+namespace App\Http\Controllers\VistaSecretariado;
 
 use App\Http\Requests\CreateApoderadoRequest;
 use App\Http\Requests\UpdateApoderadoRequest;
@@ -27,7 +27,7 @@ use App\Models\Comuna;
 use App\Models\Persona;
 
 
-class ApoderadoPController extends AppBaseController
+class LoopApoderadoController extends AppBaseController
 {
 
 //Route::resource('apoderadosPostulantes', 'MatriculaPostulante\ApoderadoPController');
@@ -73,11 +73,6 @@ class ApoderadoPController extends AppBaseController
      */
     public function edit($id)
     {
-       
-        $persona = $this->checkIfExist($id); //Chequeamos todas las clases que necesitemos antes.
-      //  $this->authorize('pass', $persona);
-  
-        return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona);
 
     }
 
@@ -128,11 +123,9 @@ if ($validate!=null) {
         //////////////////////ALUMNOS SELECCIONADOS/////////////////
         ////////////////////////////////////////////////////////////
         //Una vez updateado todo procedemos a guardar los datos en una variable de sessión
-        if(strpos($url,'apoSecretariadoContr')){
-            $primerAlumno = Helper::obtainObject('alumnosCheck', $request, 0, 'apoSecretariadoContr.edit', 'Usted no ha escogido ningún alumno.', $id); //Acá guardamos el primer objeto de los alumnos seleccionado por el apoderado, si no ha escogido el primer alumno significa que no escogió ninguno, por lo que se le despliega un mensaje
-        }else{
-            $primerAlumno = Helper::obtainObject('alumnosCheck', $request, 0, 'apoderadosPostulantes.edit', 'Usted no ha escogido ningún alumno.', $id); //Acá guardamos el primer objeto de los alumnos seleccionado por el apoderado, si no ha escogido el primer alumno significa que no escogió ninguno, por lo que se le despliega un mensaje
-        }
+
+        $primerAlumno = Helper::obtainObject('alumnosCheck', $request, 0, 'apoSecretariadoContr.edit', 'Usted no ha escogido ningún alumno.', $id); //Acá guardamos el primer objeto de los alumnos seleccionado por el apoderado, si no ha escogido el primer alumno significa que no escogió ninguno, por lo que se le despliega un mensaje
+        
 
 
         $todosLosAlumnos =   Helper::obtainAllObjects('alumnosCheck', $request) ; //obtenemos array de todos los alumnos seleccionados.
@@ -149,9 +142,9 @@ if ($validate!=null) {
 
          //dependiendo de la url que venga es para donde voy, si al controller de Revisor/loop o al controler de AAlumnoPcONTROLLER
         
-
-        return redirect()->route('alumnosPostulantes.edit',  $primerAlumno->idPersona); //vamos a editar el primer alumno de la lista, mediante su id de Persona
-        
+      
+        return redirect()->route('alumnosPostulantesRevisor.edit',  $primerAlumno->idPersona); //vamos a editar el primer alumno de la lista, mediante su id de Persona
+      
 
 
     }
