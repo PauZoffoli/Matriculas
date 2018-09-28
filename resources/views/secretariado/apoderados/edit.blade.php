@@ -20,7 +20,7 @@
        <div class="box box-solid box-success" style="background-color: #E4FDE4!important;">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($persona, ['route' => ['apoderadosPostulantes.update', $persona->id], 'method' => 'patch']) !!}
+                   {!! Form::model($persona, ['route' => ['apoderadosPostulantesRevisor.update', $persona->id], 'method' => 'patch']) !!}
  @csrf
 <div class="box-body">
 <!-- Idcomuna Field -->

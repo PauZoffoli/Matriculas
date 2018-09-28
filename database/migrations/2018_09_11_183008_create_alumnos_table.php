@@ -44,6 +44,7 @@ class CreateAlumnosTable extends Migration
             $table->enum('estado', [
                 'MatriculaRevisadaPorApoderado',
                 'MatriculaNoRevisadaPorApoderado',
+                'MatriculaRevisadaPorRevisor',
                 'Revisar', 
                 'Revisado',
                 'Aprobado',

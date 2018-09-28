@@ -31,7 +31,8 @@
             <td>
                 {!! Form::open() !!}
                 <div class='btn-group'>
-                    <a href="{!! route('apoSecretariadoContr.edit', [$persona->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i>Generar Contrato</a>
+                    <a href="{!! route('apoSecretariadoContr.edit', [$persona->id] ) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i>Generar Contrato</a>
+
                    
                 </div>
                 {!! Form::close() !!}

@@ -157,9 +157,9 @@ class Helper extends Controller
     public static function obtainObject($nombre, $request, $numero, $url, $message,$id){
 
 
-       if( !isset( $request[$nombre])) {  //comprobamos que el array no esté nulo
-                  
-            return redirect(route($url, $id))->with('error', $message)->send();
+       if( !isset( $request[$nombre])) {  //comprobamos que el array no esté nulo                      
+              return redirect(route($url, $id))->with('error', $message)->send();
+          //  return redirect(route($url, $id))->with('error', $message)->send();
         
        }
 
