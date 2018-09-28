@@ -63,7 +63,7 @@ class Comuna extends Model
      **/
     public function provincia()
     {
-        return $this->belongsTo(\App\Models\Provincia::class);
+        return $this->belongsTo(\App\Models\Provincia::class, 'idProvincia');
     }
 
     /**

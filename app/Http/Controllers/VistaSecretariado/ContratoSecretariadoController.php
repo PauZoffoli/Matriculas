@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Persona;
 use App\Models\Alumno;
 use App\Models\Apoderado;
+use App\Models\Contrato;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
@@ -33,7 +34,7 @@ class ContratoSecretariadoController extends AppBaseController
      */
     public function index(Request $request)
     {
-        
+            
     }
 
 
@@ -48,19 +49,47 @@ class ContratoSecretariadoController extends AppBaseController
     {   
         switch ($request->get('btnContratoPagare')) {
             case 'contrato': 
-                 //$request->request->add(['idApoderado'=>$idApo]);
+                //$request->request->add(['idApoderado'=>$idApo]);
                 $input = $request->all();
                 //dd($input);
+                $contrato = Contrato::where('idApoderado',$input['idApoderado']);
+                //dd($contrato);
+                if(empty($contrato))
+                {
+                    $contrato = $this->contratoRepository->create($input);
+                    Flash::success('Contrato creado correctamente.');
+                }
+
                 $contrato = $this->contratoRepository->create($input);
-                Flash::success('Contrato saved successfully.');
+                    Flash::success('Contrato creado correctamente.');
+                
                 $apoderado = Apoderado::where('id', $request->idApoderado)->first();
                 //dd($apoderado);
                 $vista = view('secretariado/contratoPDF')->with('datos',$apoderado);
                 //dd($request->all());
+                //dd($apoderado->alumnos);
+
                 $pdf = \PDF::loadHTML($vista);
+                //dd($pdf);
                 $pdf->setPaper("legal","portrait");
+
+                  //GUARDAMOS EL PDF EN NUESTROS ARCHIVOS
+               /** if ($pdf!= null) {
+                    $output = $pdf->output();
+                    $nombreArchivo = $contrato->id . '-'. $estado. '-'. $apoderado['rut'] . '.pdf'; 
+                try {
+
+                     file_put_contents('../storage/app/PDF2019Matriculas/'.$nombreArchivo, $output);
+                }catch (Exception $e) {
+                    Flash::success('ERROR DE RUTA O PERMISOS A STORAGE');
+                return redirect(route('secretariado.indexContrato'));
+                }
+            }**/
+        
+    
+            
                 return $pdf->stream('pdfContrato');
-                //return redirect(route('contratos.index'));    
+                //return redirect(route('contratos.index'))   
             break;
 
             case 'pagare': 
@@ -95,6 +124,10 @@ class ContratoSecretariadoController extends AppBaseController
         }
         
     }
+
+    public function do_function_1(){
+    // put the code here
+}
 
 
 
