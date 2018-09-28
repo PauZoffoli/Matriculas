@@ -94,15 +94,17 @@ class Alumno extends Model
      **/
     public function apoderado()
     {
-        return $this->belongsTo(\App\Models\Apoderado::class);
+        return $this->belongsTo(\App\Models\Apoderado::class, 'idApoderado');
     }
+
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function curso()
     {
-        return $this->belongsTo(\App\Models\Curso::class);
+        return $this->belongsTo(\App\Models\Curso::class, 'idCursoPostu');
     }
 
     
