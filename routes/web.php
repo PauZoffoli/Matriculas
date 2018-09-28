@@ -75,14 +75,18 @@ Route::resource('tipoPersonas', 'TipoPersonaController')->middleware('auth');
 
 
 Route::resource('apoderadosPostulantes', 'MatriculaPostulante\ApoderadoPController')->middleware('auth');
-
 Route::resource('alumnosPostulantes', 'MatriculaPostulante\AlumnoPController')->middleware('auth');
+Route::resource('alumnosPostulantesRevisor', 'VistaSecretariado\LoopAlumnosController'); //Agregado para ir al controller especial para que la secretaria edite al alumno
+
 
 //Métodos para el index secretariado junto a buscador por rut(apoSecretariadoContr)
 //Route::post('ficha', 'VistaSecretariado\AlumnoSecretariadoController@ficha')->name('alumnoSecretariadoContr.ficha');
 Route::resource('alumnoSecretariadoContr', 'VistaSecretariado\AlumnoSecretariadoController');
 
+
 Route::resource('apoSecretariadoContr', 'VistaSecretariado\ApoderadoSecretariadoController');
+//Route::edit('apoSecretariadoContr/{id}/edit/{param}/', 'VistaSecretariado\ApoderadoSecretariadoController@edit');
+
 Route::resource('PersonaSecretariadoContr', 'VistaSecretariado\PersonaSecretariadoController');
 Route::resource('ContratoSecretariadoContr', 'VistaSecretariado\ContratoSecretariadoController');
 

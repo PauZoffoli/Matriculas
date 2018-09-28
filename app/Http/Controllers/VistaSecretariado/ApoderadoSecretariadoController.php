@@ -9,6 +9,7 @@ use App\Models\Persona;
 use Flash;
 use App\Repositories\PersonaRepository;
 use Illuminate\Database\Eloquent\Collection;
+use App\Http\Controllers\Helpers\Helper;
 
 class ApoderadoSecretariadoController extends AppBaseController
 {
@@ -40,8 +41,6 @@ class ApoderadoSecretariadoController extends AppBaseController
     }
 
     
-
-   
     public function searchPersona(Request $request) {
 
         if(empty(trim($request->get('rut')))){
@@ -65,19 +64,42 @@ class ApoderadoSecretariadoController extends AppBaseController
         
     }
 
+
+
+
+ 
+    //Método para chequear un bundle de cosas básicas del controller. DEVUELVE UNA PERSONA
+    public function checkIfExist($id){
+        
+        $persona = Helper::checkthis($this->personaRepository, $id, 'Persona');
+       
+        $validate = Helper::checkthisValue($persona->apoderado, 'Apoderado');
+       // $validate = $validate . Helper::checkthisValue($persona->alumno, 'Alumno');
+        if ($validate!=null) {
+           Flash::error($validate);
+        return redirect(route('home'))->send();
+        }
+        return $persona;
+
+    }
+
+
+    /**
+     * Show the form for editing the specified Apoderado.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
     public function edit($id)
     {
-        $persona = $this->personaRepository->findWithoutFail($id);
+        $persona = $this->checkIfExist($id); //Chequeamos todas las clases que necesitemos antes.
+      //  $this->authorize('pass', $persona);
+        return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona); //vamos a la vista edit de apoderados, pero este redirige al controller update 
 
-        if (empty($persona)) {
-            Flash::error('Persona no encontrada');
-
-            return redirect(route('apoSecretariadoContr.index'));
-        }
-       // dd($persona->direccion->comuna);
- 
-        return view('secretariado.edit')->with('persona' , $persona);
     }
+
+
 
     
 
