@@ -75,10 +75,11 @@ class AlumnoSecretariadoController extends AppBaseController
     public function edit($id)
     {
          $input = $id;
-            dd($input);
-            $apoderado = Apoderado::where('id', $input->idApoderado)->first();
-            dd($apoderado);
-            $vista = view('secretariado/fichaPDF')->with('datos',$apoderado)->with('req',$request);
+            //dd($input);
+            $alumno = Alumno::where('id', $input)->first();
+            $apoderado = Apoderado::where('id', $alumno->idApoderado)->first();
+            //dd($apoderado);
+            $vista = view('secretariado/fichaPDF')->with('datos',$apoderado)->with('alu',$alumno);
             $pdf = \PDF::loadHTML($vista);
             $pdf->setPaper("legal","portrait");
             return $pdf->stream('pdfFicha');

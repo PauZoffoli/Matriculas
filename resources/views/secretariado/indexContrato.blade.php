@@ -100,6 +100,11 @@
 </div>
 
 <div class="form-group col-sm-6">
+    {!! Form::label('PorcentajeBeca', '% Beca:') !!}
+    {!! Form::number('PorcentajeBeca', 0, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-6">
     {!! Form::label('anioAContratar', 'Año a contratar:') !!}
     {!! Form::number('anioAContratar', 2019, ['class' => 'form-control']) !!}
 </div>
@@ -119,7 +124,7 @@
 </div>  
 
                 <div class='btn-group'>
-                  <input id='btnContrato' class="btn btn-primary" type='submit' name = 'btnContratoPagare' value = 'contrato'>
+            <input id='btnContrato' class="btn btn-primary" type='submit' name = 'btnContratoPagare' value = 'contrato'>
                   <input id='btnPagare' class="btn btn-primary" type='submit' name = 'btnContratoPagare' value = 'pagare'>
                   <input id='btnFicha' class="btn btn-primary" type='submit' name = 'btnContratoPagare' value = 'ficha'>                    
                 </div>
