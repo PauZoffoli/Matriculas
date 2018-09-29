@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\VistaSecretariado;
+namespace App\Http\Controllers\MatriculaPostulante;
 
 use App\Http\Requests\CreateApoderadoRequest;
 use App\Http\Requests\UpdateApoderadoRequest;
@@ -28,7 +28,6 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Illuminate\Validation\ValidationException;
 use App\Http\Controllers\Helpers\Helper;
-use App\Http\Controllers\Helpers\RevisorHelper\RevisorHelper;
 use App\Models\Alumno;
 use App\Models\Repitencias;
 use App\Models\FichaAlumno;
@@ -44,11 +43,11 @@ use Illuminate\Support\Collection;
 use Auth;
 use App\Enums;
 
-class LoopAlumnosController extends AppBaseController
+class AlumnoPController extends AppBaseController
 {
 
-   // Route::resource('alumnosPostulantesRevisor', 'VistaSecretariado\LoopAlumnosController'); //Agregado para ir al controller especial para que la secretaria edite al alumno
-
+//Route::resource('alumnosPostulantes', 'MatriculaPostulante\AlumnoPController');
+    //https://adminlte.io/themes/AdminLTE/pages/tables/simple.html
     
     /** @var  ApoderadoRepository */
    private $alumnoRepository;
@@ -81,7 +80,17 @@ class LoopAlumnosController extends AppBaseController
         return $persona;
 
     }
-     public function edit($id)
+    /**
+     * Show the form for editing the specified Alumno.
+     *@php //https://laracasts.com/discuss/channels/laravel/laravel-convert-amount-in-digit-to-words?page=1 number formatter
+    $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
+echo $f->format(1432);
+@endphp
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function edit($id)
     {
 
         $persona = $this->checkIfExist($id);
@@ -148,8 +157,6 @@ class LoopAlumnosController extends AppBaseController
 
         ///----->>>>>1) Esta sección es solo para colectar los datos de las variables padre, madre, pContacto y sContacto//////////////////////////////////
 
-
-
         if($request->alumno['parentesco']=="Madre" || $request->alumno['parentesco']=="Padre"){ //Si el parentesco es madre o Padre llenamos los datos de su array para que que todas las variables de contacto luscan igual
            
             $getApoderadoPersona = Apoderado::where('id' , $persona->alumno->idApoderado)->first()->persona->getAttributes(); //Obtenemos el actual apoderado
@@ -210,11 +217,11 @@ class LoopAlumnosController extends AppBaseController
         $padreExistente = null;
         $madreExistente = null;
         if(isset($request->padre)){
-            $padreExistente = RevisorHelper::existePersona($request->padre, $this->personaRepository); //Padre antiguo o nueva con la que vamos a trabajar
+            $padreExistente = Helper::existePersona($request->padre, $this->personaRepository); //Padre antiguo o nueva con la que vamos a trabajar
             $alumnoConPadreAsociado = Alumno::where('id' , '=', $persona->alumno->id)->update(['idPadre' => $padreExistente->id]); //con el padre que acabamos de crear o update lo retornamos para agregarselo al alumno
         }
         if(isset($request->madre)){
-            $madreExistente = RevisorHelper::existePersona($request->madre, $this->personaRepository); //madre antigua o nueva con la que vamos a trabajar
+            $madreExistente = Helper::existePersona($request->madre, $this->personaRepository); //madre antigua o nueva con la que vamos a trabajar
             $alumnoConMadreAsociada = Alumno::where('id' , '=', $persona->alumno->id)->update(['idMadre' => $madreExistente->id]);
         }
 
@@ -245,11 +252,7 @@ class LoopAlumnosController extends AppBaseController
         }
 
 
-       // $persona->alumno->repitencia()->sync($request->repitencia); //AGREGAMOS LOS DATOS PIVOTE DE LAS REPITENCIAS https://stackoverflow.com/questions/23968415/laravel-eloquent-attach-vs-sync 
-
-//$persona->alumno->repitencia()->syncWithoutDetaching('idAlumno',$request->repitencia);
-        //$persona->alumno->repitencia()->sync($request->repitencia);
-       $persona->alumno->repitencia()->sync($request->repitencia); 
+        $persona->alumno->repitencia()->sync($request->repitencia); //AGREGAMOS LOS DATOS PIVOTE DE LAS REPITENCIAS https://stackoverflow.com/questions/23968415/laravel-eloquent-attach-vs-sync 
         $request->request->add(['alumno[repitencias]' => $persona->alumno->repitencia()->count()]); //cambiamos el valor del request"repitencias que tiene el número de repitencias del alumno"
  
 
@@ -263,8 +266,7 @@ class LoopAlumnosController extends AppBaseController
 
         $alumno = Helper::updateThis($this->alumnoRepository,$request->alumno, $persona->alumno->id);
         Helper::updateThis($this->fichaAlumnoRepository, $request->fichaAlumno[0], $idFicha->id);
-
-              
+       
         //------------>6)Jugamos con las variables de sesión para ir cerrando el proceso de matrícula
         //********************************************
         $todosLosAlumnos = $request->session()->get('todosLosAlumnos');
@@ -282,25 +284,10 @@ class LoopAlumnosController extends AppBaseController
         //------------>7)Cambiamos los estados una vez terminado todo para que el apoderado no pueda volver a acceder a hacer cambios
         //********************************************
         $this->cambioDeEstados($alumno, $request); //Método que está en el mismo controller. Cambiamos los estados de los Alumnos
-       
-        // \Session::flush(); LAS SECRETARIAS PUEDEN SEGUIR REVISANDO POR ESO NO HAY QUE BORRARLE LA SESIÓN
-        //Auth::logout();
-
-         $idAlumnos = $request->session()->get('idAlumnos'); //Regresa una cadena json ALUMNO() con todos alumnos seleccionados.Esta nace desde el controller MatriculasPostulante\ApoderadoPController
-        //dd($idAlumnos); 
-        $alumnosSeleccionados = [];
-        foreach ($idAlumnos as $key) {
-            $alumno = $this->alumnoRepository->findWithoutFail(json_decode($key)->id);
-            array_push($alumnosSeleccionados, $alumno);
-
-        }
-
-       // dd(($alumnosSeleccionados));
-         return view('secretariado.indexContrato')->with('alumnos', $alumnosSeleccionados );
-
-
+        \Session::flush();
+        Auth::logout();
         \Session::flash('flash_message','Alumno editado exitósamente.');
-        return view('secretariado.indexContrato')->with('alumnos', $todosLosAlumnos);
+        return view('MatriculaPostulante.FinProcesoMatricula');
     }
 
 
@@ -357,8 +344,8 @@ class LoopAlumnosController extends AppBaseController
         
         /**********Objetivo?: Saber que el apoderado***************/
         /*********ya hizo la matricula de su alumno ***************/
-        $estadoApoderado= ["estado" => "MatriculaRevisadaPorRevisor"];
-        $estadoAlumno= ["estado" => "MatriculaRevisadaPorRevisor"];
+        $estadoApoderado= ["estado" => "MatriculaRevisadaPorApoderado"];
+        $estadoAlumno= ["estado" => "MatriculaRevisadaPorApoderado"];
 
         $idAlumnos = $request->session()->get('idAlumnos'); //con esta variable de sesión le cambiamos los estados a todos los alumnos que el apoderado haya checado.
 
@@ -374,7 +361,8 @@ class LoopAlumnosController extends AppBaseController
 
         $apoderado = $this->apoderadoRepository->update($estadoApoderado, $alumno->idApoderado);
 
-        //session()->forget('idAlumnos');
+        session()->forget('idAlumnos');
+
     }
 
     /**
