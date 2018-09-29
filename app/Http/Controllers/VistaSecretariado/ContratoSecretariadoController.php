@@ -94,12 +94,13 @@ class ContratoSecretariadoController extends AppBaseController
 
             case 'pagare': 
                 $input = $request->all();
+                $primerContrato = Contrato::where('idApoderado',$input['idApoderado'])->first();
                 //dd($input);
                 //$contrato = $this->contratoRepository->create($input);
                 //Flash::success('Contrato saved successfully.');
                 $apoderado = Apoderado::where('id', $request->idApoderado)->first();
                 //dd($apoderado);
-                $vista = view('secretariado/pagarePDF')->with('datos',$apoderado)->with('req',$request);
+                $vista = view('secretariado/pagarePDF')->with('datos',$apoderado)->with('req',$request)->with('primerContrato',$primerContrato);
                 //dd($request->all());
                 $pdf = \PDF::loadHTML($vista);
                 $pdf->setPaper("legal","portrait");
@@ -109,12 +110,13 @@ class ContratoSecretariadoController extends AppBaseController
 
             case 'ficha': 
                 $input = $request->all();
+                $primerContrato = Contrato::where('idApoderado',$input['idApoderado'])->first();
                 //dd($input);
                 //$contrato = $this->contratoRepository->create($input);
                 //Flash::success('Contrato saved successfully.');
                 $apoderado = Apoderado::where('id', $request->idApoderado)->first();
                 //dd($apoderado);
-                $vista = view('secretariado/fichaPDF')->with('datos',$apoderado)->with('req',$request);
+                $vista = view('secretariado/fichaPDF')->with('datos',$apoderado)->with('req',$request)->with('primerContrato',$primerContrato);
                 //dd($request->all());
                 $pdf = \PDF::loadHTML($vista);
                 $pdf->setPaper("legal","portrait");

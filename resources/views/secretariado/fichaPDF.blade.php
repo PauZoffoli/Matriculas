@@ -334,7 +334,7 @@ style='mso-spacerun:yes'>                           �
 lang=ES-TRAD><span style='mso-element:field-begin'></span><span
 style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Ncont&quot; <span
 style='mso-element:field-separator'></span></span><![endif]--><span
-lang=ES-TRAD><span style='mso-no-proof:yes'>00266</span></span><!--[if supportFields]><span
+lang=ES-TRAD><span style='mso-no-proof:yes'>{{ (isset($primerContrato) ? $primerContrato->id : null) }}</span></span><!--[if supportFields]><span
 lang=ES-TRAD><span style='mso-element:field-end'></span></span><![endif]--><span
 lang=ES-TRAD><span style='mso-spacerun:yes'>                    </span></span></p>
 <br>
