@@ -371,7 +371,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;CUR&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ $alu->curso->nivel }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($alu->cursoActual) ? $alu->cursoActual->nivel : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
@@ -381,7 +381,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;CON&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ $alu->curso->basicaMedia }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($alu->cursoActual) ? $alu->cursoActual->basicaMedia : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
@@ -399,13 +399,19 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><!--[if supportFields]><b style='mso-bidi-font-weight:
+  <p class=MsoNormal>
+  <b
+  style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($alu->curso) ? $alu->curso->nivel : null) }}</span></span></b>
+  <b
+  style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
+  letter-spacing:.6pt'><span style='mso-spacerun:yes'> </span></span></b><!--[if supportFields]><b style='mso-bidi-font-weight:
   normal'><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><span
   style='mso-element:field-begin'></span><span
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Curso_2017&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
-  style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>2° Básico</span></span></b><!--[if supportFields]><b
+  style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt; 
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($alu->curso) ? $alu->curso->basicaMedia : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
@@ -428,7 +434,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Ape_1&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ $alu->persona->ApPat }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($alu->persona) ? $alu->persona->ApPat : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
@@ -451,7 +457,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Ape_2&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ $alu->persona->ApMat }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($alu->persona) ? $alu->persona->ApMat : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
@@ -474,7 +480,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Nom_1&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ $alu->persona->PNombre }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($alu->persona) ? $alu->persona->PNombre : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
@@ -484,7 +490,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Nom_2&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ $alu->persona->SNombre }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($alu->persona) ? $alu->persona->SNombre : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
@@ -514,7 +520,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;SEX&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ $alu->persona->genero }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($alu->persona) ? $alu->persona->genero : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
@@ -538,7 +544,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;rut_ALU&quot;\# #0.00 <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ $alu->persona->rut }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($alu->persona) ? $alu->persona->rut : null)}}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
@@ -572,7 +578,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;FNA&quot;\@ &quot;dd/MM/yyyy&quot;<span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ $alu->persona->fechaNacimiento }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($alu->persona) ? $alu->persona->fechaNacimiento : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
@@ -610,7 +616,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Domicilioestudiante&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>Condell</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($alu->persona) ? $alu->persona->direccion->calle : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
@@ -635,7 +641,21 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Número&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ $alu->persona->direccion->nroCalle }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'> 
+
+  @if (!empty($alu->persona->direccion->nroCalle))
+   {{ $alu->persona->direccion->nroCalle }}.
+  
+  @endif 
+  @if (!empty($alu->persona->direccion->dpto))
+   Dpto:{{ $alu->persona->direccion->dpto }}.
+    &nbsp; 
+  @endif 
+
+  @if (!empty($alu->persona->direccion->bloqueTorre))
+   Bloque/Torre:{{ $alu->persona->direccion->bloqueTorre }}.
+  @endif 
+  </span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
@@ -658,7 +678,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Comuna&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ $alu->persona->direccion->comuna->nombreComu }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($alu->persona) ? $alu->persona->direccion->comuna->nombreComu : null)}}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
@@ -681,7 +701,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Ciudad&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ $alu->persona->direccion->comuna->provincia->nombreProv }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($alu->persona) ? $alu->persona->direccion->comuna->provincia->nombreProv : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
@@ -704,7 +724,11 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Ha_repetido&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>No</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>
+{{ ( (isset( $alu->repitencia[0] ) ? "Si" : "No") )}}
+
+
+  </span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
@@ -721,7 +745,16 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><!--[if supportFields]><b style='mso-bidi-font-weight:
+  <p class=MsoNormal>
+  <b
+  style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
+  letter-spacing:1.0pt'><span style='mso-no-proof:yes'>
+
+@foreach ($alu->repitencia as $key => $element)
+    {{ $alu->repitencia[$key]->nivel}}  {{  $alu->repitencia[$key]->basicaMedia  }}
+@endforeach
+
+</span></span></b><!--[if supportFields]><b style='mso-bidi-font-weight:
   normal'><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><span
   style='mso-element:field-begin'></span><span
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Cual&quot; </span></b><![endif]--><!--[if supportFields]><b
@@ -741,7 +774,10 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><!--[if supportFields]><b style='mso-bidi-font-weight:
+  <p class=MsoNormal>
+  <b
+  style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
+  letter-spacing:1.0pt'><span style='mso-no-proof:yes'>{{  (isset($alu->persona) ? $alu->persona->email : null) }}</span></span></b><!--[if supportFields]><b style='mso-bidi-font-weight:
   normal'><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><span
   style='mso-element:field-begin'></span><span
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Cual&quot; </span></b><![endif]--><!--[if supportFields]><b
@@ -803,7 +839,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Nom_Apo_1&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  $datos->persona->PNombre }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  (isset($datos->persona) ? $datos->persona->PNombre : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
@@ -813,12 +849,12 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Nom_Apo_2&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  $datos->persona->SNombre }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  (isset($datos->persona) ? $datos->persona->SNombre : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]-->
   <b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  $datos->persona->TNombre }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  (isset($datos->persona) ? $datos->persona->TNombre : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]-->
   <b
@@ -849,7 +885,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Ape_Paterno_Apo&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  $datos->persona->ApPat }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  (isset($datos->persona) ? $datos->persona->ApPat : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
@@ -872,7 +908,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;ApeMaternoApo&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  $datos->persona->ApMat }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  (isset($datos->persona) ? $datos->persona->ApMat : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
@@ -895,7 +931,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;sex_Apo&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  $datos->persona->genero }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  (isset($datos->persona) ? $datos->persona->genero : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
@@ -919,7 +955,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;nacion_Apo&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  $datos->persona->apoderado->paisDeOrigen }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  (isset($datos->persona) ? $datos->persona->apoderado->paisDeOrigen : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
@@ -942,7 +978,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Nacimiento_Apo&quot; \@
   &quot;dd/MM/yyyy&quot;<span style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  $datos->persona->fechaNacimiento }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  (isset($datos->persona) ? $datos->persona->fechaNacimiento : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
@@ -979,7 +1015,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;RUT_Apo&quot;\# #0.00<span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  $datos->persona->rut }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  (isset($datos->persona) ? $datos->persona->rut : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
@@ -1013,7 +1049,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD
   &quot;ProfesionuOficioApoderado&quot; <span style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  $datos->persona->apoderado->nivelEducacional }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  (isset($datos->persona) ? $datos->persona->apoderado->nivelEducacional : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
@@ -1036,7 +1072,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD
   &quot;ProfesionuOficioApoderado&quot; <span style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  $datos->persona->apoderado->profesion }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  (isset($datos->persona) ? $datos->persona->apoderado->profesion : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
@@ -1059,7 +1095,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;DomicilioApoderado&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  $datos->persona->direccion->calle }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  (isset($datos->persona) ? $datos->persona->direccion->calle : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
@@ -1082,7 +1118,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Numero&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  $datos->persona->direccion->nroCalle }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  (isset($datos->persona) ? $datos->persona->direccion->nroCalle : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
@@ -1105,7 +1141,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Ciudad1&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  $datos->persona->direccion->comuna->provincia->nombreProv }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  (isset($datos->persona) ? $datos->persona->direccion->comuna->provincia->nombreProv : null)}}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
@@ -1129,7 +1165,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Comuna1&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  $datos->persona->direccion->comuna->nombreComu }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  (isset($datos->persona) ? $datos->persona->direccion->comuna->nombreComu : null)}}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
@@ -1146,7 +1182,8 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><!--[if supportFields]><b style='mso-bidi-font-weight:
+  <p class=MsoNormal>
+  <!--[if supportFields]><b style='mso-bidi-font-weight:
   normal'><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:1.0pt'><span
   style='mso-element:field-begin'></span><span
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Telefono_Fijo&quot; </span></b><![endif]--><!--[if supportFields]>
@@ -1154,7 +1191,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:1.0pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  $datos->persona->fonoFijo }}</span></span></b><span
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{  (isset($datos->persona) ? $datos->persona->fonoFijo : null) }}</span></span></b><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:1.0pt'><o:p></o:p></span></p>
   </td>
  </tr>
@@ -1175,7 +1212,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;CelularApoderado&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:1.0pt;mso-no-proof:yes'>{{  $datos->persona->fonoCelu }}</span></b><!--[if supportFields]><b
+  letter-spacing:1.0pt;mso-no-proof:yes'>{{  (isset($datos->persona) ? $datos->persona->fonoCelu : null) }}</span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:1.0pt;mso-no-proof:yes'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:1.0pt'><o:p></o:p></span></p>
@@ -1221,7 +1258,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;mail&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:1.0pt'><span style='mso-no-proof:yes'>{{  $datos->persona->email }}</span></span></b><!--[if supportFields]><b
+  letter-spacing:1.0pt'><span style='mso-no-proof:yes'>{{  (isset($datos->persona) ? $datos->persona->email : null)}}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:1.0pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:1.0pt'><o:p></o:p></span></p>
@@ -1300,7 +1337,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;ESTADO_CIVIL&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>Separados(as) de hecho</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($alu) ? $alu->estadoCivilPadres : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
@@ -1344,22 +1381,28 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Rut_Mama&quot;\# #0.00 <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>17.339.464</span></span></b><!--[if supportFields]><b
+
+@php
+  $madre = $alu->alumnoResponsableParent()->where('parentesco', 'Madre')->where('rut' ,'!=','160000001-9')->first();
+  $padre = $alu->alumnoResponsableParent()->where('parentesco', 'Padre')->where('rut' ,'!=','160000000-0')->first();
+@endphp
+
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($madre) ? $madre->rut : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'> - </span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-begin'></span><span
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;DV_Mmama&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>0</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'></span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
   </td>
- </tr>
+ </tr> 
  <tr style='mso-yfti-irow:44'>
   <td width=199 valign=top style='width:149.4pt;border:solid windowtext 1.0pt;
   border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
@@ -1377,7 +1420,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Nom_Apo_11&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>DIANA</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($madre) ? $madre->PNombre : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
@@ -1387,18 +1430,19 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Nom_Apo_21&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>ARACELI</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($madre) ? $madre->SNombre : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'> </span></b><!--[if supportFields]><b style='mso-bidi-font-weight:
+  letter-spacing:.6pt'> </span></b>
+  <!--[if supportFields]><b style='mso-bidi-font-weight:
   normal'><span lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><span
   style='mso-element:field-begin'></span><span
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Nom_Apo_31&quot; </span></b><![endif]--><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-spacerun:yes'> </span><o:p></o:p></span></b></p>
+  letter-spacing:.6pt'><span style='mso-spacerun:yes'>{{ (isset($madre) ? $madre->TNombre : null) }} </span><o:p></o:p></span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:45'>
@@ -1418,7 +1462,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Ape_Paterno_Apo1&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>JORQUERA</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($madre) ? $madre->ApPat : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
@@ -1428,7 +1472,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;ApeMaternoApo1&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>JORQUERA</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($madre) ? $madre->ApMat : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
@@ -1452,7 +1496,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;mail1&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>armijocar2.0@gmail.com</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($madre) ? $madre->email : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
@@ -1476,7 +1520,7 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;CelularApoderado1&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>56975461636</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($madre) ? $madre->fonoCelu : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
@@ -1520,17 +1564,17 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Rut_Papa&quot;\# #0.00 <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>17.738.166</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'>{{ (isset($padre) ? $padre->rut : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'> - </span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-begin'></span><span
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;DV_Papa&quot; <span
   style='mso-element:field-separator'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
-  letter-spacing:.6pt'><span style='mso-no-proof:yes'>7</span></span></b><!--[if supportFields]><b
+  letter-spacing:.6pt'><span style='mso-no-proof:yes'></span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt;
   letter-spacing:.6pt'><span style='mso-element:field-end'></span></span></b><![endif]--><span
   lang=ES-TRAD style='font-size:9.0pt;letter-spacing:.6pt'><o:p></o:p></span></p>
@@ -1554,21 +1598,21 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt'><span
   style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt'><span
-  style='mso-spacerun:yes'> </span></span></b><!--[if supportFields]><b
+  style='mso-spacerun:yes'> {{ (isset($padre) ? $padre->PNombre : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt'><span
   style='mso-element:field-begin'></span><span
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Nom_Apo_22&quot; </span></b><![endif]--><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt'><span
   style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt'><span
-  style='mso-spacerun:yes'> </span></span></b><!--[if supportFields]><b
+  style='mso-spacerun:yes'> {{ (isset($padre) ? $padre->SNombre : null) }} </span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt'><span
   style='mso-element:field-begin'></span><span
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;Nom_Apo_32&quot; </span></b><![endif]--><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt'><span
   style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt'><span
-  style='mso-spacerun:yes'> </span><o:p></o:p></span></b></p>
+  style='mso-spacerun:yes'> {{ (isset($padre) ? $padre->TNombre : null) }}</span><o:p></o:p></span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:51'>
@@ -1589,7 +1633,10 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt'><span
   style='mso-element:field-end'></span></span></b><![endif]--><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt'><span
-  style='mso-spacerun:yes'> </span></span></b><!--[if supportFields]><b
+  style='mso-spacerun:yes'> {{ (isset($padre) ? $padre->ApPat : null) }}</span></span></b>
+  <b
+  style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt'><span
+  style='mso-spacerun:yes'> {{ (isset($padre) ? $padre->ApMat : null) }}</span></span></b><!--[if supportFields]><b
   style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt'><span
   style='mso-element:field-begin'></span><span
   style='mso-spacerun:yes'> </span>MERGEFIELD &quot;ApeMaternoApo2&quot; </span></b><![endif]--><!--[if supportFields]><b
@@ -1609,7 +1656,10 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><!--[if supportFields]><b style='mso-bidi-font-weight:
+  <p class=MsoNormal>
+  <b
+  style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt'><span
+  style='mso-spacerun:yes'> {{ (isset($padre) ? $padre->email : null) }}</span></span></b><!--[if supportFields]><b style='mso-bidi-font-weight:
   normal'><span lang=ES-TRAD style='font-size:9.0pt'><span style='mso-element:
   field-begin'></span><span style='mso-spacerun:yes'> </span>MERGEFIELD
   &quot;mail2&quot; </span></b><![endif]--><!--[if supportFields]><b
@@ -1629,7 +1679,10 @@ lang=ES-TRAD><span style='mso-spacerun:yes'>                  
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
   mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><!--[if supportFields]><b style='mso-bidi-font-weight:
+  <p class=MsoNormal>
+  <b
+  style='mso-bidi-font-weight:normal'><span lang=ES-TRAD style='font-size:9.0pt'><span
+  style='mso-spacerun:yes'> {{ (isset($padre) ? $padre->fonoCelu : null) }}</span></span></b><!--[if supportFields]><b style='mso-bidi-font-weight:
   normal'><span lang=ES-TRAD style='font-size:9.0pt'><span style='mso-element:
   field-begin'></span><span style='mso-spacerun:yes'> </span>MERGEFIELD
   &quot;CelularApoderado2&quot; </span></b><![endif]--><!--[if supportFields]><b

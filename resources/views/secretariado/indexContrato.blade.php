@@ -7,8 +7,10 @@
             <table>
                 <tr>
                     <td>Matriculas IDOP</td>
-                    <td>&nbsp;</td> 
-                    <td><a class="btn btn-primary "  href="{!! route('apoSecretariadoContr.index') !!}"><span class="glyphicon glyphicon-repeat"></span></a></td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> 
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td><a class="btn btn-primary "  href="{!! route('apoSecretariadoContr.index') !!}"><span class="glyphicon glyphicon-home"></span></a></td>
+                    <td>Volver a inicio</td>
                 </tr>
             </table>
         </h1>
@@ -96,27 +98,27 @@
               
 <div class="form-group col-sm-6">
     {!! Form::label('nroCuotas', 'Número cuotas:') !!}
-    {!! Form::number('nroCuotas', 11, ['class' => 'form-control']) !!}
+    {!! Form::number('nroCuotas', 11, ['class' => 'form-control','required' => 'true']) !!}
 </div>
 
 <div class="form-group col-sm-6">
     {!! Form::label('PorcentajeBeca', '% Beca:') !!}
-    {!! Form::number('PorcentajeBeca', 0, ['class' => 'form-control']) !!}
+    {!! Form::number('PorcentajeBeca', 0, ['class' => 'form-control','required' => 'true']) !!}
 </div>
 
 <div class="form-group col-sm-6">
     {!! Form::label('anioAContratar', 'Año a contratar:') !!}
-    {!! Form::number('anioAContratar', 2019, ['class' => 'form-control']) !!}
+    {!! Form::number('anioAContratar', 2019, ['class' => 'form-control','required' => 'true']) !!}
 </div>
 
 <div class="form-group col-sm-6">
     {!! Form::label('totalAPagar', 'Total a pagar:') !!}
-    {!! Form::text('totalAPagar', $total, ['class' => 'form-control']) !!}
+    {!! Form::text('totalAPagar', $total, ['class' => 'form-control','required' => 'true']) !!}
 </div>
 
 <div class="form-group col-sm-6">
     {!! Form::label('fechaContrato', 'Fecha contrato:') !!}
-    {!! Form::date('fechaContrato', $now, ['class' => 'form-control']) !!}
+    {!! Form::date('fechaContrato', $now, ['class' => 'form-control','required' => 'true']) !!}
 </div>
 <div class="form-group col-sm-6">
    
@@ -126,7 +128,7 @@
                 <div class='btn-group'>
             <input id='btnContrato' class="btn btn-primary" type='submit' name = 'btnContratoPagare' value = 'contrato'>
                   <input id='btnPagare' class="btn btn-primary" type='submit' name = 'btnContratoPagare' value = 'pagare'>
-                  <input id='btnFicha' class="btn btn-primary" type='submit' name = 'btnContratoPagare' value = 'ficha'>                    
+                                      
                 </div>
                 {!! Form::close() !!}
             </td>

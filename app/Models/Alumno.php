@@ -107,7 +107,13 @@ class Alumno extends Model
         return $this->belongsTo(\App\Models\Curso::class, 'idCursoPostu');
     }
 
-    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function cursoActual()
+    {
+        return $this->belongsTo(\App\Models\Curso::class, 'idCursoActual');
+    }    
 
 
     /**

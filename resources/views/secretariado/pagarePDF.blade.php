@@ -201,30 +201,37 @@ none'><span lang=ES-TRAD style='font-size:10.0pt;line-height:120%;font-family:
 
 <p class=MsoNormal style='margin-right:-11.6pt;text-align:justify'><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>  </span></b><b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  $datos->persona->PNombre }}</span></b><b><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  (isset($datos->persona) ? $datos->persona->PNombre : null) }}</span></b><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span></b><b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  $datos->persona->SNombre }}</span></b><b><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  (isset($datos->persona) ? $datos->persona->SNombre : null) }}</span></b><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span></b><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span></b><b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  $datos->persona->ApPat }}</span></b><b><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  (isset($datos->persona) ? $datos->persona->ApPat : null) }}</span></b><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span></b><b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  $datos->persona->ApMat }}</span></b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>, </span><b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>CHILENA</span></b><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  (isset($datos->persona) ? $datos->persona->ApMat : null) }}</span></b><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>,</span><b><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>
+@if (!empty($datos->persona->apoderado->paisDeOrigen)&&($datos->persona->apoderado->paisDeOrigen == "Chile"))
+Chilena
+@endif 
+@if (!empty($datos->persona->apoderado->paisDeOrigen)&&($datos->persona->apoderado->paisDeOrigen != "Chile"))
+   {{  (isset($datos->persona) ? $datos->persona->apoderado->paisDeOrigen : null) }}
+@endif
+</span></b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>, cédula
 nacional de identidad número </span><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'><span
-style='letter-spacing:.6pt'>{{  $datos->persona->rut }}</span></span></b><b><span lang=ES-TRAD
+style='letter-spacing:.6pt'>{{  (isset($datos->persona) ? $datos->persona->rut : null)}}</span></span></b><b><span lang=ES-TRAD
 style='font-size:10.0pt;font-family:"Arial",sans-serif'></span></b><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'></span></b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>
 domiciliado </span><b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  $datos->persona->direccion->calle }}</span></b><b><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  (isset($datos->persona) ? $datos->persona->direccion->calle : null) }}</span></b><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span></b><b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  $datos->persona->direccion->nroCalle }}</span></b><b><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  (isset($datos->persona) ? $datos->persona->direccion->nroCalle : null) }}</span></b><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>, comuna de
 </span></b><b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  $datos->persona->direccion->comuna->nombreComu }}</span></b><span lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>,
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  (isset($datos->persona) ? $datos->persona->direccion->comuna->nombreComu : null) }}</span></b><span lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>,
 declaro que:</span></p>
 
 <p class=MsoNormal style='margin-right:-11.6pt;text-align:justify'><a
@@ -238,14 +245,14 @@ style='letter-spacing:1.0pt'> </span>316,<span style='letter-spacing:1.0pt'> </s
 style='letter-spacing:1.0pt'> </span>de<span style='letter-spacing:1.0pt'> </span>La<span style='letter-spacing:1.0pt'> </span>Cisterna,<span style='letter-spacing:1.0pt'> </span>ciudad<span
 style='letter-spacing:1.0pt'> </span>de<span style='letter-spacing:1.0pt'> </span>Santiago,
 la suma de <b>$</b></span><span
-lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>{{ $totalPago }}</span><b><span
+lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>{{ (isset($totalPago) ? $totalPago : null) }}</span><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>.-</span></b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> cantidad
 que me  obligo a pagar íntegramente a la vista. </span></p>
 
 <p class=MsoNormal style='margin-right:-11.6pt;text-align:justify'><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>La
-cantidad antes indicada me obligo a pagarla en {{ $req->nroCuotas }} cuotas, iguales y sucesivas,
+cantidad antes indicada me obligo a pagarla en {{ (isset($req) ? $req->nroCuotas : null) }} cuotas, iguales y sucesivas,
 según el siguiente detalle:</span></p>
 <br>
 <div align=center>
@@ -255,23 +262,23 @@ lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>&nbsp;</spa
 @foreach($datos->alumnos as $alumno)
 <p class=MsoNormal style='margin-right:-11.6pt;text-align:justify'><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>Alumno: </span><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{ $alumno->persona->PNombre }}</span><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{ (isset($alumno->persona) ? $alumno->persona->PNombre : null) }}</span><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{ $alumno->persona->SNombre }}</span><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{ (isset($alumno->persona) ? $alumno->persona->SNombre : null) }}</span><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{ $alumno->persona->ApPat }}</span><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{ (isset($alumno->persona) ? $alumno->persona->ApPat : null) }}</span><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{ $alumno->persona->ApMat }}</span>
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{ (isset($alumno->persona) ? $alumno->persona->ApMat : null) }}</span>
 <span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>=> Arancel Anual: ${{ $alumno->curso->arancelAnual }}</span>
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>=> Arancel Anual: ${{ (isset($alumno->persona) ? $alumno->curso->arancelAnual : null) }}</span>
 
 
 @endforeach
 <p class=MsoNormal style='margin-right:-11.6pt;text-align:justify'><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> Porcentaje Beca: {{ $req->PorcentajeBeca }}%</span>
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> Porcentaje Beca: {{ (isset($req) ? $req->PorcentajeBeca : null) }}%</span>
 </p>
 @php
   $mibar = ((round($totalPago)))
@@ -792,36 +799,36 @@ lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>&nbsp;</spa
 150%;font-family:"Arial",sans-serif'>Santiago</span><span lang=ES-TRAD
 style='font-size:10.0pt;line-height:150%;font-family:"Arial",sans-serif'>, </span><span
 lang=ES-TRAD style='font-size:8.0pt;line-height:150%;font-family:"Arial",sans-serif;
-letter-spacing:-.1pt'>23 de septiembre de 2018</span><span lang=ES-TRAD
+letter-spacing:-.1pt'>{{ date('d') }} de septiembre de {{ date('Y') }}</span><span lang=ES-TRAD
 style='font-size:10.0pt;line-height:150%;font-family:"Arial",sans-serif'>.-</span></p>
 
 <p class=MsoNormal><span lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>SUSCRIPTOR:
 </span><b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  $datos->persona->PNombre }}</span></b><b><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  (isset($datos->persona) ? $datos->persona->PNombre : null) }}</span></b><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span></b><b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  $datos->persona->SNombre }}</span></b><b><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  (isset($datos->persona) ? $datos->persona->SNombre : null) }}</span></b><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span></b><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span></b><b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  $datos->persona->ApPat }}</span></b><b><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  (isset($datos->persona) ? $datos->persona->ApPat : null) }}</span></b><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span></b><b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  $datos->persona->ApMat }}</span></b><b><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  (isset($datos->persona) ? $datos->persona->ApMat : null) }}</span></b><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span></b></p>
 
 <p class=MsoNormal><span lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>RUT:
 </span><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'><span
-style='letter-spacing:.6pt'>{{  $datos->persona->rut }}</span></span></b><b><span lang=ES-TRAD
+style='letter-spacing:.6pt'>{{  (isset($datos->persona) ? $datos->persona->rut : null) }}</span></span></b><b><span lang=ES-TRAD
 style='font-size:10.0pt;font-family:"Arial",sans-serif'></span></b><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'></span></b></p>
 
 <p class=MsoNormal><span lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>Domicilio:
 </span><b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  $datos->persona->direccion->calle }}</span></b><b><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  (isset($datos->persona->direccion) ? $datos->persona->direccion->calle : null)}}</span></b><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span></b><b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  $datos->persona->direccion->nroCalle }}</span></b><b><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  (isset($datos->persona->direccion) ? $datos->persona->direccion->nroCalle : null) }}</span></b><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>, comuna de
 </span></b><b><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  $datos->persona->direccion->comuna->nombreComu }}</span></b><b><span lang=ES-TRAD style='font-size:10.0pt;font-family:
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{  (isset($datos->persona->direccion->comuna) ? $datos->persona->direccion->comuna->nombreComu : null) }}</span></b><b><span lang=ES-TRAD style='font-size:10.0pt;font-family:
 "Arial",sans-serif'> </span></b></p>
 
 <p class=MsoNormal><span lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></p>
