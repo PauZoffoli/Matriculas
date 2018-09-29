@@ -867,7 +867,7 @@ normal'><span style='font-family:"Arial",sans-serif;mso-font-kerning:72.0pt'><sp
 style='mso-element:field-end'></span></span></b><![endif]--><span
 style='font-family:"Arial",sans-serif;mso-font-kerning:72.0pt'>, comparecen: <b
 style='mso-bidi-font-weight:normal'>FUNDACIÓN EDUCACIONAL COLEGIO IDOP </b>, RUT número
-setenta y cinco millones ciento cincuenta y cuatro mil quinientos noventa y seis guión k;
+sesenta y cinco millones ciento cincuenta y cuatro mil quinientos noventa y seis guión k;
 representado legalmente por don Manuel Mundaca Martínez, chileno, soltero,
 profesor de Estado de Física y Matemática, cédula nacional de identidad número doce millones ochocientos ochenta mil setecientos cuatro guión siete, todos
 domiciliados en calle Vicuña Mackenna número trescientos dieciséis, comuna de <st1:PersonName
