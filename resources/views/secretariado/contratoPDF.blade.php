@@ -829,7 +829,7 @@ ul
   field-begin'></span><span style='mso-spacerun:yes'> </span>MERGEFIELD
   &quot;Ncont&quot; <span style='mso-element:field-separator'></span></span><![endif]--><span
   lang=ES-TRAD><span style='font-size:12.0pt;
-  mso-bidi-font-size:11.0pt;'>00266</span></span><!--[if supportFields]><span
+  mso-bidi-font-size:11.0pt;'>{{ $primerContrato->id }}</span></span><!--[if supportFields]><span
   lang=ES-TRAD><span style='mso-element:field-end'></span></span><![endif]--><span
   lang=ES-TRAD><span style='mso-spacerun:yes'>   </span></span></p>
   </td>

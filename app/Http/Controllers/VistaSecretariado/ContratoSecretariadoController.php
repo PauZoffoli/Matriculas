@@ -52,43 +52,43 @@ class ContratoSecretariadoController extends AppBaseController
                 //$request->request->add(['idApoderado'=>$idApo]);
                 $input = $request->all();
                 //dd($input);
-                $contrato = Contrato::where('idApoderado',$input['idApoderado']);
-                //dd($contrato);
-                if(empty($contrato))
+                $primerContrato = Contrato::where('idApoderado',$input['idApoderado'])->first();
+                //$contrato->id;
+                //dd($request->all());
+                if(is_null($primerContrato))
                 {
-                    $contrato = $this->contratoRepository->create($input);
+                    $primerContrato = $this->contratoRepository->create($input);
                     Flash::success('Contrato creado correctamente.');
+                }else{
+                    $primerContrato = $this->contratoRepository->update( $input, $primerContrato->id );
                 }
-
-                $contrato = $this->contratoRepository->create($input);
-                    Flash::success('Contrato creado correctamente.');
+//dd($primerContrato->id);
+               
                 
                 $apoderado = Apoderado::where('id', $request->idApoderado)->first();
                 //dd($apoderado);
-                $vista = view('secretariado/contratoPDF')->with('datos',$apoderado);
+                $vista = view('secretariado/contratoPDF')->with('datos',$apoderado)->with('primerContrato',$primerContrato);
                 //dd($request->all());
-                //dd($apoderado->alumnos);
+                //dd($input);
 
                 $pdf = \PDF::loadHTML($vista);
                 //dd($pdf);
                 $pdf->setPaper("legal","portrait");
 
                   //GUARDAMOS EL PDF EN NUESTROS ARCHIVOS
-               /** if ($pdf!= null) {
+                if ($pdf!= null) {
                     $output = $pdf->output();
-                    $nombreArchivo = $contrato->id . '-'. $estado. '-'. $apoderado['rut'] . '.pdf'; 
+                    $nombreArchivo = $primerContrato->id . '-'. $apoderado->persona->rut . '-'. $input['fechaContrato'] . '.pdf'; 
                 try {
 
                      file_put_contents('../storage/app/PDF2019Matriculas/'.$nombreArchivo, $output);
                 }catch (Exception $e) {
                     Flash::success('ERROR DE RUTA O PERMISOS A STORAGE');
-                return redirect(route('secretariado.indexContrato'));
+                return redirect(route('apoSecretariadoContr.index'));
                 }
-            }**/
+            }
         
-    
-            
-                return $pdf->stream('pdfContrato');
+            return $pdf->stream('pdfContrato');
                 //return redirect(route('contratos.index'))   
             break;
 

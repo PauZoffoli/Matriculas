@@ -81,6 +81,6 @@ class Contrato extends Model
      **/
     public function apoderado()
     {
-        return $this->belongsTo(\App\Models\Apoderado::class);
+        return $this->belongsTo(\App\Models\Apoderado::class, 'idApoderado');
     }
 }
