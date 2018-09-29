@@ -245,7 +245,11 @@ class LoopAlumnosController extends AppBaseController
         }
 
 
-        $persona->alumno->repitencia()->sync($request->repitencia); //AGREGAMOS LOS DATOS PIVOTE DE LAS REPITENCIAS https://stackoverflow.com/questions/23968415/laravel-eloquent-attach-vs-sync 
+       // $persona->alumno->repitencia()->sync($request->repitencia); //AGREGAMOS LOS DATOS PIVOTE DE LAS REPITENCIAS https://stackoverflow.com/questions/23968415/laravel-eloquent-attach-vs-sync 
+
+//$persona->alumno->repitencia()->syncWithoutDetaching('idAlumno',$request->repitencia);
+        //$persona->alumno->repitencia()->sync($request->repitencia);
+       $persona->alumno->repitencia()->sync($request->repitencia); 
         $request->request->add(['alumno[repitencias]' => $persona->alumno->repitencia()->count()]); //cambiamos el valor del request"repitencias que tiene el número de repitencias del alumno"
  
 

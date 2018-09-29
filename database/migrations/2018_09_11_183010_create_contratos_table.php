@@ -20,10 +20,10 @@ class CreateContratosTable extends Migration
             $table->integer('idApoderado')->unsigned()->nullable($value = true);
             $table->foreign('idApoderado')->references('id')->on('apoderados');
 
-            $table->string('urlContrato');
-            $table->string('urlPagare');
-            $table->string('urlContratoF'); //refiere al contrato firmado
-            $table->string('urlPagareF'); //refiere al pagare firmado
+            $table->string('urlContrato')->nullable();
+            $table->string('urlPagare')->nullable();
+            $table->string('urlContratoF')->nullable(); //refiere al contrato firmado
+            $table->string('urlPagareF')->nullable(); //refiere al pagare firmado
 
             $table->integer('nroCuotas');
 
