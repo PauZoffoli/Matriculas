@@ -36,7 +36,7 @@ class HomeController extends Controller
         
         //Modelo de Auth está directamente en APP y no en app/models
         if(Auth::user()->hasRole('Secretariado')) {
-             return redirect('apoderadosPostulantes');
+             return redirect('apoSecretariadoContr');
         }
 
         $persona = Auth::user()->personas->first();

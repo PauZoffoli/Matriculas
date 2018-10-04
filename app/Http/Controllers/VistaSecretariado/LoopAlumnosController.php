@@ -131,7 +131,7 @@ class LoopAlumnosController extends AppBaseController
      */
     public function update($id, UpdateAlumnoRequest $request) //Debería cambiar la request
     {
-    
+   
 
         $persona = $this->checkIfExist($id); //Chequeamos si es que las entidades que necesitamos existen
 
@@ -245,11 +245,9 @@ class LoopAlumnosController extends AppBaseController
         }
 
 
-       // $persona->alumno->repitencia()->sync($request->repitencia); //AGREGAMOS LOS DATOS PIVOTE DE LAS REPITENCIAS https://stackoverflow.com/questions/23968415/laravel-eloquent-attach-vs-sync 
+  
 
-//$persona->alumno->repitencia()->syncWithoutDetaching('idAlumno',$request->repitencia);
-        //$persona->alumno->repitencia()->sync($request->repitencia);
-       $persona->alumno->repitencia()->sync($request->repitencia); 
+        $persona->alumno->repitencia()->sync($request->repitencia); //AGREGAMOS LOS DATOS PIVOTE DE LAS REPITENCIAS https://stackoverflow.com/questions/23968415/laravel-eloquent-attach-vs-sync 
         $request->request->add(['alumno[repitencias]' => $persona->alumno->repitencia()->count()]); //cambiamos el valor del request"repitencias que tiene el número de repitencias del alumno"
  
 
@@ -263,7 +261,6 @@ class LoopAlumnosController extends AppBaseController
 
         $alumno = Helper::updateThis($this->alumnoRepository,$request->alumno, $persona->alumno->id);
         Helper::updateThis($this->fichaAlumnoRepository, $request->fichaAlumno[0], $idFicha->id);
-
               
         //------------>6)Jugamos con las variables de sesión para ir cerrando el proceso de matrícula
         //********************************************

@@ -7,6 +7,12 @@
 @endif
 @endif
 
+@if( auth()->user()->hasRole('Secretariado') === true)
+    <li class="{{ Request::is('Secretariado*') ? 'active' : '' }}">
+    <a href="{!! route('apoSecretariadoContr.index') !!}"><i class="fa fa-edit"></i><span>Alumnos</span></a>
+</li>
+@endif
+
 @if( auth()->user()->hasRole('Administrador') === true)
 <li class="{{ Request::is('apoderadosPostulantes*') ? 'active' : '' }}">
     <a href="{!! route('apoderadosPostulantes.edit', Auth::user()->personas->first()->id) !!}"><i class="fa fa-edit"></i><span>Apoderados Postulantes</span></a>
