@@ -30,7 +30,7 @@
 @php
   $var = 'alumnosPostulantesRevisor'
 @endphp
- @if ((strpos( url()->previous(),'apoSecretariadoContr')))
+ @if ((strpos( url()->current(),'alumnosPostulantes')))
    @php
    $var = 'alumnosPostulantesRevisor'
    @endphp
