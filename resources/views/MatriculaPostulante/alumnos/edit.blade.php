@@ -30,9 +30,9 @@
 @php
   $var = 'alumnosPostulantesRevisor'
 @endphp
- @if ((strpos( url()->current(),'alumnosPostulantes')))
+ @if ((strpos( url()->current(),'/alumnosPostulantes/')))
    @php
-   $var = 'alumnosPostulantesRevisor'
+   $var = 'alumnosPostulantes'
    @endphp
 @endif
 

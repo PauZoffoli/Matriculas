@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
      <link rel="icon" href="{{ asset('images/LogoGrandeIdop.jpg') }}">
      
-   <script src="jquery-3.3.1.min.js"></script>
+   <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
 
     @yield('css')
 
@@ -187,12 +187,9 @@
      var cantidadDeContactos = document.getElementById("cantidadDeContactos");
 
       function cantContactos(){
-        if(cantidadDeContactos.value==null || cantidadDeContactos.value=='' || cantidadDeContactos.value=='0'){    
+        if(cantidadDeContactos.value===null || cantidadDeContactos.value==='' || cantidadDeContactos.value==='0'){    
             document.getElementById("headerPrimerContacto").style.display = "none";
             $('#headerPrimerContacto').find('input, textarea, button, select').attr('disabled','disabled');
-
-
-
             document.getElementById("headerSegundoContacto").style.display = "none";
             $('#headerSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
            
@@ -503,25 +500,47 @@
 
 </html>
 
+<script type="text/javascript">
+    function onChangeIfNotNull($esNulo, $metodoAEjecutar){
+        //si no es nulo ejecutar la función on change
+
+        if(document.getElementById($esNulo)!==null){//Cuando el elemento no es null, trae un objeto select completo. 
+            document.getElementById($esNulo).onchange = $metodoAEjecutar
+        }
+    }
+
+    function actionIfNotNull($esNulo, fn){
+        //si no es nulo ejecutar el método
+        if(document.getElementById($esNulo)!==null){
+            if(fn){
+                fn()
+            }
+        }
+    }
+</script>
+
+
 <script>
 function start() {
-    cantContactos();
-   changeCantidadRepitencias();
-   primerContacto();
-   segundoContacto();
-   apoderadoPadreOMadre();
 
+actionIfNotNull('cantidadDeContactos', cantContactos)
+actionIfNotNull('enumerator',changeCantidadRepitencias)
+actionIfNotNull('padreOMadrePC',primerContacto)
+actionIfNotNull('padreOMadreSC',segundoContacto)
+actionIfNotNull('alumno[parentesco]',apoderadoPadreOMadre)
 
 }
 </script>
+
+
 <script>
 //https://stackoverflow.com/questions/9902002/javascript-how-to-run-the-same-function-onload-and-onchange
 window.onload = start; //primero va el onload
-document.getElementById('cantidadDeContactos').onchange = cantContactos;
-document.getElementById('enumerator').onchange = changeCantidadRepitencias;
-document.getElementById('padreOMadrePC').onchange = primerContacto;
-document.getElementById('padreOMadreSC').onchange = segundoContacto;
-document.getElementById('alumno[parentesco]').onchange = apoderadoPadreOMadre; 
+
+onChangeIfNotNull('cantidadDeContactos',cantContactos);
+onChangeIfNotNull('enumerator',changeCantidadRepitencias);
+onChangeIfNotNull('padreOMadrePC',primerContacto);
+onChangeIfNotNull('padreOMadreSC',segundoContacto);
+onChangeIfNotNull('alumno[parentesco]',apoderadoPadreOMadre);
 
 </script>
-

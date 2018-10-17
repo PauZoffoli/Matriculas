@@ -140,6 +140,13 @@ $idUserTXT = $asd;*/
 
 @endif
 
+@if(isset($fechaDefuncionLBL))
+<div class="form-group col-sm-3 {{ $errors->has('fechaDefuncionLBL') ? ' has-error' : '' }}">
+    {!! Form::label('fechaDefuncionLBL', 'Fecha de Defunción:') !!}
+    {!! Form::date($fechaDefuncionLBL, (isset($fechaDefuncionTXT) && $fechaDefuncionTXT ? Carbon\Carbon::parse($fechaDefuncionTXT)->format('Y-m-d')  : null), ['class' => 'form-control', 'placeholder' => 'dd-mm-YYYY']) !!}
+</div>
+@endif 
+
 @if(isset($parentescoLBL)) <!--SI EL APODERADO ES PADRE, PUESTO ASÍ LO ESCOGIO EN EL PARENTESCO-->
 @if($parentescoLBL == "padre[parentesco]" )
     <!-- Parentesco Field -->

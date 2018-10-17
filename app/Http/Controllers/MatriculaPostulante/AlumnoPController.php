@@ -19,7 +19,7 @@ use App\Repositories\DireccionRepository;
 use App\Http\Requests\CreateAlumnoResponsableRequest;
 use App\Http\Requests\UpdateAlumnoResponsableRequest;
 use App\Repositories\AlumnoResponsableRepository;
-
+use Illuminate\Support\Arr;
 use App\Repositories\PersonaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -259,12 +259,13 @@ echo $f->format(1432);
 
             //*-->-------->UPDATE DIRECCION
         $direccion =Helper::updateThis($this->direccionRepository,$request->direccion, $persona->direccion->id);
-        unset($request['direccion']); //Produce el error array to string, por eso direccion se borra antes
+     
         $request->request->add(['idDireccion' => $direccion->id]); //guardamos el id de la dirección updateada
 
-        $persona = $this->personaRepository->update($request->all(), $id);
+        //https://stackoverflow.com/questions/38664845/exclude-laravel-specific-values-from-request
+        $persona = $this->personaRepository->update($request->except('direccion'), $id);
 
-        $alumno = Helper::updateThis($this->alumnoRepository,$request->alumno, $persona->alumno->id);
+        $alumno = Helper::updateThis($this->alumnoRepository,Arr::except($request->only('alumno'), 'idCursoPostu')), $persona->alumno->id);
         Helper::updateThis($this->fichaAlumnoRepository, $request->fichaAlumno[0], $idFicha->id);
        
         //------------>6)Jugamos con las variables de sesión para ir cerrando el proceso de matrícula
