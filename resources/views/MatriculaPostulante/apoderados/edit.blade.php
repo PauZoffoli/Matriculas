@@ -9,11 +9,7 @@
  <div class="content">
 
 <!--CAPTURANDO LA VARIABLE DE ERROR QUE VIENE DDESDE EL CONTROLADOR-->
-@if(session()->has('error'))
-    <div class="alert alert-danger">
-        {{ session()->get('error') }}
-    </div>
-@endif
+
 
        @include('adminlte-templates::common.errors')
         <div class="box-header with-border">
@@ -56,7 +52,7 @@
   <tr>
         <td  style="width:10%;" >
         
-       {{ Form::checkbox('alumnosCheck['. $index++ .']', $alumno, $persona->apoderado->alumnos->contains($alumno->id),array('checked'=>'true','style' => "width: 30px; height: 30px;") ) }}
+       {{ Form::checkbox('alumnosCheck['. $index++ .']', $alumno->idPersona, $persona->apoderado->alumnos->contains($alumno->id),array('checked'=>'true','style' => "width: 30px; height: 30px;") ) }}
        </td>
     <td style="height: 50%; ">    <center> {{ Form::label('alumno', $alumno->persona->PNombre . ' ' . $alumno->persona->ApPat . ' ' . $alumno->persona->rut  ) }} </center></td>
   </tr>

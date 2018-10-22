@@ -11,7 +11,7 @@ use App\Models\Tipo;
 use App\Models\Persona;
 use App\Models\Alumno;
 use Flash;
-
+use Illuminate\Support\Facades\Redirect;
 
 class Helper extends Controller 
 {
@@ -21,24 +21,7 @@ class Helper extends Controller
        
     }
 	
-    //https://stackoverflow.com/questions/18945998/laravel-validation-does-not-work-always-fails
-    /*
-    Validamos y capturamos los mensajes de errores de manera custom
-    
-    public static function manualValidation($request, $validate, $message){
-//dd(($validate->rules()));
-      $validateRole =  Validator::make($request[0],$validate->rules());
 
-      if ( $validateRole->fails()){
-        $errorString = $message . '<br>+';
-        $errorString =$errorString . implode("<br>+",$validateRole->messages()->all());
-        return $errorString;
-      }
-      
-      return null;
-
-    }
-    */
     
     public static function createPivot($repository, $request , $idAlumno, $relacion, $condicion){
       $responsable = $repository->create($request);
@@ -111,15 +94,6 @@ class Helper extends Controller
         
     }
 
-   /* public static function checkthisValue($value, $quien, $urlRedireccion){
-        
-        if (empty($value)) {
-            Flash::error('La persona no tiene un ' . $quien . ' asociado!');
-            return redirect(route($urlRedireccion))->send();
-        }
-        return $value;
-    }*/
-
     //CHEQUEA A LA PERSONA
     public static function checkthis($repository, $id, $quien){
         $value = $repository->findWithoutFail($id);
@@ -154,6 +128,7 @@ class Helper extends Controller
     }
     
     //Chequea y trae el objeto del índice que se le indique
+    /*DEPRECADO DEL CONTROLLER APODERADOPCONTROLLER*/
     public static function obtainObject($nombre, $request, $numero, $url, $message,$id){
 
 
@@ -175,6 +150,26 @@ class Helper extends Controller
        return null;
    }
 
+  /////retorna el primer objeto JSON eg: "de lo chequeado por el apoderado", o de lo contrario lanza error y nos retorna a la url actual
+    public static function obtainFirstObject($arrayOfIDs, $numero,$id){
+
+       if( !isset( $request[$arrayOfIDs])) {     
+           return null;
+       }
+       dd("OK");
+
+       $NewArray = array_values(array_filter($request[$arrayOfIDs])); //los nulos del array se eliminan y se cambian los índices, formando un 
+
+       if( !isset( $NewArray[$numero])) { //queremos saber si se salió del ofset
+             return null; 
+       }
+
+       if( $NewArray[$numero]!=null){ 
+            return json_decode( $NewArray[$numero]); //sobre ese nuevo array buscamos el número que necesitamos
+        }
+       return null;
+   }
+
    //Chequea y trae todos los objetos del índice que se le indique
    //Elimina los nulos y reordena los índices
     public static function obtainAllObjects($nombre, $request){
@@ -184,11 +179,13 @@ class Helper extends Controller
        }
 
        $NewArray = array_values(array_filter($request[$nombre])); //los nulos del array se eliminan y se cambian los índices, formando un 
+      
        return  $NewArray ;
    }
 
    //Chequea y trae todos los objetos del índice que se le indique
    //Elimina los nulos y reordena los índices
+   //*DEPRECADO, PERO PUEDE SER UTIL*
     public static function deleteFirst($arrays){
 
       if($arrays!=null){
@@ -337,35 +334,31 @@ class Helper extends Controller
 
 //CUIDADO CON ESTA FUNCIÓN, CUALQUIERA QUE NO SEA PADRE O MADRE DE ESE ALUMNO LO VA A BORRAR
   //TAMBIÉN CAMBIA LOS ID DEL ALUMNORELACION
-public static function existeRelacionPorParentesco($idAlumno, $padreExistente, $madreExistente, $parentesco){
+  public static function existeRelacionPorParentesco($idAlumno, $padreExistente, $madreExistente, $parentesco){
 
-       $alumno = new Alumno;
-       $alumno->id = $idAlumno;
-       $persona = new Persona;
-       $persona->id = $padreExistente->id;
-     $alResp = new AlumnoResponsable;
-    $alResp->parentesco = $parentesco; 
+   $alumno = new Alumno;
+   $alumno->id = $idAlumno;
+   $persona = new Persona;
+   $persona->id = $padreExistente->id;
+   $alResp = new AlumnoResponsable;
+   $alResp->parentesco = $parentesco; 
 
 //$alumno->alumnoResponsables()->wherePivot('parentesco' ,'=', $parentesco)->sync([$idAlumno => ['parentesco' =>$alResp->parentesco ]]);
 
 
-$alumno->alumnoResponsableParent()->syncWithoutDetaching(
+   $alumno->alumnoResponsableParent()->syncWithoutDetaching(
 
-array( 
-    $padreExistente->id  => array( 'parentesco' => "Padre" ),
-    $madreExistente->id  => array( 'parentesco' => "Madre" )
-    
-));
-$alumno->alumnoResponsableParent()->sync(array( $padreExistente->id ,
+    array( 
+      $padreExistente->id  => array( 'parentesco' => "Padre" ),
+      $madreExistente->id  => array( 'parentesco' => "Madre" )
+
+    ));
+   $alumno->alumnoResponsableParent()->sync(array( $padreExistente->id ,
     $madreExistente->id )
-    
-);
 
-  
+ );
 
-
-
-  }
+ }
 
 //verifica si ese parentesco o Contacto ya existe, para poder editarlo
   public static function yaExisteElParentesco($alumno, $responsable, $repository, $parentesco, $contacto){

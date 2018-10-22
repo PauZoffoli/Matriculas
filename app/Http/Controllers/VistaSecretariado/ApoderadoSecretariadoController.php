@@ -97,7 +97,7 @@ class ApoderadoSecretariadoController extends AppBaseController
       //  $this->authorize('pass', $persona);
 
 
-        return view('secretariado.apoderados.edit')->with('persona', $persona); //vamos a la vista edit de apoderados, pero este redirige al controller update 
+        return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona); //vamos a la vista edit de apoderados, pero este redirige al controller update 
 
     }
 

@@ -222,9 +222,6 @@ class LoopAlumnosController extends AppBaseController
         ///----->>>>>4) SINCRONIZAMOS los datos de padres y madres del contacto, evitando que pueda haber más de un padre
         //o el regristro es borrado 
         Helper::existeRelacionPorParentesco($request->alumno['id'] , $padreExistente,  $madreExistente, "Padre");
-      
-
-     // dd($request->all());
 
         if($persona->alumno->fichaAlumno==null){ //Si el alumno no tiene una ficha asociada, se le crea en el momento
             $fichaAlumno = $this->fichaAlumnoRepository->create($request->fichaAlumno[0]);
@@ -259,20 +256,28 @@ class LoopAlumnosController extends AppBaseController
 
         $persona = $this->personaRepository->update($request->all(), $id);
 
+
         $alumno = Helper::updateThis($this->alumnoRepository,$request->alumno, $persona->alumno->id);
         Helper::updateThis($this->fichaAlumnoRepository, $request->fichaAlumno[0], $idFicha->id);
               
         //------------>6)Jugamos con las variables de sesión para ir cerrando el proceso de matrícula
         //********************************************
         $todosLosAlumnos = $request->session()->get('todosLosAlumnos');
-        $todosLosAlumnos =  Helper::deleteFirst($todosLosAlumnos); //Borramos el primer elemento del array, que fue el que acabamos de utilizar y updatear
+        dd(json_decode($todosLosAlumnos));
+        //array_search($id, array_column($todosLosAlumnos, 'id'))
+        dd($todosLosAlumnos);
+        return redirect()->route('alumnosPostulantes.edit', json_decode($todosLosAlumnos[0])->idPersona);
+        
 
-        if ($todosLosAlumnos!=null) {
-           
-           // \Session::flash('flash_message','Alumno editado exitósamente.');
-            $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los alumnos que nos van quedando en la misma variable
-            return redirect()->route('alumnosPostulantes.edit', json_decode($todosLosAlumnos[0])->idPersona);
-        }
+//Metodo que recorra todos los alumnos que escogió ese apoderado
+
+//cada vez que aprete siguiente preguntar cual es la ruta actual
+
+//si la ruta actual es alguna de las encontradas,  llevarlo a la siguiente
+        //si la ruta encontrada es la última llevarlo a la generación del contrato
+
+//si la ruta actual no es encontrada como seleccionada, devolver error
+
         session()->forget('todosLosAlumnos'); //cuando quede ningún alumno en la variable la olvidaremos
         session()->forget('apoderadoAlumnos');
 
@@ -284,7 +289,6 @@ class LoopAlumnosController extends AppBaseController
         //Auth::logout();
 
          $idAlumnos = $request->session()->get('idAlumnos'); //Regresa una cadena json ALUMNO() con todos alumnos seleccionados.Esta nace desde el controller MatriculasPostulante\ApoderadoPController
-        //dd($idAlumnos); 
         $alumnosSeleccionados = [];
         foreach ($idAlumnos as $key) {
             $alumno = $this->alumnoRepository->findWithoutFail(json_decode($key)->id);

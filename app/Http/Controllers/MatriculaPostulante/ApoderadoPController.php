@@ -91,7 +91,7 @@ class ApoderadoPController extends AppBaseController
      */
     public function update($id, CreatePersonaRequest $request) //Debería cambiar la request
     {
-        $url =url()->previous();
+        $url =url()->previous(); //Será ocupada más tarde
         $persona = $this->checkIfExist($id); //Chequeamos todas las clases que necesitemos antes, y pasamos por parámetro a persona.
 
         //Si la persona no tiene una dirección, crearla
@@ -128,13 +128,18 @@ if ($validate!=null) {
         //////////////////////ALUMNOS SELECCIONADOS/////////////////
         ////////////////////////////////////////////////////////////
         //Una vez updateado todo procedemos a guardar los datos en una variable de sessión
-        if(strpos($url,'apoSecretariadoContr')){
-            $primerAlumno = Helper::obtainObject('alumnosCheck', $request, 0, 'apoSecretariadoContr.edit', 'Usted no ha escogido ningún alumno.', $id); //Acá guardamos el primer objeto de los alumnos seleccionado por el apoderado, si no ha escogido el primer alumno significa que no escogió ninguno, por lo que se le despliega un mensaje
-        }else{
-            $primerAlumno = Helper::obtainObject('alumnosCheck', $request, 0, 'apoderadosPostulantes.edit', 'Usted no ha escogido ningún alumno.', $id); //Acá guardamos el primer objeto de los alumnos seleccionado por el apoderado, si no ha escogido el primer alumno significa que no escogió ninguno, por lo que se le despliega un mensaje
-        }
+       
+            $primerAlumno = Helper::obtainFirstObject($request['alumnosCheck'] , 0 , $id); //retorna el primer objeto JSON de lo chequeado por el apoderado, o de lo contrario retorna null
+dd($primerAlumno);
+            if(!$primerAlumno){ //Redirecciona si no existe el primer alumno
+                Flash::error('Usted no ha escogido ningún alumno.');
 
+                return redirect()->route('apoderadosPostulantes.edit', $id)->withErrors(['Feo'])->withInput();
+                //return redirect(route('apoderadosPostulantes.edit', $id));
+              } 
+            
 
+dd($request->all());
         $todosLosAlumnos =   Helper::obtainAllObjects('alumnosCheck', $request) ; //obtenemos array de todos los alumnos seleccionados.
         
         $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los alumnos checkeados por el apoderado en una variable de sesión, esta variable se irá borrando en la medida que se ocupe

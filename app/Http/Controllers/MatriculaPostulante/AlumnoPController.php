@@ -265,7 +265,8 @@ echo $f->format(1432);
         //https://stackoverflow.com/questions/38664845/exclude-laravel-specific-values-from-request
         $persona = $this->personaRepository->update($request->except('direccion'), $id);
 
-        $alumno = Helper::updateThis($this->alumnoRepository,Arr::except($request->only('alumno'), 'idCursoPostu')), $persona->alumno->id);
+        $alumno = Helper::updateThis($this->alumnoRepository,Arr::except($request->only('alumno'), 'idCursoPostu'), $persona->alumno->id);
+
         Helper::updateThis($this->fichaAlumnoRepository, $request->fichaAlumno[0], $idFicha->id);
        
         //------------>6)Jugamos con las variables de sesión para ir cerrando el proceso de matrícula
