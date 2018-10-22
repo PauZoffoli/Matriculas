@@ -143,7 +143,7 @@ class ApoderadoPController extends AppBaseController
         Flash::success('Apoderado editado exitósamente.'); //Definimos un mensaje de éxito
 
         
-dd(Auth::user());
+
         return redirect()->route('alumnosPostulantes.edit',  $primerAlumno); //vamos a editar el primer alumno de la lista, mediante su id de Persona
     }
 

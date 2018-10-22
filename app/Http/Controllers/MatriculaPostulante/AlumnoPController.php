@@ -93,40 +93,7 @@ echo $f->format(1432);
     public function edit($id)
     {
 
-        $persona = $this->checkIfExist($id);
-       //Metodo para que no cambien id en el link
-      //  $var = $persona->alumno->apoderadoValidation->persona;
-        //$this->authorize('pass', $var);
-
-        $responsables = null;
-        $padre = null;
-        $madre = null;
-           
-
-         //Los responsables de ese alumno es: $persona->alumno->alumnoResponsables
-        //Acceder a los datos de AlumnoResponsable $persona->alumno->alumnoResponsables[0]->pivot->parentesco
-        //acceder al padre $value->pivot->pivotParent;
-        if (!$persona->alumno->alumnoResponsables->isEmpty()) { //Si no está vacío es por que tiene responsables
-
- 
-            foreach ($persona->alumno->alumnoResponsables as $key => $value) {
-
-                if( $value->pivot->parentesco == "Padre"){ //si es padre el $request padre será esa persona (pivotParent)
-                
-                    $padre = $value->pivot->idPersona;
-                    $padre = $this->personaRepository->findWithoutFail($padre); //Buscamos a la persona padre relacionada
-                }
-                if( $value->pivot->parentesco == "Madre"){
-                    $madre = $value->pivot->idPersona;
-                    $madre = $this->personaRepository->findWithoutFail($madre);
-                    
-                }
-                
-            }
-        }
-
-
-        return view('MatriculaPostulante.alumnos.edit')->with('persona', $persona)->with('padre',$padre)->with('madre',$madre);
+        return view('MatriculaPostulante.alumnos.edit')->with('id', $id);
 
     }
 

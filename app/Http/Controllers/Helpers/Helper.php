@@ -93,16 +93,21 @@ class Helper extends Controller
         }
         
     }
-
-    //CHEQUEA A LA PERSONA
+    //USADO EN ALUMNOEDITCOMPOSER
+    //encuentra si el id de la persona existe en la bd
     public static function checkthis($repository, $id, $quien){
         $value = $repository->findWithoutFail($id);
-        
-        if (empty($value)) {
-            Flash::error($quien . '  no se encontró!');
-            return redirect(route('home'))->send();
-        }
+        self::notFoundErrorMessageHome($value, $quien);
         return $value;
+    }
+
+     //USADO EN ALUMNOEDITCOMPOSER
+    //devuelve un error si no hay valor en el $value
+    public static function notFoundErrorMessageHome($value, $quien){
+        if (empty($value)) {
+           Flash::error($quien . '  no se encontró!');
+           return redirect(route('home'))->send();
+        }       
     }
 
     public static function updateThis($repository, $request, $id){

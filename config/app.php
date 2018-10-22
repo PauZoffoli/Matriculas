@@ -163,11 +163,14 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         /*CUSTOM*/
-   Collective\Html\HtmlServiceProvider::class,
-Laracasts\Flash\FlashServiceProvider::class,
-Prettus\Repository\Providers\RepositoryServiceProvider::class,
-\InfyOm\Generator\InfyOmGeneratorServiceProvider::class,
-\InfyOm\AdminLTETemplates\AdminLTETemplatesServiceProvider::class,  
+        Collective\Html\HtmlServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        \InfyOm\Generator\InfyOmGeneratorServiceProvider::class,
+        \InfyOm\AdminLTETemplates\AdminLTETemplatesServiceProvider::class,  
+
+        /*view composer laravel*/
+        App\Providers\ComposerAlumnoMatriculaEditServiceProvider::class,
 
     ],
 
