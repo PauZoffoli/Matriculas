@@ -91,12 +91,9 @@ class ApoderadoPController extends AppBaseController
      */
     public function update($id, CreatePersonaRequest $request) //Debería cambiar la request
     {
-        $url =url()->previous(); //Será ocupada más tarde
         $persona = $this->checkIfExist($id); //Chequeamos todas las clases que necesitemos antes, y pasamos por parámetro a persona.
-
         //Si la persona no tiene una dirección, crearla
         if(!isset($persona->direccion->id)){
-
            $direccion = $this->direccionRepository->create($request->direccion);
            $request->request->add(['direccion' => $direccion->toArray()]);
            $persona->direccion = $direccion;
@@ -111,14 +108,13 @@ class ApoderadoPController extends AppBaseController
 
         /*Se valida antes de updatear
         */
-
                //Primero que todo validamos el modelo de DireccioneS
-$validate = $this->validaciones($request); // Primero hay que hacer las validaciones de las clases que no se validan en el request de los parámetros de la función
-if ($validate!=null) {
-  throw ValidationException::withMessages([
-      $validate,
-  ]);
-}
+        $validate = $this->validaciones($request); // Primero hay que hacer las validaciones de las clases que no se validan en el request de los parámetros de la función
+        if ($validate!=null) {
+            throw ValidationException::withMessages([
+              $validate,
+             ]);
+        }
 
         $request->request->add(['idDireccion' => $direccion->id]); //guardamos el id de la dirección updateada
         $persona = $this->personaRepository->update($request->all(), $id);
@@ -128,37 +124,27 @@ if ($validate!=null) {
         //////////////////////ALUMNOS SELECCIONADOS/////////////////
         ////////////////////////////////////////////////////////////
         //Una vez updateado todo procedemos a guardar los datos en una variable de sessión
-       
-            $primerAlumno = Helper::obtainFirstObject($request['alumnosCheck'] , 0 , $id); //retorna el primer objeto JSON de lo chequeado por el apoderado, o de lo contrario retorna null
-dd($primerAlumno);
-            if(!$primerAlumno){ //Redirecciona si no existe el primer alumno
-                Flash::error('Usted no ha escogido ningún alumno.');
+            $primerAlumno = Helper::obtainSelectedObject($request['alumnosCheck'] , 0 , $id); //retorna el id del primer alumno seleccionado
 
-                return redirect()->route('apoderadosPostulantes.edit', $id)->withErrors(['Feo'])->withInput();
-                //return redirect(route('apoderadosPostulantes.edit', $id));
-              } 
+            if(!$primerAlumno){ //Redirecciona si no existe el primer alumno
+                $errorMessage = 'Usted no ha escogido ningún alumno.';
+                return redirect()->route('apoderadosPostulantes.edit', $id)->withErrors([$errorMessage])->withInput();
+            } 
             
 
-dd($request->all());
-        $todosLosAlumnos =   Helper::obtainAllObjects('alumnosCheck', $request) ; //obtenemos array de todos los alumnos seleccionados.
-        
-        $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los alumnos checkeados por el apoderado en una variable de sesión, esta variable se irá borrando en la medida que se ocupe
-
-        $request->session()->put('idAlumnos', $todosLosAlumnos);//Guardamos los alumnos para sacar sus id y cambiar sus estados al final del proceo de matrícula. Esta no se irá borrando.
+        $todosLosAlumnos =   $request['alumnosCheck']; //obtenemos array de todos los idPersona de los alumnos
+       
+        $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los idPersona de alumnos checkeados por el apoderado en una variable de sesión
 
         $request->session()->put('apoderadoAlumnos', $persona);//Guardamos el apoderado
 
         /////////////////////////////////////////////////////////////
 
-         Flash::success('Apoderado editado exitósamente.'); //Definimos un mensaje de éxito
+        Flash::success('Apoderado editado exitósamente.'); //Definimos un mensaje de éxito
 
-         //dependiendo de la url que venga es para donde voy, si al controller de Revisor/loop o al controler de AAlumnoPcONTROLLER
         
-
-        return redirect()->route('alumnosPostulantes.edit',  $primerAlumno->idPersona); //vamos a editar el primer alumno de la lista, mediante su id de Persona
-        
-
-
+dd(Auth::user());
+        return redirect()->route('alumnosPostulantes.edit',  $primerAlumno); //vamos a editar el primer alumno de la lista, mediante su id de Persona
     }
 
 
