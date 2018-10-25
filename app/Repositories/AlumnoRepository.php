@@ -14,7 +14,7 @@ use InfyOm\Generator\Common\BaseRepository;
  * @method Alumno find($id, $columns = ['*'])
  * @method Alumno first($columns = ['*'])
 */
-class AlumnoRepository extends BaseRepository
+class AlumnoRepository extends CommonRepository
 {
     /**
      * @var array

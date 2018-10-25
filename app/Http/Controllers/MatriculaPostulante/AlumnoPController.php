@@ -139,6 +139,7 @@ echo $f->format(1432);
          
         } 
         
+        
 
         $cantidadDeContactos = $request->fichaAlumno[0]['cantidadContactos']; //inicializamos la variable que recibimos desde la vista para usarla más adelante
 

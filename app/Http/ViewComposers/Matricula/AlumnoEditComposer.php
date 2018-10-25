@@ -16,15 +16,22 @@ class AlumnoEditComposer{
     public function __construct(PersonaRepository $personaRepo)
     {
         $this->personaRepository = $personaRepo;
- 
+        
     }
 
 
 	public function compose(View $view){
-        $id = $view->getData()['id']; //Por dos controlladores de AlumnoPcONTROLLER Y lOOPAlumnosController nos llega el id que buscamos
-        $persona = Helper::checkthis($this->personaRepository, $id, 'Persona');
-        Helper::notFoundErrorMessageHome($persona->alumno, "Alumno"); //Chequeamos que la person atenga un alumno asociado a su idPersona
 
+        $id = $view->getData()['id']; //Por dos controlladores de AlumnoPcONTROLLER Y lOOPAlumnosController nos llega el id que buscamos
+        dd($this->personaRepository->find($id));
+       // $persona = $this->personaRepository->find($id);
+        $alumno = $persona->has('alumno')->find($id);
+
+        dd($persona,  $alumno);
+   
+
+     
+dd("asd");
 //falta validar si es alumno. 
 
         //$view->getData();
@@ -58,7 +65,7 @@ class AlumnoEditComposer{
             }
         }
 
-
+        //TRA
         $view->with('persona', $persona)->with('padre',$padre)->with('madre',$madre);
 	}
 

@@ -37,6 +37,8 @@ class AlumnoSecretariadoController extends AppBaseController
        //$alumno = $this->alumnoRepository->findWithoutFail($id);
         //$alumno = $this->alumnoRepository->all()->Where('idApoderado', $id)->get();
         $alumno = Alumno::where('idApoderado', $id)->orderBy('id', 'DESC')->get();
+
+         
        //dd($alumno);
 
         if (empty($alumno)) {

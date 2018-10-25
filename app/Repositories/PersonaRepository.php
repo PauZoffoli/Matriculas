@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Persona;
 use InfyOm\Generator\Common\BaseRepository;
-
+use App\Repositories;
 /**
  * Class PersonaRepository
  * @package App\Repositories
@@ -14,7 +14,7 @@ use InfyOm\Generator\Common\BaseRepository;
  * @method Persona find($id, $columns = ['*'])
  * @method Persona first($columns = ['*'])
 */
-class PersonaRepository extends BaseRepository
+class PersonaRepository extends CommonRepository
 {
     /**
      * @var array

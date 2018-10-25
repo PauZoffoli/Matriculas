@@ -12,6 +12,7 @@ use App\Models\Persona;
 use App\Models\Alumno;
 use Flash;
 use Illuminate\Support\Facades\Redirect;
+use Response;
 
 class Helper extends Controller 
 {
@@ -57,8 +58,8 @@ class Helper extends Controller
      return $enum;
     }
     public static function getEnumValuesFromTable($table, $pValue, $sValue ) {
-
-      $enum = array();
+     
+      $enum = array(); 
       foreach ($table as $value) {
          $enum = array_add($enum, $value->id, $value->$pValue . ' ' . $value->$sValue);
      }
@@ -97,17 +98,18 @@ class Helper extends Controller
     //encuentra si el id de la persona existe en la bd
     public static function checkthis($repository, $id, $quien){
         $value = $repository->findWithoutFail($id);
-        self::notFoundErrorMessageHome($value, $quien);
+        self::hasOrRedirectHome($value, $quien);
         return $value;
     }
 
      //USADO EN ALUMNOEDITCOMPOSER
     //devuelve un error si no hay valor en el $value
-    public static function notFoundErrorMessageHome($value, $quien){
+    public static function hasOrRedirectHome($value, $quien){
         if (empty($value)) {
            Flash::error($quien . '  no se encontró!');
            return redirect(route('home'))->send();
         }       
+        return $value;
     }
 
     public static function updateThis($repository, $request, $id){
