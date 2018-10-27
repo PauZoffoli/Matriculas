@@ -64,26 +64,6 @@ class ApoderadoSecretariadoController extends AppBaseController
         
     }
 
-
-
-
- 
-    //Método para chequear un bundle de cosas básicas del controller. DEVUELVE UNA PERSONA
-    public function checkIfExist($id){
-        
-        $persona = Helper::checkthis($this->personaRepository, $id, 'Persona');
-       
-        $validate = Helper::checkthisValue($persona->apoderado, 'Apoderado');
-       // $validate = $validate . Helper::checkthisValue($persona->alumno, 'Alumno');
-        if ($validate!=null) {
-           Flash::error($validate);
-        return redirect(route('home'))->send();
-        }
-        return $persona;
-
-    }
-
-
     /**
      * Show the form for editing the specified Apoderado.
      *
@@ -93,11 +73,9 @@ class ApoderadoSecretariadoController extends AppBaseController
      */
     public function edit($id)
     {
-        $persona = $this->checkIfExist($id); //Chequeamos todas las clases que necesitemos antes.
-      //  $this->authorize('pass', $persona);
+         $persona =  $this->personaRepository->hasOneRelated('Persona', 'Apoderado', 'apoderado', $id);
 
-
-        return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona); //vamos a la vista edit de apoderados, pero este redirige al controller update 
+        return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona)->with('revisorMatriculando', true); //vamos a la vista edit de apoderados, pero este redirige al controller update 
 
     }
 

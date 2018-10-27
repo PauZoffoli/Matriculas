@@ -47,21 +47,6 @@ class ApoderadoPController extends AppBaseController
          $this->alumnoRepository = $alumnoRepo;
 
     }
-    
-    //Método para chequear un bundle de cosas básicas del controller.
-    public function checkIfExist($id){
-        
-        $persona = Helper::checkthis($this->personaRepository, $id, 'Persona');
-       
-        $validate = Helper::checkthisValue($persona->apoderado, 'Apoderado');
-       // $validate = $validate . Helper::checkthisValue($persona->alumno, 'Alumno');
-        if ($validate!=null) {
-           Flash::error($validate);
-        return redirect(route('home'))->send();
-        }
-        return $persona;
-
-    }
 
 
     /**
@@ -74,9 +59,9 @@ class ApoderadoPController extends AppBaseController
     public function edit($id)
     {
        
-        $persona = $this->checkIfExist($id); //Chequeamos todas las clases que necesitemos antes.
-      //  $this->authorize('pass', $persona);
-  
+        $persona =  $this->personaRepository->hasOneRelated('Persona', 'Apoderado', 'apoderado', $id);
+
+
         return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona);
 
     }
@@ -91,7 +76,21 @@ class ApoderadoPController extends AppBaseController
      */
     public function update($id, CreatePersonaRequest $request) //Debería cambiar la request
     {
-        $persona = $this->checkIfExist($id); //Chequeamos todas las clases que necesitemos antes, y pasamos por parámetro a persona.
+         $persona =  $this->personaRepository->hasOneRelated('Persona', 'Apoderado', 'apoderado', $id); //Chequeamos todas las clases que necesitemos antes, y pasamos por parámetro a persona.
+
+         /*
+        /*Se valida antes de updatear
+        
+               //Primero que todo validamos el modelo de DireccioneS
+        // $validate = $this->validaciones($request); 
+        // Primero hay que hacer las validaciones de las clases que no se validan en el request de los parámetros de la función
+        if ($validate!=null) {
+            throw ValidationException::withMessages([
+              $validate,
+             ]);
+        }
+         */
+
         //Si la persona no tiene una dirección, crearla
         if(!isset($persona->direccion->id)){
            $direccion = $this->direccionRepository->create($request->direccion);
@@ -105,17 +104,6 @@ class ApoderadoPController extends AppBaseController
 
         unset($request['direccion']); //Produce el error array to string, por eso direccion se borra antes de guardar persona
 
-
-        /*Se valida antes de updatear
-        */
-               //Primero que todo validamos el modelo de DireccioneS
-        $validate = $this->validaciones($request); // Primero hay que hacer las validaciones de las clases que no se validan en el request de los parámetros de la función
-        if ($validate!=null) {
-            throw ValidationException::withMessages([
-              $validate,
-             ]);
-        }
-
         $request->request->add(['idDireccion' => $direccion->id]); //guardamos el id de la dirección updateada
         $persona = $this->personaRepository->update($request->all(), $id);
         Helper::updateThis($this->apoderadoRepository, $request->apoderado, $persona->apoderado->id);
@@ -124,6 +112,8 @@ class ApoderadoPController extends AppBaseController
         //////////////////////ALUMNOS SELECCIONADOS/////////////////
         ////////////////////////////////////////////////////////////
         //Una vez updateado todo procedemos a guardar los datos en una variable de sessión
+           
+
             $primerAlumno = Helper::obtainSelectedObject($request['alumnosCheck'] , 0 , $id); //retorna el id del primer alumno seleccionado
 
             if(!$primerAlumno){ //Redirecciona si no existe el primer alumno
@@ -142,9 +132,8 @@ class ApoderadoPController extends AppBaseController
 
         Flash::success('Apoderado editado exitósamente.'); //Definimos un mensaje de éxito
 
-        
-
-        return redirect()->route('alumnosPostulantes.edit',  $primerAlumno); //vamos a editar el primer alumno de la lista, mediante su id de Persona
+       // return view('MatriculaPostulante.alumnos.edit')->with('id',$primerAlumno);
+        return redirect()->route('alumnosPostulantes.edit',  $primerAlumno); //redirige edit de a AlumnoPController, el cual a su vez va a la view composer de ViewComposers/MAtricula/AlumnoEditComposer
     }
 
 

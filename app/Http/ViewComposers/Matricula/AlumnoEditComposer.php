@@ -6,16 +6,16 @@ use App\Models\Alumno;
 use App\Models\Persona;
 use App\Http\Controllers\Helpers\Helper;
 use App\Repositories\PersonaRepository;
-
+use App\Repositories\AlumnoRepository;
 
 class AlumnoEditComposer{
 
     private $personaRepository;
-    private $alumnoRepository;
  
     public function __construct(PersonaRepository $personaRepo)
     {
         $this->personaRepository = $personaRepo;
+        
         
     }
 
@@ -23,18 +23,10 @@ class AlumnoEditComposer{
 	public function compose(View $view){
 
         $id = $view->getData()['id']; //Por dos controlladores de AlumnoPcONTROLLER Y lOOPAlumnosController nos llega el id que buscamos
-        dd($this->personaRepository->find($id));
-       // $persona = $this->personaRepository->find($id);
-        $alumno = $persona->has('alumno')->find($id);
-
-        dd($persona,  $alumno);
-   
-
      
-dd("asd");
-//falta validar si es alumno. 
+        ///------>1)Validamos que existan persona y alumno o se caen
+        $persona =  $this->personaRepository->hasOneRelated('Persona', 'Alumno', 'alumno', $id);
 
-        //$view->getData();
         //Metodo para que no cambien id en el link
         //  $var = $persona->alumno->apoderadoValidation->persona;
         //$this->authorize('pass', $var);
@@ -43,29 +35,16 @@ dd("asd");
         $padre = null;
         $madre = null;
            
-        //Los responsables de ese alumno es: $persona->alumno->alumnoResponsables
-        //Acceder a los datos de AlumnoResponsable $persona->alumno->alumnoResponsables[0]->pivot->parentesco
-        //acceder al padre $value->pivot->pivotParent;
-        if (!$persona->alumno->alumnoResponsables->isEmpty()) { //Si no está vacío es por que tiene responsables
+        //------>2)En caso de que el alumno tenga responsables, traer su padre y su madre
+        if (!$persona->alumno->alumnoResponsables->isEmpty()) { 
 
- 
-            foreach ($persona->alumno->alumnoResponsables as $key => $value) {
+            $responsables = $persona->alumno->alumnoResponsables; 
 
-                if( $value->pivot->parentesco == "Padre"){ //si es padre el $request padre será esa persona (pivotParent)
-                
-                    $padre = $value->pivot->idPersona;
-                    $padre = $this->personaRepository->findWithoutFail($padre); //Buscamos a la persona padre relacionada
-                }
-                if( $value->pivot->parentesco == "Madre"){
-                    $madre = $value->pivot->idPersona;
-                    $madre = $this->personaRepository->findWithoutFail($madre);
-                    
-                }
-                
-            }
+            $padre = $this->personaRepository->findByFieldPivot($responsables, 'pivot.parentesco', "Padre" );
+
+            $madre = $this->personaRepository->findByFieldPivot($responsables, 'pivot.parentesco', "Madre" );
         }
 
-        //TRA
         $view->with('persona', $persona)->with('padre',$padre)->with('madre',$madre);
 	}
 

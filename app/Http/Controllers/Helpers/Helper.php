@@ -13,7 +13,8 @@ use App\Models\Alumno;
 use Flash;
 use Illuminate\Support\Facades\Redirect;
 use Response;
-
+use Exception;
+use App\Exceptions\SelectedNotMatchException;
 class Helper extends Controller 
 {
 
@@ -21,9 +22,36 @@ class Helper extends Controller
     {
        
     }
-	
+	   
+     /*CORRESPONDIENTE A SER HELPER*/
+    public static function navigateNext($clave, $array){
+     
+       if(!in_array($clave, $array)){
+          throw new SelectedNotMatchException("El alumno no coincide con los seleccionados por el Apoderado.");
+       }
+       $positionKey = array_search($clave, $array);
+       //si el valor es el último return null
+       if((count($array)-1) > $positionKey){
+           return $array[$positionKey+1];
+       }
+       return;
+    }
 
-    
+     /*CORRESPONDIENTE A SER HELPER*/
+    public static function navigate($clave, $array){
+     
+       if(!in_array($clave, $array)){
+          throw new SelectedNotMatchException("El alumno no coincide con los seleccionados por el Apoderado.");
+       }
+       $positionKey = array_search($clave, $array);
+       //si el valor es el último return null
+       if((count($array)-1) > $positionKey){
+           return $array[$positionKey+1];
+       }
+       return;
+    }
+
+  
     public static function createPivot($repository, $request , $idAlumno, $relacion, $condicion){
       $responsable = $repository->create($request);
 
@@ -206,7 +234,8 @@ class Helper extends Controller
    public static function pivotAddAlumnoResponsableApoderado($alumno, $parentesco, $apoderadoAlumnos){
 
 
-     $existeTipo = AlumnoResponsable::where('idAlumno', '=', $alumno['id'])->where('idPersona', '=', $apoderadoAlumnos->id)->first();
+     $existeTipo = AlumnoResponsable::where('idAlumno', '=', $alumno['id'])
+                  ->where('idPersona', '=', $apoderadoAlumnos->id)->first();
    
      if($existeTipo==null){ //se crea
      

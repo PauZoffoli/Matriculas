@@ -10,6 +10,15 @@
 
 <!--CAPTURANDO LA VARIABLE DE ERROR QUE VIENE DDESDE EL CONTROLADOR-->
 
+@php
+  $var = 'alumnosPostulantes'
+@endphp
+ @if ((isset($revisorMatriculando)))))
+   @php
+   $var = 'alumnosPostulantesRevisor'
+   @endphp
+@endif
+{{ $revisorMatriculando }}
 
        @include('adminlte-templates::common.errors')
         <div class="box-header with-border">

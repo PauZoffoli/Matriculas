@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Response;
 use Flash;
+use Illuminate\Database\Eloquent\ModelNotFoundException as ModelNotFoundException;
 class Handler extends ExceptionHandler
 {
     /**
@@ -46,10 +47,16 @@ class Handler extends ExceptionHandler
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
-    {
+    { 
         if ($exception instanceof ModelNotFoundException) {
-           return redirect()->route('home');
+            Flash::error($exception->getMessage() . '  no se encontró!');
+            return redirect('/');
         }
-    return parent::render($request, $exception);
+        if ($exception instanceof SelectedNotMatchException) {
+            Flash::error($exception->getMessage());
+            return redirect('/');
+        }
+
+        return parent::render($request, $exception);
     }
 }

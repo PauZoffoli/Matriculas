@@ -24,17 +24,18 @@
        <div class="">
            <div class="box-body">
                <div class="">
-<!--DEPENDIENDO DE LA RUTA ANTERIOR ES PARA DONDE VOY, SI AL CONTROLLER DEL REVISOR O EL DEL APODERADO-->
+<!-- -->
 
 
 @php
-  $var = 'alumnosPostulantesRevisor'
+  $var = 'alumnosPostulantes'
 @endphp
- @if ((strpos( url()->current(),'/alumnosPostulantes/')))
+ @if ((isset($revisorMatriculando)))))
    @php
-   $var = 'alumnosPostulantes'
+   $var = 'alumnosPostulantesRevisor'
    @endphp
 @endif
+{{ $var }}
 
     {!! Form::model($persona, ['route' => [
 

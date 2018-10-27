@@ -70,12 +70,7 @@ class LoopAlumnosController extends AppBaseController
 
     }
 
-     public function edit($id)
-    {
-
-         return view('MatriculaPostulante.alumnos.edit')->with('id', $id);
-
-    }
+     
 
     /**
      * Update the specified Apoderado in storage.
@@ -218,23 +213,13 @@ class LoopAlumnosController extends AppBaseController
               
         //------------>6)Jugamos con las variables de sesión para ir cerrando el proceso de matrícula
         //********************************************
-        $todosLosAlumnos = $request->session()->get('todosLosAlumnos');
-        dd(json_decode($todosLosAlumnos));
-        //array_search($id, array_column($todosLosAlumnos, 'id'))
-        dd($todosLosAlumnos);
-        return redirect()->route('alumnosPostulantes.edit', json_decode($todosLosAlumnos[0])->idPersona);
         
+        $alumnosSeleccionados = $request->session()->get('todosLosAlumnos');
+        $navigate = Helper::navigateNext($id, $alumnosSeleccionados);
+        if($navigate){
+            return redirect()->route('alumnosPostulantesRevisor.edit', $navigate);
+        }
 
-//Metodo que recorra todos los alumnos que escogió ese apoderado
-
-//cada vez que aprete siguiente preguntar cual es la ruta actual
-
-//si la ruta actual es alguna de las encontradas,  llevarlo a la siguiente
-        //si la ruta encontrada es la última llevarlo a la generación del contrato
-
-//si la ruta actual no es encontrada como seleccionada, devolver error
-
-        session()->forget('todosLosAlumnos'); //cuando quede ningún alumno en la variable la olvidaremos
         session()->forget('apoderadoAlumnos');
 
         //------------>7)Cambiamos los estados una vez terminado todo para que el apoderado no pueda volver a acceder a hacer cambios
@@ -333,6 +318,17 @@ class LoopAlumnosController extends AppBaseController
 
         //session()->forget('idAlumnos');
     }
+
+    /**
+     * Show the form for editing the specified Alumno.
+     *@php //https://laracasts.com/discuss/channels/laravel/laravel-convert-amount-in-digit-to-words?page=1 number formatter
+    $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
+echo $f->format(1432);
+@endphp
+     * @param  int $id
+     *
+     * @return Response
+     */
 
     /**
      * Remove the specified Apoderado from storage.

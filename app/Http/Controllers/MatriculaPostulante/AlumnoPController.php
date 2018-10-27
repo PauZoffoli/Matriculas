@@ -69,34 +69,6 @@ class AlumnoPController extends AppBaseController
 
     }
 
-    //Método para chequear un bundle de cosas básicas del controller.
-    public function checkIfExist($id){
-        
-        $persona = Helper::checkthis($this->personaRepository, $id, 'Persona');
-        
-       // $validate = Helper::checkthisValue($persona->alumno, 'Alumno');
-       // $validate = $validate . Helper::checkthisValue($persona->direccion, 'Dirección');
-       
-        return $persona;
-
-    }
-    /**
-     * Show the form for editing the specified Alumno.
-     *@php //https://laracasts.com/discuss/channels/laravel/laravel-convert-amount-in-digit-to-words?page=1 number formatter
-    $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
-echo $f->format(1432);
-@endphp
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function edit($id)
-    {
-
-        return view('MatriculaPostulante.alumnos.edit')->with('id', $id);
-
-    }
-
     /**
      * Update the specified Apoderado in storage.
      *
@@ -107,9 +79,7 @@ echo $f->format(1432);
      */
     public function update($id, UpdateAlumnoRequest $request) //Debería cambiar la request
     {
-    
-
-        $persona = $this->checkIfExist($id); //Chequeamos si es que las entidades que necesitamos existen
+         $persona =  $this->personaRepository->hasOneRelated('Persona', 'Alumno', 'alumno', $id);
 
 
 /////////////////////////////////////////////////////esto tiene que descomentarse después
@@ -239,16 +209,13 @@ echo $f->format(1432);
        
         //------------>6)Jugamos con las variables de sesión para ir cerrando el proceso de matrícula
         //********************************************
-        $todosLosAlumnos = $request->session()->get('todosLosAlumnos');
-        $todosLosAlumnos =  Helper::deleteFirst($todosLosAlumnos); //Borramos el primer elemento del array, que fue el que acabamos de utilizar y updatear
-
-        if ($todosLosAlumnos!=null) {
-           
-           // \Session::flash('flash_message','Alumno editado exitósamente.');
-            $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los alumnos que nos van quedando en la misma variable
-            return redirect()->route('alumnosPostulantes.edit', json_decode($todosLosAlumnos[0])->idPersona);
+        $alumnosSeleccionados = $request->session()->get('todosLosAlumnos');
+        $navigate = Helper::navigateNext($id, $alumnosSeleccionados);
+        if($navigate){
+            return redirect()->route('alumnosPostulantes.edit', $navigate);
         }
-        session()->forget('todosLosAlumnos'); //cuando quede ningún alumno en la variable la olvidaremos
+        
+        //session()->forget('alumnosSeleccionados'); //cuando quede ningún alumno en la variable la olvidaremos No la olvidaremos por comodidad del usuario
         session()->forget('apoderadoAlumnos');
 
         //------------>7)Cambiamos los estados una vez terminado todo para que el apoderado no pueda volver a acceder a hacer cambios
@@ -256,6 +223,7 @@ echo $f->format(1432);
         $this->cambioDeEstados($alumno, $request); //Método que está en el mismo controller. Cambiamos los estados de los Alumnos
         \Session::flush();
         Auth::logout();
+        dd("hi");
         \Session::flash('flash_message','Alumno editado exitósamente.');
         return view('MatriculaPostulante.FinProcesoMatricula');
     }
@@ -335,6 +303,22 @@ echo $f->format(1432);
 
     }
 
+
+    /**
+     * Show the form for editing the specified Alumno.
+     *@php //https://laracasts.com/discuss/channels/laravel/laravel-convert-amount-in-digit-to-words?page=1 number formatter
+    $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
+echo $f->format(1432);
+@endphp
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function edit($id)
+    {
+
+        return view('MatriculaPostulante.alumnos.edit')->with('id', $id);
+    }
     /**
      * Remove the specified Apoderado from storage.
      *
