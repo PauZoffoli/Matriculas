@@ -15,5 +15,5 @@ php artisan infyom:scaffold Curso --fromTable --tableName=cursos
 php artisan infyom:scaffold Beca --fromTable --tableName=becas
 php artisan infyom:scaffold BecaAlumno --fromTable --tableName=detalle_beca_alumno
 php artisan infyom:scaffold Repitencias --fromTable --tableName=repitencias
-
+php artisan infyom:scaffold AlumnoContrato --fromTable --tableName=alumno_contrato
 pause..

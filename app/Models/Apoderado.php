@@ -90,7 +90,7 @@ class Apoderado extends Model
      **/
     public function contratos()
     {
-        return $this->hasMany(\App\Models\Contrato::class);
+        return $this->hasMany(\App\Models\Contrato::class, 'idApoderado');
     }
 
 

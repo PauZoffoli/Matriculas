@@ -10,34 +10,30 @@ use Flash;
 use App\Repositories\PersonaRepository;
 use Illuminate\Database\Eloquent\Collection;
 use App\Http\Controllers\Helpers\Helper;
+use Illuminate\Pagination\AbstractPaginator;
+use App\Criteria\Apoderados;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 class ApoderadoSecretariadoController extends AppBaseController
 {
     private $personaRepository;
-    private $apoderadoRepository;
     
-
      public function __construct(PersonaRepository $personaRepo)
     {
          $this->personaRepository = $personaRepo;
             
     }
 
+//https://github.com/andersao/l5-repository/issues/301 PAGINATE AND CRITERIA
      public function index(Request $request)
     { 
-
-         $personas = Persona::whereHas('apoderados')->orderBy('id', 'DESC')->paginate(10);
-
-        $var = new Collection();
-         foreach ($personas as $persona){ 
-            if($persona->hasTipo('ApoderadoPostulante')){
-              $var->push($persona);  
-              
-             }
-         }
-
+        $personas = $this->personaRepository->pushCriteria(new 
+            Apoderados\ApoderadoByTipo('ApoderadoPostulante')
+            )->with('apoderados.contratos.alumnos');
+   
         return view('secretariado.index')   
-            ->with('personas', $var);
+            ->with('personas',$personas->paginate(15));
     }
 
     

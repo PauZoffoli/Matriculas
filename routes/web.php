@@ -88,3 +88,6 @@ Route::resource('ContratoSecretariadoContr', 'VistaSecretariado\ContratoSecretar
 
 Route::get('searchPersona', 'VistaSecretariado\ApoderadoSecretariadoController@searchPersona')->name('apoSecretariadoContr.searchPersona');
 
+
+
+Route::resource('alumnoContratos', 'AlumnoContratoController');
