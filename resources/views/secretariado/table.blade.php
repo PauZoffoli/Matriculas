@@ -34,21 +34,20 @@
             <td>
                
                 {!! Form::open() !!}
-
-                @foreach ($persona->apoderado->contratos as $element)
-                   {{ dd($element) }}
-                 @if($loop->last)
-              
-                    {{ (isset($loop->alumnos) ? $loop->alumnos : "Contratado" ) }}
-                 @endif
-
-                @endforeach
-
-                <div class='btn-group'>
+        <div class='btn-group'>
                     <a href="{!! route('apoderadosPostulantes.edit', [$persona->id] ) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i>Generar Contrato</a>
 
-                     
-                </div>
+                
+                @foreach ($persona->apoderado->contratos as $contratos)
+
+                    @foreach ($contratos->alumnos as $alumnos)
+                      @if($loop->last)             
+                         <a href="{!! route('ContratoSecretariadoContr.edit', [$contratos->id] )  !!}" class='btn btn-success btn-xs'><i class="glyphicon glyphicon-edit"></i>Ver Contrato</a>
+                      @endif
+
+                    @endforeach
+                @endforeach
+        </div>
                 {!! Form::close() !!}
             </td>
         </tr>

@@ -14,7 +14,7 @@ use InfyOm\Generator\Common\BaseRepository;
  * @method Contrato find($id, $columns = ['*'])
  * @method Contrato first($columns = ['*'])
 */
-class ContratoRepository extends BaseRepository
+class ContratoRepository extends CommonRepository
 {
     /**
      * @var array

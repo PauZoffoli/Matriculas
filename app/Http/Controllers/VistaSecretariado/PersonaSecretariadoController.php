@@ -72,7 +72,6 @@ class PersonaSecretariadoController extends AppBaseController
     public function update($id, Request $request)
     {
 
-
         $persona = $this->PersonaRepository->findWithoutFail($id);
 
         if (empty($persona)) {

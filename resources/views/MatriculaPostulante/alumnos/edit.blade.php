@@ -25,7 +25,7 @@
            <div class="box-body">
                <div class="">
 <!-- -->
-
+{{ $revisorMatriculando }}
 
 @php
   $var = 'alumnosPostulantes'

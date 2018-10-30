@@ -85,6 +85,6 @@ class Contrato extends Model
     }
     public function alumnos()
     {
-        return $this->belongsToMany(\App\Models\Alumno::class, 'alumno_contrato','idAlumno','idContrato');
+        return $this->belongsToMany(\App\Models\Alumno::class, 'alumno_contrato','idContrato','idAlumno');
     }
 }

@@ -9,23 +9,23 @@
  <div class="content">
 
 <!--CAPTURANDO LA VARIABLE DE ERROR QUE VIENE DDESDE EL CONTROLADOR-->
+{{ $revisorMatriculando }}
 
 @php
   $var = 'alumnosPostulantes'
 @endphp
- @if ((isset($revisorMatriculando)))))
+ @if ((isset($revisorMatriculando)))
    @php
    $var = 'alumnosPostulantesRevisor'
    @endphp
 @endif
-{{ $revisorMatriculando }}
 
        @include('adminlte-templates::common.errors')
         <div class="box-header with-border">
        <div class="box box-solid box-success" style="background-color: #E4FDE4!important;">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($persona, ['route' => ['apoderadosPostulantes.update', $persona->id], 'method' => 'patch']) !!}
+                   {!! Form::model($persona, ['route' => ['apoderadosPostulantes.update', $persona->id, $var], 'method' => 'patch']) !!}
  @csrf
 <div class="box-body">
 <!-- Idcomuna Field -->

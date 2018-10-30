@@ -51,7 +51,7 @@ class ApoderadoPController extends AppBaseController
 
     /**
      * Show the form for editing the specified Apoderado.
-     *
+     *  Carga la vista de datos de Apoderado general
      * @param  int $id
      *
      * @return Response
@@ -61,8 +61,7 @@ class ApoderadoPController extends AppBaseController
        
         $persona =  $this->personaRepository->hasOneRelated('Persona', 'Apoderado', 'apoderado', $id);
 
-
-        return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona);
+        return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona)->with('revisorMatriculando', true);
 
     }
 
@@ -76,6 +75,8 @@ class ApoderadoPController extends AppBaseController
      */
     public function update($id, CreatePersonaRequest $request) //Debería cambiar la request
     {
+        //dd(  (isset($request['alumnosPostulantesRevisor']) ? true :  false )  );
+
          $persona =  $this->personaRepository->hasOneRelated('Persona', 'Apoderado', 'apoderado', $id); //Chequeamos todas las clases que necesitemos antes, y pasamos por parámetro a persona.
 
          /*
@@ -132,8 +133,10 @@ class ApoderadoPController extends AppBaseController
 
         Flash::success('Apoderado editado exitósamente.'); //Definimos un mensaje de éxito
 
+        $revisorRevisando = (isset($request['alumnosPostulantesRevisor']) ? true :  false ) ;
+       dd($revisorRevisando );
        // return view('MatriculaPostulante.alumnos.edit')->with('id',$primerAlumno);
-        return redirect()->route('alumnosPostulantes.edit',  $primerAlumno); //redirige edit de a AlumnoPController, el cual a su vez va a la view composer de ViewComposers/MAtricula/AlumnoEditComposer
+        return redirect()->route('alumnosPostulantes.edit',  $primerAlumno)->with('revisorMatriculando',$revisorRevisando); //redirige edit de a AlumnoPController, el cual a su vez va a la view composer de ViewComposers/MAtricula/AlumnoEditComposer
     }
 
 

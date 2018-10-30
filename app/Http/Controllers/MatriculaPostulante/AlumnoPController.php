@@ -316,7 +316,6 @@ echo $f->format(1432);
      */
     public function edit($id)
     {
-
         return view('MatriculaPostulante.alumnos.edit')->with('id', $id);
     }
     /**

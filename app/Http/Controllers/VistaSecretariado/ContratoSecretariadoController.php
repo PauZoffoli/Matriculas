@@ -34,7 +34,20 @@ class ContratoSecretariadoController extends AppBaseController
      */
     public function index(Request $request)
     {
-            
+        
+    }
+
+     /**
+     * Show the form for editing the specified Contrato.
+     * BOTÓN DE VER CONTRATO
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function edit($id)
+    {
+        $contrato = $this->contratoRepository->hasOneRelated('Contrato', 'Alumno', 'alumnos', $id);
+        return view('secretariado.indexContrato')->with('alumnos', $contrato->alumnos);
     }
 
 
@@ -145,17 +158,7 @@ class ContratoSecretariadoController extends AppBaseController
       
     }
 
-    /**
-     * Show the form for editing the specified Contrato.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function edit($id)
-    {
-    }
-
+   
     /**
      * Update the specified Contrato in storage.
      *

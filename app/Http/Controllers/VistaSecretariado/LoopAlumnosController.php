@@ -70,6 +70,10 @@ class LoopAlumnosController extends AppBaseController
 
     }
 
+    public function edit($id)
+    {
+        
+    }
      
 
     /**
@@ -84,7 +88,7 @@ class LoopAlumnosController extends AppBaseController
     {
    
 
-        $persona = $this->checkIfExist($id); //Chequeamos si es que las entidades que necesitamos existen
+       $persona =  $this->personaRepository->hasOneRelated('Persona', 'Alumno', 'alumno', $id);
 
 
 /////////////////////////////////////////////////////esto tiene que descomentarse después
@@ -224,21 +228,25 @@ class LoopAlumnosController extends AppBaseController
 
         //------------>7)Cambiamos los estados una vez terminado todo para que el apoderado no pueda volver a acceder a hacer cambios
         //********************************************
-        $this->cambioDeEstados($alumno, $request); //Método que está en el mismo controller. Cambiamos los estados de los Alumnos
+        
+        //DESCOMENTAR, NO BORRARDESCOMENTAR, NO BORRARDESCOMENTAR, NO BORRARDESCOMENTAR, NO BORRARDESCOMENTAR, NO BORRAR
+        //$this->cambioDeEstados($alumno, $request); //Método que está en el mismo controller. Cambiamos los estados de los Alumnos
        
         // \Session::flush(); LAS SECRETARIAS PUEDEN SEGUIR REVISANDO POR ESO NO HAY QUE BORRARLE LA SESIÓN
         //Auth::logout();
 
-         $idAlumnos = $request->session()->get('idAlumnos'); //Regresa una cadena json ALUMNO() con todos alumnos seleccionados.Esta nace desde el controller MatriculasPostulante\ApoderadoPController
-        $alumnosSeleccionados = [];
-        foreach ($idAlumnos as $key) {
-            $alumno = $this->alumnoRepository->findWithoutFail(json_decode($key)->id);
-            array_push($alumnosSeleccionados, $alumno);
+         
+        $alumnosSeleccionados = $request->session()->get('todosLosAlumnos');
+        $al = [];
+        foreach ($alumnosSeleccionados as $key) {
+           
+            $alumno = $this->personaRepository->findWithoutFail($key);
+            array_push($al, $alumno->alumno);
 
         }
 
        // dd(($alumnosSeleccionados));
-         return view('secretariado.indexContrato')->with('alumnos', $alumnosSeleccionados );
+         return view('secretariado.indexContrato')->with('alumnos', $al );
 
 
         \Session::flash('flash_message','Alumno editado exitósamente.');
