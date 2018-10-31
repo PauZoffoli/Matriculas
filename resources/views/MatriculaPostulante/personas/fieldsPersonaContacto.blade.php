@@ -39,8 +39,8 @@ $idUserTXT = $asd;*/
 
 @if(isset($rutLBL))
 
-<div class="form-group col-sm-12 alert alert-info">
-    <span class="glyphicon glyphicon-warning-sign"></span><em> En caso que realmente no se sepa el padre/madre del alumno, repetir los datos de uno de los dos en los campos "Padre" y "Madre" en ambos cuadros, y favor advertir de esta situación al momento de acercarse a nuestras oficinas para firmar el contrato</em>
+<div class=" alert alert-info">
+    <span class="glyphicon glyphicon-warning-sign"></span><em> La siguiente información es obligatoriamente requerida por el Ministerio de Educación. Si usted no posee algún dato obligatorio marque la casilla, los campos se autocompletarán con "NO TIENE", lo cual no significa que el alumno no tenga padre/madre conocidos, si no que es una información meramente para que el sistema lo deje seguir con el proceso.</em>
 </div>
 @endif
 
@@ -88,8 +88,8 @@ $idUserTXT = $asd;*/
 
 <!-- Fonoceluapo Field -->
 <div class="form-group col-sm-3 {{ $errors->has('fonoCeluLBL') ? ' has-error' : '' }}">
-    {!! Form::label('fonoCelu', 'Teléfono Celular:') !!}
-    {!! Form::tel($fonoCeluLBL,  ( isset($fonoCeluTXT) ? $fonoCeluTXT : null ), ['class' => 'form-control', 'placeholder' => 'Ingrese su teléfono celular (Ej: 984337683)','required' => '','pattern' => "[0-9]{9}", 'title' => 'No puede tener más de nueve dígitos']) !!}
+    {!! Form::label('fonoCelu', 'Teléfono Celular:',array('class' => 'opcional')) !!}
+    {!! Form::tel($fonoCeluLBL,  ( isset($fonoCeluTXT) ? $fonoCeluTXT : null ), ['class' => 'form-control', 'placeholder' => 'Ingrese su teléfono celular (Ej: 984337683)','pattern' => "[0-9]{9}", 'title' => 'No puede tener más de nueve dígitos']) !!}
 </div>
 
 
@@ -142,7 +142,7 @@ $idUserTXT = $asd;*/
 
 @if(isset($fechaDefuncionLBL))
 <div class="form-group col-sm-3 {{ $errors->has('fechaDefuncionLBL') ? ' has-error' : '' }}">
-    {!! Form::label('fechaDefuncionLBL', 'Fecha de Defunción:') !!}
+    {!! Form::label('fechaDefuncionLBL', 'Fecha de Defunción:',array('class' => 'opcional')) !!}
     {!! Form::date($fechaDefuncionLBL, (isset($fechaDefuncionTXT) && $fechaDefuncionTXT ? Carbon\Carbon::parse($fechaDefuncionTXT)->format('Y-m-d')  : null), ['class' => 'form-control', 'placeholder' => 'dd-mm-YYYY']) !!}
 </div>
 @endif 

@@ -75,8 +75,6 @@ class ContratoSecretariadoController extends AppBaseController
                 }else{
                     $primerContrato = $this->contratoRepository->update( $input, $primerContrato->id );
                 }
-//dd($primerContrato->id);
-               
                 
                 $apoderado = Apoderado::where('id', $request->idApoderado)->first();
                 //dd($apoderado);

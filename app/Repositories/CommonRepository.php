@@ -63,5 +63,7 @@ abstract class CommonRepository extends \InfyOm\Generator\Common\BaseRepository
     	
    	}
 
+    
+
 
 }

@@ -1,6 +1,4 @@
 @extends('MatriculaPostulante.personas.fieldsPersonaContacto', 
-
-
     [
 'PNombreLBL' => 'madre[PNombre]',
 'SNombreLBL' => 'madre[SNombre]',

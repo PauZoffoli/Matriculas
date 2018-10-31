@@ -54,6 +54,8 @@ class CreatePersonasTable extends Migration
             $table->dateTime('fechaDefuncion')->nullable($value = true);
 
             $table->enum('estadoCivil', [
+                'No Aplica', 
+                'Se Desconoce', 
                 'Soltero/a', 
                 'Casado/a',
                 'Viudo/a',

@@ -24,34 +24,27 @@ class Helper extends Controller
     }
 	   
      /*CORRESPONDIENTE A SER HELPER*/
-    public static function navigateNext($clave, $array){
+    public static function navigateNext($id, $array){
      
-       if(!in_array($clave, $array)){
+       if(!in_array($id, $array)){
           throw new SelectedNotMatchException("El alumno no coincide con los seleccionados por el Apoderado.");
        }
-       $positionKey = array_search($clave, $array);
+
+       $positionKey = array_search($id, $array);
+
        //si el valor es el último return null
-       if((count($array)-1) > $positionKey){
+       if((count($array)-1) > $positionKey){ 
            return $array[$positionKey+1];
        }
        return;
     }
 
-     /*CORRESPONDIENTE A SER HELPER*/
-    public static function navigate($clave, $array){
-     
-       if(!in_array($clave, $array)){
-          throw new SelectedNotMatchException("El alumno no coincide con los seleccionados por el Apoderado.");
-       }
-       $positionKey = array_search($clave, $array);
-       //si el valor es el último return null
-       if((count($array)-1) > $positionKey){
-           return $array[$positionKey+1];
-       }
-       return;
-    }
+    public static function isSessionAliveOrReturnHome(){
 
-  
+    }
+   
+
+
     public static function createPivot($repository, $request , $idAlumno, $relacion, $condicion){
       $responsable = $repository->create($request);
 

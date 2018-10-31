@@ -116,7 +116,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Copyright © 2018 <a href="#">DELFA SOFTWARE</a>.</strong> Todos los derechos reservados.
+            <strong>Copyright © 2018 <a href="https://www.delfa.cl">DELFA SYSTEM</a>.</strong> Todos los derechos reservados.
         </footer>
 
     </div>
@@ -265,19 +265,13 @@
         }
       }
 
-
 </script>
-
 <script>
-
 
     function apoderadoPadreOMadre(){
 
-      
         var esPadre = document.getElementById("esPadre");
         var esMadre = document.getElementById("esMadre");
-
-
 
        if(document.getElementById("alumno[parentesco]").value!="Padre" && document.getElementById("alumno[parentesco]").value!="Madre" ){
 
@@ -490,14 +484,6 @@
 }
 </script>
 
-
-
-
-
-
-
-
-
 </html>
 
 <script type="text/javascript">
@@ -517,8 +503,41 @@
             }
         }
     }
+
+</script>
+<script >
+    function inputTextToUpperCase(){
+        let todosLosTextos = document.querySelectorAll('input[type=text]')
+        for (i = 0; i < todosLosTextos.length; i++) { 
+            todosLosTextos[i].value = todosLosTextos[i].value.toUpperCase();
+        }
+    }
 </script>
 
+<script >
+
+// SUMAR TODOS LOS VALORES DE LAS BECAS
+// indexContrato.blade
+
+//Get a list of input fields to sum
+var elements = document.getElementsByName("beca");
+var element_array = Array.prototype.slice.call(elements);
+
+//Assign the keyup event handler
+for(var i=0; i < element_array.length; i++){
+    element_array[i].addEventListener("keyup", sum_values);
+}
+
+//Function to sum the values and assign it to the last input field
+function sum_values(){
+    var sum = 0;
+    for(var i=0; i < element_array.length; i++){
+        sum += parseInt(element_array[i].value, 10);
+    }
+    document.getElementsByName("PorcentajeBeca")[0].value = sum;
+}
+
+</script>
 
 <script>
 function start() {
@@ -528,6 +547,7 @@ actionIfNotNull('enumerator',changeCantidadRepitencias)
 actionIfNotNull('padreOMadrePC',primerContacto)
 actionIfNotNull('padreOMadreSC',segundoContacto)
 actionIfNotNull('alumno[parentesco]',apoderadoPadreOMadre)
+
 
 }
 </script>
@@ -542,5 +562,6 @@ onChangeIfNotNull('enumerator',changeCantidadRepitencias);
 onChangeIfNotNull('padreOMadrePC',primerContacto);
 onChangeIfNotNull('padreOMadreSC',segundoContacto);
 onChangeIfNotNull('alumno[parentesco]',apoderadoPadreOMadre);
+
 
 </script>

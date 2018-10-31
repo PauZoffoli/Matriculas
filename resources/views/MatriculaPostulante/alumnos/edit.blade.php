@@ -25,21 +25,23 @@
            <div class="box-body">
                <div class="">
 <!-- -->
-{{ $revisorMatriculando }}
+
 
 @php
-  $var = 'alumnosPostulantes'
+  $var = 'alumnosPostulantes';
+  $estaGenerandoContrato = (strrpos(url()->full(), "edit?generandoContrato"));
 @endphp
- @if ((isset($revisorMatriculando)))))
+  
+ @if ( $estaGenerandoContrato)
    @php
    $var = 'alumnosPostulantesRevisor'
    @endphp
 @endif
-{{ $var }}
+{{ $var   }}
 
     {!! Form::model($persona, ['route' => [
 
-                   $var.'.update', $persona->id
+                   $var.'.update', $persona->id 
 
                     ], 'method' => 'patch']) !!}
 
@@ -118,12 +120,24 @@
            3) Padre del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
            <br>
          
-           @if ((strpos( url()->previous(),'apoSecretariadoContr')))
-             {!!  "<br><input type='checkbox' id='tienePadre'  onclick='sinPadre();'>" !!}
-              {!!  "<label  style='font-size: 12px;'>¿El alumno realmente no tiene PADRE conocido?</label>" !!}
-           @endif
+              <table>
+            <tr>
+              <td style="width:10%;">
+                <center>
+                  
+ {!!  "<input type='checkbox' style='width: 30px; height: 30px;' id='tienePadre'  onclick='sinPadre();'>" !!}
+                </center>
+              </td>
 
-
+              <td style="height: 100px;">
+                {!!  "<label style=' width: 100%;
+  display: flex;
+  align-items: center;'
+   >En caso que no posea algún dato obligatorio, marque la casilla.</label>" !!}      
+              </td>
+            </tr>
+          </table>
+         
         </h1> <br>
 </section>
         
@@ -141,21 +155,28 @@
 <section class="content-header">
         <h1>
            4) Madre del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
+           <table>
+            <tr>
+              <td style="width:10%;">
+                <center>
+                  
+ {!!  "<input type='checkbox' style='width: 30px; height: 30px;' id='tieneMadre'  onclick='sinMadre();'>" !!}
+                </center>
+              </td>
 
-            @if ((strpos( url()->previous(),'apoSecretariadoContr')))
-             {!!  "<br><input type='checkbox' id='tieneMadre'  onclick='sinMadre();'>" !!}
-              {!!  "<label  style='font-size: 12px;'>¿El alumno realmente no tiene MADRE conocida?</label>" !!}
-           @endif
-
-        </h1> <br>
+              <td style="height: 100px;">
+                {!!  "<label style=' width: 100%;
+  display: flex;
+  align-items: center;'
+   >En caso que no posea algún dato obligatorio, marque la casilla.</label>" !!}      
+              </td>
+            </tr>
+          </table>
+        </h1> 
 </section>
-      
            <div class="box-body">
-               <div class="row">
-                 
+               <div class="row">    
                 @include('MatriculaPostulante.alumnos.fieldsMadre')
-
-
                </div>
            </div>
        </div>
@@ -275,7 +296,7 @@ $primerContacto
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
   <div class="pull-right">
-    {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit('Guardar', ['class' => 'btn btn-primary', 'onclick' => 'inputTextToUpperCase()']) !!}
   </div>
 </div>
 

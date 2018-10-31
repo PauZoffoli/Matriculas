@@ -110,7 +110,8 @@
     <a href="{!! route('tipoPersonas.index') !!}"><i class="fa fa-edit"></i><span>Tipo Personas</span></a>
 </li>
 
-@endif<li class="{{ Request::is('alumnoContratos*') ? 'active' : '' }}">
+<li class="{{ Request::is('alumnoContratos*') ? 'active' : '' }}">
     <a href="{!! route('alumnoContratos.index') !!}"><i class="fa fa-edit"></i><span>Alumno Contratos</span></a>
 </li>
 
+@endif

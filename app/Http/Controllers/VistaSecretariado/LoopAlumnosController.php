@@ -72,7 +72,7 @@ class LoopAlumnosController extends AppBaseController
 
     public function edit($id)
     {
-        
+        return view('MatriculaPostulante.alumnos.edit')->with('id', $id);
     }
      
 
@@ -221,7 +221,7 @@ class LoopAlumnosController extends AppBaseController
         $alumnosSeleccionados = $request->session()->get('todosLosAlumnos');
         $navigate = Helper::navigateNext($id, $alumnosSeleccionados);
         if($navigate){
-            return redirect()->route('alumnosPostulantesRevisor.edit', $navigate);
+            return redirect()->route('alumnosPostulantesRevisor.edit', [$navigate , 'generandoContrato']);
         }
 
         session()->forget('apoderadoAlumnos');
@@ -246,7 +246,7 @@ class LoopAlumnosController extends AppBaseController
         }
 
        // dd(($alumnosSeleccionados));
-         return view('secretariado.indexContrato')->with('alumnos', $al );
+         return view('secretariado.indexContrato')->with('alumnos', $al);
 
 
         \Session::flash('flash_message','Alumno editado exitósamente.');

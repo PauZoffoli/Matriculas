@@ -22,10 +22,12 @@
 </table>
 
         </h1>
-    
-  
     </section>
+
+
     <div class="content">
+
+ 
         <div class="clearfix"></div>
 
         @include('flash::message')
@@ -36,15 +38,13 @@
 <table class="table table-responsive" id="alumnos-table">
     <thead>
         <tr>
-            <th>Apoderado</th>
-            
-        <th>Parentesco</th>
+        <th>Nombre Apoderado(a)</th>
+        <th>Parentezco</th>
         <th>Nombre Alumno(a)</th>
-        <th>Segundo Nombre Alumno(a)</th>
-        <th>Apellido Alumno(a)</th>
         <th>Arancel</th>
         <th>Rut</th>
-        <th colspan="3">Acción</th>
+        <th >% Beca (0 a 100)</th>
+        <th>Acción</th>
         </tr>
     </thead>
      <tbody >
@@ -56,14 +56,32 @@
      $now = new \DateTime();
     @endphp
         <tr>
-             <td>{!!  ( isset($alumno->apoderado->persona['PNombre'] ) ? $alumno->apoderado->persona['PNombre']  : null ) !!}
-             {!!  ( isset($alumno->apoderado->persona['ApPat'] ) ? $alumno->apoderado->persona['ApPat']  : null ) !!}</td>
-            <td>{!!  ( isset($alumno['parentesco'] ) ? $alumno['parentesco']  : null ) !!}</td>
-            <td>{!!  ( isset($alumno->persona['PNombre']) ? $alumno->persona['PNombre'] : null ) !!}</td> 
-            <td>{!!  ( isset($alumno->persona['SNombre']) ? $alumno->persona['SNombre'] : null ) !!}</td>
-            <td>{!!  ( isset($alumno->persona['ApPat']) ? $alumno->persona['ApPat'] : null ) !!}</td>
-            <td>{!!  ( isset($alumno->curso['arancelAnual']) ? $alumno->curso['arancelAnual'] : null ) !!}</td>
-            <td>{!!  ( isset($alumno->persona['rut']) ? $alumno->persona['rut'] : null ) !!}</td>
+            <td>
+              {!!  ( isset($alumno->apoderado->persona['PNombre'] ) ? $alumno->apoderado->persona['PNombre']  : null ) !!}
+             {!!  ( isset($alumno->apoderado->persona['ApPat'] ) ? $alumno->apoderado->persona['ApPat']  : null ) !!}
+            </td>
+            <td>
+              {!!  ( isset($alumno['parentesco'] ) ? $alumno['parentesco']  : null ) !!}
+            </td>
+            <td>
+              {!!  ( isset($alumno->persona['PNombre']) ? $alumno->persona['PNombre'] : null ) !!}
+              {!!  ( isset($alumno->persona['SNombre']) ? $alumno->persona['SNombre'] : null ) !!}
+              {!!  ( isset($alumno->persona['ApPat']) ? $alumno->persona['ApPat'] : null ) !!}
+            <td>
+              {!!  ( isset($alumno->curso['arancelAnual']) ? $alumno->curso['arancelAnual'] : null ) !!}
+            </td>
+             <td>
+              {!!  ( isset($alumno->persona['rut']) ? $alumno->persona['rut'] : null ) !!}
+            </td>
+
+
+             <td class="form-group col-sm-2">
+
+                {!! Form::number('beca', 0,  ['class' => 'form-control', 'name' => 'beca']) !!} 
+              
+            </td>
+
+
                <td>
                 {!! Form::open() !!}
                 <div class='btn-group'>

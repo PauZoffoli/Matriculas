@@ -8,17 +8,18 @@
    </section>
  <div class="content">
 
-<!--CAPTURANDO LA VARIABLE DE ERROR QUE VIENE DDESDE EL CONTROLADOR-->
-{{ $revisorMatriculando }}
-
+<!-- SECCION PARA VER A QUE CICLO ENTRAMOS SI  -->
 @php
-  $var = 'alumnosPostulantes'
+  $var = ''
 @endphp
- @if ((isset($revisorMatriculando)))
+{{url()->full()}}
+ @if (strrpos(url()->full(), "edit?generandoContrato"))
    @php
-   $var = 'alumnosPostulantesRevisor'
+   $var = 'generandoContrato'
    @endphp
 @endif
+{{ $var   }}
+<!--CAPTURANDO LA VARIABLE DE ERROR QUE VIENE DDESDE EL CONTROLADOR-->
 
        @include('adminlte-templates::common.errors')
         <div class="box-header with-border">
@@ -28,7 +29,7 @@
                    {!! Form::model($persona, ['route' => ['apoderadosPostulantes.update', $persona->id, $var], 'method' => 'patch']) !!}
  @csrf
 <div class="box-body">
-<!-- Idcomuna Field -->
+
 
 <section class="content-header" >
         <h1>
@@ -82,7 +83,7 @@
 <div class="form-group col-sm-12">
 
      <div class="pull-right">
-    {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit('Guardar', ['class' => 'btn btn-primary', 'onclick' => 'inputTextToUpperCase()']) !!}
   </div>
 
 </div>

@@ -47,7 +47,7 @@ class ApoderadoSecretariadoController extends AppBaseController
         $rut = $request->get('rut');
         
         $personas = Persona::whereHas('apoderado', function($query) use($rut) {
-            $query->where('rut', $rut);
+            $query->where('rut', 'LIKE', '%' .$rut .'%');
         })->get();
 
         if ( empty($personas->all())) {
@@ -71,7 +71,7 @@ class ApoderadoSecretariadoController extends AppBaseController
     {
          $persona =  $this->personaRepository->hasOneRelated('Persona', 'Apoderado', 'apoderado', $id);
 
-        return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona); //vamos a la vista edit de apoderados, pero este redirige al controller update 
+        return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona)->with('revisorMatriculando', true); //vamos a la vista edit de apoderados, pero este redirige al controller update 
 
     }
 

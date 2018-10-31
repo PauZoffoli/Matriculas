@@ -58,10 +58,10 @@ class ApoderadoPController extends AppBaseController
      */
     public function edit($id)
     {
-       
+      //dd("asd");
         $persona =  $this->personaRepository->hasOneRelated('Persona', 'Apoderado', 'apoderado', $id);
 
-        return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona)->with('revisorMatriculando', true);
+        return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona);
 
     }
 
@@ -127,16 +127,17 @@ class ApoderadoPController extends AppBaseController
        
         $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los idPersona de alumnos checkeados por el apoderado en una variable de sesión
 
-        $request->session()->put('apoderadoAlumnos', $persona);//Guardamos el apoderado
-
         /////////////////////////////////////////////////////////////
 
-        Flash::success('Apoderado editado exitósamente.'); //Definimos un mensaje de éxito
+        $controllerToRedirect = 'alumnosPostulantes.edit';
+        $revisorEstaRevisando = (isset($request['generandoContrato']) ? 'generandoContrato' : '') ;
 
-        $revisorRevisando = (isset($request['alumnosPostulantesRevisor']) ? true :  false ) ;
-       dd($revisorRevisando );
-       // return view('MatriculaPostulante.alumnos.edit')->with('id',$primerAlumno);
-        return redirect()->route('alumnosPostulantes.edit',  $primerAlumno)->with('revisorMatriculando',$revisorRevisando); //redirige edit de a AlumnoPController, el cual a su vez va a la view composer de ViewComposers/MAtricula/AlumnoEditComposer
+        if($revisorEstaRevisando){
+            $controllerToRedirect = 'alumnosPostulantesRevisor.edit';
+        }
+
+        Flash::success('Apoderado editado exitósamente.'); //Definimos un mensaje de éxito
+        return redirect()->route($controllerToRedirect,  [$primerAlumno, $revisorEstaRevisando]);//redirige edit de a AlumnoPController, el cual a su vez va a la view composer de ViewComposers/MAtricula/AlumnoEditComposer
     }
 
 

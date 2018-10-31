@@ -168,9 +168,6 @@ class AlumnoPController extends AppBaseController
         //o el regristro es borrado 
         Helper::existeRelacionPorParentesco($request->alumno['id'] , $padreExistente,  $madreExistente, "Padre");
       
-
-     // dd($request->all());
-
         if($persona->alumno->fichaAlumno==null){ //Si el alumno no tiene una ficha asociada, se le crea en el momento
             $fichaAlumno = $this->fichaAlumnoRepository->create($request->fichaAlumno[0]);
             $request->merge([ 'fichaAlumno' => ['0' =>$fichaAlumno->toArray()] ]);
@@ -209,21 +206,23 @@ class AlumnoPController extends AppBaseController
        
         //------------>6)Jugamos con las variables de sesión para ir cerrando el proceso de matrícula
         //********************************************
-        $alumnosSeleccionados = $request->session()->get('todosLosAlumnos');
-        $navigate = Helper::navigateNext($id, $alumnosSeleccionados);
-        if($navigate){
-            return redirect()->route('alumnosPostulantes.edit', $navigate);
-        }
+
         
-        //session()->forget('alumnosSeleccionados'); //cuando quede ningún alumno en la variable la olvidaremos No la olvidaremos por comodidad del usuario
-        session()->forget('apoderadoAlumnos');
+        $alumnosSeleccionados = $request->session()->get('todosLosAlumnos');
+        $navegarEntreIdDeAlumnos = Helper::navigateNext($id, $alumnosSeleccionados);
+        if($navegarEntreIdDeAlumnos){
+            return redirect()->route('alumnosPostulantes.edit', $navegarEntreIdDeAlumnos);
+        }
 
         //------------>7)Cambiamos los estados una vez terminado todo para que el apoderado no pueda volver a acceder a hacer cambios
         //********************************************
         $this->cambioDeEstados($alumno, $request); //Método que está en el mismo controller. Cambiamos los estados de los Alumnos
+
+
+
         \Session::flush();
         Auth::logout();
-        dd("hi");
+   
         \Session::flash('flash_message','Alumno editado exitósamente.');
         return view('MatriculaPostulante.FinProcesoMatricula');
     }
@@ -285,21 +284,14 @@ class AlumnoPController extends AppBaseController
         $estadoApoderado= ["estado" => "MatriculaRevisadaPorApoderado"];
         $estadoAlumno= ["estado" => "MatriculaRevisadaPorApoderado"];
 
-        $idAlumnos = $request->session()->get('idAlumnos'); //con esta variable de sesión le cambiamos los estados a todos los alumnos que el apoderado haya checado.
-
-       
-        if ($idAlumnos==null) {
-           Flash::error( "La variable de sesión no existe! Usted ya ha inscrito a su alumno.");
-           return redirect(route('home'))->send();
-         }
-
+        $idAlumnos = $request->session()->get('todosLosAlumnos');
         foreach ($idAlumnos as $key) {
-           $alumno = $this->alumnoRepository->update($estadoAlumno, json_decode($key)->id);
+           $alumno = $this->alumnoRepository->update($estadoAlumno, $key);
         }
 
         $apoderado = $this->apoderadoRepository->update($estadoApoderado, $alumno->idApoderado);
 
-        session()->forget('idAlumnos');
+        session()->forget('todosLosAlumnos');
 
     }
 
