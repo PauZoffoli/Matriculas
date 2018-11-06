@@ -28,13 +28,13 @@ class CreateContactoRequest extends FormRequest
        return $rules = [
         'cantidadContactos' => 'required|integer|between:0,1,2',
         'PNombrePContactos' => 'required|min:1|max:50',
-        'SNombrePContacto' => 'required|min:1|max:50',
-        'TNombrePContacto' => 'min:1|max:50',
+        'SNombrePContacto' => 'nullable|min:1|max:50',
+        'TNombrePContacto' => 'nullable|min:1|max:50',
         'ApPatPContacto' => 'required|min:1|max:50',
-        'ApMatPContacto' => 'min:1|max:50',
-        'fonoFijoPContacto' => 'numeric|max:9',
+        'ApMatPContacto' => 'nullable|min:1|max:50',
+        'fonoFijoPContacto' => 'nullable|numeric|max:9',
         'fonoCeluPContacto' => 'required|numeric|max:9',
-        'emailPContacto' => 'required|min:1|max:50',
+        'emailPContacto' => 'nullable|min:1|max:50',
         'parentescoPContacto' => 'required|max:191'
         ];
     }

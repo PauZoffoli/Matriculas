@@ -84,21 +84,20 @@ class LoopAlumnosController extends AppBaseController
      *
      * @return Response
      */
-    public function update($id, UpdateAlumnoRequest $request) //Debería cambiar la request
+    public function update($id, UpdatePersonaRequest $request) //Debería cambiar la request
     {
    
 
        $persona =  $this->personaRepository->hasOneRelated('Persona', 'Alumno', 'alumno', $id);
 
 
-/////////////////////////////////////////////////////esto tiene que descomentarse después
-     /*   $validate = $this->validaciones($request); // Primero hay que hacer las validaciones de las clases que no se validan en el request de los parámetros de la función
+   $validate = $this->validaciones($request); // Primero hay que hacer las validaciones de las clases que no se validan en el request de los parámetros de la función
         if ($validate!=null) {
           throw ValidationException::withMessages([
               $validate,
           ]);
-        } */
-/////////////////////////////////////////////////////esto tiene que descomentarse después
+        } 
+
 
 
         ///----->>>>>1) Esta sección es solo para colectar los datos de las variables padre, madre, pContacto y sContacto//////////////////////////////////

@@ -85,12 +85,21 @@ $idUserTXT = $asd;*/
     {!! Form::tel($fonoFijoLBL,  ( isset($fonoFijoTXT) ? $fonoFijoTXT : null ), ['class' => 'form-control', 'placeholder' => 'Ingrese su teléfono fijo en caso que posea (Ej: 226213316)', 'pattern' => "[0-9]{9}", 'title' => 'No puede tener más de nueve dígitos']) !!}
 </div>
 
+@if($parentescoLBL == "madre[parentesco]" && $parentescoLBL == "padre[parentesco]")
 
 <!-- Fonoceluapo Field -->
 <div class="form-group col-sm-3 {{ $errors->has('fonoCeluLBL') ? ' has-error' : '' }}">
     {!! Form::label('fonoCelu', 'Teléfono Celular:',array('class' => 'opcional')) !!}
     {!! Form::tel($fonoCeluLBL,  ( isset($fonoCeluTXT) ? $fonoCeluTXT : null ), ['class' => 'form-control', 'placeholder' => 'Ingrese su teléfono celular (Ej: 984337683)','pattern' => "[0-9]{9}", 'title' => 'No puede tener más de nueve dígitos']) !!}
 </div>
+@else
+
+<div class="form-group col-sm-3 {{ $errors->has('fonoCeluLBL') ? ' has-error' : '' }}">
+    {!! Form::label('fonoCelu', 'Teléfono Celular:') !!}
+    {!! Form::tel($fonoCeluLBL,  ( isset($fonoCeluTXT) ? $fonoCeluTXT : null ), ['class' => 'form-control', 'placeholder' => 'Ingrese su teléfono celular (Ej: 984337683)','pattern' => "[0-9]{9}", 'title' => 'No puede tener más de nueve dígitos', 'required'=>'required']) !!}
+</div>
+
+@endif
 
 
 @if(isset($rutLBL))

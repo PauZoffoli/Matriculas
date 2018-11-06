@@ -34,25 +34,28 @@ class CreatePadresRequest extends FormRequest
         'fonoFijo' => 'nullable|digits_between:8,10|numeric',
         'fonoCelu' => 'required|digits_between:8,10|numeric',
         'email' => 'nullable|email|max:100',
-        'estadoCivil' => 'required|max:40'
+        'estadoCivil' => 'required|max:40',
+        'fechaDefuncion' => 'required|date',
+   
         ];
     }
 
    /*
-       'id' => 'integer',
-        'PNombre' => 'string',
-        'SNombre' => 'string',
-        'TNombre' => 'string',
-        'ApPat' => 'string',
-        'ApMat' => 'string',
-        'fonoFijo' => 'integer',
-        'fonoCelu' => 'integer',
-        'idUser' => 'integer',
-        'rut' => 'string',
-        'tipoPersona' => 'string',
-        'genero' => 'string',
-        'email' => 'string',
-        'estadoCivil' => 'string',
-        'idDireccion' => 'integer'
+       'PNombre',
+        'SNombre',
+        'TNombre',
+        'ApPat',
+        'ApMat',
+        'fonoFijo',
+        'fonoCelu',
+        'idUser',
+        'rut',
+        'tipoPersona',
+        'genero',
+        'email',
+        'fechaNacimiento',
+        'fechaDefuncion',
+        'estadoCivil',
+        'idDireccion'
         */
 }

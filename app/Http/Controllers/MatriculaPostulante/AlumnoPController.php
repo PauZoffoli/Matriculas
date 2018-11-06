@@ -79,6 +79,7 @@ class AlumnoPController extends AppBaseController
      */
     public function update($id, UpdateAlumnoRequest $request) //Debería cambiar la request
     {
+         
          $persona =  $this->personaRepository->hasOneRelated('Persona', 'Alumno', 'alumno', $id);
 
 

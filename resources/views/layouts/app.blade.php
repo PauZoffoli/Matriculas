@@ -110,8 +110,10 @@
         <!-- Left side column. contains the logo and sidebar -->
         @include('layouts.sidebar')
         <!-- Content Wrapper. Contains page content -->
+
         <div class="content-wrapper">
             @yield('content')
+
         </div>
 
         <!-- Main Footer -->
@@ -446,8 +448,7 @@
     
   var elements = oForm.elements; 
     
-  oForm.reset();
-
+ 
   for(i=0; i<elements.length; i++) {
       
   field_type = elements[i].type.toLowerCase();
@@ -455,11 +456,15 @@
   switch(field_type) {
   
     case "text": 
+    case "tel": 
+    case "date":
+    case "number":
+    case "email": 
     case "password": 
     case "textarea":
-          case "hidden":   
+         
       
-      //elements[i].value = ""; 
+      elements[i].value = ""; 
       elements[i].required =false; 
       
       break;
@@ -474,7 +479,7 @@
     case "select-one":
     case "select-multi":
                elements[i].selectedIndex = -1;
-                elements[i].required = false; 
+               elements[i].required = false; 
       break;
 
     default: 
@@ -482,6 +487,7 @@
   }
     }
 }
+
 </script>
 
 </html>

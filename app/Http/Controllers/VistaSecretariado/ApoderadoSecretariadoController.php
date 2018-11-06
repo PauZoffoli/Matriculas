@@ -51,7 +51,7 @@ class ApoderadoSecretariadoController extends AppBaseController
         })->get();
 
         if ( empty($personas->all())) {
-           Flash::error('El rut de la persona ingresada no encontró coincidencias, revise que esté correctamente escrito');
+           Flash::error('El rut deL apoderado no encontró coincidencias, revise que esté correctamente escrito');
 
            return redirect(route('apoSecretariadoContr.index'));
        }

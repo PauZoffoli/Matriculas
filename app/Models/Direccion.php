@@ -61,7 +61,8 @@ class Direccion extends Model
      * @var array
      */
     public static $rules = [
-        
+        'calle' => 'required|min:1',
+        'nroCalle' => 'required'
     ];
 
     /**

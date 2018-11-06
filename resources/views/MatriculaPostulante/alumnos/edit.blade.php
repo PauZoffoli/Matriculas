@@ -24,6 +24,7 @@
        <div class="">
            <div class="box-body">
                <div class="">
+
 <!-- -->
 
 
@@ -44,9 +45,10 @@
                    $var.'.update', $persona->id 
 
                     ], 'method' => 'patch']) !!}
+                    
 
  @csrf
-
+<input type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
  <div class="box box-solid box-primary" style="background-color: #E5ECFB!important;">
 
    <div class="pull-right">
@@ -252,6 +254,7 @@
 
 
          {!! Form::label('padreOMadrePC', '¿Quién es el primer contacto?') !!}
+
                  {!! Form::select('padreOMadrePC', [ 'No es el padre ni la madre','Padre' ,'Madre'],  
 $primerContacto
                   ,  array('id' => 'padreOMadrePC', 'class' => 'form-control','placeholder' =>"Seleccione una opción", 'required' =>'true')) !!}
