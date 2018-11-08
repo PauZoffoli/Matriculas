@@ -524,53 +524,8 @@
 
 
 {{-- indexContrato secretariado --}}
-<script >
+<script src="{{ asset('js/calcularTotalAPagar.js') }}"></script>
 
-// SUMAR TODOS LOS VALORES DE LAS BECAS INDIVIDUALES SEGÚN SU PESO
-// indexContrato.blade
-
-//Get a list of input fields to sum
-var becaPorAlumno = document.getElementsByName("beca");
-var arancelPorAlumno = document.getElementsByName("alumno->curso['arancelAnual']");
-var totalEscolaridadEnBrutoLBL = document.getElementsByName("totalEscolaridadEnBruto")[0];
-var porcentajeBecaTotal = document.getElementsByName("PorcentajeBeca")[0];
-var totalEscolaridadEnBrutoTXT = document.getElementsByName("totalAPagar")[0];
-
-
-//Assign the keyup event handler
-for(var i=0; i < becaPorAlumno.length; i++){
-    becaPorAlumno[i].addEventListener("keyup", sum_values);
-}
-
-//Function to sum the values and assign it to the last input field
-function sum_values(){
-    var sum = 0;
-    for(var i=0; i < becaPorAlumno.length; i++){
-       // sum += parseInt(element_array[i].value, 10);
-       sum += parseFloat( ( becaPorAlumno[i].value * (arancelPorAlumno[i].innerText/totalEscolaridadEnBruto.innerText)) , 10);
-      console.log(sum);
-    }
-    document.getElementsByName("PorcentajeBeca").value = sum;
-    document.getElementsByName("totalAPagar").value = porcentajeBecaTotal.value;
-}
-
-
-
-
-for(var i=0; i < porcentajeBecaTotal.length; i++){
-    porcentajeBecaTotal[i].addEventListener("keyup", changeTotalAPagar);
-}
-
-function changeTotalAPagar(){
-     totalEscolaridadEnBruto[0].value = 
-
-     totalEscolaridadEnBruto[0].value * ( 1 + (porcentajeBecaTotal.value / 100 ));
-
-
-}
-
-
-</script>
 
 <script>
 function start() {

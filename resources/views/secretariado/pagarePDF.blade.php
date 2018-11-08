@@ -259,7 +259,7 @@ según el siguiente detalle:</span></p>
 
 <p class=MsoNormal style='margin-right:-11.6pt;text-align:justify'><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></p>
-@foreach($datos->alumnos as $alumno)
+  @foreach($alumnosEnContrato as $key => $alumno)
 <p class=MsoNormal style='margin-right:-11.6pt;text-align:justify'><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>Alumno: </span><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{ (isset($alumno->persona) ? $alumno->persona->PNombre : null) }}</span><span
@@ -362,7 +362,7 @@ lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> Porcentaje
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
   <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ number_format(ceil($req->totalAPagar/$req->nroCuotas)) }}</span></p>
+  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($req->totalAPagar/$req->nroCuotas)) }}</span></p>
   </td> 
   <tr style='height:6.3pt'>
   <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
@@ -381,7 +381,7 @@ lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> Porcentaje
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
   <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ number_format(ceil($req->totalAPagar/$req->nroCuotas)) }}</span></p>
+  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($req->totalAPagar/$req->nroCuotas)) }}</span></p>
   </td> 
   <tr style='height:6.3pt'>
   <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;

@@ -44,3 +44,5 @@ Route::get('searchPersona', 'VistaSecretariado\ApoderadoSecretariadoController@s
 
 
 Route::resource('alumnoContratos', 'AlumnoContratoController');
+
+Route::get('/pdf', 'PdfController@pdfStream')->name('pdfStream');

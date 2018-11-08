@@ -93,7 +93,16 @@ table.minimalistBlack tfoot td {
 
                     @if ($loop->last)  <!-- ver el último contrato vigente -->
                     <h4 style="float:left;"><span class="label label-success">
-                        <a href="{!! route('ContratoSecretariadoContr.edit', [$contratos->id] )  !!}"  style="color:white;" ><i class="glyphicon glyphicon-ok"></i>VER</a></span></h4>
+                        <a href="{!! route('ContratoSecretariadoContr.edit', [$contratos->id] )  !!}"  style="color:white;" ><i class="glyphicon glyphicon-ok"></i>EDITAR</a></span></h4>
+
+                        <h4 style="float:left;"><span class="label label-success">
+                        <a href="{{ Storage::disk('local')->url('app' .$contratos->urlContrato)}}"  style="color:white;" ><i class="glyphicon glyphicon-ok"></i>VER</a></span></h4>
+
+                         <h4 style="float:left;"><span class="label label-success">
+                        <a href="{{ link_to_asset($contratos->urlContrato, 'Open the pdf!') }}"  style="color:white;" ><i class="glyphicon glyphicon-ok"></i>VER</a></span></h4>
+
+                    {{ link_to_asset('app' .$contratos->urlContrato, 'Open the pdf!') }}
+
                         @endif
                         @endforeach
                     </div>

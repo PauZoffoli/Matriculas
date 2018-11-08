@@ -141,6 +141,8 @@ class CreateFichaAlumnoTable extends Migration
                 'Padrino/Madrina',
                 'Otro'])->nullable($value = true);
 
+            $table->string('urlFichaAlumno')->nullable($value = true);
+
         });
     }
 

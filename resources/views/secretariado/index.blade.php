@@ -8,13 +8,15 @@
                 <tr>
                     <td>Matriculas IDOP</td>
                     <td>&nbsp;</td> 
-                    <td><a class="btn btn-primary "  href="{!! route('apoSecretariadoContr.index') !!}"><span class="glyphicon glyphicon-repeat"></span></a></td>
+                    <td> 
+                        <a class="btn btn-primary "  href="{!! route('apoSecretariadoContr.index') !!}"><span class="glyphicon glyphicon-repeat"></span></a></td>
                 </tr>
             </table>
         </h1>
  
 
         <h1 class="pull-right">
+
 <table>
 
   <tr>

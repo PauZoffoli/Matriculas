@@ -12,13 +12,13 @@
 @php
   $var = ''
 @endphp
-{{url()->full()}}
+
  @if (strrpos(url()->full(), "edit?generandoContrato"))
    @php
    $var = 'generandoContrato'
    @endphp
 @endif
-{{ $var   }}
+
 <!--CAPTURANDO LA VARIABLE DE ERROR QUE VIENE DDESDE EL CONTROLADOR-->
 
        @include('adminlte-templates::common.errors')

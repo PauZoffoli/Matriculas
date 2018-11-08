@@ -6,10 +6,13 @@
  <h1 class="pull-left">
   <table>
     <tr>
-      <td>Matriculas IDOP</td>
+      <td>Matriculas IDOP
+        <a   class="btn btn-primary " href="{{ URL::previous() }}">Regresar</a>
+      </td>
       <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> 
-      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-      <td><a class="btn btn-primary "  href="{!! route('apoSecretariadoContr.index') !!}"><span class="glyphicon glyphicon-home"></span></a></td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+      <td>
+        <a class="btn btn-primary "  href="{!! route('apoSecretariadoContr.index') !!}"><span class="glyphicon glyphicon-home"></span></a></td>
       <td>Volver a inicio</td>
     </tr>
   </table>
@@ -125,7 +128,7 @@
     </div>
 
     <div class="form-group col-sm-6">
-      {!! Form::label('PorcentajeBeca', '% Beca:') !!}
+      {!! Form::label('PorcentajeBeca', '% Total Beca:') !!}
       {!! Form::number('PorcentajeBeca', 0, ['class' => 'form-control','required' => 'true']) !!}
     </div>
 

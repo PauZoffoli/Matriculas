@@ -4,7 +4,8 @@
 @section('content')
     <section class="content-header"  style="color: #5B5494;">
         <h1>
-            DATOS DEL ALUMNO
+            DATOS DEL ALUMNO  
+           
         </h1>
    </section>
    <div class="content">
@@ -48,7 +49,7 @@
                     
 
  @csrf
-<input type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
+<input type="hidden" name="clear" value="Clear Form" onclick="clearForm(this.form);">
  <div class="box box-solid box-primary" style="background-color: #E5ECFB!important;">
 
    <div class="pull-right">

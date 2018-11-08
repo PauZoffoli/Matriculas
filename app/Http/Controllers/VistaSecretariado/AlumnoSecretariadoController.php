@@ -87,6 +87,22 @@ class AlumnoSecretariadoController extends AppBaseController
             $vista = view('secretariado/fichaPDF')->with('datos',$apoderado)->with('alu',$alumno)->with('primerContrato',$primerContrato);
             $pdf = \PDF::loadHTML($vista);
             $pdf->setPaper("legal","portrait");
+
+             //GUARDAMOS EL PDF EN NUESTROS ARCHIVOS
+            if ($pdf!= null) {
+                $output = $pdf->output();
+                $nombreArchivo = $primerContrato->id . '-'. $apoderado->persona->rut . '-'. $alumno->persona->rut .'.pdf'; 
+                try {
+                   file_put_contents('../storage/app/PDF2018a2019FichasAlumno/F'.$nombreArchivo, $output);
+                   $alumno->fichaAlumno->urlFichaAlumno = '/PDF2018a2019FichasAlumno/F'.$nombreArchivo;
+                   $alumno->fichaAlumno->save();
+                   
+               }catch (Exception $e) {
+                Flash::success('ERROR DE RUTA O PERMISOS A STORAGE');
+                return redirect(route('apoSecretariadoContr.index'));
+                }
+            }
+
             return $pdf->stream('pdfFicha');
     }
 

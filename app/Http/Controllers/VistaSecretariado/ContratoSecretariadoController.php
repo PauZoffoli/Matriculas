@@ -63,10 +63,7 @@ class ContratoSecretariadoController extends AppBaseController
     {
         $idAlumnosSeleccionados = json_decode($request->idAlumnos); //Los id de los alumnos que usaremos para atachear alumno_contrato
 
-        switch ($request->get('btnContratoPagare')) {
-
-            case 'contrato': 
-                //$request->request->add(['idApoderado'=>$idApo]);
+                //Creamos o updateamos el contrato
                 $input = $request->all();
                 //dd($input);
                 $primerContrato = Contrato::where('idApoderado',$input['idApoderado'])->first();
@@ -81,34 +78,40 @@ class ContratoSecretariadoController extends AppBaseController
                     $primerContrato = $this->contratoRepository->update( $input, $primerContrato->id );
                 }
 
-                /*ATACHEAMOS A LA TABLA ALUMNO_CONTRATO*/
-               
-                foreach($idAlumnosSeleccionados as $key){
+                //pasamos la collecion que viene desde la vista, a un simple array
+                $arreglo = [];
+                foreach($idAlumnosSeleccionados as $key => $alumnno){
+                    array_push ($arreglo, $alumnno->id );
+                }
+
+                /*ATACHEAMOS el arreglo de ids ALUMNO_CONTRATO*/
                     $this->contratoRepository->sync(
                         $primerContrato->id,
                         "alumnos",
-                        $key->id,
+                        $arreglo,
                         true);
-                }
+                
 
                 $apoderado = Apoderado::where('id', $request->idApoderado)->first();
                 //dd($apoderado);
 
+                
+                
+       switch ($request->get('btnContratoPagare')) {
+           case 'contrato':
                 $vista = view('secretariado/contratoPDF')->with('datos',$apoderado)->with('primerContrato',$primerContrato)->with('alumnosEnContrato', $primerContrato->alumnos);
-                //dd($request->all());
-                //dd($input);
-
                 $pdf = \PDF::loadHTML($vista);
                 //dd($pdf);
                 $pdf->setPaper("legal","portrait");
 
-                  //GUARDAMOS EL PDF EN NUESTROS ARCHIVOS
+                //GUARDAMOS EL PDF EN NUESTROS ARCHIVOS
                 if ($pdf!= null) {
                     $output = $pdf->output();
                     $nombreArchivo = $primerContrato->id . '-'. $apoderado->persona->rut . '-'. $input['fechaContrato'] . '.pdf'; 
                 try {
-
-                     file_put_contents('../storage/app/PDF2019Matriculas/'.$nombreArchivo, $output);
+                     file_put_contents('../storage/app/PDF2018a2019Contratos/C'.$nombreArchivo, $output);
+                     $primerContrato->urlContrato = '/PDF2018a2019Contratos/C'.$nombreArchivo;
+                     $primerContrato->save();
                 }catch (Exception $e) {
                     Flash::success('ERROR DE RUTA O PERMISOS A STORAGE');
                 return redirect(route('apoSecretariadoContr.index'));
@@ -120,39 +123,34 @@ class ContratoSecretariadoController extends AppBaseController
             break;
 
             case 'pagare': 
-                $input = $request->all();
-                $primerContrato = Contrato::where('idApoderado',$input['idApoderado'])->first();
-                //dd($input);
-                //$contrato = $this->contratoRepository->create($input);
-                //Flash::success('Contrato saved successfully.');
-                $apoderado = Apoderado::where('id', $request->idApoderado)->first();
-                //dd($apoderado);
-                $vista = view('secretariado/pagarePDF')->with('datos',$apoderado)->with('req',$request)->with('primerContrato',$primerContrato);
+
+                $vista = view('secretariado/pagarePDF')->with('datos',$apoderado)->with('req',$request)->with('primerContrato',$primerContrato)->with('alumnosEnContrato', $primerContrato->alumnos);
                 //dd($request->all());
                 $pdf = \PDF::loadHTML($vista);
                 $pdf->setPaper("legal","portrait");
+
+                //GUARDAMOS EL PDF EN NUESTROS ARCHIVOS
+                if ($pdf!= null) {
+                    $output = $pdf->output();
+                    $nombreArchivo = $primerContrato->id . '-'. $apoderado->persona->rut . '-'. $input['fechaContrato'] . '.pdf'; 
+                try {
+                     file_put_contents('../storage/app/PDF2018a2019Pagares/P'.$nombreArchivo, $output);
+                     $primerContrato->urlPagare = '/PDF2018a2019Pagares/P'.$nombreArchivo;
+                     $primerContrato->save();
+                }catch (Exception $e) {
+                    Flash::success('ERROR DE RUTA O PERMISOS A STORAGE');
+                    return redirect(route('apoSecretariadoContr.index'));
+                }
+
+
                 return $pdf->stream('pdfPagare');
                 //return redirect(route('contratos.index'));  
+                 }
             break;
 
-            case 'ficha': 
-                $input = $request->all();
-                $primerContrato = Contrato::where('idApoderado',$input['idApoderado'])->first();
-                //dd($input);
-                //$contrato = $this->contratoRepository->create($input);
-                //Flash::success('Contrato saved successfully.');
-                $apoderado = Apoderado::where('id', $request->idApoderado)->first();
-                //dd($apoderado);
-                $vista = view('secretariado/fichaPDF')->with('datos',$apoderado)->with('req',$request)->with('primerContrato',$primerContrato);
-                //dd($request->all());
-                $pdf = \PDF::loadHTML($vista);
-                $pdf->setPaper("legal","portrait");
-                return $pdf->stream('pdfFicha');
-                //return redirect(route('contratos.index'));  
-            break;
-        }
+}      
+}
         
-    }
 
     public function do_function_1(){
     // put the code here
