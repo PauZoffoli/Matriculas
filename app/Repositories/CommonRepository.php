@@ -46,6 +46,7 @@ abstract class CommonRepository extends \InfyOm\Generator\Common\BaseRepository
     	//$relatedClass."_count";
     	$cadena = "$relatedClass" . "_count";
    		if (!$value->$cadena) throw new ModelNotFoundException($relatedChild); //Si está vacío devuelve exception
+
    		return $value; //si no está vacío devuelve normal
    	}
     //https://stackoverflow.com/questions/25071149/is-it-possible-to-throw-an-exception-using-short-hand-condition-operator-c-shar
@@ -56,6 +57,7 @@ abstract class CommonRepository extends \InfyOm\Generator\Common\BaseRepository
     {	 
     	try{
     		return $modelPivot->where($attributeToFind, $variableToFind)->first();
+
     	}catch(Exception $e){
     		Flash::error("Ha ocurrido un error de lógica /findByFieldPivot");
     		return redirect('/');

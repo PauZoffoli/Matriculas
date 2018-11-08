@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\RequestPersona;
+namespace App\Http\Requests\RequestsForMatricula\RequestPersona;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Persona;

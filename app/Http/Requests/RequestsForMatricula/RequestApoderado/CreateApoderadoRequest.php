@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\RequestApoderado;
+namespace App\Http\Requests\RequestsForMatricula\RequestApoderado;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Persona;

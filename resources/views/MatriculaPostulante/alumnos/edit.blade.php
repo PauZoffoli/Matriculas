@@ -11,7 +11,7 @@
 @include('adminlte-templates::common.errors')
        <div class="alert alert-warning"><span class="glyphicon glyphicon-ok"></span><em>LOS SIGUIENTES DATOS SON ÚNICA Y EXCLUSIVAMENTE REFERIDOS AL ALUMNO</em></div>
   @if(Session::has('flash_message'))
-    <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em></div>
+    <div class="alert alert-danger"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em></div>
 @endif
 
 @if(session()->has('error'))
@@ -38,7 +38,7 @@
    $var = 'alumnosPostulantesRevisor'
    @endphp
 @endif
-{{ $var   }}
+
 
     {!! Form::model($persona, ['route' => [
 

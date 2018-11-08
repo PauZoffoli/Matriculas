@@ -1015,7 +1015,8 @@ style='font-size:8.0pt;font-family:"Arial",sans-serif;mso-ansi-language:ES-TRAD'
   </td>
 
 <?php $num = 0;?>
-  @foreach($datos->alumnos as $alumno)
+  @foreach($alumnosEnContrato as $key => $alumno)
+   
    @php 
      $num+=1;
     @endphp
@@ -1099,6 +1100,7 @@ style='font-size:8.0pt;font-family:"Arial",sans-serif;mso-ansi-language:ES-TRAD'
   style='font-family:"Arial",sans-serif;mso-ansi-language:ES-TRAD'><o:p>&nbsp;</o:p></span></p>
   </td>
  </tr>
+
 
 @endforeach
 

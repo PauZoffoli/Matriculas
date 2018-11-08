@@ -59,6 +59,8 @@ class CreateFichaAlumnoTable extends Migration
 
             $table->enum('isapreFonasa', [ //Con que relleno esto
                 'Isapre', 
+                'Dipreca', 
+                'Capredena',
                 'Fonasa'])->default('Isapre');
 
             $table->tinyInteger('seguroComple')->default(0);

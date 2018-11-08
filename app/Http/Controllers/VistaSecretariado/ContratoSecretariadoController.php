@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use App\Models\Persona;
 use App\Models\Alumno;
+use App\Models\AlumnoContrato;
 use App\Models\Apoderado;
 use App\Models\Contrato;
 use Flash;
@@ -46,7 +47,7 @@ class ContratoSecretariadoController extends AppBaseController
      */
     public function edit($id)
     {
-        $contrato = $this->contratoRepository->hasOneRelated('Contrato', 'Alumno', 'alumnos', $id);
+        $contrato = $this->contratoRepository->hasOneRelated('Contrato', 'Realice el contrato nuevamente. El Alumno relacionado al contrato', 'alumnos', $id);
         return view('secretariado.indexContrato')->with('alumnos', $contrato->alumnos);
     }
 
@@ -58,9 +59,12 @@ class ContratoSecretariadoController extends AppBaseController
      *
      * @return Response
      */
-    public function store(CreateContratoRequest $request)
-    {   
+    public function store(CreateContratoRequest $request )
+    {
+        $idAlumnosSeleccionados = json_decode($request->idAlumnos); //Los id de los alumnos que usaremos para atachear alumno_contrato
+
         switch ($request->get('btnContratoPagare')) {
+
             case 'contrato': 
                 //$request->request->add(['idApoderado'=>$idApo]);
                 $input = $request->all();
@@ -71,14 +75,26 @@ class ContratoSecretariadoController extends AppBaseController
                 if(is_null($primerContrato))
                 {
                     $primerContrato = $this->contratoRepository->create($input);
+
                     Flash::success('Contrato creado correctamente.');
                 }else{
                     $primerContrato = $this->contratoRepository->update( $input, $primerContrato->id );
                 }
-                
+
+                /*ATACHEAMOS A LA TABLA ALUMNO_CONTRATO*/
+               
+                foreach($idAlumnosSeleccionados as $key){
+                    $this->contratoRepository->sync(
+                        $primerContrato->id,
+                        "alumnos",
+                        $key->id,
+                        true);
+                }
+
                 $apoderado = Apoderado::where('id', $request->idApoderado)->first();
                 //dd($apoderado);
-                $vista = view('secretariado/contratoPDF')->with('datos',$apoderado)->with('primerContrato',$primerContrato);
+
+                $vista = view('secretariado/contratoPDF')->with('datos',$apoderado)->with('primerContrato',$primerContrato)->with('alumnosEnContrato', $primerContrato->alumnos);
                 //dd($request->all());
                 //dd($input);
 

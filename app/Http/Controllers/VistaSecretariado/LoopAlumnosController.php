@@ -43,6 +43,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Collection;
 use Auth;
 use App\Enums;
+use Exception;
+
+use \App\Http\Requests\RequestsForMatricula as RequestsForMatricula;//manual validations
 
 class LoopAlumnosController extends AppBaseController
 {
@@ -88,10 +91,11 @@ class LoopAlumnosController extends AppBaseController
     {
    
 
-       $persona =  $this->personaRepository->hasOneRelated('Persona', 'Alumno', 'alumno', $id);
+        $persona =  $this->personaRepository->hasOneRelated('Persona', 'Alumno', 'alumno', $id);
+   //dd("ASD");
+        //------------>0)VALIDAMOS QUE TODO FUNCIONE
+        $validate = $this->validaciones($request); // Primero hay que hacer las validaciones de las clases que no se validan en el request de los parámetros de la función
 
-
-   $validate = $this->validaciones($request); // Primero hay que hacer las validaciones de las clases que no se validan en el request de los parámetros de la función
         if ($validate!=null) {
           throw ValidationException::withMessages([
               $validate,
@@ -118,7 +122,7 @@ class LoopAlumnosController extends AppBaseController
             }
          
         } 
-        
+
 
         $cantidadDeContactos = $request->fichaAlumno[0]['cantidadContactos']; //inicializamos la variable que recibimos desde la vista para usarla más adelante
 
@@ -153,7 +157,6 @@ class LoopAlumnosController extends AppBaseController
            
         }
 
-
         //------> 6)Ahora el padre y madre se lo debemos añadir al alumno para evitar pérdidas de datos
      
         
@@ -173,6 +176,7 @@ class LoopAlumnosController extends AppBaseController
         }
 
 
+        
         ///----->>>>>4) SINCRONIZAMOS los datos de padres y madres del contacto, evitando que pueda haber más de un padre
         //o el regristro es borrado 
         Helper::existeRelacionPorParentesco($request->alumno['id'] , $padreExistente,  $madreExistente, "Padre");
@@ -196,7 +200,7 @@ class LoopAlumnosController extends AppBaseController
         }
 
 
-  
+
 
         $persona->alumno->repitencia()->sync($request->repitencia); //AGREGAMOS LOS DATOS PIVOTE DE LAS REPITENCIAS https://stackoverflow.com/questions/23968415/laravel-eloquent-attach-vs-sync 
         $request->request->add(['alumno[repitencias]' => $persona->alumno->repitencia()->count()]); //cambiamos el valor del request"repitencias que tiene el número de repitencias del alumno"
@@ -217,19 +221,26 @@ class LoopAlumnosController extends AppBaseController
         //------------>6)Jugamos con las variables de sesión para ir cerrando el proceso de matrícula
         //********************************************
         
+
         $alumnosSeleccionados = $request->session()->get('todosLosAlumnos');
+
+        if ($alumnosSeleccionados==null) {
+            $errorMessage = "No se encuentra la variable de sesión correspondiente. Reinicie el proceso de matrícula desde el principio.";
+            return redirect()->back()->withErrors($errorMessage)->withInput($request->all());
+        }
+
         $navigate = Helper::navigateNext($id, $alumnosSeleccionados);
+     
         if($navigate){
             return redirect()->route('alumnosPostulantesRevisor.edit', [$navigate , 'generandoContrato']);
         }
 
-        session()->forget('apoderadoAlumnos');
 
         //------------>7)Cambiamos los estados una vez terminado todo para que el apoderado no pueda volver a acceder a hacer cambios
         //********************************************
         
         //DESCOMENTAR, NO BORRARDESCOMENTAR, NO BORRARDESCOMENTAR, NO BORRARDESCOMENTAR, NO BORRARDESCOMENTAR, NO BORRAR
-        //$this->cambioDeEstados($alumno, $request); //Método que está en el mismo controller. Cambiamos los estados de los Alumnos
+        $this->cambioDeEstados($alumno, $request); //Método que está en el mismo controller. Cambiamos los estados de los Alumnos
        
         // \Session::flush(); LAS SECRETARIAS PUEDEN SEGUIR REVISANDO POR ESO NO HAY QUE BORRARLE LA SESIÓN
         //Auth::logout();
@@ -237,19 +248,17 @@ class LoopAlumnosController extends AppBaseController
          
         $alumnosSeleccionados = $request->session()->get('todosLosAlumnos');
         $al = [];
+
         foreach ($alumnosSeleccionados as $key) {
-           
+
             $alumno = $this->personaRepository->findWithoutFail($key);
             array_push($al, $alumno->alumno);
-
         }
 
-       // dd(($alumnosSeleccionados));
+       
          return view('secretariado.indexContrato')->with('alumnos', $al);
 
 
-        \Session::flash('flash_message','Alumno editado exitósamente.');
-        return view('secretariado.indexContrato')->with('alumnos', $todosLosAlumnos);
     }
 
 
@@ -260,37 +269,36 @@ class LoopAlumnosController extends AppBaseController
     public function validaciones($request){
         $validate = null;
     //    dd($request->all());
-        $validate = Helper::manualValidation($request->all(), (new \App\Http\Requests\RequestPersona\CreatePersonaRequest()), "1)Errores de los datos de la Persona: ",1);
+        $validate = Helper::manualValidation($request->all(), (new RequestsForMatricula\RequestPersona\CreatePersonaAlumnoRequest()), "1)Errores de los datos de la Persona: ",1);
 
-        if(isset($request->apoderado)){
-        $validate = $validate . Helper::manualValidation($request->apoderado, (new \App\Http\Requests\RequestApoderado\CreateApoderadoRequest()), "2)Errores de los datos del apoderado: ",2);
-        }
         if(isset($request->direccion)){
-        $validate =  $validate . Helper::manualValidation($request->direccion, (new \App\Http\Requests\RequestDireccion\CreateDireccionRequest()), "3)Errores de los datos de la Dirección: ", 3);
+        $validate =  $validate . Helper::manualValidation($request->direccion, (new RequestsForMatricula\RequestDireccion\CreateDireccionRequest()), "2)Errores de los datos de la Dirección: ", 3);
         }
+/*dd($request->fichaAlumno[0],
+    $request->direccion
+ );*/
 
-        /*if(isset($request->fichaAlumno)){
-        $validate =  $validate . Helper::manualValidation($request->fichaAlumno, (new \App\Http\Requests\RequestFicha\CreateFichaAlumnoRequest()), "4)Errores de la Ficha del Alumno: ", 4);
+        if(isset($request->fichaAlumno[0])){
+        $validate =  $validate . Helper::manualValidation($request->fichaAlumno[0], (new RequestsForMatricula\RequestFicha\CreateFichaAlumnoRequest()), "3)Errores de la Ficha del Alumno: ", 4);
         }
+   
 
-
-/*
         if(isset($request->padre)){
-             $validate = $validate . Helper::manualValidation($request->padre, (new \App\Http\Requests\RequestPadres\CreatePadresRequest()), "5)Errores de los datos del Padre: ",5);
+             $validate = $validate . Helper::manualValidation($request->padre, (new RequestsForMatricula\RequestPadres\CreatePadresRequest()), "4)Errores de los datos del Padre: ",5);
         }
         if(isset($request->madre)){
-             $validate = $validate . Helper::manualValidation($request->madre, (new \App\Http\Requests\RequestPadres\CreatePadresRequest()), "6)Errores de los datos de la Madre: ",6);
+             $validate = $validate . Helper::manualValidation($request->madre, (new RequestsForMatricula\RequestPadres\CreatePadresRequest()), "5)Errores de los datos de la Madre: ",6);
         }
-    
+          
         if(isset($request->pContacto)){
-        $validate = $validate . Helper::manualValidation($request->pContacto, (new CreatePersonaRequest()), "7)Errores de los datos del Primer Contacto: ",4);
+        $validate = $validate . Helper::manualValidation($request->pContacto, (new RequestsForMatricula\RequestContacto\CreatePersonaRequest()), "6)Errores de los datos del Primer Contacto: ",4);
         }
-        //
-        if(isset($request->sContacto)){
-             $validate = $validate . Helper::manualValidation($request->sContacto, (new CreatePersonaRequest()), "8)Errores de los datos del Segundo Contacto: ",5);
-        }*/
 
-      
+        if(isset($request->sContacto)){
+             $validate = $validate . Helper::manualValidation($request->sContacto, (new RequestsForMatricula\RequestContacto\CreatePersonaRequest()), "7)Errores de los datos del Segundo Contacto: ",5);
+        }
+
+  
         
         return $validate;
 
@@ -309,16 +317,13 @@ class LoopAlumnosController extends AppBaseController
         $estadoApoderado= ["estado" => "MatriculaRevisadaPorRevisor"];
         $estadoAlumno= ["estado" => "MatriculaRevisadaPorRevisor"];
 
-        $idAlumnos = $request->session()->get('idAlumnos'); //con esta variable de sesión le cambiamos los estados a todos los alumnos que el apoderado haya checado.
+        $todosLosAlumnos = $request->session()->get('todosLosAlumnos');
 
-       
-        if ($idAlumnos==null) {
-           Flash::error( "La variable de sesión no existe! Usted ya ha inscrito a su alumno.");
-           return redirect(route('home'))->send();
-         }
+        //ESTO BUSCA A TODAS LAS PERSONAS-ALUMNOS Y LES CAMBIA EL ESTADO
+        foreach ($todosLosAlumnos as $key) {
+           $personaAlumno = $this->personaRepository->findWithoutFail($key);
+           $alumno = $this->alumnoRepository->update($estadoAlumno, $personaAlumno->alumno->id);
 
-        foreach ($idAlumnos as $key) {
-           $alumno = $this->alumnoRepository->update($estadoAlumno, json_decode($key)->id);
         }
 
         $apoderado = $this->apoderadoRepository->update($estadoApoderado, $alumno->idApoderado);

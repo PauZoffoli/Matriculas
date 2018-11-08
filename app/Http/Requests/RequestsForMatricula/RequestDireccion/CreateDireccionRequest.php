@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\RequestDireccion;
+namespace App\Http\Requests\RequestsForMatricula\RequestDireccion;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Direccion;

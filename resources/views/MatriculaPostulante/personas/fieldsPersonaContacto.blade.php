@@ -85,7 +85,7 @@ $idUserTXT = $asd;*/
     {!! Form::tel($fonoFijoLBL,  ( isset($fonoFijoTXT) ? $fonoFijoTXT : null ), ['class' => 'form-control', 'placeholder' => 'Ingrese su teléfono fijo en caso que posea (Ej: 226213316)', 'pattern' => "[0-9]{9}", 'title' => 'No puede tener más de nueve dígitos']) !!}
 </div>
 
-@if($parentescoLBL == "madre[parentesco]" && $parentescoLBL == "padre[parentesco]")
+@if($parentescoLBL == "madre[parentesco]" || $parentescoLBL == "padre[parentesco]")
 
 <!-- Fonoceluapo Field -->
 <div class="form-group col-sm-3 {{ $errors->has('fonoCeluLBL') ? ' has-error' : '' }}">

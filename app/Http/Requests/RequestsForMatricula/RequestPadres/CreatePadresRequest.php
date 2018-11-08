@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\RequestPadres;
+namespace App\Http\Requests\RequestsForMatricula\RequestPadres;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Persona;
@@ -32,10 +32,13 @@ class CreatePadresRequest extends FormRequest
         'ApPat' => 'required|max:40',
         'ApMat' => 'max:40',
         'fonoFijo' => 'nullable|digits_between:8,10|numeric',
-        'fonoCelu' => 'required|digits_between:8,10|numeric',
+        'fonoCelu' => 'nullable|digits_between:8,10|numeric',
+        'rut' => 'required|max:11|min:7',
+        'genero' => 'max:100|min:1',
         'email' => 'nullable|email|max:100',
-        'estadoCivil' => 'required|max:40',
-        'fechaDefuncion' => 'required|date',
+        'estadoCivil' => 'max:40|min:3',
+        'fechaDefuncion' => 'nullable|date',
+
    
         ];
     }

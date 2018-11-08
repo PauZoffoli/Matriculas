@@ -472,14 +472,14 @@
     case "radio":
     case "checkbox":
         if (elements[i].checked) {
-          elements[i].checked = false; 
+         elements[i].checked = false; 
       }
       break;
 
     case "select-one":
     case "select-multi":
-               elements[i].selectedIndex = -1;
-               elements[i].required = false; 
+             elements[i].selectedIndex = -1;
+              elements[i].required = false; 
       break;
 
     default: 
@@ -511,6 +511,8 @@
     }
 
 </script>
+
+{{-- FUNCION PARA PASAR TODO A MAYUSCULAS AL GUARDAR. FUNCIONA EN LOS BOTONES GUARDAR, SOLO PARA LOS TEXT --}}
 <script >
     function inputTextToUpperCase(){
         let todosLosTextos = document.querySelectorAll('input[type=text]')
@@ -520,28 +522,53 @@
     }
 </script>
 
+
+{{-- indexContrato secretariado --}}
 <script >
 
-// SUMAR TODOS LOS VALORES DE LAS BECAS
+// SUMAR TODOS LOS VALORES DE LAS BECAS INDIVIDUALES SEGÚN SU PESO
 // indexContrato.blade
 
 //Get a list of input fields to sum
-var elements = document.getElementsByName("beca");
-var element_array = Array.prototype.slice.call(elements);
+var becaPorAlumno = document.getElementsByName("beca");
+var arancelPorAlumno = document.getElementsByName("alumno->curso['arancelAnual']");
+var totalEscolaridadEnBrutoLBL = document.getElementsByName("totalEscolaridadEnBruto")[0];
+var porcentajeBecaTotal = document.getElementsByName("PorcentajeBeca")[0];
+var totalEscolaridadEnBrutoTXT = document.getElementsByName("totalAPagar")[0];
+
 
 //Assign the keyup event handler
-for(var i=0; i < element_array.length; i++){
-    element_array[i].addEventListener("keyup", sum_values);
+for(var i=0; i < becaPorAlumno.length; i++){
+    becaPorAlumno[i].addEventListener("keyup", sum_values);
 }
 
 //Function to sum the values and assign it to the last input field
 function sum_values(){
     var sum = 0;
-    for(var i=0; i < element_array.length; i++){
-        sum += parseInt(element_array[i].value, 10);
+    for(var i=0; i < becaPorAlumno.length; i++){
+       // sum += parseInt(element_array[i].value, 10);
+       sum += parseFloat( ( becaPorAlumno[i].value * (arancelPorAlumno[i].innerText/totalEscolaridadEnBruto.innerText)) , 10);
+      console.log(sum);
     }
-    document.getElementsByName("PorcentajeBeca")[0].value = sum;
+    document.getElementsByName("PorcentajeBeca").value = sum;
+    document.getElementsByName("totalAPagar").value = porcentajeBecaTotal.value;
 }
+
+
+
+
+for(var i=0; i < porcentajeBecaTotal.length; i++){
+    porcentajeBecaTotal[i].addEventListener("keyup", changeTotalAPagar);
+}
+
+function changeTotalAPagar(){
+     totalEscolaridadEnBruto[0].value = 
+
+     totalEscolaridadEnBruto[0].value * ( 1 + (porcentajeBecaTotal.value / 100 ));
+
+
+}
+
 
 </script>
 

@@ -84,12 +84,14 @@ class AlumnoPController extends AppBaseController
 
 
 /////////////////////////////////////////////////////esto tiene que descomentarse después
-     /*   $validate = $this->validaciones($request); // Primero hay que hacer las validaciones de las clases que no se validan en el request de los parámetros de la función
+           //------------>0)VALIDAMOS QUE TODO FUNCIONE
+   $validate = $this->validaciones($request); // Primero hay que hacer las validaciones de las clases que no se validan en el request de los parámetros de la función
+
         if ($validate!=null) {
           throw ValidationException::withMessages([
               $validate,
           ]);
-        } */
+        } 
 /////////////////////////////////////////////////////esto tiene que descomentarse después
 
 
@@ -210,6 +212,13 @@ class AlumnoPController extends AppBaseController
 
         
         $alumnosSeleccionados = $request->session()->get('todosLosAlumnos');
+
+
+        if ($alumnosSeleccionados==null) {
+            $errorMessage = "No se encuentra la variable de sesión correspondiente. Reinicie el proceso de matrícula desde el principio.";
+            return redirect()->back()->withErrors($errorMessage)->withInput($request->all());
+        }
+
         $navegarEntreIdDeAlumnos = Helper::navigateNext($id, $alumnosSeleccionados);
         if($navegarEntreIdDeAlumnos){
             return redirect()->route('alumnosPostulantes.edit', $navegarEntreIdDeAlumnos);
@@ -231,46 +240,47 @@ class AlumnoPController extends AppBaseController
 
 
 
-      /*revisar*/
+   /*revisar*/
     /*MÉTODO PARA VALIDAR Y DESPEJAR EL CONTROLLER*/
     public function validaciones($request){
         $validate = null;
     //    dd($request->all());
-        $validate = Helper::manualValidation($request->all(), (new \App\Http\Requests\RequestPersona\CreatePersonaRequest()), "1)Errores de los datos de la Persona: ",1);
+        $validate = Helper::manualValidation($request->all(), (new RequestsForMatricula\RequestPersona\CreatePersonaAlumnoRequest()), "1)Errores de los datos de la Persona: ",1);
 
-        if(isset($request->apoderado)){
-        $validate = $validate . Helper::manualValidation($request->apoderado, (new \App\Http\Requests\RequestApoderado\CreateApoderadoRequest()), "2)Errores de los datos del apoderado: ",2);
-        }
         if(isset($request->direccion)){
-        $validate =  $validate . Helper::manualValidation($request->direccion, (new \App\Http\Requests\RequestDireccion\CreateDireccionRequest()), "3)Errores de los datos de la Dirección: ", 3);
+        $validate =  $validate . Helper::manualValidation($request->direccion, (new RequestsForMatricula\RequestDireccion\CreateDireccionRequest()), "2)Errores de los datos de la Dirección: ", 3);
         }
+/*dd($request->fichaAlumno[0],
+    $request->direccion
+ );*/
 
-        /*if(isset($request->fichaAlumno)){
-        $validate =  $validate . Helper::manualValidation($request->fichaAlumno, (new \App\Http\Requests\RequestFicha\CreateFichaAlumnoRequest()), "4)Errores de la Ficha del Alumno: ", 4);
+        if(isset($request->fichaAlumno[0])){
+        $validate =  $validate . Helper::manualValidation($request->fichaAlumno[0], (new RequestsForMatricula\RequestFicha\CreateFichaAlumnoRequest()), "3)Errores de la Ficha del Alumno: ", 4);
         }
+   
 
-
-/*
         if(isset($request->padre)){
-             $validate = $validate . Helper::manualValidation($request->padre, (new \App\Http\Requests\RequestPadres\CreatePadresRequest()), "5)Errores de los datos del Padre: ",5);
+             $validate = $validate . Helper::manualValidation($request->padre, (new RequestsForMatricula\RequestPadres\CreatePadresRequest()), "4)Errores de los datos del Padre: ",5);
         }
         if(isset($request->madre)){
-             $validate = $validate . Helper::manualValidation($request->madre, (new \App\Http\Requests\RequestPadres\CreatePadresRequest()), "6)Errores de los datos de la Madre: ",6);
+             $validate = $validate . Helper::manualValidation($request->madre, (new RequestsForMatricula\RequestPadres\CreatePadresRequest()), "5)Errores de los datos de la Madre: ",6);
         }
-    
+          
         if(isset($request->pContacto)){
-        $validate = $validate . Helper::manualValidation($request->pContacto, (new CreatePersonaRequest()), "7)Errores de los datos del Primer Contacto: ",4);
+        $validate = $validate . Helper::manualValidation($request->pContacto, (new RequestsForMatricula\RequestContacto\CreatePersonaRequest()), "6)Errores de los datos del Primer Contacto: ",4);
         }
-        //
-        if(isset($request->sContacto)){
-             $validate = $validate . Helper::manualValidation($request->sContacto, (new CreatePersonaRequest()), "8)Errores de los datos del Segundo Contacto: ",5);
-        }*/
 
-      
+        if(isset($request->sContacto)){
+             $validate = $validate . Helper::manualValidation($request->sContacto, (new RequestsForMatricula\RequestContacto\CreatePersonaRequest()), "7)Errores de los datos del Segundo Contacto: ",5);
+        }
+
+  
         
         return $validate;
 
     }
+
+
 
 
 
@@ -286,13 +296,17 @@ class AlumnoPController extends AppBaseController
         $estadoAlumno= ["estado" => "MatriculaRevisadaPorApoderado"];
 
         $idAlumnos = $request->session()->get('todosLosAlumnos');
+
+        /*¡ERROR*/
         foreach ($idAlumnos as $key) {
-           $alumno = $this->alumnoRepository->update($estadoAlumno, $key);
+            $personaAlumno = $this->personaRepository->findWithoutFail($key);
+            $alumno = $this->alumnoRepository->update($estadoAlumno, $personaAlumno->alumno->id);
+        
         }
 
         $apoderado = $this->apoderadoRepository->update($estadoApoderado, $alumno->idApoderado);
 
-        session()->forget('todosLosAlumnos');
+        //session()->forget('todosLosAlumnos');
 
     }
 

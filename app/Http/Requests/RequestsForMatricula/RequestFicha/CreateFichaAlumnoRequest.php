@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\RequestFicha;
+namespace App\Http\Requests\RequestsForMatricula\RequestFicha;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\FichaAlumno;
@@ -26,28 +26,27 @@ class CreateFichaAlumnoRequest extends FormRequest
     public function rules()
     {
        return $rules = [
-        'ingresoFamiliarM' => 'required|digits_between:1,11|numeric',
-        'causas' => 'max:100',
-        'nroConvivientes' => 'required',
-        'totalHijos' => 'required',
-        'nroDeHijo' => 'required',
-        'nroHermanoIDOP' => 'required',
-        'tenenciaVivienda' => 'required',
-        'estudiaCon' => 'required',
-        'isapreFonasa' => 'required',
-        'seguroComple' => 'required',
-        'enfermedades' => 'max:191',
-        'medicamentos' => 'max:191',
-        'esAlergico' => 'required',
-        'AlergicoA' => 'max:191',
-        'grupoSanguineo' => 'required',
-        'idAlumno' => 'required',
-        'viveConPadre' => 'required',
-        'viveConMadre' => 'required',
-        'viveConAbuelos' => 'required',
-        'viveConTios' => 'required',
-        'viveConTutor' => 'required',
-        'observacionesSalud' => 'required|max:191'
+        'ingresoFamiliarM' => 'required|digits_between:1,11',
+        'causas' => 'nullable|max:100',
+        'nroConvivientes' => 'required|digits_between:1,2',
+        'totalHijos' => 'required|digits_between:1,2',
+        'nroDeHijo' => 'required|digits_between:1,2',
+        'nroHermanoIDOP' => 'digits_between:1,2',
+        'tenenciaVivienda' => 'max:80|min:3',
+        'estudiaCon' => 'required|max:100',
+        'isapreFonasa' => 'required|max:100',
+        'seguroComple' => 'required|max:100',
+        'enfermedades' => 'nullable|max:191',
+        'medicamentos' => 'nullable|max:191',
+        'esAlergico' => 'required|boolean',
+        'AlergicoA' => 'nullable|max:191',
+        'grupoSanguineo' => 'required|max:100',
+        'viveConPadre' => 'required|boolean',
+        'viveConMadre' => 'required|boolean',
+        'viveConAbuelos' => 'required|boolean',
+        'viveConTios' => 'required|boolean',
+        'viveConTutor' => 'required|boolean',
+        'observacionesSalud' => 'nullable|min:3|max:191',
         ];
     }
 
