@@ -43,6 +43,9 @@ use Illuminate\Support\Collection;
 use Auth;
 use App\Enums;
 
+use \App\Http\Requests\RequestsForMatricula as RequestsForMatricula;//manual validations
+
+
 class AlumnoPController extends AppBaseController
 {
 
@@ -77,7 +80,7 @@ class AlumnoPController extends AppBaseController
      *
      * @return Response
      */
-    public function update($id, UpdateAlumnoRequest $request) //Debería cambiar la request
+    public function update($id, UpdatePersonaRequest $request) //Debería cambiar la request
     {
          
          $persona =  $this->personaRepository->hasOneRelated('Persona', 'Alumno', 'alumno', $id);
