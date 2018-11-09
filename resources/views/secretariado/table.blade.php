@@ -38,84 +38,97 @@ table.minimalistBlack tfoot td {
 </style>
 
 <div class="">
-<table class="table table-responsive minimalistBlack" style=" border-collapse: collapse;" id="postulacions-table">
+  <table class="table table-responsive minimalistBlack" style=" border-collapse: collapse;" id="postulacions-table">
     <thead>
-        <tr class="blackborder">
+      <tr class="blackborder">
         <th>Nombre Completo</th>
         <th>Rut</th>
         <th>Estado Matrícula</th>
-         <th>Tipo de Apoderado</th>
-            <th colspan="3">Contrato</th>
-        </tr>
+        <th>Tipo de Apoderado</th>
+        <th >Contrato</th>
+        <th>PDF</th>
+      </tr>
 
     </thead>
     <tbody border="1px">
-    @foreach($personas as $persona)
-        <tr>
-            <td>{!! $persona->PNombre !!} {!!  $persona->ApPat !!} {!!  $persona->ApMat  !!}</td>
-            <td>{!! $persona->rut !!}</td>
-            <td style="text-align: center;">@switch($persona->apoderado->estado)
-                    @case("MatriculaRevisadaPorRevisor")
-                       <h4 title="MATRÍCULA LISTA"><span class="label label-success"><i class="glyphicon glyphicon-ok"></i></span></h4>
-                    @break
+      @foreach($personas as $persona)
+      <tr>
+        <td>{!! $persona->PNombre !!} {!!  $persona->ApPat !!} {!!  $persona->ApMat  !!}</td>
+        <td>{!! $persona->rut !!}</td>
+        <td style="text-align: center;">@switch($persona->apoderado->estado)
+          @case("MatriculaRevisadaPorRevisor")
+          <h4 title="MATRÍCULA LISTA"><span class="label label-success"><i class="glyphicon glyphicon-ok"></i></span></h4>
+          @break
 
-                    @case("MatriculaNoRevisadaPorApoderado")
-                        <h4 title="EL APODERADO AÚN NO RELLENA LA FICHA"><span class="label label-danger"><i class="glyphicon glyphicon-remove"></i></span></h4>
-                      
-                    @break
+          @case("MatriculaNoRevisadaPorApoderado")
+          <h4 title="EL APODERADO AÚN NO RELLENA LA FICHA"><span class="label label-danger"><i class="glyphicon glyphicon-remove"></i></span></h4>
 
-                    @case("MatriculaRevisadaPorApoderado")
-                        <h4 title="FICHA RELLENADA, LISTA PARA GENERAR EL CONTRATO"><span class="label label-primary"><i class="glyphicon glyphicon-zoom-in"></i></span></h4>
-                    @break
+          @break
 
-                @default
-                
-                @endswitch
+          @case("MatriculaRevisadaPorApoderado")
+          <h4 title="FICHA RELLENADA, LISTA PARA GENERAR EL CONTRATO"><span class="label label-primary"><i class="glyphicon glyphicon-zoom-in"></i></span></h4>
+          @break
+
+          @default
+
+          @endswitch
+        </td>
+
+        <td style="text-align: center;">
+          @foreach ($persona->tipos as $element)
+          @if ($element->nombre == 'ApoderadoPostulante') 
+          <p>Nuevo</p> 
+          @endif  
+          @endforeach
+        </td>
+
+        <td style="text-align: center;">
+
+          {!! Form::open() !!}
+          <div class='btn-group'>
+
+            <h4 style="float:left;"><span class="label label-default"><a href="{!! route('apoderadosPostulantes.edit', [$persona->id, "generandoContrato"] ) !!}" style="color:black;" ><i class="glyphicon glyphicon-edit"></i>GENERAR</a> </span></h4>
+
+            <!-- Si existe un contrato, verlo -->
+            @foreach ($persona->apoderado->contratos as $contratos)
+
+            @if ($loop->last)  <!-- ver el último contrato vigente -->
+            <h4 style="float:left;"><span class="label label-warning">
+              <a href="{!! route('ContratoSecretariadoContr.edit', [$contratos->id] )  !!}"  style="color:white;" ><i class="glyphicon glyphicon-ok"></i>EDITAR</a></span></h4>
+            </div>
+            @endif
+            @endforeach
+
+          </td>
+          <td style="text-align: center;">
+
+           @foreach ($persona->apoderado->contratos as $contratos)
+
+           @if ($loop->last)  <!-- ver el último contrato vigente -->
+             <center>
+             <h4 style="float:left;"><span class="label label-success">
+              <a href="{{route("pdfContratoStream", $contratos->id)}}"  style="color:white;" ><i class="glyphicon glyphicon-download-alt"></i>CONTRATO</a></span></h4>
+              <h4 style="float:left;"><span class="label label-success">
+                <a href="{{route("pdfPagareStream", $contratos->id)}}"  style="color:white;" ><i class="glyphicon glyphicon-download-alt"></i>PAGARÉ</a></span></h4>
+
+
+              </center>
+
+              @endif
+              @endforeach
             </td>
-            
-            <td style="text-align: center;">
-                @foreach ($persona->tipos as $element)
-                    @if ($element->nombre == 'ApoderadoPostulante') 
-                    <p>Nuevo</p> 
-                    @endif  
-                @endforeach
-            </td>
-           
-            <td style="text-align: center;">
-               
-                {!! Form::open() !!}
-                <div class='btn-group'>
 
-                    <h4 style="float:left;"><span class="label label-default"><a href="{!! route('apoderadosPostulantes.edit', [$persona->id, "generandoContrato"] ) !!}" style="color:black;" ><i class="glyphicon glyphicon-edit"></i>GENERAR</a> </span></h4>
 
-                    <!-- Si existe un contrato, verlo -->
-                    @foreach ($persona->apoderado->contratos as $contratos)
 
-                    @if ($loop->last)  <!-- ver el último contrato vigente -->
-                    <h4 style="float:left;"><span class="label label-success">
-                        <a href="{!! route('ContratoSecretariadoContr.edit', [$contratos->id] )  !!}"  style="color:white;" ><i class="glyphicon glyphicon-ok"></i>EDITAR</a></span></h4>
 
-                        <h4 style="float:left;"><span class="label label-success">
-                        <a href="{{ Storage::disk('local')->url('app' .$contratos->urlContrato)}}"  style="color:white;" ><i class="glyphicon glyphicon-ok"></i>VER</a></span></h4>
+          </tr>
+          @endforeach
+        </tbody>
 
-                         <h4 style="float:left;"><span class="label label-success">
-                        <a href="{{ link_to_asset($contratos->urlContrato, 'Open the pdf!') }}"  style="color:white;" ><i class="glyphicon glyphicon-ok"></i>VER</a></span></h4>
-
-                    {{ link_to_asset('app' .$contratos->urlContrato, 'Open the pdf!') }}
-
-                        @endif
-                        @endforeach
-                    </div>
-                {!! Form::close() !!}
-            </td>
-        </tr>
-    @endforeach
-    </tbody>
-
-</table>
-</div>
-@if (!is_a($personas, 'Illuminate\Database\Eloquent\Collection'))
+      </table>
+    </div>
+    @if (!is_a($personas, 'Illuminate\Database\Eloquent\Collection'))
     <div class="pull-right">{!! $personas->render() !!}</div>
-@endif
+    @endif
 
 

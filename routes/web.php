@@ -45,4 +45,17 @@ Route::get('searchPersona', 'VistaSecretariado\ApoderadoSecretariadoController@s
 
 Route::resource('alumnoContratos', 'AlumnoContratoController');
 
-Route::get('/pdf', 'PdfController@pdfStream')->name('pdfStream');
+
+
+
+Route::group(['namespace' => 'VistaSecretariado\DescargaPDFContrato', 'prefix' => 'PDF'], function () { 
+
+    Route::get('contratos/{id}', [
+         'uses' => 'PdfContratoController@pdfContratoStream'
+    ])->name('pdfContratoStream'); 
+
+     Route::get('pagares/{id}', [
+         'uses' => 'PdfContratoController@pdfPagareStream'
+    ])->name('pdfPagareStream'); 
+
+});
