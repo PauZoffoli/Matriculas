@@ -219,9 +219,7 @@
 
              $('#datosPrimerContacto').find('input, textarea, button, select').attr('disabled','disabled'); //debo desabilitar los campos dentro de primer contacto, solo habilitar los campos del select que pregunta padre madre o ninguno
              $('#datosSegundoContacto').find('input, textarea, button, select').attr('disabled','disabled');
-       
-
-
+    
 
         }
 
@@ -229,9 +227,6 @@
       }
 
 </script>
-
-
-
 
 
 <script >
@@ -269,7 +264,9 @@
 
 </script>
 <script>
+ 
 
+/*FUNCION QUE SE ACTIVA AL APRETAR PARENTESCO DEL ALUMNO*/
     function apoderadoPadreOMadre(){
 
         var esPadre = document.getElementById("esPadre");
@@ -279,22 +276,36 @@
 
             esMadre.style.display = "block";
             $('#esMadre').find('input, textarea, button, select').removeAttr('disabled');
-    
+            
 
             esPadre.style.display = "block";
             $('#esPadre').find('input, textarea, button, select').removeAttr('disabled');
 
 
+            /*ESTO ES PARA HACER QUE SI ESTABA MARCADA LA CASILLA DE NO TIENE PADRE, 
+            LOS CAMPOS DE ELLA SIGAN BLOQUEADOS*/
+            if (document.getElementById("tienePadre").checked == true){
+                blockfieldsOrNotParents('padre', true)
+            }
+            if (document.getElementById("tieneMadre").checked == true){
+                blockfieldsOrNotParents('madre', true)
+            }
 
         }
         if( document.getElementById("alumno[parentesco]").value=="Padre"){
             esPadre.style.display = "none";
             $('#esPadre').find('input, textarea, button, select').attr('disabled','disabled');
-           
+            
 
             esMadre.style.display = "block";
             $('#esMadre').find('input, textarea, button, select').removeAttr('disabled');
            
+            /*ESTO ES PARA HACER QUE SI ESTABA MARCADA LA CASILLA DE NO TIENE PADRE, 
+            LOS CAMPOS DE ELLA SIGAN BLOQUEADOS*/
+            if (document.getElementById("tieneMadre").checked == true){
+                blockfieldsOrNotParents('madre', true)
+            }
+
 
         }
 
@@ -305,7 +316,13 @@
 
             esPadre.style.display = "block";
             $('#esPadre').find('input, textarea, button, select').removeAttr('disabled');
-            
+
+            /*ESTO ES PARA HACER QUE SI ESTABA MARCADA LA CASILLA DE NO TIENE PADRE, 
+            LOS CAMPOS DE ELLA SIGAN BLOQUEADOS*/
+            if (document.getElementById("tienePadre").checked == true){
+                blockfieldsOrNotParents('padre', true)
+            }
+                        
         }
        
 
@@ -523,6 +540,8 @@
 </script>
 
 
+
+
 {{-- indexContrato secretariado --}}
 <script src="{{ asset('js/calcularTotalAPagar.js') }}"></script>
 
@@ -535,6 +554,7 @@ actionIfNotNull('enumerator',changeCantidadRepitencias)
 actionIfNotNull('padreOMadrePC',primerContacto)
 actionIfNotNull('padreOMadreSC',segundoContacto)
 actionIfNotNull('alumno[parentesco]',apoderadoPadreOMadre)
+actionIfNotNull('checkCheckBoxIfDoNotHaveParents', cantContactos)
 
 
 }

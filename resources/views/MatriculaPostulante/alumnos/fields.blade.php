@@ -38,7 +38,7 @@
 
 <!-- Idcursoactual Field -->
 <div class="form-group col-sm-3">
-    {!! Form::label('idCursoActual', 'Curso Actual:') !!}
+    {!! Form::label('idCursoActual', 'Curso Actual 2018:') !!}
 
      {!! Form::select('alumno[idCursoActual]', App\Enums\CursoEnum::getPossibleENUM(), ( isset($persona->alumno->idCursoActual) ? $persona->alumno->idCursoActual : null ) ,  array('id'=> 'alumno[idCursoActual]','required' => 'true', 'class' => 'form-control', 'placeholder' => 'Seleccione el curso actual')) !!}
 </div>

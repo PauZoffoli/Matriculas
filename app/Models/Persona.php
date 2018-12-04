@@ -62,7 +62,10 @@ class Persona extends Model
         'fechaNacimiento',
         'fechaDefuncion',
         'estadoCivil',
-        'idDireccion'
+        'idDireccion',
+        'nivelEducacional',
+        'profesion',
+        'paisDeOrigen'
     ];
 
     /**
@@ -85,7 +88,10 @@ class Persona extends Model
         'genero' => 'string',
         'email' => 'string',
         'estadoCivil' => 'string',
-        'idDireccion' => 'integer'
+        'idDireccion' => 'integer',
+        'nivelEducacional' => 'string',
+        'profesion' => 'string',
+        'paisDeOrigen' => 'string'
     ];
 
     /**

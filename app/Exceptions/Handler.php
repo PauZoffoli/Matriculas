@@ -50,11 +50,11 @@ class Handler extends ExceptionHandler
     { 
         if ($exception instanceof ModelNotFoundException) {
             Flash::error($exception->getMessage() . '  no se encontró!');
-            return redirect('/');
+            return redirect()->back();
         }
         if ($exception instanceof SelectedNotMatchException) {
             Flash::error($exception->getMessage());
-            return redirect('/');
+            return redirect()->back();
         }
 
         return parent::render($request, $exception);

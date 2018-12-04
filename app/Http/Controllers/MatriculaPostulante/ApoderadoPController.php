@@ -59,8 +59,13 @@ class ApoderadoPController extends AppBaseController
     public function edit($id)
     {
       //dd("asd");
-        $persona =  $this->personaRepository->hasOneRelated('Persona', 'Apoderado', 'apoderado', $id);
 
+        $persona =  $this->personaRepository->hasOneRelated('Persona', 'Apoderado', 'apoderado', $id);
+        if( (auth()->user()->hasRole('ApoderadoPostulante'))||(auth()->user()->hasRole('Apoderado')))
+        {
+            $this->authorize('pass', $persona);
+        }
+        
         return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona);
 
     }

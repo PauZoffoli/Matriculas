@@ -28,12 +28,20 @@ class ApoderadoSecretariadoController extends AppBaseController
 //https://github.com/andersao/l5-repository/issues/301 PAGINATE AND CRITERIA
      public function index(Request $request)
     { 
-        $personas = $this->personaRepository->pushCriteria(new 
-            Apoderados\ApoderadoByTipo('ApoderadoPostulante')
-            )->with('apoderados.contratos.alumnos');
+        //$this->authorize('revisorOAdministrador');   deberia hacerse de este modo
+
+        // modo alternativo 
+        if( (auth()->user()->hasRole('Revisor'))||(auth()->user()->hasRole('Secretariado'))||(auth()->user()->hasRole('Administrador')) )
+        {
+
+            $personas = $this->personaRepository->pushCriteria(new 
+                Apoderados\ApoderadoByTipo('ApoderadoPostulante')
+                )->with('apoderados.contratos.alumnos');
    
-        return view('secretariado.index')   
+            return view('secretariado.index')   
             ->with('personas',$personas->paginate(15));
+
+        }  
     }
 
     
@@ -51,7 +59,7 @@ class ApoderadoSecretariadoController extends AppBaseController
         })->get();
 
         if ( empty($personas->all())) {
-           Flash::error('El rut deL apoderado no encontró coincidencias, revise que esté correctamente escrito');
+           Flash::error('El rut del apoderado no encontró coincidencias, revise que esté correctamente escrito');
 
            return redirect(route('apoSecretariadoContr.index'));
        }
@@ -69,6 +77,7 @@ class ApoderadoSecretariadoController extends AppBaseController
      */
     public function edit($id)
     {
+        //$this->authorize('pass', $id);
          $persona =  $this->personaRepository->hasOneRelated('Persona', 'Apoderado', 'apoderado', $id);
 
         return view('MatriculaPostulante.apoderados.edit')->with('persona', $persona)->with('revisorMatriculando', true); //vamos a la vista edit de apoderados, pero este redirige al controller update 

@@ -157,15 +157,29 @@ class AlumnoPController extends AppBaseController
    
         ///----->>>>>2) Una vez colectados los datos de Padre y madre procederemos a guardarlos, verificando que no exista el rut con anterioridad: Si existe con anterioridad, vamos a trabajar con los datos antiguos.
         //tambien es importante resaltar que debemos guardar ese cambio de padre o madre para el alumno y así mantenerlo siempre relacionado.
-
+        //Se adhieren persona y dirección, sin updateos
         $padreExistente = null;
         $madreExistente = null;
         if(isset($request->padre)){
-            $padreExistente = Helper::existePersona($request->padre, $this->personaRepository); //Padre antiguo o nueva con la que vamos a trabajar
+            $padreExistente = Helper::addPersonaAddDireccion(
+                                        $request->padre,
+                                        $this->personaRepository,
+                                        (isset($request->padre['direccion']) ? $request->padre['direccion'] : null),
+                                        $this->direccionRepository
+                            ); //Padre antiguo o nueva con la que vamos a trabajar
+
             $alumnoConPadreAsociado = Alumno::where('id' , '=', $persona->alumno->id)->update(['idPadre' => $padreExistente->id]); //con el padre que acabamos de crear o update lo retornamos para agregarselo al alumno
         }
+
+
         if(isset($request->madre)){
-            $madreExistente = Helper::existePersona($request->madre, $this->personaRepository); //madre antigua o nueva con la que vamos a trabajar
+            $madreExistente = Helper::addPersonaAddDireccion(
+                                        $request->madre,
+                                        $this->personaRepository,
+                                        (isset($request->madre['direccion']) ? $request->madre['direccion'] : null),
+                                        $this->direccionRepository
+                            ); //Madre antiguo o nueva con la que vamos a trabajar
+
             $alumnoConMadreAsociada = Alumno::where('id' , '=', $persona->alumno->id)->update(['idMadre' => $madreExistente->id]);
         }
 
@@ -199,14 +213,18 @@ class AlumnoPController extends AppBaseController
 
 
             //*-->-------->UPDATE DIRECCION
-        $direccion =Helper::updateThis($this->direccionRepository,$request->direccion, $persona->direccion->id);
-     
-        $request->request->add(['idDireccion' => $direccion->id]); //guardamos el id de la dirección updateada
+       // $direccion = Helper::updateThis($this->direccionRepository,$request->direccion, $persona->direccion->id);
+
+        //$request->request->add(['idDireccion' => $direccion->id]); //guardamos el id de la dirección updateada
 
         //https://stackoverflow.com/questions/38664845/exclude-laravel-specific-values-from-request
         $persona = $this->personaRepository->update($request->except('direccion'), $id);
 
-        $alumno = Helper::updateThis($this->alumnoRepository,Arr::except($request->only('alumno'), 'idCursoPostu'), $persona->alumno->id);
+        $alumno = Helper::updateThis(
+            $this->alumnoRepository,
+            Arr::except($request->only('alumno'), 'idCursoPostu')['alumno']
+            , $persona->alumno->id
+        );
 
         Helper::updateThis($this->fichaAlumnoRepository, $request->fichaAlumno[0], $idFicha->id);
        
@@ -326,6 +344,14 @@ echo $f->format(1432);
      */
     public function edit($id)
     {
+        $personaAlumno = Persona::where('id', $id)->first();
+        //$miID = $personaAlumno->alumno->apoderado->persona;
+
+        if( (auth()->user()->hasRole('ApoderadoPostulante'))||( auth()->user()->hasRole('Apoderado')))
+        {
+            $this->authorize('alumnoDeApoderado', $personaAlumno);
+        }
+        
         return view('MatriculaPostulante.alumnos.edit')->with('id', $id);
     }
     /**

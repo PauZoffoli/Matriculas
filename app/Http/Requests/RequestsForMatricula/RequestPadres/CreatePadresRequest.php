@@ -27,7 +27,7 @@ class CreatePadresRequest extends FormRequest
     {
        return $rules = [
         'PNombre' => 'required|max:40',
-        'SNombre' => 'required|max:40',
+        'SNombre' => 'max:40',
         'TNombre' => 'max:40',
         'ApPat' => 'required|max:40',
         'ApMat' => 'max:40',

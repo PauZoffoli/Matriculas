@@ -3,7 +3,7 @@ function checkRut(rut) {
     var valor = rut.value.replace('.','');
     // Despejar Guión
     valor = valor.replace('-','');
-    
+    valor = valor.replace(/\s+/, "");
     // Aislar Cuerpo y Dígito Verificador
     cuerpo = valor.slice(0,-1);
     dv = valor.slice(-1).toUpperCase();

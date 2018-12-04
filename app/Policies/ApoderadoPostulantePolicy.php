@@ -22,7 +22,20 @@ class ApoderadoPostulantePolicy
 
     public function pass(User $user, Persona $persona)
     {
-        //dd('x');
         return $user->id == $persona->idUser;
+    }
+
+    public function alumnoDeApoderado(User $user, Persona $persona)
+    {
+        return $user->persona->id == $persona->alumno->apoderado->persona->id;
+    }
+
+    public function revisorOAdministrador(User $user)
+    {
+        if($user->hasRole('Secretariado'))
+        {
+            return true;
+        }
+        return false;
     }
 }

@@ -54,9 +54,9 @@ class AlumnoSecretariadoController extends AppBaseController
         public function ficha($alumno)
         {
             $input = $alumno;
-            dd($input);
+            //dd($input);
             $apoderado = Apoderado::where('id', $input->idApoderado)->first();
-            dd($apoderado);
+            //dd($apoderado);
             $vista = view('secretariado/fichaPDF')->with('datos',$apoderado)->with('req',$request);
             $pdf = \PDF::loadHTML($vista);
             $pdf->setPaper("legal","portrait");

@@ -39,10 +39,7 @@ class Helper extends Controller
        return;
     }
 
-    public static function isSessionAliveOrReturnHome(){
 
-    }
-   
 
 
     public static function createPivot($repository, $request , $idAlumno, $relacion, $condicion){
@@ -100,6 +97,66 @@ class Helper extends Controller
       return $enum;
     }
 
+//creo o traigo a la persona si existe por rut
+   public static function addPersona($personaRequest, $personaRepository){
+        $existePersonaRut = Persona::where('rut', '=', $personaRequest['rut'])->first();
+        unset($personaRequest['direccion']); //array to string conversion
+
+        $bringPersona = null;
+        if($existePersonaRut==null){ //se crea
+          // dd("CREATED");
+          $bringPersona = $personaRepository->create($personaRequest);
+       }else{  //Si la persona ya se encontraba no se updatea, solo se trae
+
+          // dd("UPDATED");
+          $bringPersona = $existePersonaRut;
+       }
+       return $bringPersona;
+    }
+
+    public static function verifyDireccionIfNullOrIsset($direccionRequest, $cadenaAVerificar){
+        
+        if(!isset($direccionRequest[$cadenaAVerificar]) ){
+          return true;
+        }
+
+        if($direccionRequest[$cadenaAVerificar]==null){
+            return true;
+            dd("entró");
+        }
+
+        return false;
+    }
+
+    /*El revisor es quién puede editar los datos de un contacto o padre mal ingresados, por eso se le crea este método que crea o updatea*/
+    public static function addPersonaAddDireccion($personaRequest, $personaRepository, $direccionRequest, $direccionRepository){
+
+      $persona =  self::addPersona($personaRequest, $personaRepository);
+
+      if($direccionRequest != null){
+            $bringDireccion = null;
+           
+            if(self::verifyDireccionIfNullOrIsset($direccionRequest, 'idComuna')||
+                self::verifyDireccionIfNullOrIsset($direccionRequest, 'calle')||
+                self::verifyDireccionIfNullOrIsset($direccionRequest, 'nroCalle')){
+                return $persona;
+            }
+
+            //dd(isset($persona->direccion));
+            if($persona->idDireccion == null){ //se crea el apoderado si no existe el rut en la BD
+              $newDireccion = $direccionRepository->create($direccionRequest);
+              $persona->idDireccion = $newDireccion->id;
+              $persona->save();
+            }
+     
+            
+        }
+
+        return $persona;
+      
+    }
+
+
 
    // https://stackoverflow.com/questions/42371728/laravel-redirect-inside-of-trait
     
@@ -135,7 +192,7 @@ class Helper extends Controller
 
     public static function updateThis($repository, $request, $id){
      $value = $repository->findWithoutFail($id);
-     return $repository->update($request, $id);
+     return $repository->update($request, $id) ;
    }
 
      public static function manualValidation($request, $validate, $message, $lugar){
@@ -251,18 +308,7 @@ class Helper extends Controller
 
   }
 
-    //creo o traigo a la persona si existe por rut
-   public static function existePersona($persona, $repository){
-        $existePersonaRut = Persona::where('rut', '=', $persona['rut'])->first();
-
-        $bringPersona = null;
-        if($existePersonaRut==null){ //se crea
-          $bringPersona = $repository->create($persona);
-       }else{  //Si la persona ya se encontraba no se updatea, solo se trae
-          $bringPersona = $existePersonaRut;
-       }
-       return $bringPersona;
-    }
+   
 
          //Comprobamos que el rut del Alumno efectivamente exista
    public static function comprobarQueElRutExista($persona){

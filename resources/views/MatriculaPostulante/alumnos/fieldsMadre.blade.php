@@ -1,4 +1,4 @@
-@extends('MatriculaPostulante.personas.fieldsPersonaContacto', 
+@extends('MatriculaPostulante.personas.fieldsPersonaPadres', 
     [
 'PNombreLBL' => 'madre[PNombre]',
 'SNombreLBL' => 'madre[SNombre]',
@@ -14,6 +14,17 @@
 'idAlumnoLBL' => 'madre[idAlumno]',
 'parentescoLBL' => 'madre[parentesco]',
 'fechaDefuncionLBL' => 'madre[fechaDefuncion]',
+'fechaNacimientoLBL' => 'madre[fechaNacimiento]',
+'nivelEducacionalLBL' => 'madre[nivelEducacional]',
+'profesionLBL' => 'madre[profesion]',
+'paisDeOrigenLBL' => 'madre[paisDeOrigen]',
+
+
+'idComunaLBL' => "madre[direccion][idComuna]",
+'calleLBL' => 'madre[direccion][calle]',
+'nroCalleLBL' => 'madre[direccion][nroCalle]',
+'dptoLBL' => 'madre[direccion][dpto]',
+'bloqueTorreLBL' => 'madre[direccion][bloqueTorre]',
 
 
 'PNombreTXT' =>( isset($madre->PNombre) ? $madre->PNombre : null ), 
@@ -30,4 +41,17 @@
 'idAlumnoTXT' => ( isset($persona->alumno->id) ? $persona->alumno->id : null ),
 'parentescoTXT' => ( isset($madre->parentesco) ? $madre->parentesco : null ),
 'fechaDefuncionTXT' => ( isset($madre->fechaDefuncion) ? $madre->fechaDefuncion : null ),
+
+'fechaNacimientoTXT' => ( isset($madre->fechaNacimiento) ? $madre->fechaNacimiento : null ),
+'nivelEducacionalTXT' => ( isset($madre->nivelEducacional) ? $madre->nivelEducacional : null ),
+'profesionTXT' => ( isset($madre->profesion) ? $madre->profesion : null ),
+'paisDeOrigenTXT' => ( isset($madre->paisDeOrigen) ? $madre->paisDeOrigen : null ),
+
+
+
+'idComunaTXT' => ( isset($madre->direccion->idComuna) ? $madre->direccion->idComuna : null ),
+'calleTXT' => ( isset($madre->direccion->calle) ? $madre->direccion->calle : null ),
+'nroCalleTXT' => ( isset($madre->direccion->nroCalle) ? $madre->direccion->nroCalle : null ),
+'dptoTXT' => ( isset($madre->direccion->dpto) ? $madre->direccion->dpto : null ),
+'bloqueTorreTXT' => ( isset($madre->direccion->bloqueTorre) ? $madre->direccion->bloqueTorre : null ),
     ])

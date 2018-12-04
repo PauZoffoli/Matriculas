@@ -844,7 +844,20 @@ ul
 <body lang=ES style='tab-interval:35.4pt'>
 
 <div class=WordSection1>
-
+@php
+  if ((date('F')) == "January"){ $mesActual = "Enero";}
+  if ((date('F')) == "February"){ $mesActual = "Febrero";}
+  if ((date('F')) == "March"){ $mesActual = "Marzo";}
+  if ((date('F')) == "April"){ $mesActual = "Abril";}
+  if ((date('F')) == "May"){ $mesActual = "Mayo";}
+  if ((date('F')) == "June"){ $mesActual = "Junio";}
+  if ((date('F')) == "July"){ $mesActual = "Julio";}
+  if ((date('F')) == "August"){ $mesActual = "Agosto";}
+  if ((date('F')) == "September"){ $mesActual = "Septiembre";}
+  if ((date('F')) == "October"){ $mesActual = "Octubre";}
+  if ((date('F')) == "November"){ $mesActual = "Noviembre";}
+  if ((date('F')) == "December"){ $mesActual = "Diciembre";}
+@endphp
 
 
 <p class=MsoTitle><span lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>CONTRATO
@@ -861,7 +874,7 @@ mso-font-kerning:72.0pt'><span style='mso-element:field-begin'></span><span
 style='mso-spacerun:yes'> </span>TIME \@ &quot;dd' de 'MMMM' de 'yyyy&quot; <span
 style='mso-element:field-separator'></span></span></b><![endif]--><b
 style='mso-bidi-font-weight:normal'><span style='font-family:"Arial",sans-serif;
-mso-font-kerning:72.0pt'><span style='mso-no-proof:yes'>{{ date('d') }} de Septiembre de
+mso-font-kerning:72.0pt'><span style='mso-no-proof:yes'>{{ date('d') }} de {{ $mesActual }} de
 {{ date('Y') }}</span></span></b><!--[if supportFields]><b style='mso-bidi-font-weight:
 normal'><span style='font-family:"Arial",sans-serif;mso-font-kerning:72.0pt'><span
 style='mso-element:field-end'></span></span></b><![endif]--><span
@@ -1646,7 +1659,7 @@ lang=ES-TRAD style='font-size:8.0pt;font-family:"Arial",sans-serif;letter-spacin
 style='mso-spacerun:yes'> </span>TIME \@ &quot;dd' de 'MMMM' de 'yyyy&quot; <span
 style='mso-element:field-separator'></span></span><![endif]--><span
 lang=ES-TRAD style='font-size:8.0pt;font-family:"Arial",sans-serif;letter-spacing:
--.1pt;mso-font-kerning:72.0pt'><span style='mso-no-proof:yes'>{{ date('d') }} de septiembre
+-.1pt;mso-font-kerning:72.0pt'><span style='mso-no-proof:yes'>{{ date('d') }} de {{ $mesActual }}
 de {{ date('Y') }}</span></span><!--[if supportFields]><span lang=ES-TRAD
 style='font-size:8.0pt;font-family:"Arial",sans-serif;letter-spacing:-.1pt;
 mso-font-kerning:72.0pt'><span style='mso-element:field-end'></span></span><![endif]--><span

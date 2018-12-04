@@ -109,7 +109,8 @@ class ContratoSecretariadoController extends AppBaseController
                     $output = $pdf->output();
                     $nombreArchivo = $primerContrato->id . '-'. $apoderado->persona->rut . '-'. $input['fechaContrato'] . '.pdf'; 
                 try {
-                     file_put_contents('../storage/app/PDF2018a2019Contratos/C'.$nombreArchivo, $output);
+                     
+                     file_put_contents( (storage_path('../storage/app/PDF2018a2019Contratos/C' . $nombreArchivo)), $output );
                      $primerContrato->urlContrato = '/PDF2018a2019Contratos/C'.$nombreArchivo;
                      $primerContrato->save();
                 }catch (Exception $e) {
@@ -134,7 +135,8 @@ class ContratoSecretariadoController extends AppBaseController
                     $output = $pdf->output();
                     $nombreArchivo = $primerContrato->id . '-'. $apoderado->persona->rut . '-'. $input['fechaContrato'] . '.pdf'; 
                 try {
-                     file_put_contents('../storage/app/PDF2018a2019Pagares/P'.$nombreArchivo, $output);
+
+                     file_put_contents( (storage_path('../storage/app/PDF2018a2019Pagares/P' . $nombreArchivo)), $output );
                      $primerContrato->urlPagare = '/PDF2018a2019Pagares/P'.$nombreArchivo;
                      $primerContrato->save();
                 }catch (Exception $e) {

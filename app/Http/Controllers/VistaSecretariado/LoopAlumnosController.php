@@ -163,20 +163,31 @@ class LoopAlumnosController extends AppBaseController
    
         ///----->>>>>2) Una vez colectados los datos de Padre y madre procederemos a guardarlos, verificando que no exista el rut con anterioridad: Si existe con anterioridad, vamos a trabajar con los datos antiguos.
         //tambien es importante resaltar que debemos guardar ese cambio de padre o madre para el alumno y así mantenerlo siempre relacionado.
-
+        //Se adhieren persona y dirección, CON updateos
         $padreExistente = null;
         $madreExistente = null;
         if(isset($request->padre)){
-            $padreExistente = RevisorHelper::existePersona($request->padre, $this->personaRepository); //Padre antiguo o nueva con la que vamos a trabajar
+            $padreExistente = RevisorHelper::addOrUpdatePersonaAndDireccion(
+                                        $request->padre,
+                                        $this->personaRepository,
+                                        (isset($request->padre['direccion']) ? $request->padre['direccion'] : null),
+                                        $this->direccionRepository
+                            ); //Padre antiguo o nueva con la que vamos a trabajar
+
             $alumnoConPadreAsociado = Alumno::where('id' , '=', $persona->alumno->id)->update(['idPadre' => $padreExistente->id]); //con el padre que acabamos de crear o update lo retornamos para agregarselo al alumno
         }
         if(isset($request->madre)){
-            $madreExistente = RevisorHelper::existePersona($request->madre, $this->personaRepository); //madre antigua o nueva con la que vamos a trabajar
+            $madreExistente = RevisorHelper::addOrUpdatePersonaAndDireccion(
+                                        $request->madre,
+                                        $this->personaRepository,
+                                        (isset($request->madre['direccion']) ? $request->madre['direccion'] : null),
+                                        $this->direccionRepository
+                            ); //Madre antiguo o nueva con la que vamos a trabajar
+
             $alumnoConMadreAsociada = Alumno::where('id' , '=', $persona->alumno->id)->update(['idMadre' => $madreExistente->id]);
         }
 
 
-        
         ///----->>>>>4) SINCRONIZAMOS los datos de padres y madres del contacto, evitando que pueda haber más de un padre
         //o el regristro es borrado 
         Helper::existeRelacionPorParentesco($request->alumno['id'] , $padreExistente,  $madreExistente, "Padre");

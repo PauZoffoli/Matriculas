@@ -18,6 +18,7 @@ class CreateApoderadosTable extends Migration
             $table->timestamp('created_at')->nullable()->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrent();
             $table->enum('nivelEducacional', [
+            'Se desconoce',
             'Sin estudios', 
             'Pre-Kínder', 
             'Kínder',

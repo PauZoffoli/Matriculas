@@ -33,29 +33,31 @@ Route::resource('alumnosPostulantes', 'MatriculaPostulante\AlumnoPController')->
 
 
 //Rutas Definidas para el proceso de matrícula revisado por el secretariado
-Route::resource('alumnosPostulantesRevisor', 'VistaSecretariado\LoopAlumnosController'); //Agregado para ir al controller especial para que la secretaria edite al alumno
-Route::resource('alumnoSecretariadoContr', 'VistaSecretariado\AlumnoSecretariadoController');
-Route::resource('apoSecretariadoContr', 'VistaSecretariado\ApoderadoSecretariadoController');
-Route::resource('PersonaSecretariadoContr', 'VistaSecretariado\PersonaSecretariadoController');
-Route::resource('ContratoSecretariadoContr', 'VistaSecretariado\ContratoSecretariadoController');
+Route::resource('alumnosPostulantesRevisor', 'VistaSecretariado\LoopAlumnosController')->middleware('auth'); //Agregado para ir al controller especial para que la secretaria edite al alumno
+Route::resource('alumnoSecretariadoContr', 'VistaSecretariado\AlumnoSecretariadoController')->middleware('auth');
+Route::resource('apoSecretariadoContr', 'VistaSecretariado\ApoderadoSecretariadoController')->middleware('auth');
+Route::resource('PersonaSecretariadoContr', 'VistaSecretariado\PersonaSecretariadoController')->middleware('auth');
+Route::resource('ContratoSecretariadoContr', 'VistaSecretariado\ContratoSecretariadoController')->middleware('auth');
 
-Route::get('searchPersona', 'VistaSecretariado\ApoderadoSecretariadoController@searchPersona')->name('apoSecretariadoContr.searchPersona');
-
-
-
-Route::resource('alumnoContratos', 'AlumnoContratoController');
+Route::get('searchPersona', 'VistaSecretariado\ApoderadoSecretariadoController@searchPersona')->name('apoSecretariadoContr.searchPersona')->middleware('auth');
 
 
 
+Route::resource('alumnoContratos', 'AlumnoContratoController')->middleware('auth');
 
 Route::group(['namespace' => 'VistaSecretariado\DescargaPDFContrato', 'prefix' => 'PDF'], function () { 
 
     Route::get('contratos/{id}', [
          'uses' => 'PdfContratoController@pdfContratoStream'
-    ])->name('pdfContratoStream'); 
+    ])->name('pdfContratoStream')->middleware('auth'); 
 
      Route::get('pagares/{id}', [
          'uses' => 'PdfContratoController@pdfPagareStream'
-    ])->name('pdfPagareStream'); 
+    ])->name('pdfPagareStream')->middleware('auth'); 
 
 });
+
+
+ Route::get('/cambioestados/{id}/{estados}', [
+         'uses' => 'Administrador\CambioEstados\CambioEstadosController@edit'
+    ])->name('cambioestadosgetedit')->middleware('auth'); 

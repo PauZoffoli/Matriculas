@@ -47,13 +47,25 @@ table.minimalistBlack tfoot td {
         <th>Tipo de Apoderado</th>
         <th >Contrato</th>
         <th>PDF</th>
+        {{-- SI ES ADMINISTRADOR SE PODRÁN CAMBIAR LOS ESTADOS DE LA PERSONA --}}
+        @if( auth()->user()->hasRole('Administrador') === true)
+
+         <th>Cambiar Estado</th>
+       
+        @endif
       </tr>
 
     </thead>
     <tbody border="1px">
       @foreach($personas as $persona)
       <tr>
-        <td>{!! $persona->PNombre !!} {!!  $persona->ApPat !!} {!!  $persona->ApMat  !!}</td>
+        <td>
+
+          
+          {!! $persona->PNombre !!} {!!  $persona->ApPat !!} {!!  $persona->ApMat  !!}
+
+
+        </td>
         <td>{!! $persona->rut !!}</td>
         <td style="text-align: center;">@switch($persona->apoderado->estado)
           @case("MatriculaRevisadaPorRevisor")
@@ -78,6 +90,8 @@ table.minimalistBlack tfoot td {
           @foreach ($persona->tipos as $element)
           @if ($element->nombre == 'ApoderadoPostulante') 
           <p>Nuevo</p> 
+          @else
+          <p>Antiguo</p>
           @endif  
           @endforeach
         </td>
@@ -90,28 +104,34 @@ table.minimalistBlack tfoot td {
             <h4 style="float:left;"><span class="label label-default"><a href="{!! route('apoderadosPostulantes.edit', [$persona->id, "generandoContrato"] ) !!}" style="color:black;" ><i class="glyphicon glyphicon-edit"></i>GENERAR</a> </span></h4>
 
             <!-- Si existe un contrato, verlo -->
-            @foreach ($persona->apoderado->contratos as $contratos)
+            @foreach ($persona->apoderado->contratos as $contrato)
 
             @if ($loop->last)  <!-- ver el último contrato vigente -->
-            <h4 style="float:left;"><span class="label label-warning">
-              <a href="{!! route('ContratoSecretariadoContr.edit', [$contratos->id] )  !!}"  style="color:white;" ><i class="glyphicon glyphicon-ok"></i>EDITAR</a></span></h4>
-            </div>
+                @if ($contrato->alumnos!= "[]")
+                   <h4 style="float:left;"><span class="label label-warning">
+                  <a href="{!! route('ContratoSecretariadoContr.edit', [$contrato->id] )  !!}"  style="color:white;" ><i class="glyphicon glyphicon-ok"></i>EDITAR</a></span></h4>
+                </div>
+                @endif
             @endif
             @endforeach
 
           </td>
           <td style="text-align: center;">
 
-           @foreach ($persona->apoderado->contratos as $contratos)
+           @foreach ($persona->apoderado->contratos as $contrato)
 
            @if ($loop->last)  <!-- ver el último contrato vigente -->
-             <center>
-             <h4 style="float:left;"><span class="label label-success">
-              <a href="{{route("pdfContratoStream", $contratos->id)}}"  style="color:white;" ><i class="glyphicon glyphicon-download-alt"></i>CONTRATO</a></span></h4>
+            <center>
+             
+            @if ( !empty($contrato->urlContrato) )
               <h4 style="float:left;"><span class="label label-success">
-                <a href="{{route("pdfPagareStream", $contratos->id)}}"  style="color:white;" ><i class="glyphicon glyphicon-download-alt"></i>PAGARÉ</a></span></h4>
+              <a href="{{route("pdfContratoStream", $contrato->id)}}"  style="color:white;" ><i class="glyphicon glyphicon-download-alt"></i>CONTRATO</a></span></h4>
+            @endif
 
-
+            @if ( !empty($contrato->urlPagare) )
+              <h4 style="float:left;"><span class="label label-success">
+                <a href="{{route("pdfPagareStream", $contrato->id)}}"  style="color:white;" ><i class="glyphicon glyphicon-download-alt"></i>PAGARÉ</a></span></h4>
+            @endif
               </center>
 
               @endif
@@ -119,6 +139,31 @@ table.minimalistBlack tfoot td {
             </td>
 
 
+
+            {{-- SI ES ADMINISTRADOR SE PODRÁN CAMBIAR LOS ESTADOS DE LA PERSONA --}}
+            @if( auth()->user()->hasRole('Administrador') === true)
+
+            <td>
+
+
+                  
+                {!! Form::select('estado', array('cambioestados/'.$persona->id.'/MatriculaNoRevisadaPorApoderado' => 
+                                              'No Revisada:Apoderado',
+                                              'cambioestados/'.$persona->id.'/MatriculaRevisadaPorApoderado' => 
+                                              'SI Revisada:Apoderado',
+                                              'cambioestados/'.$persona->id.'/MatriculaRevisadaPorRevisor' => 
+                                              'SI Revisada:Revisor'),
+                                              'cambioestados/'.$persona->id . '/' .(isset($persona->apoderado->estado) ? $persona->apoderado->estado :null)
+                                              , array( 'class' => 'form-control col-sm-6', "onChange"=>"window.location.href=this.value", 'placeholder' => 'Seleccione estado')) !!}
+
+
+     
+
+               
+        
+            </td>
+
+            @endif
 
 
           </tr>
@@ -132,3 +177,4 @@ table.minimalistBlack tfoot td {
     @endif
 
 
+   
