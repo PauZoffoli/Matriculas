@@ -31,7 +31,7 @@
 
 @php
   $var = 'alumnosPostulantes';
-  $estaGenerandoContrato = (strrpos(url()->full(), "edit?generandoContrato"));
+  $estaGenerandoContrato = (strrpos(url()->full(), "generandoContrato"));
 @endphp
   
  @if ( $estaGenerandoContrato)
@@ -41,9 +41,20 @@
 @endif
 
 
+@php
+  $thisYear = '';
+  $anio = (strrpos(url()->full(), "Anio"));
+@endphp
+  
+ @if ( $anio)
+   @php
+   $thisYear = 'Anio'
+   @endphp
+@endif
+
     {!! Form::model($persona, ['route' => [
 
-                   $var.'.update', $persona->id 
+                   $var.'.update', $persona->id , $thisYear 
 
                     ], 'method' => 'patch']) !!}
                     

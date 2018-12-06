@@ -133,12 +133,20 @@ class ApoderadoPController extends AppBaseController
         $request->session()->put('todosLosAlumnos', $todosLosAlumnos);//Guardamos los idPersona de alumnos checkeados por el apoderado en una variable de sesión
 
         /////////////////////////////////////////////////////////////
-
+        //VARIABLES POR URL
         $controllerToRedirect = 'alumnosPostulantes.edit';
         $revisorEstaRevisando = (isset($request['generandoContrato']) ? 'generandoContrato' : '') ;
-
         if($revisorEstaRevisando){
             $controllerToRedirect = 'alumnosPostulantesRevisor.edit';
+
+            //Por si selecciona que quiere contratar para este año
+            // DEPENDE DE LA SELECCIÓN DEL USUARIO SI SE CONTRATARÁ PARA ESTE O EL SIGUIENTE AÑO, ESTO SE REFLEJARÁ EN LA EXISTENCIA O NO DE  --}}
+            //LA VARIABLE ANIO EN LA URL --}}
+            $anioAContratar = (isset($request['Anio']) ? 'Anio' : '') ;
+            if($anioAContratar){
+            $revisorEstaRevisando = 'generandoContrato?Anio';
+            }
+
         }
 
         Flash::success('Apoderado editado exitósamente.'); //Definimos un mensaje de éxito

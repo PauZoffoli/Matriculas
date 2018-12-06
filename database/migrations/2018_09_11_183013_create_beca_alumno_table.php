@@ -19,9 +19,9 @@ class CreateBecaAlumnoTable extends Migration
             $table->timestamp('updated_at')->nullable()->useCurrent();
             $table->integer('idAlumno')->unsigned();
             $table->foreign('idAlumno')->references('id')->on('alumnos');    
-
-            $table->integer('idBeca')->unsigned();
-            $table->foreign('idBeca')->references('id')->on('becas');    
+            $table->integer('porcentaje');
+            $table->integer('anioBeca')->unsigned();
+               
         });
     }
 

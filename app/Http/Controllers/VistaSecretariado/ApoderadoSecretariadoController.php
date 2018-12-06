@@ -15,6 +15,8 @@ use App\Criteria\Apoderados;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 
+
+//http://localhost:8000/apoSecretariadoContr
 class ApoderadoSecretariadoController extends AppBaseController
 {
     private $personaRepository;
@@ -35,7 +37,7 @@ class ApoderadoSecretariadoController extends AppBaseController
         {
 
             $personas = $this->personaRepository->pushCriteria(new 
-                Apoderados\ApoderadoByTipo('ApoderadoPostulante')
+                Apoderados\ApoderadoByTipo('Apoderado')
                 )->with('apoderados.contratos.alumnos');
    
             return view('secretariado.index')   

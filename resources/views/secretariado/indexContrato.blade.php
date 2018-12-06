@@ -34,6 +34,10 @@
   <div class="clearfix"></div>
 
   @include('flash::message')
+    {{ Form::open(array('route' => array('ContratoSecretariadoContr.store'
+
+    ))) }}
+
 
   <div class="clearfix"></div>
   <div class="box box-primary">
@@ -52,7 +56,8 @@
         </thead>
         <tbody >
           <?php $numero = 0; $total = 0; $montoCuota = 0;?>
-          @foreach($alumnos as $alumno)
+         
+          @foreach($alumnos  as $key =>  $alumno)
           @php 
           $total+=($alumno->curso['arancelAnual']);
           $idApo = $alumno->apoderado['id']; 
@@ -79,13 +84,31 @@
               {!!  ( isset($alumno->persona['rut']) ? $alumno->persona['rut'] : null ) !!}
             </td>
 
-
             <td class="form-group col-sm-2">
+              {{-- TRAER LA BECA MÁS GRANDE DEPENDIENDO DEL AÑO --}}
+              @if (strrpos(url()->full(),"Anio"))
+                @php
+                   $ultimaBeca = $alumno->becas()->where('anioBeca',  date('Y'))->orderBy('porcentaje', 'desc')->first()
+                 @endphp 
+              @else
+               @php
+                   $ultimaBeca = $alumno->becas()->where('anioBeca',  date('Y')+1)->orderBy('porcentaje', 'desc')->first()
+                 @endphp 
+              @endif
 
-              {!! Form::number('beca', 0,  ['class' => 'form-control', 'name' => 'beca']) !!} 
-              
-            </td>
-
+               @if ( ( isset($ultimaBeca['porcentaje'] ) ? $ultimaBeca['porcentaje']  : 0 ) == 100)
+                  {!! Form::number('beca[' . $key  . ']',
+                      ( isset($ultimaBeca['porcentaje'] ) ? $ultimaBeca['porcentaje']  : 0 ),
+                        ['class' => 'form-control', 'readOnly' => '','name' => 'beca[' . $key  . ']']) 
+                   !!}    
+               @else
+                   {!! Form::number('beca[' . $key  . ']',
+                      ( isset($ultimaBeca['porcentaje'] ) ? $ultimaBeca['porcentaje']  : 0 ),
+                        ['class' => 'form-control', 'required' => '',  'name' => 'beca[' . $key  . ']']) 
+                   !!}    
+               @endif
+                             
+           </td>
 
             <td>
               {!! Form::open() !!}
@@ -95,6 +118,9 @@
               {!! Form::close() !!}
             </td>
           </tr>
+
+         
+
           @endforeach
           <thead>
             <tr>
@@ -103,7 +129,9 @@
               <th></th>
               <th></th>
               <th></th>
-              <th><width="20px">$<label id="totalEscolaridadEnBruto" name="totalEscolaridadEnBruto">{{$total}}</label></th>
+              <th><width="20px">${{ Form::label('arancelAnualAlumnos', $total, array('id' => 'arancelAnualAlumnos', 'name' => 'arancelAnualAlumnos')) }}</th>
+              <input type="hidden" name="arancelAnualAlumnos" value="<?php echo $total; ?>">
+              
               <th></th>
             </tr>
           </thead>
@@ -117,9 +145,7 @@
    <td>
 
 
-    {{ Form::open(array('route' => array('ContratoSecretariadoContr.store'
 
-    ))) }}
     {{-- https://stackoverflow.com/questions/38412091/get-only-specific-attributes-with-from-laravel-collection --}}
 
     <div class="form-group col-sm-6">
@@ -129,13 +155,24 @@
 
     <div class="form-group col-sm-6">
       {!! Form::label('PorcentajeBeca', '% Total Beca:') !!}
-      {!! Form::number('PorcentajeBeca', 0, ['class' => 'form-control','required' => 'true']) !!}
+      {!! Form::number('PorcentajeBeca', 0, ['class' => 'form-control','required' => 'true' ,'step' => '0.1']) !!}
     </div>
 
-    <div class="form-group col-sm-6">
+{{-- DEPENDE DE LA SELECCIÓN DEL USUARIO SI SE CONTRATARÁ PARA ESTE O EL SIGUIENTE AÑO, ESTO SE REFLEJARÁ EN LA EXISTENCIA O NO DE  --}}
+{{-- LA VARIABLE ANIO EN LA URL --}}
+
+@if (strrpos(url()->full(),"Anio"))
+  <div class="form-group col-sm-6">
       {!! Form::label('anioAContratar', 'Año a contratar:') !!}
-      {!! Form::number('anioAContratar', 2019, ['class' => 'form-control','required' => 'true']) !!}
+       {!! Form::number('anioAContratar',  date('Y'), ['class' => 'form-control','required' => 'true', 'readOnly' => "" ]) !!}
     </div>
+@else
+  <div class="form-group col-sm-6">
+      {!! Form::label('anioAContratar', 'Año a contratar:') !!}
+       {!! Form::number('anioAContratar',  date('Y') +1, ['class' => 'form-control','required' => 'true', 'readOnly' => "" ]) !!}
+    </div>
+@endif
+
 
     <div class="form-group col-sm-6">
       {!! Form::label('totalAPagar', 'Total a pagar:') !!}
@@ -162,6 +199,8 @@
     <input type="hidden" id="idAlumnos" name="idAlumnos" value="{{$idAlumnos }}">
 
 
+
+
     <!--MÉTODO PARA SOLO SACAR EL ID DEL ALUMNO DE LA COLECCION $ALUMNOS-->
 
     <div class='btn-group'>
@@ -173,5 +212,7 @@
   </td>
 </div>
 </div>
+
+
 @endsection
 

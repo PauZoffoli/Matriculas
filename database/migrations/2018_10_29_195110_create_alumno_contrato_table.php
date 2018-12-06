@@ -22,6 +22,7 @@ class CreateAlumnoContratoTable extends Migration
             $table->integer('idAlumno')->unsigned();
             $table->foreign('idAlumno')->references('id')->on('alumnos');
 
+
         });
     }
 

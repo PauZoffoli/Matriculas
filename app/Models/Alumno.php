@@ -147,10 +147,19 @@ class Alumno extends Model
     }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function detalleBecaAlumnos()
+     * public function detalleBecaAlumnos()
     {
         return $this->hasMany(\App\Models\DetalleBecaAlumno::class);
+    }
+     */
+   
+
+     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function becas()
+    {
+         return $this->hasMany(\App\Models\DetalleBecaAlumno::class, 'idAlumno');
     }
 
     /**

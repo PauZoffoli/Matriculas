@@ -9,6 +9,7 @@ use Prettus\Repository\Contracts\CriteriaInterface;
 //use Prettus\Repository\Contracts\RepositoryInterface as Repository;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
+
 class ApoderadoByTipo implements CriteriaInterface
 {
 	protected $tipoPersona = null;
@@ -26,7 +27,7 @@ class ApoderadoByTipo implements CriteriaInterface
     		->whereHas('apoderados')
     		->whereHas('tipos', function ($item) use ($tipoRequerido) 
     		{
-    			$item->where('nombre', $tipoRequerido);
+    			$item->where('nombre', 'LIKE','%' . $tipoRequerido .'%');
     	    })
     		->orderBy('id', 'DESC')
     	    ;

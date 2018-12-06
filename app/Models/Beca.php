@@ -58,9 +58,17 @@ class Beca extends Model
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     *public function detalleBecaAlumnos()
+    {
+        return $this->hasMany(\App\Models\DetalleBecaAlumno::class);
+    }
+*/
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function detalleBecaAlumnos()
     {
-        return $this->hasMany(\App\Models\DetalleBecaAlumno::class);
+            return $this->belongsToMany(\App\Models\DetalleBecaAlumno::class, 'detalle_beca_alumno','idAlumno','idBeca');
     }
 }

@@ -241,9 +241,11 @@ class LoopAlumnosController extends AppBaseController
         }
 
         $navigate = Helper::navigateNext($id, $alumnosSeleccionados);
-     
+
+    
+        //SI SELECCIONÓ ESTE AÑO LE SALDRÁ LA VARIABLE ANIO, si seleccinó el siguiente no le saldrá nada
         if($navigate){
-            return redirect()->route('alumnosPostulantesRevisor.edit', [$navigate , 'generandoContrato']);
+            return redirect()->route('alumnosPostulantesRevisor.edit', [$navigate , 'generandoContrato', (isset($request['Anio']) ? 'Anio' : '')]);
         }
 
 

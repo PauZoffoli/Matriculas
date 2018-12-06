@@ -13,9 +13,19 @@
   $var = ''
 @endphp
 
- @if (strrpos(url()->full(), "edit?generandoContrato"))
+ @if (strrpos(url()->full(), "generandoContrato"))
    @php
    $var = 'generandoContrato'
+   @endphp
+@endif
+
+@php
+  $var2 = ''
+@endphp
+
+ @if (strrpos(url()->full(), "Anio"))
+   @php
+   $var2 = 'Anio'
    @endphp
 @endif
 
@@ -26,7 +36,7 @@
        <div class="box box-solid box-success" style="background-color: #E4FDE4!important;">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($persona, ['route' => ['apoderadosPostulantes.update', $persona->id, $var], 'method' => 'patch']) !!}
+                   {!! Form::model($persona, ['route' => ['apoderadosPostulantes.update', $persona->id, $var, $var2], 'method' => 'patch']) !!}
  @csrf
 <div class="box-body">
 

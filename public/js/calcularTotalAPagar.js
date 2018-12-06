@@ -3,9 +3,10 @@
 // indexContrato.blade
 
 //Get a list of input fields to sum
-var becaPorAlumno = document.getElementsByName("beca");
+//var becaPorAlumno = document.getElementsByName("beca");
+var becaPorAlumno = document.querySelectorAll('[name^=beca]')
 var arancelPorAlumno = document.getElementsByName("alumno->curso['arancelAnual']");
-var totalEscolaridadEnBrutoLBL = document.querySelector("#totalEscolaridadEnBruto");
+var totalEscolaridadEnBrutoLBL = document.querySelector("#arancelAnualAlumnos");
 var becaTotal = document.querySelector("#PorcentajeBeca");
 var totalEscolaridadEnBrutoTXT = document.querySelector("#totalAPagar");
 
@@ -36,3 +37,4 @@ for(var i=0; i < becaPorAlumno.length; i++){
 if (becaTotal) {
 becaTotal.addEventListener("keyup", totalAPagarSegunBecaTotal);
 }
+

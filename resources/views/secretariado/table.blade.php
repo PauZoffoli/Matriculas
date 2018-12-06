@@ -45,8 +45,11 @@ table.minimalistBlack tfoot td {
         <th>Rut</th>
         <th>Estado Matrícula</th>
         <th>Tipo de Apoderado</th>
-        <th >Contrato</th>
-        <th>PDF</th>
+       {{ date('m') }}
+        <th>Contratos {{ date('Y') }}</th>
+        <th>PDF {{  date('Y') }}</th>
+        <th>Contratos {{ date('Y')+1 }}</th>
+        <th>PDF {{ date('Y')+1 }}</th>
         {{-- SI ES ADMINISTRADOR SE PODRÁN CAMBIAR LOS ESTADOS DE LA PERSONA --}}
         @if( auth()->user()->hasRole('Administrador') === true)
 
@@ -90,52 +93,106 @@ table.minimalistBlack tfoot td {
           @foreach ($persona->tipos as $element)
           @if ($element->nombre == 'ApoderadoPostulante') 
           <p>Nuevo</p> 
-          @else
+          @elseif($element->nombre == 'Apoderado')
           <p>Antiguo</p>
           @endif  
           @endforeach
         </td>
+@php
+  $contratoThisYear = "";
+  $contratoNextYear = "";
+  $contratoThisYear =  $persona->apoderado->contratos->where('anioAContratar', date('Y') )->first();
+  $contratoNextYear =  $persona->apoderado->contratos->where('anioAContratar', date('Y')+1 )->first(); 
+@endphp
+
+      {{-- THIS YEAR --}}
+      {{-- THIS YEAR --}}
+      {{-- THIS YEAR --}}
+      {{-- THIS YEAR --}}
 
         <td style="text-align: center;">
 
           {!! Form::open() !!}
           <div class='btn-group'>
 
-            <h4 style="float:left;"><span class="label label-default"><a href="{!! route('apoderadosPostulantes.edit', [$persona->id, "generandoContrato"] ) !!}" style="color:black;" ><i class="glyphicon glyphicon-edit"></i>GENERAR</a> </span></h4>
+            <h4 style="float:left;"  title="GENERAR el contrato del año {{ date('Y') }}"><span class="label label-default"><a href="{!! route('apoderadosPostulantes.edit', [$persona->id, "generandoContrato", "Anio"  ] ) !!}" style="color:black;" ><i class="glyphicon glyphicon-plus"></i></a> </span></h4>
 
-            <!-- Si existe un contrato, verlo -->
-            @foreach ($persona->apoderado->contratos as $contrato)
 
-            @if ($loop->last)  <!-- ver el último contrato vigente -->
-                @if ($contrato->alumnos!= "[]")
-                   <h4 style="float:left;"><span class="label label-warning">
-                  <a href="{!! route('ContratoSecretariadoContr.edit', [$contrato->id] )  !!}"  style="color:white;" ><i class="glyphicon glyphicon-ok"></i>EDITAR</a></span></h4>
+            @if ($contratoThisYear)  <!-- ver el último contrato vigente -->
+                @if ($contratoThisYear->alumnos!= "[]")
+                   <h4 style="float:left;"  title="EDITAR el contrato del año {{ date('Y') }}" ><span class="label label-warning">
+                  <a href="{!! route('ContratoSecretariadoContr.edit', [$contratoThisYear->id, "Anio"]  )  !!}"   style="color:white;" ><i class="glyphicon glyphicon-edit"></i></a></span></h4>
                 </div>
                 @endif
             @endif
-            @endforeach
-
+          
           </td>
+          
+          {{-- DESCARGA DE ARCHIVOS  THIS YEAR --}}
+          <td style="text-align: center;">
+  
+         <center>
+          @if ($contratoThisYear)
+              @if ( !empty($contratoThisYear->urlContrato) )
+                <h4 style="float:left;"><span class="label label-info">
+                <a href="{{route("pdfContratoStream", $contratoThisYear->id)}}" title="Descargar el CONTRATO del año {{ date('Y') }}"  style="color:white;" ><i class="glyphicon glyphicon-folder-open"></i></a></span></h4>
+              @endif
+
+              @if ( !empty($contratoThisYear->urlPagare) )
+                <h4 style="float:left;"><span class="label label-success">
+                  <a href="{{route("pdfPagareStream", $contratoThisYear->id)}}" title="Descargar el PAGARÉ del año {{ date('Y') }}"  style="color:white;" ><i class="glyphicon glyphicon-usd"></i></a></span></h4>
+              @endif
+            @endif
+          </center>
+           </td>
+
+
+      {{-- NEXT YEAR --}}
+      {{-- NEXT YEAR --}}
+      {{-- NEXT YEAR --}}
+      {{-- NEXT YEAR --}}
+      {{-- NEXT YEAR --}}
+
           <td style="text-align: center;">
 
-           @foreach ($persona->apoderado->contratos as $contrato)
+          {!! Form::open() !!}
+          <div class='btn-group'>
 
-           @if ($loop->last)  <!-- ver el último contrato vigente -->
-            <center>
-             
-            @if ( !empty($contrato->urlContrato) )
-              <h4 style="float:left;"><span class="label label-success">
-              <a href="{{route("pdfContratoStream", $contrato->id)}}"  style="color:white;" ><i class="glyphicon glyphicon-download-alt"></i>CONTRATO</a></span></h4>
+            <h4 style="float:left;" title="GENERAR el contrato del año {{ date('Y') + 1 }}" >
+              <span class="label label-default"><a href="{!! route('apoderadosPostulantes.edit', [$persona->id, "generandoContrato" ] ) !!}" style="color:black;" ><i class="glyphicon glyphicon-plus"></i></a> </span></h4>
+
+            <!-- Si existe un contrato, verlo -->
+            @if ($contratoNextYear) 
+               @if ($contratoNextYear->alumnos!= "[]")
+                   <h4 style="float:left;"title="EDITAR el contrato del año {{ date('Y') + 1 }}">
+                    <span class="label label-warning">
+                  <a href="{!! route('ContratoSecretariadoContr.edit', [$contratoNextYear->id] )  !!}"  style="color:white;" ><i class="glyphicon glyphicon-edit"></i></a></span></h4>
+                </div>
+                @endif
             @endif
+           
 
-            @if ( !empty($contrato->urlPagare) )
-              <h4 style="float:left;"><span class="label label-success">
-                <a href="{{route("pdfPagareStream", $contrato->id)}}"  style="color:white;" ><i class="glyphicon glyphicon-download-alt"></i>PAGARÉ</a></span></h4>
-            @endif
-              </center>
+          </td>
 
+          {{-- DESCARGA DE ARCHIVOS  NEXT YEAR --}}
+          <td style="text-align: center;">
+
+            @if ($contratoNextYear)
+                <center>
+                 <div class='btn-group'>
+                    @if ( !empty($contratoNextYear->urlContrato) )
+                      <h4 style="float:left;"><span class="label label-info">
+                      <a href="{{route("pdfContratoStream", $contratoNextYear->id)}}" title="Descargar el CONTRATO del año {{ date('Y') +1 }}"  style="color:white;" ><i class="glyphicon glyphicon-folder-open"></i></a></span></h4>
+                    @endif
+
+                    @if ( !empty($contratoNextYear->urlPagare) )
+                      <h4 style="float:left;"><span class="label label-success">
+                        <a href="{{route("pdfPagareStream", $contratoNextYear->id)}}" title="Descargar el PAGARÉ del año {{ date('Y')+1 }}"  style="color:white;" ><i class="glyphicon glyphicon-usd"></i></a></span></h4>
+                    @endif
+                </div>
+                </center>
               @endif
-              @endforeach
+
             </td>
 
 

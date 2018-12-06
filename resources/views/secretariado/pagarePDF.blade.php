@@ -1,3 +1,6 @@
+
+    
+
 <html>
 
 <head>
@@ -167,10 +170,13 @@ ul
 
 </div>
 </head>
-@php
-  $totalPago = (ceil($req->totalAPagar-(($req->totalAPagar)*(($req->PorcentajeBeca)/100))));
-@endphp
 
+
+@php
+  $arancelAnual = (isset($contrato->arancelAnualAlumnos) ? $contrato->arancelAnualAlumnos : 0);
+
+  $arancelReajustado = (isset($contrato->totalAPagar) ? $contrato->totalAPagar : 0);
+@endphp
 <body lang=ES>
 
 <div class=WordSection1>
@@ -245,14 +251,14 @@ style='letter-spacing:1.0pt'> </span>316,<span style='letter-spacing:1.0pt'> </s
 style='letter-spacing:1.0pt'> </span>de<span style='letter-spacing:1.0pt'> </span>La<span style='letter-spacing:1.0pt'> </span>Cisterna,<span style='letter-spacing:1.0pt'> </span>ciudad<span
 style='letter-spacing:1.0pt'> </span>de<span style='letter-spacing:1.0pt'> </span>Santiago,
 la suma de <b>$</b></span><span
-lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>{{ (isset($totalPago) ? $totalPago : null) }}</span><b><span
+lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>{{ number_format( $arancelReajustado , 0, '', '.')  }}</span><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>.-</span></b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> cantidad
 que me  obligo a pagar íntegramente a la vista. </span></p>
 
 <p class=MsoNormal style='margin-right:-11.6pt;text-align:justify'><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>La
-cantidad antes indicada me obligo a pagarla en {{ (isset($req) ? $req->nroCuotas : null) }} cuotas, iguales y sucesivas,
+cantidad antes indicada me obligo a pagarla en {{ (isset($contrato) ? $contrato->nroCuotas : null) }} cuotas, iguales y sucesivas,
 según el siguiente detalle:</span></p>
 <br>
 <div align=center>
@@ -270,19 +276,32 @@ lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span><s
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{ (isset($alumno->persona) ? $alumno->persona->ApPat : null) }}</span><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{ (isset($alumno->persona) ? $alumno->persona->ApMat : null) }}</span>
+
+
+@php
+  $porcentaje = ($alumno->becas()->where('anioBeca', $contrato->anioAContratar)->orderBy('created_at', 'desc')->first()->porcentaje );
+  $arancelAlumno = (isset($alumno->persona) ? $alumno->curso->arancelAnual : 0) ;
+  $alumno = clone $tools; 
+
+  $alumno->setArancelAnualAlumnos($arancelAlumno);
+  $arancelAlumno = $alumno->totalAPagarReajustadoSegunFecha();
+
+@endphp
+
 <span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>=> Arancel Anual: ${{ (isset($alumno->persona) ? $alumno->curso->arancelAnual : null) }}</span>
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>=> Arancel: ${{$arancelAlumno}}
 
+=> Beca: {{ $porcentaje }}% => ${{ $arancelAlumno - $arancelAlumno * ($porcentaje/100) }}
+
+</span>
+                                                               
 
 @endforeach
 <p class=MsoNormal style='margin-right:-11.6pt;text-align:justify'><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> Porcentaje Beca: {{ (isset($req) ? $req->PorcentajeBeca : null) }}%</span>
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> Porcentaje Beca Total: {{ (isset($contrato) ? $contrato->PorcentajeBeca : null) }}%</span>
 </p>
-@php
-  $mibar = ((round($totalPago)))
-@endphp
 
 <br><br>
 <table class=MsoNormalTable align=center border=0 cellspacing=0 cellpadding=0 width=270
@@ -304,436 +323,13 @@ lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> Porcentaje
   style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Monto</span></p>
   </td>
  </tr>
-   @if (($req->nroCuotas==1))
-      <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 1</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>29-09-2018</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($totalPago/$req->nroCuotas)) }}</span></p>
-  </td>
- @endif
-
-    @if (($req->nroCuotas==10))
-      <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 1</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>29-09-2018</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($req->totalAPagar/$req->nroCuotas)) }}</span></p>
-  </td> <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 2</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>15-01-2019</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($req->totalAPagar/$req->nroCuotas)) }}</span></p>
-  </td> 
-  <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 3</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>07-03-2019</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($req->totalAPagar/$req->nroCuotas)) }}</span></p>
-  </td> 
-  <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 4</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>07-04-2019</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($req->totalAPagar/$req->nroCuotas)) }}</span></p>
-  </td> 
-  <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 5</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>07-05-2019</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($req->totalAPagar/$req->nroCuotas)) }}</span></p>
-  </td> 
-  <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 6</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>07-06-2019</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($req->totalAPagar/$req->nroCuotas)) }}</span></p>
-  </td> 
-  <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 7</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>23-09-2018</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($req->totalAPagar/$req->nroCuotas)) }}</span></p>
-  </td> 
-  <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 8</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>07-08-2019</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($req->totalAPagar/$req->nroCuotas)) }}</span></p>
-  </td> 
-  <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 9</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>07-09-2019</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($req->totalAPagar/$req->nroCuotas)) }}</span></p>
-  </td> 
-  <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 10</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>07-10-2019</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($req->totalAPagar/$req->nroCuotas)) }}</span></p>
-  </td> 
-  @endif
-
-    @if (($req->nroCuotas==11))
-      <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 1</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>29-09-2018</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ ceil($totalPago/$req->nroCuotas) }}</span></p>
-  </td> <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 2</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>15-01-2019</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($totalPago/$req->nroCuotas)) }}</span></p>
-  </td> 
-  <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 3</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>07-03-2019</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($totalPago/$req->nroCuotas)) }}</span></p>
-  </td> 
-  <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 4</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>07-04-2019</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($totalPago/$req->nroCuotas)) }}</span></p>
-  </td> 
-  <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 5</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>07-05-2019</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($totalPago/$req->nroCuotas)) }}</span></p>
-  </td> 
-  <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 6</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>07-06-2019</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($totalPago/$req->nroCuotas)) }}</span></p>
-  </td> 
-  <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 7</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>07-07-2019</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($totalPago/$req->nroCuotas)) }}</span></p>
-  </td> 
-  <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 8</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>07-08-2019</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($totalPago/$req->nroCuotas)) }}</span></p>
-  </td> 
-  <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 9</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>07-09-2019</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($totalPago/$req->nroCuotas)) }}</span></p>
-  </td> 
-  <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 10</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>07-10-2019</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($totalPago/$req->nroCuotas)) }}</span></p>
-  </td> 
-  <tr style='height:6.3pt'>
-  <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
-  border-top:none;padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=ES-CL
-  style='font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Cuota 11</span></p>
-  </td>
-  <td width=80 nowrap valign=bottom style='width:60.05pt;border-top:none;
-  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif;
-  letter-spacing:-.1pt'>07-11-2019</span></p>
-  </td>
-  <td width=87 valign=bottom style='width:65.5pt;border-top:none;border-left:
-  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ (ceil($totalPago/$req->nroCuotas)) }}</span></p>
-  </td> 
-
-    @endif
    
- 
- 
- 
- 
+@if ($contrato->anioAContratar ==  date('Y', strtotime($contrato->fechaContrato)))
+  @include('secretariado.pagare.pagareCuotasThisYear')
+@else
+  @include('secretariado.pagare.pagareCuotasNextYear')
+@endif
+
  <tr style='height:12.3pt'>
   <td width=103 nowrap valign=bottom style='width:77.2pt;padding:0cm 3.5pt 0cm 3.5pt;
   height:12.3pt'>
@@ -748,7 +344,7 @@ lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> Porcentaje
   <td width=87 nowrap valign=bottom style='width:65.5pt;border:none;border-bottom:
   double windowtext 2.25pt;padding:0cm 3.5pt 0cm 3.5pt;height:12.3pt'>
   <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ number_format($req->totalAPagar-(($req->totalAPagar)*(($req->PorcentajeBeca)/100))) }}</span></p>
+  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ number_format( $arancelReajustado , 0, '', '.')  }}.-</span></p>
   </td>
  </tr>
 </table>
