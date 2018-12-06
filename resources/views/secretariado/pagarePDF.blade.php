@@ -175,7 +175,10 @@ ul
 @php
   $arancelAnual = (isset($contrato->arancelAnualAlumnos) ? $contrato->arancelAnualAlumnos : 0);
 
-  $arancelReajustado = (isset($contrato->totalAPagar) ? $contrato->totalAPagar : 0);
+  $totalAPagar = (isset($contrato->totalAPagar) ? $contrato->totalAPagar : 0);
+  $arancelReajustadoSinBeca = $totalAPagar;
+
+  $arancelReajustadoConBeca = $totalAPagar - $totalAPagar * ($contrato->PorcentajeBeca/100); 
 @endphp
 <body lang=ES>
 
@@ -251,7 +254,7 @@ style='letter-spacing:1.0pt'> </span>316,<span style='letter-spacing:1.0pt'> </s
 style='letter-spacing:1.0pt'> </span>de<span style='letter-spacing:1.0pt'> </span>La<span style='letter-spacing:1.0pt'> </span>Cisterna,<span style='letter-spacing:1.0pt'> </span>ciudad<span
 style='letter-spacing:1.0pt'> </span>de<span style='letter-spacing:1.0pt'> </span>Santiago,
 la suma de <b>$</b></span><span
-lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>{{ number_format( $arancelReajustado , 0, '', '.')  }}</span><b><span
+lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>{{ number_format( $arancelReajustadoSinBeca , 0, '', '.')  }}</span><b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>.-</span></b><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> cantidad
 que me  obligo a pagar íntegramente a la vista. </span></p>
@@ -290,17 +293,22 @@ lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{ (isset($
 
 <span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span><span
-lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>=> Arancel: ${{$arancelAlumno}}
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>=> Arancel: ${{number_format($arancelAlumno, 0, '', '.')}}
 
-=> Beca: {{ $porcentaje }}% => ${{ $arancelAlumno - $arancelAlumno * ($porcentaje/100) }}
+=> Beca: {{ $porcentaje }}% => ${{ number_format($arancelAlumno - $arancelAlumno * ($porcentaje/100), 0, '', '.') }}
 
 </span>
                                                                
+
 
 @endforeach
 <p class=MsoNormal style='margin-right:-11.6pt;text-align:justify'><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span><span
 lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> Porcentaje Beca Total: {{ (isset($contrato) ? $contrato->PorcentajeBeca : null) }}%</span>
+</p>
+<p class=MsoNormal style='margin-right:-11.6pt;text-align:justify'><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> </span><span
+lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> Total a pagar con beca: ${{ number_format($arancelReajustadoConBeca, 0, '', '.') }}.-</span>
 </p>
 
 <br><br>
@@ -344,7 +352,7 @@ lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'> Porcentaje
   <td width=87 nowrap valign=bottom style='width:65.5pt;border:none;border-bottom:
   double windowtext 2.25pt;padding:0cm 3.5pt 0cm 3.5pt;height:12.3pt'>
   <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ number_format( $arancelReajustado , 0, '', '.')  }}.-</span></p>
+  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ number_format( $arancelReajustadoConBeca , 0, '', '.')  }}.-</span></p>
   </td>
  </tr>
 </table>
