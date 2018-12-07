@@ -1,4 +1,15 @@
+{{-- calculo del arancel a pagar a la primera cuota --}}
+@php
+        $valor = floor(
 
+          floor( $arancelAnual / 11 ) * $maximoDeCuotas / $contrato->nroCuotas)
+
+          + $tools->plusT()
+
+          + ((floor($arancelAnual / 11 ) * $maximoDeCuotas) % $contrato->nroCuotas
+
+        );
+@endphp
  
   <tr style='height:6.3pt'>
     <td width=103 nowrap valign=bottom style='width:77.2pt;border:solid windowtext 1.0pt;
@@ -17,30 +28,22 @@
     none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
     padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
     <p class=MsoNormal align=center style='text-align:center'><span
-      lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>$
-    {{
-
-        floor(
-
-          floor( $arancelAnual / 11 ) * $maximoDeCuotas / $contrato->nroCuotas)
-
-          + $tools->plusT()
-
-          + ((floor($arancelAnual / 11 ) * $maximoDeCuotas) % $contrato->nroCuotas
-
-        )
-
-    }}
+      lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ number_format($valor - $valor * ($contrato->PorcentajeBeca/100), 0, '', '.')   }} 
   </span></p>
     </td>
  
-
-{{ $contador = 1 }}
+ {{ $contador = 1 }}
 @for ($i = 2; $i < $contrato->nroCuotas+1; $i++)
    
 @php
   //$startDate = $contrato->anioAContratar . '-' .  date('m', strtotime("+1 month",$contrato->fechaContrato)) . '-07'; // select date in Y-m-d format
-$startDate = '07-'. date('m', strtotime($contrato->fechaContrato . "+". $contador ." months") ) . '-' . $contrato->anioAContratar ;
+$startDate = '07-'. sprintf("%02d", $contador) . '-' . $contrato->anioAContratar ;
+
+$valor = floor(
+
+          floor($arancelAnual / 11) * $maximoDeCuotas / $contrato->nroCuotas
+
+        );
 
 @endphp 
   <tr style='height:6.3pt'>
@@ -62,15 +65,7 @@ $startDate = '07-'. date('m', strtotime($contrato->fechaContrato . "+". $contado
 
    
   <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{
-
-        floor(
-
-          floor($arancelAnual / 11) * $maximoDeCuotas / $contrato->nroCuotas
-
-        ) }}    
- 
-     
+  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ number_format($valor - $valor * ($contrato->PorcentajeBeca/100), 0, '', '.')  }}
   </span></p>
   </td> 
    }

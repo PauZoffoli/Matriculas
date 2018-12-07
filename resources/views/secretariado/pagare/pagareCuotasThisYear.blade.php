@@ -28,7 +28,7 @@
     none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
     padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
     <p class=MsoNormal align=center style='text-align:center'><span
-      lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ number_format($valor - $valor * ($contrato->PorcentajeBeca/100), 0, '', '.')  }} 
+      lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ number_format($valor - $valor * ($contrato->PorcentajeBeca/100), 0, '', '.')   }} 
   </span></p>
     </td>
  
