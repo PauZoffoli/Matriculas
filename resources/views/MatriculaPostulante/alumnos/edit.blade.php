@@ -311,7 +311,7 @@ $primerContacto
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
   <div class="pull-right">
-    {!! Form::submit('Guardar', ['class' => 'btn btn-primary', 'onclick' => 'inputTextToUpperCase()']) !!}
+    {!! Form::submit('Guardar', ['id' => 'submit', 'class' => 'btn btn-primary', 'onclick' => 'inputTextToUpperCase()']) !!}
   </div>
 </div>
 
@@ -322,5 +322,5 @@ $primerContacto
  </div>
 
 <script src="{{ asset('js/sinPadreSinMadre.js') }}"></script>
-
+<script src="{{ asset('js/Format/formatNumberAfter3Digits.js') }}"></script>
 @endsection

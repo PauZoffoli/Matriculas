@@ -115,7 +115,43 @@ class AlumnoSecretariadoController extends AppBaseController
      * @return Response
      */
 
+    public function cambioApoderado(request $request)
+        {
+            $rutApoderado = $request->get('rutApoderado');
+            $rutAlumno = $request->get('rutAlumno');
 
+            //BUSCAR APODERADO
+            $personaApoderado = Persona::whereHas('apoderado', function($query) use($rutApoderado) {
+                $query->where('rut', $rutApoderado);})->get();
+
+            if ( empty($personaApoderado->all())) {
+               Flash::error('El rut de la persona ingresada no encontró coincidencias, revise que esté correctamente escrito');
+
+               return redirect(route('cambioApoderado'));
+           }
+
+           //BUSCAR ALUMNO
+            $personaAlumno = Persona::whereHas('alumno', function($query) use($rutAlumno) {
+                $query->where('rut', $rutAlumno);})->get();
+            //dd($personaApoderado);
+            if ( empty($personaAlumno->all())) {
+               Flash::error('El rut de la persona ingresada no encontró coincidencias, revise que esté correctamente escrito');
+
+               return redirect(route('cambioApoderado'));
+           }
+           //OBTENCION DE ID'S
+           $idApo = $personaApoderado['0']->apoderado->id;
+           //dd($personaApoderado['0']->apoderado->id);
+           $idAlu = $personaAlumno['0']->alumno->id;
+            //dd($personaAlumno['0']->alumno->id);
+           //REALIZAR CAMBIO DE APODERADO
+            $alumno = $this->alumnoRepository->update(['idApoderado' => $idApo], $idAlu);
+            //dd($alumno);
+            //Alumno::find($idAlu)->update(['idApoderado' => $idApo]);
+            Flash::success('El Apoderado ha sido cambiado exitosamente.');
+
+            return redirect(route('cambioApoderado'));
+        }
     /**
      * Remove the specified Contrato from storage.
      *

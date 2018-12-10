@@ -61,3 +61,28 @@ Route::group(['namespace' => 'VistaSecretariado\DescargaPDFContrato', 'prefix' =
  Route::get('/cambioestados/{id}/{estados}', [
          'uses' => 'Administrador\CambioEstados\CambioEstadosController@edit'
     ])->name('cambioestadosgetedit')->middleware('auth'); 
+
+//Métodos para el index secretariado junto a buscador por rut(apoSecretariadoContr)
+//Route::post('ficha', 'VistaSecretariado\AlumnoSecretariadoController@ficha')->name('alumnoSecretariadoContr.ficha');
+Route::post('cambioApoderado', 'VistaSecretariado\AlumnoSecretariadoController@cambioApoderado')->name('cambioApoderado');
+
+Route::get('cambioApoderado', 'VistaSecretariado\AlumnoSecretariadoController@cambioApoderado');
+
+//este es el controller de agregar persona apoderado usuario
+Route::post('agregarApoPersona', 'VistaSecretariado\PersonaApoderadoUserController@agregarPersonaApoderado')->name('agregarApoPersona');
+
+Route::get('/cambioApoderado', function () {
+    
+    return view('secretariado.cambioApoderados');
+})->name('cambioApoderado');
+
+Route::get('/crearApoderado', function () {
+    
+    return view('secretariado.apoderados.createPersonaApoderado');
+})->name('crearApoderado');
+
+Route::get('/buscarApoderado', function () {
+    
+    return view('secretariado.apoderados.buscarApoderado');
+})->name('buscarApoderado');
+

@@ -45,9 +45,11 @@ table.minimalistBlack tfoot td {
         <th>Rut</th>
         <th>Estado Matrícula</th>
         <th>Tipo de Apoderado</th>
-       {{ date('m') }}
-        <th>Contratos {{ date('Y') }}</th>
+        @if (date('m')!=12)
+          <th>Contratos {{ date('Y') }}</th>
         <th>PDF {{  date('Y') }}</th>
+        @endif
+        
         <th>Contratos {{ date('Y')+1 }}</th>
         <th>PDF {{ date('Y')+1 }}</th>
         {{-- SI ES ADMINISTRADOR SE PODRÁN CAMBIAR LOS ESTADOS DE LA PERSONA --}}
@@ -109,6 +111,8 @@ table.minimalistBlack tfoot td {
       {{-- THIS YEAR --}}
       {{-- THIS YEAR --}}
       {{-- THIS YEAR --}}
+@if (date('m')!=12)
+  
 
         <td style="text-align: center;">
 
@@ -146,7 +150,7 @@ table.minimalistBlack tfoot td {
           </center>
            </td>
 
-
+@endif
       {{-- NEXT YEAR --}}
       {{-- NEXT YEAR --}}
       {{-- NEXT YEAR --}}
@@ -159,14 +163,14 @@ table.minimalistBlack tfoot td {
           <div class='btn-group'>
 
             <h4 style="float:left;" title="GENERAR el contrato del año {{ date('Y') + 1 }}" >
-              <span class="label label-default"><a href="{!! route('apoderadosPostulantes.edit', [$persona->id, "generandoContrato" ] ) !!}" style="color:black;" ><i class="glyphicon glyphicon-plus"></i></a> </span></h4>
+              <span class="label label-default"><a href="{!! route('apoderadosPostulantes.edit', [$persona->id, "generandoContrato" ] ) !!}" style="color:black;" ><i class="glyphicon glyphicon-plus"></i>CREAR</a></span></h4>
 
             <!-- Si existe un contrato, verlo -->
             @if ($contratoNextYear) 
                @if ($contratoNextYear->alumnos!= "[]")
                    <h4 style="float:left;"title="EDITAR el contrato del año {{ date('Y') + 1 }}">
                     <span class="label label-warning">
-                  <a href="{!! route('ContratoSecretariadoContr.edit', [$contratoNextYear->id] )  !!}"  style="color:white;" ><i class="glyphicon glyphicon-edit"></i></a></span></h4>
+                  <a href="{!! route('ContratoSecretariadoContr.edit', [$contratoNextYear->id] )  !!}"  style="color:white;" ><i class="glyphicon glyphicon-edit"></i>EDITAR</a></span></h4>
                 </div>
                 @endif
             @endif
@@ -182,12 +186,12 @@ table.minimalistBlack tfoot td {
                  <div class='btn-group'>
                     @if ( !empty($contratoNextYear->urlContrato) )
                       <h4 style="float:left;"><span class="label label-info">
-                      <a href="{{route("pdfContratoStream", $contratoNextYear->id)}}" title="Descargar el CONTRATO del año {{ date('Y') +1 }}"  style="color:white;" ><i class="glyphicon glyphicon-folder-open"></i></a></span></h4>
+                      <a href="{{route("pdfContratoStream", $contratoNextYear->id)}}" title="Descargar el CONTRATO del año {{ date('Y') +1 }}"  style="color:white;" ><i class="glyphicon glyphicon-folder-open"></i>CONTRATO</a></span></h4>
                     @endif
 
                     @if ( !empty($contratoNextYear->urlPagare) )
                       <h4 style="float:left;"><span class="label label-success">
-                        <a href="{{route("pdfPagareStream", $contratoNextYear->id)}}" title="Descargar el PAGARÉ del año {{ date('Y')+1 }}"  style="color:white;" ><i class="glyphicon glyphicon-usd"></i></a></span></h4>
+                        <a href="{{route("pdfPagareStream", $contratoNextYear->id)}}" title="Descargar el PAGARÉ del año {{ date('Y')+1 }}"  style="color:white;" ><i class="glyphicon glyphicon-usd"></i>PAGARÉ</a></span></h4>
                     @endif
                 </div>
                 </center>

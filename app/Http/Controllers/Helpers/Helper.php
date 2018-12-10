@@ -307,15 +307,29 @@ class Helper extends Controller
       return $alumnoResponsableAgregado; //Devolvemos una variable de tipo TipoPersona
 
   }
+  //borrar espacios y pasar a mayúsculas
+    public static function deleteSpacesUpperText($text)
+    {
+        return strtoupper(str_replace(' ', '', $text)); 
+    }
+   //Comprobamos que el mail exista o no
+   public static function comprobarQueElEmailExista($persona){
+        $email = self::deleteSpacesUpperText($persona['email']);
+        $existeMail = Persona::where('email', '=', $email)->first();
+        $mensaje = null;
+        if($existeMail!=null){ //si encuentra significa que ya existe
+            $mensaje = "El email ya existe en nuestos registros.";
+        }
+       return $mensaje;
+    }
 
-   
-
-         //Comprobamos que el rut del Alumno efectivamente exista
+   //Comprobamos que el rut del Alumno efectivamente exista
    public static function comprobarQueElRutExista($persona){
-        $existePersonaRut = Persona::where('rut', '=', $persona['rut'])->first();
+        $rut = self::deleteSpacesUpperText($persona['rut']);
+        $existePersonaRut = Persona::where('rut', '=', $rut)->first();
         $mensaje = null;
         if($existePersonaRut==null){ //se crea
-            $mensaje = "El rut del alumno no existe, no sea pillo ;)";
+            $mensaje = "El rut de la persona ya existe.";
         }
        return $mensaje;
     }

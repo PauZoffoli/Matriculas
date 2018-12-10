@@ -7,18 +7,20 @@
 @endif
 @endif
 
-@if( auth()->user()->hasRole('Secretariado') === true || auth()->user()->hasRole('Administrador') === true )
+@if( auth()->user()->hasRole('Secretariado') === true || auth()->user()->hasRole('Administrador') === true)
     <li class="{{ Request::is('Secretariado*') ? 'active' : '' }}">
-    <a href="{!! route('apoSecretariadoContr.index') !!}"><i class="fa fa-edit"></i><span>Alumnos</span></a>
+    <a href="{!! route('apoSecretariadoContr.index') !!}"><i class="fa fa-edit"></i><span>Menú Matrículas</span></a>
 </li>
-@endif
-
-@if( auth()->user()->hasRole('Administrador') === true)
-
-
-
-<li class="{{ Request::is('alumnoContratos*') ? 'active' : '' }}">
-    <a href="{!! route('alumnoContratos.index') !!}"><i class="fa fa-edit"></i><span>Alumno Contratos</span></a>
-</li>
-
+<li class="treeview">
+        <a href="#"><i class="fas fa-user-friends"></i> <span>Apoderados</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+        <ul class="treeview-menu">
+          <li><a href="{!! route('buscarApoderado') !!}">Buscar Apoderado</a></li>
+          <li><a href="{!! route('crearApoderado') !!}">Agregar Apoderado</a></li>
+          <li><a href="{!! route('cambioApoderado') !!}">Cambiar Apoderado de Alumno</a></li>
+        </ul>
+      </li>
 @endif

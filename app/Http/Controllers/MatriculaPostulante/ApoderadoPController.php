@@ -96,6 +96,12 @@ class ApoderadoPController extends AppBaseController
              ]);
         }
          */
+        $validate = $this->validaciones($request); 
+        if ($validate!=null) {
+            throw ValidationException::withMessages([
+              $validate,
+             ]);
+        }
 
         //Si la persona no tiene una dirección, crearla
         if(!isset($persona->direccion->id)){
@@ -159,13 +165,13 @@ class ApoderadoPController extends AppBaseController
     public function validaciones($request){
         $validate = null;
     //    dd($request->all());
-        $validate = Helper::manualValidation($request->all(), (new \App\Http\Requests\RequestPersona\CreatePersonaRequest()), "1)Errores de los datos de la Persona: ",1);
+        $validate = Helper::manualValidation($request->all(), (new \App\Http\Requests\RequestsForMatricula\RequestPersona\CreatePersonaRequest()), "1)Errores de los datos de la Persona: ",1);
 
         if(isset($request->apoderado)){
-        $validate = $validate . Helper::manualValidation($request->apoderado, (new \App\Http\Requests\RequestApoderado\CreateApoderadoRequest()), "2)Errores de los datos del apoderado: ",2);
+        $validate = $validate . Helper::manualValidation($request->apoderado, (new \App\Http\Requests\RequestsForMatricula\RequestApoderado\CreateApoderadoRequest()), "2)Errores de los datos del apoderado: ",2);
         }
         if(isset($request->direccion)){
-        $validate =  $validate . Helper::manualValidation($request->direccion, (new \App\Http\Requests\RequestDireccion\CreateDireccionRequest()), "3)Errores de los datos de la Dirección: ", 3);
+        $validate =  $validate . Helper::manualValidation($request->direccion, (new \App\Http\Requests\RequestsForMatricula\RequestDireccion\CreateDireccionRequest()), "3)Errores de los datos de la Dirección: ", 3);
         }
       
         

@@ -995,7 +995,7 @@ class=GramE>junio </span> de dos mil dieciocho.<o:p></o:p></span></p>
 style='font-family:"Arial",sans-serif;mso-ansi-language:ES-TRAD'><span
 style='mso-tab-count:1'>            </span><span class=GramE>De acuerdo a</span>
 lo dispuesto en el título segundo del decreto con fuerza de ley número dos, de
-mil novecientos noventa y seis, esta institución se encuentra incorporada al
+mil novecientos noventa y ocho, y en la ley N° 20.845, esta institución se encuentra incorporada al
 sistema de financiamiento compartido de la educación.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='text-align:justify'><b style='mso-bidi-font-weight:
@@ -1254,7 +1254,7 @@ style='font-family:"Arial","sans-serif";mso-fareast-font-family:Arial'><span
 style='mso-list:Ignore'>7)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span></span><![endif]><span style='font-family:"Arial","sans-serif"'>Cumplir
 oportunamente con los pagos de matrícula fijada por el Ministerio de Educación,
-en el caso que corresponda<span style='mso-spacerun:yes'>  </span>y, con el
+<span style='mso-spacerun:yes'>  </span>y, con el
 pago de financiamiento compartido, el que para el año 2019 será determinado por
 el Ministerio de Educación de acuerdo al procedimiento contenido <st1:PersonName
 ProductID="la Ley N" w:st="on">la Ley N</st1:PersonName>º 20.845, publicada en
@@ -1381,7 +1381,7 @@ corresponda.<o:p></o:p></span></p>
 lang=ES-TRAD style='font-family:"Arial","sans-serif";mso-ansi-language:ES-TRAD'>:
 El cumplimiento de las obligaciones emanadas de este<span
 style='mso-spacerun:yes'>  </span>contrato, salvo la establecida en la cláusula
-cuarta número cinco, comenzará a regir desde el inicio del año escolar; sin
+cuarta número siete, comenzará a regir desde el inicio del año escolar; sin
 perjuicio de que el cumplimiento del pagaré notarial, será obligatorio desde el
 momento en que se matricula al alumno.<o:p></o:p></span></p>
 
@@ -1458,14 +1458,6 @@ l3 level1 lfo5;tab-stops:list 18.0pt'><![if !supportLists]><span lang=ES-TRAD
 style='font-size:10.0pt;font-family:"Arial","sans-serif";mso-fareast-font-family:
 Arial'><span style='mso-list:Ignore'>2)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span></span><![endif]><span lang=ES-TRAD style='font-size:10.0pt;
-font-family:"Arial","sans-serif"'>Incumplimiento de contrato por parte del
-apoderado.<o:p></o:p></span></p>
-
-<p class=MsoBodyText style='margin-left:18.0pt;text-indent:-18.0pt;mso-list:
-l3 level1 lfo5;tab-stops:list 18.0pt'><![if !supportLists]><span lang=ES-TRAD
-style='font-size:10.0pt;font-family:"Arial","sans-serif";mso-fareast-font-family:
-Arial'><span style='mso-list:Ignore'>3)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span lang=ES-TRAD style='font-size:10.0pt;
 font-family:"Arial","sans-serif"'>Si conforme al procedimiento contemplado en
 el reglamento interno de esta institución, se ha determinado que el alumno ha
 incurrido en un incumplimiento disciplinario o de convivencia, que merezca
@@ -1492,7 +1484,7 @@ expresan su conformidad con lo expuesto en este documento.<o:p></o:p></span></p>
  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
   <td width=231 colspan=2 valign=top style='width:173.6pt;padding:0cm 3.5pt 0cm 3.5pt'>
   <p class=MsoBodyText align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:9.0pt'>Manuel Mundaca Guillén<o:p></o:p></span></p>
+  lang=ES-TRAD style='font-size:9.0pt'>Manuel Mundaca Martínez<o:p></o:p></span></p>
   </td>
   <td width=28 valign=top style='width:21.25pt;padding:0cm 3.5pt 0cm 3.5pt'>
   <p class=MsoBodyText><span lang=ES-TRAD style='font-size:9.0pt'><o:p>&nbsp;</o:p></span></p>

@@ -37,6 +37,7 @@
     {{ Form::open(array('route' => array('ContratoSecretariadoContr.store'
 
     ))) }}
+    
 
 
   <div class="clearfix"></div>
@@ -174,7 +175,7 @@
 @endif
 
 
-    <div class="form-group col-sm-6">
+    <div class="form-group col-sm-6" style="display: none">
       {!! Form::label('totalAPagar', 'Total a pagar:') !!}
       {!! Form::text('totalAPagar', $total, ['class' => 'form-control','required' => 'true']) !!}
     </div>

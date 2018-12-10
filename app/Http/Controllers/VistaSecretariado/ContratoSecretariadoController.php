@@ -75,7 +75,7 @@ class ContratoSecretariadoController extends AppBaseController
                 //validar que el año a contratar no pueda ser mayor a la fecha de contratación
                 if($request['anioAContratar'] < date("Y", strtotime($request['fechaContrato']))){
                     Flash::error("La fecha de contrato no puede ser superior al actual");
-                    return redirect()->back();
+                    return redirect(route('apoSecretariadoContr.index'));
                 }
 
                 //Yo solo tengo dos opciones, contratar para este año o para el próximo
@@ -89,10 +89,13 @@ class ContratoSecretariadoController extends AppBaseController
                 $maximoDeCuotas = 11;
                 $mesAContratar = date("m", strtotime($request['fechaContrato'])); //QUITAR COMENTARIO
                 $anioAContratar = date("Y", strtotime($request['fechaContrato']));
+
                 if($request['anioAContratar'] == $anioAContratar ){
+
                     if($mesAContratar == 12){
                         Flash::error("Usted no puede matricular a ningún estudiante para el año: ". $request['anioAContratar']. " en el mes " . $mesAContratar);
-                        return redirect()->back();
+                        
+                         return redirect(route('apoSecretariadoContr.index'));
                     }
                     $maximoDeCuotas = $maximoDeCuotas - $mesAContratar + 1;
                 }
@@ -116,12 +119,13 @@ class ContratoSecretariadoController extends AppBaseController
                 //que depende de la fecha en que vengo a matricular
                 $tools = new ToolsForPagare(
                                 $mesAContratar, 
+                                $request['anioAContratar'],
                                 $request['arancelAnualAlumnos'],
                                 $maximoDeCuotas
                             );
 
                
-                $request['totalAPagar'] = $tools->totalAPagarReajustadoSegunFecha();
+                $request['totalAPagar'] = $tools->totalAPagar();
 
                 $input = $request->all();
 
@@ -152,7 +156,7 @@ class ContratoSecretariadoController extends AppBaseController
                         "alumnos",
                         $arraysIdsAlumnosAMatricular,
                         true);
-
+    
                 //Guardamos o actualizamos las becas acorde al año
                  foreach ($arraysIdsAlumnosAMatricular as $key => $value) {
                      DetalleBecaAlumno::updateOrCreate(
@@ -163,7 +167,7 @@ class ContratoSecretariadoController extends AppBaseController
 
 
                 $apoderado = Apoderado::where('id', $request->idApoderado)->first();
-                
+           
        switch ($request->get('btnContratoPagare')) {
            case 'contrato':
 

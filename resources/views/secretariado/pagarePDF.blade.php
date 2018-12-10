@@ -178,7 +178,7 @@ ul
   $totalAPagar = (isset($contrato->totalAPagar) ? $contrato->totalAPagar : 0);
   $arancelReajustadoSinBeca = $totalAPagar;
 
-  $arancelReajustadoConBeca = $totalAPagar - $totalAPagar * ($contrato->PorcentajeBeca/100); 
+  $arancelReajustadoConBeca = ceil($totalAPagar - $totalAPagar * ($contrato->PorcentajeBeca/100)); 
 @endphp
 <body lang=ES>
 
@@ -287,7 +287,7 @@ lang=ES-TRAD style='font-size:10.0pt;font-family:"Arial",sans-serif'>{{ (isset($
   $alumno = clone $tools; 
 
   $alumno->setArancelAnualAlumnos($arancelAlumno);
-  $arancelAlumno = $alumno->totalAPagarReajustadoSegunFecha();
+  $arancelAlumno = $alumno->totalAPagar();
 
 @endphp
 

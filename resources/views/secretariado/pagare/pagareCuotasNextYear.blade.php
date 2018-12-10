@@ -1,14 +1,12 @@
 {{-- calculo del arancel a pagar a la primera cuota --}}
 @php
-        $valor = floor(
+        
+          $valor = floor((floor(floor( $arancelAnual / 11 ) * $maximoDeCuotas / $contrato->nroCuotas)
+          + ((floor($arancelAnual / 11 ) * $maximoDeCuotas) % $contrato->nroCuotas))
+          * (1-$contrato->PorcentajeBeca / 100)); 
 
-          floor( $arancelAnual / 11 ) * $maximoDeCuotas / $contrato->nroCuotas)
+        $valor = $valor + $valor % $contrato->nroCuotas;
 
-          + $tools->plusT()
-
-          + ((floor($arancelAnual / 11 ) * $maximoDeCuotas) % $contrato->nroCuotas
-
-        );
 @endphp
  
   <tr style='height:6.3pt'>
@@ -28,7 +26,8 @@
     none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
     padding:0cm 3.5pt 0cm 3.5pt;height:6.3pt'>
     <p class=MsoNormal align=center style='text-align:center'><span
-      lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ number_format($valor - $valor * ($contrato->PorcentajeBeca/100), 0, '', '.')   }} 
+      lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ number_format($valor,0, '', '.')   }} 
+
   </span></p>
     </td>
  
@@ -39,11 +38,8 @@
   //$startDate = $contrato->anioAContratar . '-' .  date('m', strtotime("+1 month",$contrato->fechaContrato)) . '-07'; // select date in Y-m-d format
 $startDate = '07-'. sprintf("%02d", $contador) . '-' . $contrato->anioAContratar ;
 
-$valor = floor(
-
-          floor($arancelAnual / 11) * $maximoDeCuotas / $contrato->nroCuotas
-
-        );
+$valor = floor(floor(floor($arancelAnual / 11) * $maximoDeCuotas / $contrato->nroCuotas)
+  *(1-$contrato->PorcentajeBeca/100));
 
 @endphp 
   <tr style='height:6.3pt'>
@@ -65,7 +61,7 @@ $valor = floor(
 
    
   <p class=MsoNormal align=center style='text-align:center'><span
-  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ number_format($valor - $valor * ($contrato->PorcentajeBeca/100), 0, '', '.')  }}
+  lang=ES-TRAD style='font-size:10.0pt;letter-spacing:.6pt'>${{ number_format($valor , 0, '', '.')  }}
   </span></p>
   </td> 
    }
