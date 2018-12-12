@@ -43,9 +43,10 @@
 
 <section class="content-header" >
         <h1>
-           Datos Personales 
+           RUT {{ $persona->rut }} 
         </h1> <br>
 </section>
+
                         @include('MatriculaPostulante.personas.fieldsPersona')
 
                         @include('MatriculaPostulante.apoderados.fields')

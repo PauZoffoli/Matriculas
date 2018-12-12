@@ -1,4 +1,6 @@
 <!--para las personas ALUMNO Y APODERADO-->
+<!-- Pnombrecand Field -->
+
 
 
 <!-- Pnombrecand Field -->

@@ -155,8 +155,9 @@
     </div>
 
     <div class="form-group col-sm-6">
-      {!! Form::label('PorcentajeBeca', '% Total Beca:') !!}
-      {!! Form::number('PorcentajeBeca', 0, ['class' => 'form-control','required' => 'true' ,'step' => '0.1']) !!}
+      {!! Form::label('PorcentajeBeca', '% Total de Beca:') !!}
+      {!! Form::number('PorcentajeBeca', 0, ['class' => 'form-control','required' => 'true' , 'min' => '0', 'max' => '100', "step"=>"any"]) !!} 
+      {{-- 'step' => '0.1' --}}
     </div>
 
 {{-- DEPENDE DE LA SELECCIÓN DEL USUARIO SI SE CONTRATARÁ PARA ESTE O EL SIGUIENTE AÑO, ESTO SE REFLEJARÁ EN LA EXISTENCIA O NO DE  --}}

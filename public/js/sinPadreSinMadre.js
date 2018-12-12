@@ -43,7 +43,10 @@ function clearOutFormOfParents($parent){
    let parentFields = document.querySelectorAll('[name^=' + $parent + '\\[' + ']')
   var i;
   for (i = 0; i < parentFields.length; i++) {
-    parentFields[i].value = "";
+    if(i != parentFields.length-1){ // No borra el último por que el último es el parentesco
+      parentFields[i].value = "";
+    }
+    
   }
 }
 
@@ -54,7 +57,9 @@ function blockfieldsOrNotParents($parent, $blockOrNot){
    //parentFields[i].disabled = $blockOrNot; //no entra con los parámetros escritos al request
    parentFields[i].readOnly = $blockOrNot; //entra al request con los parametros
    if(parentFields[i].tagName === 'SELECT'){
+    if(i != parentFields.length-1){ //Evitamos que se borren los datos de parentesco madre y padre
        parentFields[i].disabled = $blockOrNot;
+    }
        
    }
   }

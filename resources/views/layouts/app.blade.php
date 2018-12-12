@@ -39,7 +39,7 @@
         padding-left:5px;
     }
     </style>
-
+@yield('ajax')
 
 </head>
 

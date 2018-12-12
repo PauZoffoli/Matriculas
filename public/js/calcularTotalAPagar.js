@@ -26,8 +26,8 @@ function becaTotalSegunCadaBecaIndividual(){
         (arancelPorAlumno[i].innerText/totalEscolaridadEnBrutoLBL.innerText)) 
         , 10);
     }
-    becaTotal.value = sum; //Cambiamos el valor del recuadro % Beca
-    totalAPagarSegunBecaTotal(); //Cambiamos el valor del recuadro Total a Pagar
+    becaTotal.value = sum //Math.round( sum * 10 )/10; //Cambiamos el valor del recuadro % Beca
+    totalAPagarSegunBecaTotal(); //Cambiamos el valor del recuadro Total a Pagar puede que sea innecesario
 }
 
 //Assign the keyup event handler

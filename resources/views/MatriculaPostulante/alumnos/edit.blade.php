@@ -63,16 +63,20 @@
 <input type="hidden" name="clear" value="Clear Form" onclick="clearForm(this.form);">
  <div class="box box-solid box-primary" style="background-color: #E5ECFB!important;">
 
-   <div class="pull-right">
+@if( auth()->user()->hasRole('Secretariado') != true && auth()->user()->hasRole('Administrador') != true)
+  <div class="pull-right">
       <div class="form-group  ">
- {!! Form::label('idCursoPostu', 'Curso a Postular para 2019:') !!}
-
-      {!! Form::select('alumno[idCursoPostu]', App\Enums\CursoEnum::getPossibleENUM(), ( isset($persona->alumno->idCursoPostu) ? $persona->alumno->idCursoPostu : null ) ,  array('id'=> 'alumno[idCursoPostu]', 'required' => 'true', 'class' => 'form-control', 'placeholder' => 'Seleccione el curso a postular' , "readonly"=>"readonly", 'disabled' => 'disabled')) !!}
+        {!! Form::label('idCursoPostu', 'Curso a Postular para 2019:') !!}
+        {!! Form::select('alumno[idCursoPostu]', App\Enums\CursoEnum::getPossibleENUM(), ( isset($persona->alumno->idCursoPostu) ? $persona->alumno->idCursoPostu : null ) ,  array('id'=> 'alumno[idCursoPostu]', 'required' => 'true', 'class' => 'form-control', 'placeholder' => 'Seleccione el curso a postular' , "readonly"=>"readonly", 'disabled' => 'disabled')) !!}
+      </div>
   </div>
-</div>
+@endif
+
+
+  
 <section class="content-header">
         <h1>
-            1) Datos del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat }}
+            1) Datos del Alumno/a {{ $persona->PNombre . ' ' . $persona->ApPat . ' RUT ' . $persona->rut }} 
       
   </h1> <br>
    
@@ -89,7 +93,14 @@
 <!-- Submit Field -->
 
 <!-- Idcursopostu Field -->
-
+@if( auth()->user()->hasRole('Secretariado') === true || auth()->user()->hasRole('Administrador') === true)
+   <div class="">
+      <div class="form-group  col-sm-12">
+ {!! Form::label('idCursoPostu', 'Curso a Postular para 2019:') !!}
+      {!! Form::select('alumno[idCursoPostu]', App\Enums\CursoEnum::getPossibleENUM(), ( isset($persona->alumno->idCursoPostu) ? $persona->alumno->idCursoPostu : null ) ,  array('id'=> 'alumno[idCursoPostu]', 'required' => 'true', 'class' => 'form-control', 'placeholder' => 'Seleccione el curso a postular' )) !!}
+      </div>
+</div>
+@endif
 
                   @include('MatriculaPostulante.personas.fieldsPersona')
                   

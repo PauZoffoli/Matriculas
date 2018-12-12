@@ -89,8 +89,6 @@ class LoopAlumnosController extends AppBaseController
      */
     public function update($id, UpdatePersonaRequest $request) //Debería cambiar la request
     {
-   
-
         $persona =  $this->personaRepository->hasOneRelated('Persona', 'Alumno', 'alumno', $id);
    //dd("ASD");
         //------------>0)VALIDAMOS QUE TODO FUNCIONE

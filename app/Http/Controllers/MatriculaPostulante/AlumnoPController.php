@@ -103,7 +103,7 @@ class AlumnoPController extends AppBaseController
         if($request->alumno['parentesco']=="Madre" || $request->alumno['parentesco']=="Padre"){ //Si el parentesco es madre o Padre llenamos los datos de su array para que que todas las variables de contacto luscan igual
            
             $getApoderadoPersona = Apoderado::where('id' , $persona->alumno->idApoderado)->first()->persona->getAttributes(); //Obtenemos el actual apoderado
-           
+          
             if($request->alumno['parentesco']=="Madre"){
                 $request->madre = $getApoderadoPersona;
                 $request->madre['parentesco'] = "Madre";

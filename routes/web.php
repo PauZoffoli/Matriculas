@@ -86,3 +86,7 @@ Route::get('/buscarApoderado', function () {
     return view('secretariado.apoderados.buscarApoderado');
 })->name('buscarApoderado');
 
+//AJAX PARA EL BUSCADOR DE RUT
+ Route::get('/persona/{rut}', [
+         'uses' => 'Personas\PersonaController@searchPersona'
+    ])->middleware('auth'); 

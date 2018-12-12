@@ -206,7 +206,7 @@ $idUserTXT = $asd;*/
 @if(isset($parentescoLBL)) 
         @if($parentescoLBL == "padre[parentesco]" )
         <!-- Parentesco padre Field -->
-            <div class="form-group col-sm-6" style="display: none;">
+            <div class="form-group col-sm-6" style="display:none;">
                 {!! Form::label('parentesco', 'Padre:') !!}
                 {!! Form::select($parentescoLBL,  ["Padre" => "Padre"], "Padre",  array('id' => $parentescoLBL, 'class' => 'form-control')) !!}
             </div>
@@ -214,7 +214,7 @@ $idUserTXT = $asd;*/
 
         @if($parentescoLBL == "madre[parentesco]")
         <!-- Parentesco madre Field -->
-            <div class="form-group col-sm-6" style="display: none;">
+            <div class="form-group col-sm-6" style="display:none;">
                 {!! Form::label('parentesco', 'Madre:') !!}
                 {!! Form::select($parentescoLBL, ["Madre"=> "Madre"], "Madre",  array('id' => $parentescoLBL, 'class' => 'form-control')) !!}
 

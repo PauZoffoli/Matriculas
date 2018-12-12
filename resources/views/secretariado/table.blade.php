@@ -160,21 +160,22 @@ table.minimalistBlack tfoot td {
           <td style="text-align: center;">
 
           {!! Form::open() !!}
+          <center>
           <div class='btn-group'>
 
             <h4 style="float:left;" title="GENERAR el contrato del año {{ date('Y') + 1 }}" >
               <span class="label label-default"><a href="{!! route('apoderadosPostulantes.edit', [$persona->id, "generandoContrato" ] ) !!}" style="color:black;" ><i class="glyphicon glyphicon-plus"></i>CREAR</a></span></h4>
-
+        
             <!-- Si existe un contrato, verlo -->
             @if ($contratoNextYear) 
                @if ($contratoNextYear->alumnos!= "[]")
-                   <h4 style="float:left;"title="EDITAR el contrato del año {{ date('Y') + 1 }}">
+                   <h4 title="EDITAR el contrato del año {{ date('Y') + 1 }}">
                     <span class="label label-warning">
                   <a href="{!! route('ContratoSecretariadoContr.edit', [$contratoNextYear->id] )  !!}"  style="color:white;" ><i class="glyphicon glyphicon-edit"></i>EDITAR</a></span></h4>
                 </div>
                 @endif
             @endif
-           
+            </center>
 
           </td>
 
@@ -190,7 +191,7 @@ table.minimalistBlack tfoot td {
                     @endif
 
                     @if ( !empty($contratoNextYear->urlPagare) )
-                      <h4 style="float:left;"><span class="label label-success">
+                      <h4 ><span class="label label-success">
                         <a href="{{route("pdfPagareStream", $contratoNextYear->id)}}" title="Descargar el PAGARÉ del año {{ date('Y')+1 }}"  style="color:white;" ><i class="glyphicon glyphicon-usd"></i>PAGARÉ</a></span></h4>
                     @endif
                 </div>

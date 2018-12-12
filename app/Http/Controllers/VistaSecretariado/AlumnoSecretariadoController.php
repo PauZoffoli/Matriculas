@@ -93,7 +93,8 @@ class AlumnoSecretariadoController extends AppBaseController
                 $output = $pdf->output();
                 $nombreArchivo = $primerContrato->id . '-'. $apoderado->persona->rut . '-'. $alumno->persona->rut .'.pdf'; 
                 try {
-                   file_put_contents('../storage/app/PDF2018a2019FichasAlumno/F'.$nombreArchivo, $output);
+                   file_put_contents((storage_path('../storage/app/PDF2018a2019FichasAlumno/F' . $nombreArchivo)), $output );
+                   
                    $alumno->fichaAlumno->urlFichaAlumno = '/PDF2018a2019FichasAlumno/F'.$nombreArchivo;
                    $alumno->fichaAlumno->save();
                    
@@ -125,9 +126,9 @@ class AlumnoSecretariadoController extends AppBaseController
                 $query->where('rut', $rutApoderado);})->get();
 
             if ( empty($personaApoderado->all())) {
-               Flash::error('El rut de la persona ingresada no encontró coincidencias, revise que esté correctamente escrito');
+               Flash::error('El rut del apoderado ingresado no encontró coincidencias, revise que esté correctamente escrito');
 
-               return redirect(route('cambioApoderado'));
+               return redirect(route('cambioApoderado'))->withInput($request->all());
            }
 
            //BUSCAR ALUMNO
@@ -135,9 +136,9 @@ class AlumnoSecretariadoController extends AppBaseController
                 $query->where('rut', $rutAlumno);})->get();
             //dd($personaApoderado);
             if ( empty($personaAlumno->all())) {
-               Flash::error('El rut de la persona ingresada no encontró coincidencias, revise que esté correctamente escrito');
+               Flash::error('El rut del alumno ingresado no encontró coincidencias, revise que esté correctamente escrito');
 
-               return redirect(route('cambioApoderado'));
+               return redirect(route('cambioApoderado'))->withInput($request->all());
            }
            //OBTENCION DE ID'S
            $idApo = $personaApoderado['0']->apoderado->id;

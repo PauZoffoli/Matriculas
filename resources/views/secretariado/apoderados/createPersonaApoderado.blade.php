@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('ajax')
+  <script src="{{ asset('js/Search/advertirQueLaPersonaYaExiste.js') }}"></script>
+@endsection
+
 @section('content')
     <section class="content-header">
         <h1>
@@ -15,14 +19,18 @@
                 {!! Form::open(array('route' => 'agregarApoPersona', 'method' => 'post')) !!}
             <div class="box-body">
                 <div class="row">
-        
-                @include('MatriculaPostulante.personas.fieldsPersona')
-
-                 <div class="form-group col-sm-6">
+         <div class="form-group col-sm-12">
                 {!! Form::label('rut', 'Rut:') !!}
-                {!! Form::text('rut', null, ['class' => 'form-control', 'placeholder' => 'Buscar rut apoderado','oninput'=>"checkRut(this)",'maxlength'=>"11"]) !!}
+                {!! Form::text('rut', null, ['id' => 'rut', 'class' => 'form-control', 'placeholder' => 'Buscar rut apoderado','oninput'=>"checkRut(this)",'maxlength'=>"11"]) !!}
             </div>
+            <div class="form-group col-sm-12">
+                <center>
+                    {!! Form::label('','' ,array('id' => 'error', 'style' => 'color:red;')) !!}   
+                </center>
+            </div>
+            @include('MatriculaPostulante.personas.fieldsPersona')
 
+                
             <!-- Email Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('email', 'Email:') !!}
@@ -51,6 +59,9 @@
             </div>
         </div>
     </div>
-   
+
+<script type="text/javascript">
+    document.getElementById("rut").addEventListener("change", advertirQueExiste);
+  </script>
         <script src="/js/validarRUT.js"></script>
 @endsection
