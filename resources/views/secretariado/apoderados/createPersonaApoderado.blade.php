@@ -28,6 +28,8 @@
                     {!! Form::label('','' ,array('id' => 'error', 'style' => 'color:red;')) !!}   
                 </center>
             </div>
+
+<div id="rellenarDatos" >
             @include('MatriculaPostulante.personas.fieldsPersona')
 
                 
@@ -51,7 +53,8 @@
             <div class="form-group col-sm-12">
               <div class="pull-right">
                 {!! Form::submit('Guardar', [ 'class' => 'btn btn-primary', 'onclick' => 'inputTextToUpperCase()']) !!}
-            </div>
+                </div>
+             </div>
         </div>
             
         
