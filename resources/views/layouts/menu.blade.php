@@ -23,4 +23,15 @@
           <li><a href="{!! route('cambioApoderado') !!}">Cambiar Apoderado de Alumno</a></li>
         </ul>
       </li>
+<li class="treeview">
+        <a href="#"><i class="fas fa-user-friends"></i> <span>Alumnos</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+        <ul class="treeview-menu">
+          <li><a href="{!! route('buscarAlumno') !!}">Buscar Alumno</a></li>
+          <li><a href="{!! route('crearAlumno') !!}">Agregar Alumno</a></li>
+        </ul>
+      </li>
 @endif

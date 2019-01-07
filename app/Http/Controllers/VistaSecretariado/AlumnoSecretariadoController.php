@@ -202,14 +202,12 @@ class AlumnoSecretariadoController extends AppBaseController
            
            }
 
-           if($personaApoderado->email==null){
+           if (!isset($personaApoderado->direccion->calle)) {
+               $personaApoderado->apoderado->estado = "MatriculaNoRevisadaPorApoderado";
 
-            $personaApoderado->apoderado->estado = "MatriculaNoRevisadaPorApoderado";
            }
-
           
             $personaApoderado->apoderado->save();
-           
            
             Flash::success('El Apoderado ha sido cambiado exitosamente.');
 

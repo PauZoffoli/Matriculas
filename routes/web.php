@@ -86,7 +86,29 @@ Route::get('/buscarApoderado', function () {
     return view('secretariado.apoderados.buscarApoderado');
 })->name('buscarApoderado');
 
+
+//MENU ALUMNOS
+Route::get('/crearAlumno', function () {
+    
+    return view('secretariado.alumnos.createPersonaAlumno');
+})->name('crearAlumno');
+
+
+Route::post('agregarAluPersona', 'VistaSecretariado\MenuAlumno\AlumnoMenuController@agregarPersonaAlumno')->name('agregarAluPersona');
+
+Route::get('/buscarAlumno', function () {
+    
+    return view('secretariado.alumnos.buscarAlumno');
+})->name('buscarAlumno');
+
+//FIN MENU ALUMNOS
+
 //AJAX PARA EL BUSCADOR DE RUT
  Route::get('/persona/{rut}', [
          'uses' => 'Personas\PersonaController@searchPersona'
+    ])->middleware('auth');
+
+ //AJAX PARA EL BUSCADOR DE ALUMNO POR NOMBRE
+ Route::get('/persona/nombre/{nombre}/{apellido}', [
+         'uses' => 'Personas\PersonaController@searchPersonaByNombre'
     ])->middleware('auth'); 

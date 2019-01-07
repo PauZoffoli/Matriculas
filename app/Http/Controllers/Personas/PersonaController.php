@@ -39,4 +39,14 @@ class PersonaController extends AppBaseController
            
     }
 
+    public function searchPersonaByNombre($PNombre, $ApPat) {
+            $PNombre =  trim($PNombre);
+            $ApPat =  trim($ApPat);
+            if(   (!empty($PNombre)) &&(!empty($ApPat))    ){
+  $persona = Persona::where('PNombre', 'LIKE', $PNombre)->where('ApPat', 'LIKE', $ApPat)->whereHas('alumno')->get();
+                return response()->json($persona);
+            }   
+           
+    }
+
 }
